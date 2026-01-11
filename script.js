@@ -41,8 +41,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusText = document.querySelector('.status-text');
     let isPlaying = false;
 
-    trigger.addEventListener('mouseenter', () => notch.classList.add('active'));
-    notch.addEventListener('mouseleave', () => notch.classList.remove('active'));
+    trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        notch.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!notch.contains(e.target) && !trigger.contains(e.target)) {
+            notch.classList.remove('active');
+        }
+    });
+
+    // Handle touch/hover for desktop feel but keep click as primary
+    notch.addEventListener('mouseleave', () => {
+        if (window.innerWidth > 768) {
+            notch.classList.remove('active');
+        }
+    });
 
     if (playBtn) {
         playBtn.addEventListener('click', (e) => {

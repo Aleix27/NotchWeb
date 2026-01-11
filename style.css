@@ -230,7 +230,7 @@ nav {
     width: 180px;
     height: 34px;
     background: #000;
-    border-radius: 0 0 16px 16px;
+    border-radius: 0 0 10px 10px;
     z-index: 9998;
     transition: width 0.6s var(--liquid-ease), height 0.6s var(--liquid-ease), border-radius 0.6s var(--liquid-ease), box-shadow 0.6s var(--liquid-ease);
     color: white;
@@ -1393,12 +1393,13 @@ footer {
     .web-notch {
         width: 90px;
         height: 18px;
+        border-radius: 0 0 8px 8px;
     }
 
     .web-notch.active {
         width: 200px;
         height: 70px;
-        border-radius: 0 0 16px 16px;
+        border-radius: 0 0 12px 12px;
     }
 
     .island-expanded {
@@ -1511,19 +1512,25 @@ footer {
         font-size: 16px;
     }
 
+    .as-actions {
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
     .as-badges {
         width: 100%;
-        justify-content: space-around;
-        gap: 10px;
+        justify-content: center;
+        gap: 25px;
         padding-top: 20px;
     }
 
     .b-val {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .b-label {
-        font-size: 8px;
+        font-size: 7px;
     }
 
     /* Features */
@@ -1541,19 +1548,30 @@ footer {
     }
 
     /* Waitlist */
+    .waitlist-section {
+        padding: 50px 20px;
+    }
+
     .waitlist-container h2 {
-        font-size: 36px;
+        font-size: 28px;
         line-height: 1.1;
     }
 
+    .waitlist-form {
+        margin-top: 30px;
+        gap: 8px;
+    }
+
     .waitlist-form input {
-        border-radius: 16px;
-        padding: 20px;
+        border-radius: 12px;
+        padding: 15px;
+        font-size: 14px;
     }
 
     .btn-waitlist {
-        padding: 20px;
-        border-radius: 16px;
+        padding: 15px;
+        border-radius: 12px;
+        font-size: 16px;
     }
 
     /* General */
