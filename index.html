@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeNotch | La Interacción Redefinida</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo-group">
+                <img src="assets/vibenotch_icon.png" alt="VibeNotch Icon" class="nav-icon">
+                <div class="logo">VibeNotch</div>
+            </div>
+            <div class="nav-links">
+                <a href="#demo">Visión</a>
+                <a href="#appstore">Tienda</a>
+                <a href="#features">Diseño</a>
+                <a href="#metrics">Potencia</a>
+                <button class="btn-primary">Pruébalo</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1 class="reveal-scroll">Un notch con alma.</h1>
+        <p class="reveal-scroll">La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.</p>
+        <div class="btn-group reveal-scroll"
+            style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+            <a href="#waitlist" class="btn-blue">Únete a la Lista de Espera</a>
+            <span class="app-store-tag">Próximamente en la Mac App Store</span>
+        </div>
+    </header>
+
+    <section id="demo" class="demo-section">
+        <div class="macbook-air">
+            <div class="screen-container">
+                <div class="mac-screen">
+                    <div class="fake-menubar">
+                        <div class="left">
+                            <span></span>
+                            <span class="bold">Finder</span>
+                            <span>Archivo</span>
+                            <span>Edición</span>
+                        </div>
+                        <div class="right">
+                            <span>󰂄 100%</span>
+                            <span>󰖩</span>
+                            <span>󰞯</span>
+                            <span>Dom 11 Ene</span>
+                        </div>
+                    </div>
+
+                    <div class="web-notch-hitbox"></div>
+                    <div id="web-notch" class="web-notch">
+                        <div class="island-compact">
+                            <div class="compact-art"
+                                style="background-image: url('assets/album_art.png'); background-size: cover;"></div>
+                            <div class="compact-visualizer">
+                                <span></span><span></span><span></span><span></span><span></span><span></span>
+                            </div>
+                        </div>
+
+                        <div class="island-expanded">
+                            <div class="exp-top-row">
+                                <div class="battery-status">
+                                    <span class="batt-icon">🔋</span>
+                                    <span>46%</span>
+                                </div>
+                                <div class="top-right-icons">
+                                    <span class="gear-icon">⚙️</span>
+                                </div>
+                            </div>
+
+                            <div class="exp-mid-row">
+                                <div class="main-album-art"
+                                    style="background-image: url('assets/album_art.png'); background-size: cover; background-position: center;">
+                                </div>
+                                <div class="song-info-block">
+                                    <div class="playback-status">
+                                        <span class="apple-logo"></span>
+                                        <span class="status-text">PAUSED</span>
+                                    </div>
+                                    <div class="song-title">Digital Horizon</div>
+                                    <div class="artist-name">Antigravity Arts</div>
+                                    <div class="progress-container">
+                                        <div class="progress-bar">
+                                            <div class="progress-knob"></div>
+                                        </div>
+                                        <div class="time-stamp">-2:40</div>
+                                    </div>
+                                </div>
+                                <div class="main-controls">
+                                    <span class="control-btn">⏮</span>
+                                    <span class="control-btn play">▶</span>
+                                    <span class="control-btn">⏭</span>
+                                </div>
+                            </div>
+                            <!-- SE HAN ELIMINADO LOS BOTONES DE ABAJO -->
+                        </div>
+                    </div>
+                    <!-- TEXTO ELIMINADO DE LA PANTALLA -->
+                </div>
+            </div>
+            <div class="keyboard-base"></div>
+        </div>
+    </section>
+
+    <section id="appstore" class="appstore-hero">
+        <div class="appstore-container reveal-scroll">
+            <div class="as-left">
+                <img src="assets/vibenotch_icon.png" alt="Icon" class="as-big-icon">
+            </div>
+            <div class="as-right">
+                <div class="as-meta">
+                    <h1>VibeNotch</h1>
+                    <h2>La muesca más inteligente.</h2>
+                    <p class="as-dev">Aleix Carles</p>
+                </div>
+                <div class="as-actions">
+                    <button class="as-btn-get">OBTENER</button>
+                </div>
+                <div class="as-badges">
+                    <div class="as-badge">
+                        <span class="b-val">4.9</span>
+                        <span class="b-label">402 VALORACIONES</span>
+                    </div>
+                    <div class="as-badge">
+                        <span class="b-val">4+</span>
+                        <span class="b-label">EDAD</span>
+                    </div>
+                    <div class="as-badge">
+                        <span class="b-val">#1</span>
+                        <span class="b-label">UTILIDADES</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURE 1: SWIFT NATIVE -->
+    <section class="mega-feature">
+        <div class="feature-content reveal-scroll">
+            <div class="feature-icon">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M21.985 14.978C19.818 20.143 13.987 23.037 8.51 21.318C5.7 20.372 3.442 18.407 2.107 15.869C4.96 17.952 8.627 18.846 12.106 18.278C14.86 17.816 17.429 16.457 19.354 14.416C18.131 14.933 16.829 15.253 15.497 15.362C11.889 15.689 8.276 14.428 5.623 11.921C5.217 11.534 4.839 11.119 4.492 10.679C4.492 10.679 8.907 13.647 13.66 12.092C15.24 11.576 16.659 10.65 17.785 9.405C14.925 10.972 11.433 11.113 8.445 9.775C6.628 8.962 5.056 7.68 3.889 6.07C8.413 9.849 15.02 10.377 20.076 7.375C20.076 7.375 20.359 7.195 20.77 6.893C21.014 7.906 21.132 8.953 21.117 10.003C21.092 11.679 20.713 13.351 19.985 14.878"
+                        fill="#F05138" />
+                </svg>
+            </div>
+            <span class="feature-tag">RENDIMIENTO</span>
+            <h2>Nativo en Swift.</h2>
+            <p>Programado desde cero en Swift para macOS, aprovechando cada gramo de potencia de Apple Silicon sin
+                compromisos.</p>
+        </div>
+    </section>
+
+    <!-- FEATURE 2: CREATED BY USERS -->
+    <section class="mega-feature reversed">
+        <div class="feature-content reveal-scroll">
+            <div class="feature-icon heart-pulse">
+                <span>❤️</span>
+            </div>
+            <span class="feature-tag">FILOSOFÍA</span>
+            <h2>Creado por usuarios.</h2>
+            <p>Un notch programado de un usuario de Mac para usuarios de Mac, donde la fluidez, utilidad, fidelidad y
+                rendimiento son la única prioridad.</p>
+        </div>
+    </section>
+
+    <!-- FEATURE 3: COMPATIBILITY -->
+    <section class="mega-feature">
+        <div class="feature-content reveal-scroll">
+            <span class="feature-tag">COMPATIBILIDAD</span>
+            <h2>Funciona en tu Mac.</h2>
+            <p>Compatible con todos los MacBooks con notch y los modelos anteriores gracias al modo píldora flotante.
+            </p>
+            <div class="pill-demo">
+                <div class="pill-notch-v2">
+                    <div class="pill-music-icon">
+                        <span>♪</span>
+                    </div>
+                    <div class="pill-visualizer">
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+                <span class="pill-label">Modo Píldora para Macs sin notch</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="metrics" class="metrics">
+        <div class="metrics-horizontal">
+            <div class="metric-item-h reveal-h-1">
+                <span class="h-label">RAM</span>
+                <h3 class="h-value">
+                    < 35MB</h3>
+                        <p>Uso mínimo de memoria.</p>
+            </div>
+            <div class="metric-item-h reveal-h-2">
+                <span class="h-label">CPU</span>
+                <h3 class="h-value">0%</h3>
+                <p>Consumo cero en reposo.</p>
+            </div>
+            <div class="metric-item-h reveal-h-3">
+                <span class="h-label">ENGINE</span>
+                <h3 class="h-value">120</h3>
+                <p>FPS constantes en ProMotion.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS MARQUEE -->
+    <section class="reviews-section">
+        <div class="marquee">
+            <div class="marquee-content">
+                <div class="review-pill">
+                    <div class="stars-container" data-stars="5"></div>
+                    <p>"Mejor interacción de la década."</p>
+                    <span class="author">— TechCrunch</span>
+                </div>
+                <div class="review-pill">
+                    <div class="stars-container" data-stars="5"></div>
+                    <p>"Indispensable para mi flujo."</p>
+                    <span class="author">— macOS Addict</span>
+                </div>
+                <div class="review-pill">
+                    <div class="stars-container" data-stars="5"></div>
+                    <p>"Apple debería comprar esto."</p>
+                    <span class="author">— Verge</span>
+                </div>
+                <div class="review-pill">
+                    <div class="stars-container" data-stars="5"></div>
+                    <p>"Limpio, rápido y precioso."</p>
+                    <span class="author">— Dribbble Community</span>
+                </div>
+                <!-- Duplicate for seamless scroll -->
+                <div class="review-pill">
+                    <div class="stars-container" data-stars="5"></div>
+                    <p>"Mejor interacción de la década."</p>
+                    <span class="author">— TechCrunch</span>
+                </div>
+                <div class="review-pill">
+                    <div class="stars-container" data-stars="5"></div>
+                    <p>"Indispensable para mi flujo."</p>
+                    <span class="author">— macOS Addict</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="waitlist" class="waitlist-section">
+        <div class="waitlist-container reveal-scroll">
+            <h2>Apúntate al futuro.</h2>
+            <p>Únete a más de 5,000 usuarios esperando la beta pública.</p>
+            <form class="waitlist-form" id="waitlistForm">
+                <input type="email" placeholder="Tu email profesional" required>
+                <button type="submit" class="btn-waitlist">Prioridad Beta</button>
+            </form>
+            <div id="successMsg" class="success-message">¡Bienvenido a bordo!</div>
+            <a href="https://instagram.com/aleixxet" target="_blank" class="instagram-link">
+                <span class="ig-icon">📸</span> Sígueme en Instagram para estar al día · @aleixxet
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">VibeNotch</div>
+        <p class="copyright">© 2026 VibeNotch. Minimalismo hecho en Barcelona.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
