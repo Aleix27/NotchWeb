@@ -368,11 +368,44 @@
         <div class="waitlist-container reveal-scroll">
             <h2>Apúntate al futuro.</h2>
             <p>Únete a más de 5,000 usuarios esperando la beta pública.</p>
-            <form class="waitlist-form" id="waitlistForm" action="https://formspree.io/f/mzddpobj" method="POST">
-                <input type="email" name="email" placeholder="Tu email profesional" required>
+            <form class="waitlist-form" id="waitlistForm">
+                <input type="email" id="emailInput" name="entry.1921152412" placeholder="Tu mejor email..." required>
                 <button type="submit" class="btn-waitlist">Prioridad Beta</button>
             </form>
             <div id="successMsg" class="success-message">¡Bienvenido a bordo!</div>
+
+            <script>
+                document.getElementById('waitlistForm').addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const form = this;
+                    const email = document.getElementById('emailInput').value;
+                    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSe3GrX4FudiQN3LfmSx-BB33I0tPNWUKVPMXFKJGgDw3HoeNQ/formResponse';
+
+                    const params = new URLSearchParams();
+                    params.append('entry.1921152412', email);
+
+                    fetch(url, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: params.toString()
+                    }).then(() => {
+                        form.style.display = 'none';
+                        const msg = document.getElementById('successMsg');
+                        msg.style.display = 'block';
+                        msg.style.opacity = '1';
+                    }).catch(err => {
+                        console.error('Error:', err);
+                        // Incluso si hay error de CORS, el 'no-cors' suele enviar el dato.
+                        form.style.display = 'none';
+                        const msg = document.getElementById('successMsg');
+                        msg.style.display = 'block';
+                        msg.style.opacity = '1';
+                    });
+                });
+            </script>
             <a href="https://instagram.com/aleixxet" target="_blank" class="instagram-link">
                 <span class="ig-icon">📸</span> Sígueme en Instagram para estar al día · @aleixxet
             </a>

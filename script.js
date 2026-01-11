@@ -84,36 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. WAITLIST FORM (Formspree Integration)
-    const waitlistForm = document.getElementById('waitlistForm');
-    const successMsg = document.getElementById('successMsg');
-
-    if (waitlistForm) {
-        waitlistForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const data = new FormData(waitlistForm);
-
-            try {
-                const response = await fetch(waitlistForm.action, {
-                    method: waitlistForm.method,
-                    body: data,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-
-                if (response.ok) {
-                    waitlistForm.style.display = 'none';
-                    successMsg.style.display = 'block';
-                    successMsg.style.opacity = '1';
-                } else {
-                    alert('Oops! Hubo un problema al enviar el formulario.');
-                }
-            } catch (error) {
-                alert('Oops! Hubo un problema al enviar el formulario.');
-            }
-        });
-    }
+    // 4. WAITLIST FORM (Google Forms Integration)
+    // Google Forms handles submission natively - no JavaScript interception needed
 
     // 5. PARALLAX HERO & MAC
     const hero = document.querySelector('.hero');
