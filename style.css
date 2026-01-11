@@ -139,6 +139,7 @@ nav {
     position: relative;
     width: 800px;
     transition: transform 1.2s var(--liquid-ease);
+    flex-shrink: 0;
 }
 
 .screen-container {
@@ -169,12 +170,15 @@ nav {
 }
 
 .demo-disclaimer {
-    margin-top: 15px;
-    font-size: 12px;
-    color: #aaa;
-    font-weight: 500;
+    display: block;
+    width: 100%;
+    margin-top: 40px;
+    padding: 0 20px;
+    font-size: 11px;
+    color: #b0b0b0;
+    font-weight: 400;
     text-align: center;
-    max-width: 600px;
+    letter-spacing: 0.3px;
 }
 
 .fake-menubar {
