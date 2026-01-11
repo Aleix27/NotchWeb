@@ -218,7 +218,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 400);
     }, 1200);
 
-    // 13. FLOATING PARTICLES
+    // 13. MOBILE MENU TOGGLE
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
+    // 14. FLOATING PARTICLES
     const particleContainer = document.createElement('div');
     particleContainer.classList.add('particles');
     document.body.appendChild(particleContainer);

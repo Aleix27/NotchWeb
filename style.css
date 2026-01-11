@@ -1152,6 +1152,42 @@ footer {
     color: var(--accent);
 }
 
+/* MOBILE MENU TOGGLE */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 6px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-toggle span:last-child {
+    width: 70%;
+}
+
+.menu-toggle.active span:first-child {
+    transform: translateY(4px) rotate(45deg);
+    width: 100%;
+}
+
+.menu-toggle.active span:last-child {
+    transform: translateY(-4px) rotate(-45deg);
+    width: 100%;
+}
+
 /* APP STORE CARD TILT */
 .appstore-container {
     transition: transform 0.4s var(--liquid-ease), box-shadow 0.4s;
@@ -1245,13 +1281,15 @@ footer {
     }
 
     .hero h1 {
-        font-size: 48px;
-        letter-spacing: -2px;
+        font-size: 42px;
+        letter-spacing: -1.5px;
+        line-height: 1.1;
     }
 
     .hero p {
-        font-size: 18px;
-        margin-bottom: 30px;
+        font-size: 17px;
+        margin-bottom: 25px;
+        padding: 0 20px;
     }
 
     .btn-blue {
@@ -1261,259 +1299,203 @@ footer {
 
     /* Nav */
     .nav-content {
-        padding: 0 15px;
+        padding: 0 20px;
+    }
+
+    .menu-toggle {
+        display: flex;
     }
 
     .nav-links {
-        gap: 12px;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        -webkit-backdrop-filter: blur(40px);
+        backdrop-filter: blur(40px);
+        display: flex;
+        /* Force flex */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        padding: 40px;
+    }
+
+    .nav-links.active {
+        right: 0;
     }
 
     .nav-links a {
-        font-size: 12px;
+        font-size: 32px;
+        font-weight: 700;
+        letter-spacing: -1px;
+        color: #000;
+        text-decoration: none;
+    }
+
+    .nav-links .btn-primary {
+        margin-top: 20px;
+        padding: 20px 60px;
+        font-size: 20px;
+        width: auto;
+        border-radius: 30px;
+        background: #000;
+        color: #fff;
     }
 
     .logo {
-        font-size: 18px;
+        font-size: 20px;
+        letter-spacing: -0.5px;
     }
 
     .nav-icon {
-        width: 28px;
-        height: 28px;
-    }
-
-    .btn-primary {
-        padding: 6px 12px;
-        font-size: 11px;
+        width: 32px;
+        height: 32px;
     }
 
     /* MacBook Demo */
     .demo-section {
-        padding: 0 10px 60px;
+        padding: 0 10px 20px;
     }
 
     .macbook-air {
         width: 100%;
-        max-width: 380px;
+        max-width: 300px;
     }
 
     .mac-screen {
-        height: 240px;
+        height: 180px;
+    }
+
+    .demo-disclaimer {
+        margin-top: 30px;
+        font-size: 10px;
+        line-height: 1.4;
+        padding: 0 30px;
     }
 
     .keyboard-base {
-        height: 10px;
+        height: 8px;
     }
 
     .fake-menubar {
-        height: 18px;
-        font-size: 8px;
-        padding: 0 10px;
+        height: 16px;
+        font-size: 7px;
+        padding: 0 8px;
     }
 
     /* Notch */
     .web-notch {
-        width: 100px;
-        height: 20px;
-        border-radius: 0 0 10px 10px;
+        width: 90px;
+        height: 18px;
     }
 
     .web-notch.active {
-        width: 280px;
-        height: 120px;
-        border-radius: 0 0 24px 24px;
-    }
-
-    .compact-art {
-        width: 14px;
-        height: 14px;
-    }
-
-    .compact-visualizer span {
-        width: 1.5px;
-        height: 6px;
-    }
-
-    .island-compact {
-        padding: 0 10px;
+        width: 260px;
+        height: 100px;
     }
 
     .island-expanded {
-        padding: 15px;
+        padding: 12px;
     }
 
     .main-album-art {
-        width: 45px;
-        height: 45px;
-        border-radius: 10px;
+        width: 40px;
+        height: 40px;
     }
 
     .song-title {
-        font-size: 14px;
+        font-size: 13px;
     }
 
-    .artist-name {
-        font-size: 11px;
+    .exp-mid-row {
+        gap: 15px;
     }
 
     .main-controls {
-        gap: 15px;
-        font-size: 16px;
-    }
-
-    .control-btn.play {
-        font-size: 22px;
+        gap: 12px;
+        font-size: 14px;
     }
 
     /* App Store Section */
+    .appstore-hero {
+        padding: 40px 15px;
+    }
+
     .appstore-container {
         flex-direction: column;
-        padding: 30px;
-        gap: 30px;
+        padding: 40px 20px;
+        gap: 25px;
         text-align: center;
+        border-radius: 32px;
     }
 
     .as-big-icon {
-        width: 120px;
-        height: 120px;
-        border-radius: 28px;
+        width: 100px;
+        height: 100px;
+        border-radius: 22px;
     }
 
     .as-meta h1 {
-        font-size: 32px;
+        font-size: 28px;
     }
 
     .as-meta h2 {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .as-badges {
-        justify-content: center;
-        gap: 25px;
+        width: 100%;
+        justify-content: space-around;
+        gap: 10px;
+        padding-top: 20px;
+    }
+
+    .b-val {
+        font-size: 16px;
+    }
+
+    .b-label {
+        font-size: 8px;
     }
 
     /* Features */
     .mega-feature {
-        padding: 80px 20px;
+        padding: 60px 20px;
     }
 
     .mega-feature h2 {
-        font-size: 36px;
-        letter-spacing: -1px;
+        font-size: 32px;
     }
 
     .mega-feature p {
         font-size: 16px;
-    }
-
-    .feature-icon svg {
-        width: 50px;
-        height: 50px;
-    }
-
-    .feature-icon.heart-pulse span {
-        font-size: 40px;
-    }
-
-    /* Pill Demo */
-    .pill-notch-v2 {
-        min-width: 200px;
-        padding: 12px 30px 12px 12px;
-    }
-
-    .pill-music-icon {
-        width: 35px;
-        height: 35px;
-    }
-
-    .pill-music-icon span {
-        font-size: 18px;
-    }
-
-    .pill-visualizer {
-        height: 22px;
-    }
-
-    .pill-visualizer span {
-        width: 3px;
-    }
-
-    /* Metrics */
-    .metrics {
-        padding: 80px 20px;
-    }
-
-    .metrics-horizontal {
-        flex-direction: column;
-        gap: 50px;
-    }
-
-    .metric-item-h {
-        text-align: center;
-    }
-
-    .h-value {
-        font-size: 60px;
-    }
-
-    .h-label {
-        font-size: 12px;
-    }
-
-    .metric-item-h p {
-        font-size: 14px;
-    }
-
-    /* Reviews */
-    .reviews-section {
-        padding: 60px 0;
-    }
-
-    .review-pill {
-        min-width: 280px;
-        padding: 25px 35px;
-    }
-
-    .review-pill p {
-        font-size: 20px;
-    }
-
-    .review-pill .author {
-        font-size: 14px;
+        line-height: 1.4;
     }
 
     /* Waitlist */
-    .waitlist-section {
-        padding: 80px 20px;
-    }
-
     .waitlist-container h2 {
-        font-size: 32px;
-    }
-
-    .waitlist-form {
-        flex-direction: column;
+        font-size: 36px;
+        line-height: 1.1;
     }
 
     .waitlist-form input {
-        padding: 18px 20px;
-        font-size: 16px;
+        border-radius: 16px;
+        padding: 20px;
     }
 
     .btn-waitlist {
-        padding: 18px 30px;
+        padding: 20px;
+        border-radius: 16px;
     }
 
-    /* Footer */
-    footer {
-        padding: 50px 20px;
-    }
-
-    /* Hide cursor glow on mobile */
-    .cursor-glow {
-        display: none;
-    }
-
-    .particles {
-        display: none;
+    /* General */
+    .reveal-scroll {
+        transform: translateY(40px);
     }
 }
