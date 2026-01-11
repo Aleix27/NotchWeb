@@ -1396,30 +1396,92 @@ footer {
     }
 
     .web-notch.active {
-        width: 260px;
-        height: 100px;
+        width: 200px;
+        height: 70px;
+        border-radius: 0 0 16px 16px;
     }
 
     .island-expanded {
-        padding: 12px;
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .exp-top-row {
+        display: none;
+        /* Hide battery on mobile to save space */
     }
 
     .main-album-art {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
+        border-radius: 6px;
+    }
+
+    .song-info-block {
+        gap: 1px;
     }
 
     .song-title {
-        font-size: 13px;
+        font-size: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 80px;
+    }
+
+    .artist-name {
+        font-size: 8px;
+    }
+
+    .playback-status {
+        font-size: 6px;
+        gap: 2px;
+    }
+
+    .progress-container {
+        display: none;
+        /* Hide progress bar on mobile */
     }
 
     .exp-mid-row {
-        gap: 15px;
+        gap: 10px;
+        align-items: center;
     }
 
     .main-controls {
-        gap: 12px;
-        font-size: 14px;
+        gap: 8px;
+        font-size: 12px;
+    }
+
+    .control-btn.play {
+        font-size: 16px;
+    }
+
+    /* Metrics */
+    .metrics {
+        padding: 60px 20px;
+    }
+
+    .metrics-horizontal {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .h-value {
+        font-size: 42px;
+        letter-spacing: -1px;
+    }
+
+    .h-label {
+        font-size: 10px;
+        margin-bottom: 5px;
+    }
+
+    .metric-item-h p {
+        font-size: 13px;
+        opacity: 0.8;
     }
 
     /* App Store Section */
