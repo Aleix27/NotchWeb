@@ -208,16 +208,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     metricValues.forEach(el => countObserver.observe(el));
 
-    // 11. SLOW SMOOTH SCROLL LINKS
+    // 11. FAST SMOOTH SCROLL LINKS
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#') return;
+
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const target = document.querySelector(href);
             if (target) {
-                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - 60; // Offset for fixed nav
                 const startPosition = window.pageYOffset;
                 const distance = targetPosition - startPosition;
-                const duration = 2000; // 2 seconds - slow and elegant
+                const duration = 800; // Fast and snappy
                 let start = null;
 
                 function animation(currentTime) {
@@ -277,5 +280,58 @@ document.addEventListener('DOMContentLoaded', () => {
         particle.style.animationDelay = Math.random() * 10 + 's';
         particle.style.animationDuration = (15 + Math.random() * 20) + 's';
         particleContainer.appendChild(particle);
+    }
+
+    // 15. DRAGGABLE REVIEWS MARQUEE
+    const marquee = document.querySelector('.marquee');
+    if (marquee) {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        marquee.addEventListener('mousedown', (e) => {
+            isDown = true;
+            marquee.classList.add('is-dragging');
+            startX = e.pageX - marquee.offsetLeft;
+            scrollLeft = marquee.scrollLeft;
+        });
+
+        marquee.addEventListener('mouseleave', () => {
+            isDown = false;
+            marquee.classList.remove('is-dragging');
+        });
+
+        marquee.addEventListener('mouseup', () => {
+            isDown = false;
+            marquee.classList.remove('is-dragging');
+        });
+
+        marquee.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - marquee.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll speed multiplier
+            marquee.scrollLeft = scrollLeft - walk;
+        });
+
+        // Touch support for mobile
+        marquee.addEventListener('touchstart', (e) => {
+            isDown = true;
+            marquee.classList.add('is-dragging');
+            startX = e.touches[0].pageX - marquee.offsetLeft;
+            scrollLeft = marquee.scrollLeft;
+        }, { passive: true });
+
+        marquee.addEventListener('touchend', () => {
+            isDown = false;
+            marquee.classList.remove('is-dragging');
+        });
+
+        marquee.addEventListener('touchmove', (e) => {
+            if (!isDown) return;
+            const x = e.touches[0].pageX - marquee.offsetLeft;
+            const walk = (x - startX) * 2;
+            marquee.scrollLeft = scrollLeft - walk;
+        }, { passive: true });
     }
 });

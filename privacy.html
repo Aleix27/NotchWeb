@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad | VibeNotch</title>
+    <meta name="description"
+        content="Política de Privacidad de VibeNotch. Tu privacidad es nuestra prioridad. Tus datos nunca salen de tu Mac.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Apple-style Legal Page */
+        .privacy-page {
+            padding: 140px 24px 100px;
+            max-width: 720px;
+            margin: 0 auto;
+            min-height: 100vh;
+            background: #fff;
+        }
+
+        .privacy-hero {
+            margin-bottom: 80px;
+            text-align: center;
+        }
+
+        .privacy-hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -2px;
+            color: #1d1d1f;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .privacy-hero .last-updated {
+            color: #86868b;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        /* Summary Card */
+        .privacy-summary {
+            background: #f5f5f7;
+            border-radius: 18px;
+            padding: 32px;
+            margin-bottom: 64px;
+            text-align: center;
+        }
+
+        .privacy-summary .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .privacy-summary h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+
+        .privacy-summary p {
+            font-size: 17px;
+            color: #86868b;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Section Styles */
+        .privacy-section {
+            margin-bottom: 48px;
+        }
+
+        .privacy-section h2 {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+            color: #1d1d1f;
+        }
+
+        .privacy-section h3 {
+            font-size: 19px;
+            font-weight: 600;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            color: #1d1d1f;
+        }
+
+        .privacy-section p {
+            font-size: 17px;
+            line-height: 1.65;
+            color: #424245;
+            margin-bottom: 16px;
+        }
+
+        .privacy-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Data Row */
+        .data-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .data-row:last-child {
+            border-bottom: none;
+        }
+
+        .data-label {
+            font-size: 15px;
+            color: #86868b;
+            font-weight: 500;
+        }
+
+        .data-value {
+            font-size: 15px;
+            color: #1d1d1f;
+            font-weight: 500;
+        }
+
+        /* Info Block */
+        .info-block {
+            background: #f5f5f7;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 16px 0;
+        }
+
+        .info-block p {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .info-block p+p {
+            margin-top: 8px;
+        }
+
+        /* List Styles */
+        .privacy-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0;
+        }
+
+        .privacy-section ul li {
+            position: relative;
+            padding: 12px 0 12px 28px;
+            font-size: 17px;
+            color: #424245;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .privacy-section ul li:last-child {
+            border-bottom: none;
+        }
+
+        .privacy-section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: #0071e3;
+            border-radius: 50%;
+        }
+
+        .privacy-section ul.no-collect li::before {
+            background: #86868b;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: rgba(0, 0, 0, 0.08);
+            margin: 48px 0;
+        }
+
+        /* Table */
+        .data-table-wrapper {
+            overflow-x: auto;
+            margin: 32px 0;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .data-table th {
+            background: #f5f5f7;
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #1d1d1f;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .data-table td {
+            padding: 14px 16px;
+            color: #424245;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-no {
+            background: rgba(134, 134, 139, 0.12);
+            color: #86868b;
+        }
+
+        .badge-yes {
+            background: rgba(52, 199, 89, 0.12);
+            color: #248a3d;
+        }
+
+        .badge-temp {
+            background: rgba(255, 159, 10, 0.12);
+            color: #c93400;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #0071e3;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 400;
+            margin-bottom: 40px;
+            transition: gap 0.2s ease;
+        }
+
+        .back-link:hover {
+            gap: 10px;
+        }
+
+        /* Contact */
+        .contact-block {
+            background: #f5f5f7;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 16px;
+        }
+
+        .contact-block a {
+            color: #0071e3;
+            text-decoration: none;
+        }
+
+        .contact-block a:hover {
+            text-decoration: underline;
+        }
+
+        /* Final Statement */
+        .final-statement {
+            background: #1d1d1f;
+            border-radius: 18px;
+            padding: 48px 32px;
+            text-align: center;
+            margin-top: 64px;
+        }
+
+        .final-statement .icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .final-statement h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #f5f5f7;
+            margin-bottom: 8px;
+        }
+
+        .final-statement p {
+            font-size: 17px;
+            color: #86868b;
+            margin: 0;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .privacy-page {
+                padding: 110px 20px 60px;
+            }
+
+            .privacy-hero h1 {
+                font-size: 34px;
+            }
+
+            .privacy-section h2 {
+                font-size: 24px;
+            }
+
+            .privacy-section p,
+            .privacy-section ul li {
+                font-size: 16px;
+            }
+
+            .data-row {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+
+            .final-statement {
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo-group">
+                <img src="assets/VibeNotch icon-iOS-Default-1024x1024@1x.png" alt="VibeNotch Icon" class="nav-icon">
+                <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">VibeNotch</a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html#vision">Visión</a>
+                <a href="index.html#appstore">Tienda</a>
+                <a href="index.html#design">Diseño</a>
+                <a href="index.html#metrics">Potencia</a>
+                <a href="index.html#waitlist" class="btn-primary" style="text-decoration: none;">Únete</a>
+            </div>
+            <div class="menu-toggle" id="mobile-menu-btn">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="privacy-page">
+        <a href="index.html" class="back-link">← VibeNotch</a>
+
+        <div class="privacy-hero">
+            <h1>Política de Privacidad</h1>
+            <p class="last-updated">Actualizado el 11 de enero de 2026</p>
+        </div>
+
+        <div class="privacy-summary">
+            <div class="icon">🔒</div>
+            <h2>Tu privacidad es lo primero</h2>
+            <p>VibeNotch no recopila, almacena ni transmite ningún dato personal. Toda la información permanece en tu
+                dispositivo.</p>
+        </div>
+
+        <section class="privacy-section">
+            <h2>Resumen</h2>
+            <p>VibeNotch está diseñado con un principio simple: tu Mac es tuyo. No recopilamos datos, no hay análisis de
+                uso, no hay servidores externos. La aplicación funciona completamente offline.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="privacy-section">
+            <h2>Información que accedemos</h2>
+            <p>Para ofrecer sus funciones, VibeNotch accede a cierta información del sistema. Esta información nunca
+                sale de tu dispositivo.</p>
+
+            <h3>Reproducción musical</h3>
+            <div class="info-block">
+                <div class="data-row">
+                    <span class="data-label">Qué</span>
+                    <span class="data-value">Título, artista, álbum y carátula</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Para qué</span>
+                    <span class="data-value">Mostrar "Reproduciendo ahora"</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Almacenado</span>
+                    <span class="data-value">Solo en memoria RAM</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Transmitido</span>
+                    <span class="data-value">Nunca</span>
+                </div>
+            </div>
+
+            <h3>Estado del sistema</h3>
+            <div class="info-block">
+                <div class="data-row">
+                    <span class="data-label">Qué</span>
+                    <span class="data-value">Batería, Wi-Fi, Bluetooth, silencio</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Para qué</span>
+                    <span class="data-value">Notificaciones del notch</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Almacenado</span>
+                    <span class="data-value">Nunca</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Transmitido</span>
+                    <span class="data-value">Nunca</span>
+                </div>
+            </div>
+
+            <h3>Preferencias</h3>
+            <div class="info-block">
+                <div class="data-row">
+                    <span class="data-label">Qué</span>
+                    <span class="data-value">Tus ajustes de la aplicación</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Para qué</span>
+                    <span class="data-value">Recordar tu configuración</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Almacenado</span>
+                    <span class="data-value">Localmente en tu Mac</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Transmitido</span>
+                    <span class="data-value">Nunca</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="privacy-section">
+            <h2>Lo que NO recopilamos</h2>
+            <ul class="no-collect">
+                <li>Información personal identificable</li>
+                <li>Datos de ubicación</li>
+                <li>Análisis de uso o estadísticas</li>
+                <li>Informes de errores automáticos</li>
+                <li>Identificadores de publicidad</li>
+                <li>Datos de navegación o historial</li>
+            </ul>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="privacy-section">
+            <h2>Conexión a internet</h2>
+            <p>VibeNotch puede conectarse a internet únicamente para obtener carátulas de álbum cuando no están
+                disponibles localmente, usando la API pública de iTunes. No se transmite información personal en esta
+                solicitud.</p>
+            <p>No hay telemetría. No hay analytics. No hay servidores propios.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="privacy-section">
+            <h2>Integraciones</h2>
+            <p>VibeNotch se integra con Apple Music y Spotify para mostrar información de reproducción. Estas
+                integraciones funcionan completamente en tu dispositivo a través de las APIs del sistema.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="privacy-section">
+            <h2>Resumen de datos</h2>
+            <div class="data-table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Dato</th>
+                            <th>Recopilado</th>
+                            <th>Almacenado</th>
+                            <th>Compartido</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Info musical</td>
+                            <td><span class="badge badge-no">No</span></td>
+                            <td><span class="badge badge-temp">RAM</span></td>
+                            <td><span class="badge badge-no">No</span></td>
+                        </tr>
+                        <tr>
+                            <td>Bluetooth</td>
+                            <td><span class="badge badge-no">No</span></td>
+                            <td><span class="badge badge-no">No</span></td>
+                            <td><span class="badge badge-no">No</span></td>
+                        </tr>
+                        <tr>
+                            <td>Sistema</td>
+                            <td><span class="badge badge-no">No</span></td>
+                            <td><span class="badge badge-no">No</span></td>
+                            <td><span class="badge badge-no">No</span></td>
+                        </tr>
+                        <tr>
+                            <td>Preferencias</td>
+                            <td><span class="badge badge-yes">Local</span></td>
+                            <td><span class="badge badge-yes">Local</span></td>
+                            <td><span class="badge badge-no">No</span></td>
+                        </tr>
+                        <tr>
+                            <td>Analytics</td>
+                            <td><span class="badge badge-no">No</span></td>
+                            <td><span class="badge badge-no">No</span></td>
+                            <td><span class="badge badge-no">No</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="privacy-section">
+            <h2>Contacto</h2>
+            <p>Si tienes preguntas sobre esta política de privacidad:</p>
+            <div class="contact-block">
+                <p><strong>Email:</strong> <a href="mailto:contacto@vibenotch.app">contacto@vibenotch.app</a></p>
+                <p><strong>Instagram:</strong> <a href="https://instagram.com/aleixxet" target="_blank">@aleixxet</a>
+                </p>
+            </div>
+        </section>
+
+        <div class="final-statement">
+            <div class="icon">🛡️</div>
+            <h3>Diseñado con privacidad en mente</h3>
+            <p>Tus datos nunca salen de tu Mac.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-logo">VibeNotch</div>
+        <p class="copyright">© 2026 VibeNotch. Minimalismo hecho en Tarragona.</p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (menuBtn && navLinks) {
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuBtn.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
