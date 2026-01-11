@@ -12,7 +12,7 @@
     <nav>
         <div class="nav-content">
             <div class="logo-group">
-                <img src="assets/vibenotch_icon.png" alt="VibeNotch Icon" class="nav-icon">
+                <img src="assets/VibeNotch icon-iOS-Default-1024x1024@1x.png" alt="VibeNotch Icon" class="nav-icon">
                 <div class="logo">VibeNotch</div>
             </div>
             <div class="nav-links">
@@ -30,7 +30,10 @@
     </nav>
 
     <header class="hero">
-        <h1 class="reveal-scroll">Un notch con alma.</h1>
+        <h1 class="reveal-scroll">
+            <span class="giant">Un notch</span>
+            <span class="soul">con alma.</span>
+        </h1>
         <p class="reveal-scroll">La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.</p>
         <div class="btn-group reveal-scroll"
             style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
@@ -115,10 +118,58 @@
             superior.</p>
     </section>
 
+    <!-- IMMERSIVE VIDEO -->
+    <section class="video-demo-section reveal-scroll">
+        <div class="video-container">
+            <video autoplay muted loop playsinline class="notch-video">
+                <source src="assets/399F7428-4545-46E5-9748-343551436B86.mp4" type="video/mp4">
+                Tu navegador no soporta el video.
+            </video>
+        </div>
+    </section>
+
+    <!-- VIDEO DISCLAIMER (on white) -->
+    <div class="video-disclaimer-wrapper">
+        <p class="video-disclaimer">Vídeo beta en fase de producción. El resultado final puede tener modificaciones.</p>
+    </div>
+
+    <!-- LAUNCHPAD FEATURE -->
+    <section class="mega-feature launchpad-section">
+        <div class="feature-content reveal-scroll">
+            <span class="feature-tag">PRODUCTIVIDAD</span>
+            <h2>Notch Launchpad.</h2>
+            <p>Acciones rápidas y herramientas a un solo click. Totalmente configurable para adaptarse a tu flujo de
+                trabajo diario.</p>
+            <div class="launchpad-image-container">
+                <img src="assets/vibe notch utilities.png" alt="Notch Launchpad" class="launchpad-img">
+            </div>
+
+            <!-- Interactive Utility Buttons -->
+            <div class="utility-buttons">
+                <button class="utility-btn" data-tooltip="Captura de Pantalla">
+                    <span class="utility-icon">📷</span>
+                    <span class="utility-label">Captura</span>
+                </button>
+                <button class="utility-btn" data-tooltip="Notas Rápidas">
+                    <span class="utility-icon">📝</span>
+                    <span class="utility-label">Notas</span>
+                </button>
+                <button class="utility-btn" data-tooltip="Grabar Pantalla">
+                    <span class="utility-icon">🎬</span>
+                    <span class="utility-label">Grabar</span>
+                </button>
+                <button class="utility-btn add-more" data-tooltip="Añadir Más">
+                    <span class="utility-icon">➕</span>
+                    <span class="utility-label">Añadir</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
     <section id="appstore" class="appstore-hero">
         <div class="appstore-container reveal-scroll">
             <div class="as-left">
-                <img src="assets/vibenotch_icon.png" alt="Icon" class="as-big-icon">
+                <img src="assets/VibeNotch icon-iOS-Default-1024x1024@1x.png" alt="Icon" class="as-big-icon">
             </div>
             <div class="as-right">
                 <div class="as-meta">
@@ -275,7 +326,7 @@
 
     <footer>
         <div class="footer-logo">VibeNotch</div>
-        <p class="copyright">© 2026 VibeNotch. Minimalismo hecho en Barcelona.</p>
+        <p class="copyright">© 2026 VibeNotch. Minimalismo hecho en Tarragona.</p>
     </footer>
 
     <script src="script.js"></script>

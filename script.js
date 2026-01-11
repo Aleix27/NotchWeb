@@ -73,6 +73,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 3.1 OBTENER SCROLL
+    const getBtn = document.querySelector('.as-btn-get');
+    if (getBtn) {
+        getBtn.addEventListener('click', () => {
+            const footer = document.querySelector('footer');
+            if (footer) {
+                footer.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }
+        });
+    }
+
     // 4. WAITLIST FORM (Formspree Integration)
     const waitlistForm = document.getElementById('waitlistForm');
     const successMsg = document.getElementById('successMsg');
@@ -122,8 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 6. SIMPLE HOVER BUTTONS (No lag)
-    document.querySelectorAll('.btn-blue, .btn-primary, .as-btn-get, .btn-waitlist').forEach(btn => {
+    // 6. SIMPLE HOVER BUTTONS (No lag) - Only for simple buttons, let CSS handle the rest
+    document.querySelectorAll('.btn-primary, .btn-waitlist').forEach(btn => {
         btn.addEventListener('mouseenter', () => {
             btn.style.transform = 'scale(1.06)';
         });

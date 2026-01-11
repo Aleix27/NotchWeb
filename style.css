@@ -66,6 +66,20 @@ nav {
     font-size: 24px;
     font-weight: 700;
     letter-spacing: -1.5px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: perspective(1px) translateZ(0);
+    /* Anti-aliasing */
+}
+
+.logo:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo:active {
+    transform: translateY(-4px) scale(1.1);
+    text-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .btn-primary {
@@ -86,37 +100,62 @@ nav {
 }
 
 .hero h1 {
-    font-size: 100px;
-    font-weight: 700;
     letter-spacing: -4px;
-    line-height: 1;
+    line-height: 0.8;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.hero h1 .giant {
+    font-size: clamp(80px, 20vw, 240px);
+    font-weight: 900;
+    letter-spacing: -12px;
+    text-transform: uppercase;
+    display: block;
+    line-height: 0.8;
+}
+
+.hero h1 .soul {
+    font-size: clamp(28px, 5vw, 60px);
+    font-weight: 600;
+    color: var(--text-sec);
+    letter-spacing: -2px;
+    margin-top: -10px;
 }
 
 .hero p {
-    font-size: 32px;
+    font-size: 24px;
     color: var(--text-sec);
-    max-width: 800px;
-    margin: 0 auto 50px;
+    max-width: 700px;
+    margin: 40px auto 40px;
     font-weight: 500;
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
 }
 
 .btn-blue {
     background: var(--accent);
     color: white;
-    padding: 20px 40px;
+    padding: 14px 30px;
     border-radius: 40px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 600;
     box-shadow: 0 10px 30px rgba(0, 113, 227, 0.2);
-    transition: all 0.3s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-blue:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px) scale(1.04);
     box-shadow: 0 15px 40px rgba(0, 113, 227, 0.3);
+}
+
+.btn-blue:active {
+    transform: translateY(-2px) scale(0.98);
+    box-shadow: 0 5px 15px rgba(0, 113, 227, 0.2);
 }
 
 .app-store-tag {
@@ -128,7 +167,8 @@ nav {
 
 /* Demo Mac */
 .demo-section {
-    padding: 0 0 80px;
+    padding: 0 0 100px;
+    /* Reduced padding for desktop */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -657,6 +697,13 @@ nav {
     font-size: 52px;
     font-weight: 700;
     letter-spacing: -2px;
+    transition: all 0.3s var(--liquid-ease);
+    cursor: default;
+}
+
+.as-meta h1:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .as-meta h2 {
@@ -689,6 +736,20 @@ nav {
     font-weight: 700;
     font-size: 16px;
     cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    top: 0;
+}
+
+.as-btn-get:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 113, 227, 0.4);
+}
+
+.as-btn-get:active {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(0, 113, 227, 0.5);
 }
 
 .as-hint {
@@ -1263,6 +1324,139 @@ footer {
     opacity: 1;
 }
 
+/* IMMERSIVE VIDEO SECTION - EDGE TO EDGE */
+.video-demo-section {
+    width: 100vw;
+    background: #000;
+    overflow: hidden;
+    margin: 150px 0 0;
+    /* Reduced for desktop */
+    padding: 0;
+    /* Removed padding to avoid black bars */
+}
+
+.video-container {
+    width: 100%;
+    height: 100vh;
+}
+
+.notch-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Fills entire screen, cropping if necessary */
+    background: #000;
+}
+
+.video-disclaimer-wrapper {
+    background: #fff;
+    padding: 20px 0 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.video-disclaimer {
+    color: #a1a1a6;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    max-width: 500px;
+    line-height: 1.4;
+}
+
+/* LAUNCHPAD FEATURE */
+.launchpad-section {
+    background: #fbfbfd;
+    padding: 120px 0;
+}
+
+.launchpad-image-container {
+    margin-top: 60px;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.launchpad-img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+    transition: transform 0.6s var(--liquid-ease), filter 0.6s;
+}
+
+.launchpad-img:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.2));
+}
+
+/* UTILITY BUTTONS - SYMBOLIC STYLE */
+.utility-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.utility-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.utility-btn:hover {
+    transform: translateY(-6px) scale(1.1);
+}
+
+.utility-btn:active {
+    transform: translateY(-3px) scale(1.05);
+}
+
+.utility-icon {
+    font-size: 42px;
+    transition: transform 0.3s ease;
+    filter: grayscale(0.2);
+}
+
+.utility-btn:hover .utility-icon {
+    transform: scale(1.15);
+    filter: grayscale(0);
+}
+
+.utility-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-sec);
+    letter-spacing: -0.3px;
+    opacity: 0.8;
+    transition: opacity 0.3s, color 0.3s;
+}
+
+.utility-btn:hover .utility-label {
+    opacity: 1;
+    color: var(--text);
+}
+
+.utility-btn.add-more .utility-icon {
+    opacity: 0.5;
+}
+
+.utility-btn.add-more:hover .utility-icon {
+    opacity: 0.8;
+}
+
+.video-caption,
+.video-glow {
+    display: none !important;
+}
+
 /* WAITLIST CONTAINER H2 */
 .waitlist-container h2 {
     font-size: 60px;
@@ -1572,6 +1766,36 @@ footer {
         padding: 15px;
         border-radius: 12px;
         font-size: 16px;
+    }
+
+    /* Video Demo Fullscreen Mobile Edge to Edge */
+    .video-demo-section {
+        height: auto;
+        margin: 80px 0 0;
+        /* Added top margin on mobile */
+    }
+
+    .video-container {
+        width: 100%;
+        height: 60vh;
+    }
+
+    .notch-video {
+        object-fit: cover;
+    }
+
+    /* Utility Buttons Mobile - Single Row */
+    .utility-buttons {
+        gap: 15px;
+        margin-top: 40px;
+    }
+
+    .utility-icon {
+        font-size: 28px;
+    }
+
+    .utility-label {
+        font-size: 10px;
     }
 
     /* General */
