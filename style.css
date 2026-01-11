@@ -128,11 +128,12 @@ nav {
 
 /* Demo Mac */
 .demo-section {
-    padding: 0 0 150px;
+    padding: 0 0 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0;
 }
 
 .macbook-air {
@@ -172,13 +173,13 @@ nav {
 .demo-disclaimer {
     display: block;
     width: 100%;
-    margin-top: 40px;
+    margin-top: 80px;
     padding: 0 20px;
     font-size: 11px;
-    color: #b0b0b0;
+    color: #999;
     font-weight: 400;
     text-align: center;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
 }
 
 .fake-menubar {
