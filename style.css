@@ -855,31 +855,11 @@ nav {
 }
 
 .marquee {
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow: hidden;
     user-select: none;
     display: flex;
     gap: 40px;
     padding: 20px 0;
-    cursor: grab;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    /* Firefox */
-    -ms-overflow-style: none;
-    /* IE/Edge */
-}
-
-.marquee::-webkit-scrollbar {
-    display: none;
-    /* Chrome/Safari */
-}
-
-.marquee:active {
-    cursor: grabbing;
-}
-
-.marquee.is-dragging .marquee-content {
-    animation-play-state: paused;
 }
 
 .marquee:hover .marquee-content {
@@ -890,9 +870,7 @@ nav {
     flex-shrink: 0;
     display: flex;
     gap: 40px;
-    min-width: 100%;
     animation: scroll 30s linear infinite;
-    pointer-events: none;
 }
 
 @keyframes scroll {
