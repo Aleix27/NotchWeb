@@ -58,20 +58,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. WAITLIST FORM
+    // 4. WAITLIST FORM (Formspree Integration)
     const waitlistForm = document.getElementById('waitlistForm');
     const successMsg = document.getElementById('successMsg');
 
     if (waitlistForm) {
-        waitlistForm.addEventListener('submit', (e) => {
+        waitlistForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            waitlistForm.style.opacity = '0';
-            waitlistForm.style.transform = 'translateY(20px)';
-            setTimeout(() => {
-                waitlistForm.style.display = 'none';
-                successMsg.style.display = 'block';
-                successMsg.style.animation = 'popIn 0.5s var(--liquid-ease)';
-            }, 300);
+            const data = new FormData(waitlistForm);
+
+            try {
+                const response = await fetch(waitlistForm.action, {
+                    method: waitlistForm.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    waitlistForm.style.display = 'none';
+                    successMsg.style.display = 'block';
+                    successMsg.style.opacity = '1';
+                } else {
+                    alert('Oops! Hubo un problema al enviar el formulario.');
+                }
+            } catch (error) {
+                alert('Oops! Hubo un problema al enviar el formulario.');
+            }
         });
     }
 
