@@ -1,0 +1,10 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+DTSTART:20260121T160000Z
+DTEND:20260121T170000Z
+SUMMARY:Lanzamiento VibeNotch 🚀
+DESCRIPTION:¡Es el momento! Revisa tu email para el enlace de descarga y el descuento Pro.
+LOCATION:Mac App Store
+END:VEVENT
+END:VCALENDAR
