@@ -73,16 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3.1 OBTENER SCROLL
-    const getBtn = document.querySelector('.as-btn-get');
-    if (getBtn) {
-        getBtn.addEventListener('click', () => {
-            const footer = document.querySelector('footer');
-            if (footer) {
-                footer.scrollIntoView({ behavior: 'smooth', block: 'end' });
-            }
-        });
-    }
+    // 3.1 DOWNLOAD ACTIONS
+    const appStoreUrl = 'https://apps.apple.com/app/vibenotch/id6757723688';
+
+    // Add logic here if needed for tracking or dynamic URL updates
 
     // 4. WAITLIST FORM (Google Forms Integration)
     // Google Forms handles submission natively - no JavaScript interception needed
@@ -105,22 +99,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 6. SIMPLE HOVER BUTTONS (No lag) - Only for simple buttons, let CSS handle the rest
-    document.querySelectorAll('.btn-primary, .btn-waitlist').forEach(btn => {
+    // 6. SIMPLE HOVER BUTTONS
+    document.querySelectorAll('.btn-primary, .btn-blue, .btn-appstore, .as-btn-get').forEach(btn => {
         btn.addEventListener('mouseenter', () => {
-            btn.style.transform = 'scale(1.06)';
+            btn.style.transform = btn.style.transform + ' scale(1.06)';
         });
 
         btn.addEventListener('mouseleave', () => {
-            btn.style.transform = 'scale(1)';
-        });
-
-        btn.addEventListener('mousedown', () => {
-            btn.style.transform = 'scale(0.95)';
-        });
-
-        btn.addEventListener('mouseup', () => {
-            btn.style.transform = 'scale(1.06)';
+            btn.style.transform = btn.style.transform.replace(' scale(1.06)', '');
         });
     });
 

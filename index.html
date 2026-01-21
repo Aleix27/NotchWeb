@@ -21,7 +21,7 @@
                 <a href="#design">Diseño</a>
                 <a href="#metrics">Potencia</a>
                 <a href="support.html">Soporte</a>
-                <a href="#waitlist" class="btn-primary" style="text-decoration: none;">Pruébalo</a>
+                <a href="#appstore" class="btn-primary" style="text-decoration: none;">Descargar</a>
             </div>
             <div class="menu-toggle" id="mobile-menu-btn">
                 <span></span>
@@ -38,8 +38,8 @@
         <p class="reveal-scroll">La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.</p>
         <div class="btn-group reveal-scroll"
             style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
-            <a href="#waitlist" class="btn-blue">Únete a la Lista de Espera</a>
-            <span class="app-store-tag">Próximamente en la Mac App Store</span>
+            <a href="#appstore" class="btn-blue">Descargar ahora</a>
+            <span class="app-store-tag">Ya disponible en la Mac App Store</span>
         </div>
     </header>
 
@@ -131,7 +131,8 @@
 
     <!-- VIDEO DISCLAIMER (on white) -->
     <div class="video-disclaimer-wrapper">
-        <p class="video-disclaimer">Vídeo beta en fase de producción. El resultado final puede tener modificaciones.</p>
+        <p class="video-disclaimer">Demostración de la aplicación en acción. VibeNotch se integra perfectamente con tu
+            sistema.</p>
     </div>
 
     <!-- VISION SECTION -->
@@ -224,7 +225,8 @@
                     <p class="as-dev">Aleix Carles</p>
                 </div>
                 <div class="as-actions">
-                    <button class="as-btn-get">OBTENER</button>
+                    <a href="https://apps.apple.com/app/vibenotch/id6757723688" target="_blank" class="as-btn-get"
+                        style="text-decoration: none;">OBTENER</a>
                 </div>
                 <div class="as-badges">
                     <div class="as-badge">
@@ -258,6 +260,9 @@
             <h2>Nativo en Swift.</h2>
             <p>Programado desde cero en Swift para macOS, aprovechando cada gramo de potencia de Apple Silicon sin
                 compromisos.</p>
+            <div class="feature-image-container reveal-scroll" style="margin-top: 50px;">
+                <img src="assets/err.png" alt="Notch Render" style="width: 100%; height: auto; display: block;">
+            </div>
         </div>
     </section>
 
@@ -291,6 +296,11 @@
                     </div>
                 </div>
                 <span class="pill-label">Modo Píldora para Macs sin notch</span>
+            </div>
+            <div class="mac-lineup-container reveal-scroll"
+                style="margin-top: 60px; width: 100%; margin-left: auto; margin-right: auto;">
+                <img src="assets/Gemini_Generated_Image_k23uzrk23uzrk23u.jpeg" alt="Mac Lineup"
+                    style="width: 100%; height: auto; display: block;">
             </div>
         </div>
     </section>
@@ -365,48 +375,22 @@
         </div>
     </section>
 
-    <section id="waitlist" class="waitlist-section">
+    <section id="download" class="waitlist-section">
         <div class="waitlist-container reveal-scroll">
-            <h2>Apúntate al futuro.</h2>
-            <p>Únete a más de 5,000 usuarios esperando la beta pública.</p>
-            <form class="waitlist-form" id="waitlistForm">
-                <input type="email" id="emailInput" name="entry.1921152412" placeholder="Tu mejor email..." required>
-                <button type="submit" class="btn-waitlist">Prioridad Beta</button>
-            </form>
-            <div id="successMsg" class="success-message">¡Bienvenido a bordo!</div>
+            <h2>El futuro ya está aquí.</h2>
+            <p>Descarga VibeNotch y lleva tu Mac al siguiente nivel.</p>
 
-            <script>
-                document.getElementById('waitlistForm').addEventListener('submit', function (e) {
-                    e.preventDefault();
-                    const form = this;
-                    const email = document.getElementById('emailInput').value;
-                    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSe3GrX4FudiQN3LfmSx-BB33I0tPNWUKVPMXFKJGgDw3HoeNQ/formResponse';
+            <div class="download-actions"
+                style="margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                <a href="https://apps.apple.com/app/vibenotch/id6757723688" target="_blank" class="btn-appstore">
+                    <span class="as-icon"></span>
+                    <div class="as-text">
+                        <span class="as-small">Consíguelo en el</span>
+                        <span class="as-big">App Store</span>
+                    </div>
+                </a>
+            </div>
 
-                    const params = new URLSearchParams();
-                    params.append('entry.1921152412', email);
-
-                    fetch(url, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        body: params.toString()
-                    }).then(() => {
-                        form.style.display = 'none';
-                        const msg = document.getElementById('successMsg');
-                        msg.style.display = 'block';
-                        msg.style.opacity = '1';
-                    }).catch(err => {
-                        console.error('Error:', err);
-                        // Incluso si hay error de CORS, el 'no-cors' suele enviar el dato.
-                        form.style.display = 'none';
-                        const msg = document.getElementById('successMsg');
-                        msg.style.display = 'block';
-                        msg.style.opacity = '1';
-                    });
-                });
-            </script>
             <a href="https://instagram.com/aleixxet" target="_blank" class="instagram-link">
                 <span class="ig-icon">📸</span> Sígueme en Instagram para estar al día · @aleixxet
             </a>
