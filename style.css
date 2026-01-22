@@ -7,6 +7,9 @@
     --liquid-ease: cubic-bezier(0.16, 1, 0.3, 1);
     --gold: #ffb800;
 }
+.text-black {
+    color: var(--text) !important;
+}
 
 * {
     margin: 0;
@@ -700,7 +703,7 @@ nav {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-.as-meta h1 {
+.as-meta h1, .as-meta .meta-heading-1 {
     font-size: 52px;
     font-weight: 700;
     letter-spacing: -2px;
@@ -708,12 +711,12 @@ nav {
     cursor: default;
 }
 
-.as-meta h1:hover {
+.as-meta h1:hover,.as-meta .meta-heading-1:hover {
     transform: translateY(-2px);
     text-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.as-meta h2 {
+.as-meta h2, .as-meta .meta-heading-2 {
     font-size: 24px;
     color: var(--text-sec);
     font-weight: 500;
@@ -1906,11 +1909,11 @@ footer {
         border-radius: 22px;
     }
 
-    .as-meta h1 {
+    .as-meta h1, .as-meta .meta-heading-1 {
         font-size: 28px;
     }
 
-    .as-meta h2 {
+    .as-meta h2,.as-meta .meta-heading-2 {
         font-size: 16px;
     }
 
