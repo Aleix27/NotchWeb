@@ -1119,12 +1119,23 @@ nav {
 }
 
 /* Footer */
-footer {
-    padding: 100px 0;
+footer.footer {
+    padding: 40px 0;
     text-align: center;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     font-weight: 500;
     color: #888;
+}
+
+.footer-logo {
+    margin-bottom: 16px;
+}
+
+.footer-legal {
+    margin-top: 16px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
 }
 
 /* CURSOR GLOW */
