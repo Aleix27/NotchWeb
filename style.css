@@ -489,7 +489,7 @@ nav {
     margin-bottom: 20px;
 }
 
-.mega-feature h2 {
+.mega-feature h2, .reviews-section h2 {
     font-size: 80px;
     font-weight: 700;
     letter-spacing: -3px;
@@ -862,6 +862,7 @@ nav {
 .reviews-section {
     padding: 150px 0;
     background: #fff;
+    text-align: center;
 }
 
 .marquee {
@@ -1943,11 +1944,11 @@ footer {
         padding: 60px 20px;
     }
 
-    .mega-feature h2 {
+    .mega-feature h2, .reviews-section h2 {
         font-size: 32px;
     }
 
-    .mega-feature p {
+    .mega-feature p{
         font-size: 16px;
         line-height: 1.4;
     }
