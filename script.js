@@ -100,8 +100,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }).catch(() => { });
         }
         document.removeEventListener('touchstart', unlockVideo);
+        document.removeEventListener('touchend', unlockVideo);
     };
     document.addEventListener('touchstart', unlockVideo, { passive: true });
+    document.addEventListener('touchend', unlockVideo, { passive: true }); // Safari sometimes needs touchend
+
+    // Throttle for video seeking to prevent decoder overload
+    let lastSeekTime = 0;
+    const seekThrottle = 50; // ms between seeks
 
     window.addEventListener('scroll', () => {
         const scroll = window.pageYOffset;
@@ -112,32 +118,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const sectionHeight = introSection.offsetHeight;
             const scrollPercent = Math.min(Math.max(scroll / (sectionHeight - vh), 0), 1);
 
-            // Logic: Scrub if video is ready (readyState >= 2), otherwise simple image fallback persists
-            if (introVideo) {
-                // Ensure video metadata is loaded
-                if (introVideo.readyState === 0) {
-                    introVideo.load();
-                }
+            if (introVideo && introVideo.duration && videoUnlocked) {
+                const now = Date.now();
 
-                if (introVideo.duration) {
-                    // Force play once to unlock audio/video context on mobile if needed
-                    if (introVideo.paused && !videoUnlocked && scrollPercent > 0.01) {
-                        // Silent play promise to warm up decoder
-                        introVideo.play().then(() => {
-                            introVideo.pause();
-                            videoUnlocked = true;
-                        }).catch(() => { });
-                    }
-
-                    // Smooth seeking logic
+                // Only seek if enough time has passed (throttle)
+                if (now - lastSeekTime > seekThrottle) {
                     const targetTime = introVideo.duration * scrollPercent;
 
-                    // Use fastSeek if available (better for mobile performance)
-                    if (introVideo.fastSeek) {
-                        introVideo.fastSeek(targetTime);
-                    } else if (Math.abs(introVideo.currentTime - targetTime) > 0.1) {
-                        // Regular seek if difference is significant enough to avoid jitter
+                    // Only update if difference is significant
+                    if (Math.abs(introVideo.currentTime - targetTime) > 0.08) {
                         introVideo.currentTime = targetTime;
+                        lastSeekTime = now;
                     }
                 }
             }
