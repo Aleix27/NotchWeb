@@ -101,19 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrollPercent = Math.min(Math.max(scrollDistance / (sectionHeight - vh), 0), 1);
 
             if (scrollDistance >= 0 && scrollDistance <= sectionHeight) {
-                // Content fade in and out
-                if (scrollPercent < 0.2) {
-                    introContent.style.opacity = scrollPercent * 5;
-                    introContent.style.transform = `translateY(${20 - scrollPercent * 100}px)`;
-                } else if (scrollPercent > 0.7) {
-                    introContent.style.opacity = (1 - scrollPercent) * 3.33;
-                } else {
-                    introContent.style.opacity = 1;
-                }
-
-                // Video scale effect
+                // Video scale effect ONLY on scroll
                 if (introVideo) {
                     introVideo.style.transform = `scale(${1 + scrollPercent * 0.1})`;
+                    // We can't pause WebP, but we can fade it out to simulate "stopping"
+                    introVideo.style.opacity = scrollPercent > 0.9 ? (1 - scrollPercent) * 10 : 1;
                 }
             }
 
@@ -126,14 +118,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (hero) {
-            hero.style.transform = `translateY(${scroll * 0.2}px)`;
-            hero.style.opacity = 1 - ((scroll - (introSection ? introSection.offsetHeight : 0)) / 700);
+            const hOffset = introSection ? introSection.offsetHeight : 0;
+            const relativeHeroScroll = scroll - hOffset;
+
+            if (relativeHeroScroll > -vh) {
+                hero.style.transform = `translateY(${relativeHeroScroll * 0.3}px)`;
+                hero.style.opacity = 1 - (relativeHeroScroll / 600);
+            }
         }
 
-        if (mac && scroll < (introSection ? introSection.offsetHeight + 1000 : 1000)) {
-            const relativeScroll = scroll - (introSection ? introSection.offsetHeight : 0);
-            if (relativeScroll > -vh) {
-                mac.style.transform = `perspective(1000px) rotateX(${Math.max(relativeScroll, 0) * 0.02}deg) translateY(${Math.max(relativeScroll, 0) * 0.08}px)`;
+        if (mac) {
+            const hOffset = introSection ? introSection.offsetHeight : 0;
+            const relativeMacScroll = scroll - hOffset;
+
+            if (relativeMacScroll > -vh) {
+                // Smoother rotation and translation
+                const rotation = Math.max(relativeMacScroll * 0.015, 0);
+                const translation = Math.max(relativeMacScroll * 0.1, 0);
+                mac.style.transform = `perspective(1200px) rotateX(${rotation}deg) translateY(${translation}px)`;
             }
         }
     });
