@@ -114,13 +114,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Logic: Scrub if video is ready (readyState >= 2), otherwise simple image fallback persists
             if (introVideo) {
-                if (introVideo.readyState >= 2 && introVideo.duration) {
+                // Ensure video metadata is loaded
+                if (introVideo.readyState === 0) {
+                    introVideo.load();
+                }
+
+                if (introVideo.duration) {
                     // Force play once to unlock audio/video context on mobile if needed
-                    if (introVideo.paused && scrollPercent > 0.01 && scrollPercent < 0.1) {
+                    if (introVideo.paused && !videoUnlocked && scrollPercent > 0.01) {
                         // Silent play promise to warm up decoder
-                        introVideo.play().then(() => introVideo.pause()).catch(() => { });
+                        introVideo.play().then(() => {
+                            introVideo.pause();
+                            videoUnlocked = true;
+                        }).catch(() => { });
                     }
-                    introVideo.currentTime = introVideo.duration * scrollPercent;
+
+                    // Smooth seeking logic
+                    const targetTime = introVideo.duration * scrollPercent;
+
+                    // Use fastSeek if available (better for mobile performance)
+                    if (introVideo.fastSeek) {
+                        introVideo.fastSeek(targetTime);
+                    } else if (Math.abs(introVideo.currentTime - targetTime) > 0.1) {
+                        // Regular seek if difference is significant enough to avoid jitter
+                        introVideo.currentTime = targetTime;
+                    }
                 }
             }
 
