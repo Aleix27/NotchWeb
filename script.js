@@ -101,11 +101,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrollPercent = Math.min(Math.max(scrollDistance / (sectionHeight - vh), 0), 1);
 
             if (scrollDistance >= 0 && scrollDistance <= sectionHeight) {
-                // Video scale effect ONLY on scroll
+                // Video scrubbing effect
                 if (introVideo) {
-                    introVideo.style.transform = `scale(${1 + scrollPercent * 0.1})`;
-                    // We can't pause WebP, but we can fade it out to simulate "stopping"
-                    introVideo.style.opacity = scrollPercent > 0.9 ? (1 - scrollPercent) * 10 : 1;
+                    // Calculate video time based on scroll
+                    if (introVideo.duration) {
+                        const targetTime = introVideo.duration * scrollPercent;
+                        introVideo.currentTime = targetTime;
+                    }
+
+                    introVideo.style.transform = `scale(${1 + scrollPercent * 0.05})`;
+                    introVideo.style.opacity = scrollPercent > 0.95 ? (1 - scrollPercent) * 20 : 1;
                 }
             }
 
