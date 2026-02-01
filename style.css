@@ -95,12 +95,18 @@ nav.visible {
 
 @media (max-width: 768px) {
     .intro-scroll-section {
-        height: 200vh;
+        height: 100vh;
+        /* No extra scrolling on mobile */
     }
 
     .intro-title {
         font-size: 50px;
         letter-spacing: -2px;
+    }
+
+    .video-scrub-section {
+        height: 100vh;
+        /* Just show, no scroll scrubbing */
     }
 }
 

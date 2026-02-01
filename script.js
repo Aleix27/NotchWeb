@@ -93,53 +93,62 @@ document.addEventListener('DOMContentLoaded', () => {
         const scroll = window.pageYOffset;
         const vh = window.innerHeight;
 
-        // 1. Intro Video Scrubbing Logic
+        // 1. Intro Video Scrubbing Logic (DESKTOP ONLY)
         const introVideoEl = document.getElementById('intro-video');
+        const isMobile = window.innerWidth <= 768;
 
-        // "Wake up" video for mobile
-        const wakeVideos = () => {
-            if (introVideoEl && introVideoEl.paused) {
-                introVideoEl.play().then(() => introVideoEl.pause());
+        // On mobile, just autoplay videos instead of scrubbing
+        if (isMobile) {
+            if (introVideoEl && introVideoEl.paused && scroll > 50) {
+                introVideoEl.play().catch(() => { });
             }
+            const scrubVideo = document.getElementById('scrub-video');
             if (scrubVideo && scrubVideo.paused) {
-                scrubVideo.play().then(() => scrubVideo.pause());
+                const scrubSection = document.querySelector('.video-scrub-section');
+                if (scrubSection) {
+                    const sTop = scrubSection.offsetTop;
+                    if (scroll > sTop - vh) {
+                        scrubVideo.play().catch(() => { });
+                    }
+                }
             }
-            window.removeEventListener('touchstart', wakeVideos);
-        };
-        window.addEventListener('touchstart', wakeVideos);
+        } else {
+            // Desktop: Scrubbing
+            if (introSection && introVideoEl) {
+                const sectionHeight = introSection.offsetHeight;
+                const scrollPercent = Math.min(Math.max(scroll / (sectionHeight - vh), 0), 1);
 
-        if (introSection && introVideoEl) {
-            const sectionHeight = introSection.offsetHeight;
-            const scrollPercent = Math.min(Math.max(scroll / (sectionHeight - vh), 0), 1);
-
-            if (scroll < sectionHeight) {
-                if (introVideoEl.duration) {
-                    const targetTime = introVideoEl.duration * scrollPercent;
-                    introVideoEl.currentTime = targetTime;
+                if (scroll < sectionHeight) {
+                    if (introVideoEl.duration) {
+                        introVideoEl.currentTime = introVideoEl.duration * scrollPercent;
+                    }
                 }
             }
 
-            // Nav visibility
+            // 2. Second Video Scrubbing Logic (DESKTOP ONLY)
+            const scrubSection = document.querySelector('.video-scrub-section');
+            const scrubVideo = document.getElementById('scrub-video');
+            if (scrubSection && scrubVideo) {
+                const sTop = scrubSection.offsetTop;
+                const sHeight = scrubSection.offsetHeight;
+                const sDistance = scroll - sTop;
+                const sPercent = Math.min(Math.max(sDistance / (sHeight - vh), 0), 1);
+
+                if (sDistance >= -vh && sDistance <= sHeight) {
+                    if (scrubVideo.duration) {
+                        scrubVideo.currentTime = scrubVideo.duration * sPercent;
+                    }
+                }
+            }
+        }
+
+        // Nav visibility
+        if (introSection) {
+            const sectionHeight = introSection.offsetHeight;
             if (scroll > sectionHeight - 50) {
                 nav.classList.add('visible');
             } else {
                 nav.classList.remove('visible');
-            }
-        }
-
-        // 2. Second Video Scrubbing Logic
-        const scrubSection = document.querySelector('.video-scrub-section');
-        const scrubVideo = document.getElementById('scrub-video');
-        if (scrubSection && scrubVideo) {
-            const sTop = scrubSection.offsetTop;
-            const sHeight = scrubSection.offsetHeight;
-            const sDistance = scroll - sTop;
-            const sPercent = Math.min(Math.max(sDistance / (sHeight - vh), 0), 1);
-
-            if (sDistance >= -vh && sDistance <= sHeight) {
-                if (scrubVideo.duration) {
-                    scrubVideo.currentTime = scrubVideo.duration * sPercent;
-                }
             }
         }
 
