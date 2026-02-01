@@ -114,30 +114,43 @@ document.addEventListener('DOMContentLoaded', () => {
         const scroll = window.pageYOffset;
         const vh = window.innerHeight;
 
-        if (introSection && introVideo && introVideo.duration && videoUnlocked) {
-            const sectionHeight = introSection.offsetHeight;
-            const scrollPercent = Math.min(Math.max(scroll / (sectionHeight - vh), 0), 1);
-
-            const isGoingBackward = scrollPercent < lastScrollPercent;
-            const now = Date.now();
-
-            // Longer throttle when going backwards (harder for decoder)
-            const throttle = isGoingBackward ? 100 : 50;
-
-            if (now - lastSeekTime > throttle) {
+        if (introSection && introVideo && introVideo.duration) {
+            // DESKTOP LOGIC (Smooth & Instant)
+            if (!isMobile) {
+                const sectionHeight = introSection.offsetHeight;
+                const scrollPercent = Math.min(Math.max(scroll / (sectionHeight - vh), 0), 1);
                 const targetTime = introVideo.duration * scrollPercent;
-                const diff = Math.abs(introVideo.currentTime - targetTime);
 
-                // Larger threshold when going backwards
-                const threshold = isGoingBackward ? 0.15 : 0.08;
-
-                if (diff > threshold) {
+                // Direct update without throttle for desktop
+                if (Math.abs(introVideo.currentTime - targetTime) > 0.05) {
                     introVideo.currentTime = targetTime;
-                    lastSeekTime = now;
                 }
             }
+            // MOBILE LOGIC (Throttled & Safer)
+            else if (videoUnlocked) {
+                const sectionHeight = introSection.offsetHeight;
+                const scrollPercent = Math.min(Math.max(scroll / (sectionHeight - vh), 0), 1);
 
-            lastScrollPercent = scrollPercent;
+                const isGoingBackward = scrollPercent < lastScrollPercent;
+                const now = Date.now();
+
+                // Longer throttle when going backwards (harder for decoder)
+                const throttle = isGoingBackward ? 100 : 50;
+
+                if (now - lastSeekTime > throttle) {
+                    const targetTime = introVideo.duration * scrollPercent;
+                    const diff = Math.abs(introVideo.currentTime - targetTime);
+
+                    // Larger threshold when going backwards
+                    const threshold = isGoingBackward ? 0.15 : 0.08;
+
+                    if (diff > threshold) {
+                        introVideo.currentTime = targetTime;
+                        lastSeekTime = now;
+                    }
+                }
+                lastScrollPercent = scrollPercent;
+            }
         }
 
         // Nav visibility
