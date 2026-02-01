@@ -126,30 +126,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     introVideo.currentTime = targetTime;
                 }
             }
-            // MOBILE LOGIC (Throttled & Safer)
+            // MOBILE LOGIC (Unleashed - Max Fluidity)
             else if (videoUnlocked) {
                 const sectionHeight = introSection.offsetHeight;
                 const scrollPercent = Math.min(Math.max(scroll / (sectionHeight - vh), 0), 1);
 
-                const isGoingBackward = scrollPercent < lastScrollPercent;
-                const now = Date.now();
+                // Direct update without throttle, relying on browser's rAF
+                const targetTime = introVideo.duration * scrollPercent;
 
-                // Longer throttle when going backwards (harder for decoder)
-                const throttle = isGoingBackward ? 100 : 50;
-
-                if (now - lastSeekTime > throttle) {
-                    const targetTime = introVideo.duration * scrollPercent;
-                    const diff = Math.abs(introVideo.currentTime - targetTime);
-
-                    // Larger threshold when going backwards
-                    const threshold = isGoingBackward ? 0.15 : 0.08;
-
-                    if (diff > threshold) {
-                        introVideo.currentTime = targetTime;
-                        lastSeekTime = now;
-                    }
+                // Only update if difference exists (to save minimal redundant work)
+                if (Math.abs(introVideo.currentTime - targetTime) > 0.03) {
+                    introVideo.currentTime = targetTime;
                 }
-                lastScrollPercent = scrollPercent;
             }
         }
 
