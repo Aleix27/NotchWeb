@@ -81,99 +81,55 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. WAITLIST FORM (Google Forms Integration)
     // Google Forms handles submission natively - no JavaScript interception needed
 
-    // 5. PARALLAX HERO & MAC & INTRO SCROLL
+    // 5. PARALLAX HERO & MAC & INTRO VIDEO SCRUBBING
     const hero = document.querySelector('.hero');
     const mac = document.querySelector('.macbook-air');
     const introSection = document.querySelector('.intro-scroll-section');
-    const introContent = document.querySelector('.intro-content');
-    const introVideo = document.querySelector('.intro-video');
+    const introVideo = document.getElementById('intro-video');
     const nav = document.querySelector('nav');
+    const isMobile = window.innerWidth <= 768;
 
     window.addEventListener('scroll', () => {
         const scroll = window.pageYOffset;
         const vh = window.innerHeight;
 
-        // 1. Intro Video Scrubbing Logic (DESKTOP ONLY)
-        const introVideoEl = document.getElementById('intro-video');
-        const isMobile = window.innerWidth <= 768;
-
-        // On mobile, just autoplay videos instead of scrubbing
-        if (isMobile) {
-            if (introVideoEl && introVideoEl.paused && scroll > 50) {
-                introVideoEl.play().catch(() => { });
-            }
-            const scrubVideo = document.getElementById('scrub-video');
-            if (scrubVideo && scrubVideo.paused) {
-                const scrubSection = document.querySelector('.video-scrub-section');
-                if (scrubSection) {
-                    const sTop = scrubSection.offsetTop;
-                    if (scroll > sTop - vh) {
-                        scrubVideo.play().catch(() => { });
-                    }
-                }
-            }
-        } else {
-            // Desktop: Scrubbing
-            if (introSection && introVideoEl) {
-                const sectionHeight = introSection.offsetHeight;
-                const scrollPercent = Math.min(Math.max(scroll / (sectionHeight - vh), 0), 1);
-
-                if (scroll < sectionHeight) {
-                    if (introVideoEl.duration) {
-                        introVideoEl.currentTime = introVideoEl.duration * scrollPercent;
-                    }
-                }
-            }
-
-            // 2. Second Video Scrubbing Logic (DESKTOP ONLY)
-            const scrubSection = document.querySelector('.video-scrub-section');
-            const scrubVideo = document.getElementById('scrub-video');
-            if (scrubSection && scrubVideo) {
-                const sTop = scrubSection.offsetTop;
-                const sHeight = scrubSection.offsetHeight;
-                const sDistance = scroll - sTop;
-                const sPercent = Math.min(Math.max(sDistance / (sHeight - vh), 0), 1);
-
-                if (sDistance >= -vh && sDistance <= sHeight) {
-                    if (scrubVideo.duration) {
-                        scrubVideo.currentTime = scrubVideo.duration * sPercent;
-                    }
-                }
-            }
-        }
-
-        // Nav visibility
+        // Intro Video Scrubbing (Desktop only)
         if (introSection) {
             const sectionHeight = introSection.offsetHeight;
-            if (scroll > sectionHeight - 50) {
+
+            if (!isMobile && introVideo && introVideo.duration) {
+                const scrollPercent = Math.min(Math.max(scroll / (sectionHeight - vh), 0), 1);
+                if (scroll < sectionHeight) {
+                    introVideo.currentTime = introVideo.duration * scrollPercent;
+                }
+            }
+
+            // Show nav after intro section
+            if (scroll > sectionHeight - 100) {
                 nav.classList.add('visible');
             } else {
                 nav.classList.remove('visible');
             }
         }
 
-        // 3. Hero & Mac Logic
-        if (hero) {
-            const hOffset = introSection ? introSection.offsetHeight : 0;
-            const relativeHeroScroll = scroll - hOffset;
+        // Hero parallax adjusted for intro offset
+        const introOffset = introSection ? introSection.offsetHeight : 0;
+        const relativeScroll = scroll - introOffset;
 
-            if (relativeHeroScroll > -vh) {
-                hero.style.transform = `translateY(${relativeHeroScroll * 0.3}px)`;
-                hero.style.opacity = 1 - (relativeHeroScroll / 600);
-            }
+        if (hero && relativeScroll > -vh) {
+            hero.style.transform = `translateY(${Math.max(relativeScroll * 0.2, 0)}px)`;
+            hero.style.opacity = 1 - (relativeScroll / 700);
         }
 
-        if (mac) {
-            const hOffset = introSection ? introSection.offsetHeight : 0;
-            const relativeMacScroll = scroll - hOffset;
-
-            if (relativeMacScroll > -vh) {
-                const rotation = Math.max(relativeMacScroll * 0.015, 0);
-                const translation = Math.max(relativeMacScroll * 0.1, 0);
-                mac.style.transform = `perspective(1200px) rotateX(${rotation}deg) translateY(${translation}px)`;
-            }
+        if (mac && relativeScroll > -vh && relativeScroll < 1000) {
+            mac.style.transform = `perspective(1000px) rotateX(${Math.max(relativeScroll * 0.02, 0)}deg) translateY(${Math.max(relativeScroll * 0.08, 0)}px)`;
         }
     });
+
+    // On mobile, just autoplay the intro video
+    if (isMobile && introVideo) {
+        introVideo.play().catch(() => { });
+    }
 
     // 6. SIMPLE HOVER BUTTONS
     document.querySelectorAll('.btn-primary, .btn-blue, .btn-appstore, .as-btn-get').forEach(btn => {

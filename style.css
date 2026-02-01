@@ -16,7 +16,6 @@
 .intro-scroll-section {
     position: relative;
     height: 300vh;
-    /* Adjust for scroll duration */
     background: #000;
 }
 
@@ -26,9 +25,6 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .intro-media {
@@ -38,7 +34,6 @@
     width: 100%;
     height: 100%;
     background: #000;
-    /* Fallback for black screen */
 }
 
 .intro-video {
@@ -47,43 +42,7 @@
     object-fit: cover;
 }
 
-.intro-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.8));
-    z-index: 2;
-}
-
-.intro-content {
-    position: relative;
-    z-index: 3;
-    text-align: center;
-    color: #fff;
-    transform: translateY(20px);
-    opacity: 0;
-}
-
-.intro-title {
-    font-size: clamp(60px, 15vw, 180px);
-    font-weight: 900;
-    letter-spacing: -5px;
-    margin-bottom: 20px;
-    background: linear-gradient(180deg, #fff, #888);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.intro-subtitle {
-    font-size: clamp(20px, 4vw, 32px);
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-/* Hide nav initially */
+/* Hide nav initially, show after intro */
 nav {
     transform: translateY(-100%);
     transition: transform 0.6s var(--liquid-ease);
@@ -96,20 +55,9 @@ nav.visible {
 @media (max-width: 768px) {
     .intro-scroll-section {
         height: 100vh;
-        /* No extra scrolling on mobile */
-    }
-
-    .intro-title {
-        font-size: 50px;
-        letter-spacing: -2px;
-    }
-
-    .video-scrub-section {
-        height: 100vh;
-        /* Just show, no scroll scrubbing */
+        /* Shorter on mobile for performance */
     }
 }
-
 
 * {
     margin: 0;
@@ -204,12 +152,9 @@ nav {
 
 /* Hero Moderno */
 .hero {
-    position: relative;
     padding-top: 180px;
     padding-bottom: 100px;
     text-align: center;
-    z-index: 20;
-    /* Ensure it's above the laptop */
 }
 
 .hero h1 {
@@ -220,7 +165,6 @@ nav {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    position: relative;
 }
 
 .hero h1 .giant {
@@ -281,15 +225,13 @@ nav {
 
 /* Demo Mac */
 .demo-section {
-    position: relative;
     padding: 0 0 100px;
+    /* Reduced padding for desktop */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 0;
-    z-index: 50;
-    /* Above the hero translaton */
 }
 
 .macbook-air {
@@ -370,15 +312,12 @@ nav {
 /* NOTCH CLONE */
 .web-notch-hitbox {
     position: absolute;
-    top: 0;
+    top: -1px;
     left: 50%;
     transform: translateX(-50%);
-    width: 240px;
-    height: 60px;
-    z-index: 99999;
-    /* Max priority */
-    cursor: pointer;
-    pointer-events: auto !important;
+    width: 220px;
+    height: 55px;
+    z-index: 9999;
 }
 
 .web-notch {
@@ -906,51 +845,6 @@ nav {
     font-weight: 700;
     color: #aaa;
     text-transform: uppercase;
-}
-
-/* FULL-SCREEN IMAGE SECTIONS */
-.full-screen-img-section {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    background: #000;
-}
-
-.full-screen-img-section img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.full-screen-caption {
-    position: absolute;
-    bottom: 80px;
-    left: 80px;
-    color: #fff;
-    z-index: 2;
-    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-}
-
-.full-screen-caption h2 {
-    font-size: clamp(40px, 8vw, 100px);
-    font-weight: 800;
-    letter-spacing: -4px;
-    margin-bottom: 20px;
-}
-
-.full-screen-caption p {
-    font-size: clamp(18px, 2vw, 32px);
-    opacity: 0.9;
-    font-weight: 500;
-}
-
-@media (max-width: 768px) {
-    .full-screen-caption {
-        bottom: 40px;
-        left: 30px;
-    }
 }
 
 /* HORIZONTAL METRICS */
@@ -1543,31 +1437,28 @@ footer.footer {
     opacity: 1;
 }
 
-/* VIDEO SCRUB SECTION */
-.video-scrub-section {
-    position: relative;
-    height: 400vh;
-    /* Scrub range */
+/* IMMERSIVE VIDEO SECTION - EDGE TO EDGE */
+.video-demo-section {
+    width: 100vw;
     background: #000;
+    overflow: hidden;
+    margin: 150px 0 0;
+    /* Reduced for desktop */
+    padding: 0;
+    /* Removed padding to avoid black bars */
 }
 
-.video-scrub-section .sticky-wrapper {
-    position: sticky;
-    top: 0;
+.video-container {
     width: 100%;
     height: 100vh;
-    overflow: hidden;
 }
 
-.video-scrub-section .video-container {
-    width: 100%;
-    height: 100%;
-}
-
-.video-scrub-section .notch-video {
+.notch-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Fills entire screen, cropping if necessary */
+    background: #000;
 }
 
 .video-disclaimer-wrapper {
