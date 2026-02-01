@@ -1574,28 +1574,31 @@ footer.footer {
     opacity: 1;
 }
 
-/* IMMERSIVE VIDEO SECTION - EDGE TO EDGE */
-.video-demo-section {
-    width: 100vw;
+/* VIDEO SCRUB SECTION */
+.video-scrub-section {
+    position: relative;
+    height: 400vh;
+    /* Scrub range */
     background: #000;
-    overflow: hidden;
-    margin: 150px 0 0;
-    /* Reduced for desktop */
-    padding: 0;
-    /* Removed padding to avoid black bars */
 }
 
-.video-container {
+.video-scrub-section .sticky-wrapper {
+    position: sticky;
+    top: 0;
     width: 100%;
     height: 100vh;
+    overflow: hidden;
 }
 
-.notch-video {
+.video-scrub-section .video-container {
+    width: 100%;
+    height: 100%;
+}
+
+.video-scrub-section .notch-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Fills entire screen, cropping if necessary */
-    background: #000;
 }
 
 .video-disclaimer-wrapper {

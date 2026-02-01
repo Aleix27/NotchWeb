@@ -93,35 +93,43 @@ document.addEventListener('DOMContentLoaded', () => {
         const scroll = window.pageYOffset;
         const vh = window.innerHeight;
 
-        // Intro Scroll Logic
+        // 1. Intro Scroll Logic (WebP - Simple Scale)
         if (introSection) {
-            const sectionTop = introSection.offsetTop;
             const sectionHeight = introSection.offsetHeight;
-            const scrollDistance = scroll - sectionTop;
-            const scrollPercent = Math.min(Math.max(scrollDistance / (sectionHeight - vh), 0), 1);
+            const scrollPercent = Math.min(Math.max(scroll / (sectionHeight - vh), 0), 1);
 
-            if (scrollDistance >= 0 && scrollDistance <= sectionHeight) {
-                // Video scrubbing effect
+            if (scroll < sectionHeight) {
                 if (introVideo) {
-                    // Calculate video time based on scroll
-                    if (introVideo.duration) {
-                        const targetTime = introVideo.duration * scrollPercent;
-                        introVideo.currentTime = targetTime;
-                    }
-
-                    introVideo.style.transform = `scale(${1 + scrollPercent * 0.05})`;
-                    introVideo.style.opacity = scrollPercent > 0.95 ? (1 - scrollPercent) * 20 : 1;
+                    introVideo.style.transform = `scale(${1 + scrollPercent * 0.1})`;
+                    introVideo.style.opacity = scrollPercent > 0.9 ? (1 - scrollPercent) * 10 : 1;
                 }
             }
 
             // Nav visibility
-            if (scroll > sectionHeight - 100) {
+            if (scroll > sectionHeight - 50) {
                 nav.classList.add('visible');
             } else {
                 nav.classList.remove('visible');
             }
         }
 
+        // 2. Second Video Scrubbing Logic
+        const scrubSection = document.querySelector('.video-scrub-section');
+        const scrubVideo = document.getElementById('scrub-video');
+        if (scrubSection && scrubVideo) {
+            const sTop = scrubSection.offsetTop;
+            const sHeight = scrubSection.offsetHeight;
+            const sDistance = scroll - sTop;
+            const sPercent = Math.min(Math.max(sDistance / (sHeight - vh), 0), 1);
+
+            if (sDistance >= 0 && sDistance <= sHeight) {
+                if (scrubVideo.duration) {
+                    scrubVideo.currentTime = scrubVideo.duration * sPercent;
+                }
+            }
+        }
+
+        // 3. Hero & Mac Logic
         if (hero) {
             const hOffset = introSection ? introSection.offsetHeight : 0;
             const relativeHeroScroll = scroll - hOffset;
@@ -137,7 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const relativeMacScroll = scroll - hOffset;
 
             if (relativeMacScroll > -vh) {
-                // Smoother rotation and translation
                 const rotation = Math.max(relativeMacScroll * 0.015, 0);
                 const translation = Math.max(relativeMacScroll * 0.1, 0);
                 mac.style.transform = `perspective(1200px) rotateX(${rotation}deg) translateY(${translation}px)`;
