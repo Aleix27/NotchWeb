@@ -88,6 +88,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const introVideo = document.getElementById('intro-video');
     const nav = document.querySelector('nav');
     const isMobile = window.innerWidth <= 768;
+    let videoUnlocked = false;
+
+    // MOBILE: Unlock video on first touch (required by iOS/Android)
+    const unlockVideo = () => {
+        if (introVideo && !videoUnlocked) {
+            introVideo.play().then(() => {
+                introVideo.pause();
+                introVideo.currentTime = 0;
+                videoUnlocked = true;
+            }).catch(() => { });
+        }
+        document.removeEventListener('touchstart', unlockVideo);
+    };
+    document.addEventListener('touchstart', unlockVideo, { passive: true });
 
     window.addEventListener('scroll', () => {
         const scroll = window.pageYOffset;
