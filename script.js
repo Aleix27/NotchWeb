@@ -116,15 +116,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // 2. Second Video Scrubbing Logic
         const scrubSection = document.querySelector('.video-scrub-section');
         const scrubVideo = document.getElementById('scrub-video');
-        if (scrubSection && scrubVideo) {
+        if (scrubSection && scrubVideo && scrubVideo.readyState >= 2) {
             const sTop = scrubSection.offsetTop;
             const sHeight = scrubSection.offsetHeight;
             const sDistance = scroll - sTop;
             const sPercent = Math.min(Math.max(sDistance / (sHeight - vh), 0), 1);
 
-            if (sDistance >= 0 && sDistance <= sHeight) {
-                if (scrubVideo.duration) {
-                    scrubVideo.currentTime = scrubVideo.duration * sPercent;
+            // Update video time based on scroll position
+            if (scrubVideo.duration && !isNaN(scrubVideo.duration)) {
+                const targetTime = scrubVideo.duration * sPercent;
+                // Only update if difference is significant to avoid jitter
+                if (Math.abs(scrubVideo.currentTime - targetTime) > 0.05) {
+                    scrubVideo.currentTime = targetTime;
                 }
             }
         }
