@@ -107,33 +107,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Throttle for video seeking to prevent decoder overload
     let lastSeekTime = 0;
-    const seekThrottle = 50; // ms between seeks
+    let lastScrollPercent = 0;
+    let ticking = false;
 
-    window.addEventListener('scroll', () => {
+    const updateVideoFrame = () => {
         const scroll = window.pageYOffset;
         const vh = window.innerHeight;
 
-        // Intro Video Scrubbing
-        if (introSection) {
+        if (introSection && introVideo && introVideo.duration && videoUnlocked) {
             const sectionHeight = introSection.offsetHeight;
             const scrollPercent = Math.min(Math.max(scroll / (sectionHeight - vh), 0), 1);
 
-            if (introVideo && introVideo.duration && videoUnlocked) {
-                const now = Date.now();
+            const isGoingBackward = scrollPercent < lastScrollPercent;
+            const now = Date.now();
 
-                // Only seek if enough time has passed (throttle)
-                if (now - lastSeekTime > seekThrottle) {
-                    const targetTime = introVideo.duration * scrollPercent;
+            // Longer throttle when going backwards (harder for decoder)
+            const throttle = isGoingBackward ? 100 : 50;
 
-                    // Only update if difference is significant
-                    if (Math.abs(introVideo.currentTime - targetTime) > 0.08) {
-                        introVideo.currentTime = targetTime;
-                        lastSeekTime = now;
-                    }
+            if (now - lastSeekTime > throttle) {
+                const targetTime = introVideo.duration * scrollPercent;
+                const diff = Math.abs(introVideo.currentTime - targetTime);
+
+                // Larger threshold when going backwards
+                const threshold = isGoingBackward ? 0.15 : 0.08;
+
+                if (diff > threshold) {
+                    introVideo.currentTime = targetTime;
+                    lastSeekTime = now;
                 }
             }
 
-            // Show nav after intro section
+            lastScrollPercent = scrollPercent;
+        }
+
+        // Nav visibility
+        if (introSection) {
+            const sectionHeight = introSection.offsetHeight;
             if (scroll > sectionHeight - 100) {
                 nav.classList.add('visible');
             } else {
@@ -141,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Hero parallax adjusted for intro offset
+        // Hero parallax
         const introOffset = introSection ? introSection.offsetHeight : 0;
         const relativeScroll = scroll - introOffset;
 
@@ -152,6 +161,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (mac && relativeScroll > -vh && relativeScroll < 1000) {
             mac.style.transform = `perspective(1000px) rotateX(${Math.max(relativeScroll * 0.02, 0)}deg) translateY(${Math.max(relativeScroll * 0.08, 0)}px)`;
+        }
+
+        ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateVideoFrame);
+            ticking = true;
         }
     });
 
