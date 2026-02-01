@@ -81,21 +81,60 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. WAITLIST FORM (Google Forms Integration)
     // Google Forms handles submission natively - no JavaScript interception needed
 
-    // 5. PARALLAX HERO & MAC
+    // 5. PARALLAX HERO & MAC & INTRO SCROLL
     const hero = document.querySelector('.hero');
     const mac = document.querySelector('.macbook-air');
-    const appstoreSection = document.querySelector('.appstore-hero');
+    const introSection = document.querySelector('.intro-scroll-section');
+    const introContent = document.querySelector('.intro-content');
+    const introVideo = document.querySelector('.intro-video');
+    const nav = document.querySelector('nav');
 
     window.addEventListener('scroll', () => {
         const scroll = window.pageYOffset;
+        const vh = window.innerHeight;
+
+        // Intro Scroll Logic
+        if (introSection) {
+            const sectionTop = introSection.offsetTop;
+            const sectionHeight = introSection.offsetHeight;
+            const scrollDistance = scroll - sectionTop;
+            const scrollPercent = Math.min(Math.max(scrollDistance / (sectionHeight - vh), 0), 1);
+
+            if (scrollDistance >= 0 && scrollDistance <= sectionHeight) {
+                // Content fade in and out
+                if (scrollPercent < 0.2) {
+                    introContent.style.opacity = scrollPercent * 5;
+                    introContent.style.transform = `translateY(${20 - scrollPercent * 100}px)`;
+                } else if (scrollPercent > 0.7) {
+                    introContent.style.opacity = (1 - scrollPercent) * 3.33;
+                } else {
+                    introContent.style.opacity = 1;
+                }
+
+                // Video scale effect
+                if (introVideo) {
+                    introVideo.style.transform = `scale(${1 + scrollPercent * 0.1})`;
+                }
+            }
+
+            // Nav visibility
+            if (scroll > sectionHeight - 100) {
+                nav.classList.add('visible');
+            } else {
+                nav.classList.remove('visible');
+            }
+        }
 
         if (hero) {
             hero.style.transform = `translateY(${scroll * 0.2}px)`;
-            hero.style.opacity = 1 - (scroll / 700);
+            hero.style.opacity = 1 - ((scroll - (introSection ? introSection.offsetHeight : 0)) / 700);
         }
 
-        if (mac && scroll < 1000) {
-            mac.style.transform = `perspective(1000px) rotateX(${scroll * 0.02}deg) translateY(${scroll * 0.08}px)`;
+        if (mac && scroll < (introSection ? introSection.offsetHeight + 1000 : 1000)) {
+            const relativeScroll = scroll - (introSection ? introSection.offsetHeight : 0);
+            if (relativeScroll > -vh) {
+                mac.style.transform = `perspective(1000px) rotateX(${Math.max(relativeScroll, 0) * 0.02}deg) translateY(${Math.max(relativeScroll, 0) * 0.08}px)`;
+            }
         }
     });
 
