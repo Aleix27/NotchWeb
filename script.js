@@ -132,10 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // On mobile, just autoplay the intro video
-    if (isMobile && introVideo) {
-        introVideo.play().catch(() => { });
-    }
+    // Mobile autoplay removed to enforce scroll scrubbing
 
     // 6. SIMPLE HOVER BUTTONS
     document.querySelectorAll('.btn-primary, .btn-blue, .btn-appstore, .as-btn-get').forEach(btn => {
