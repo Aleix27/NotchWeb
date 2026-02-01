@@ -95,17 +95,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 1. Intro Video Scrubbing Logic
         const introVideoEl = document.getElementById('intro-video');
-        if (introSection && introVideoEl && introVideoEl.readyState >= 2) {
+
+        // "Wake up" video for mobile
+        const wakeVideos = () => {
+            if (introVideoEl && introVideoEl.paused) {
+                introVideoEl.play().then(() => introVideoEl.pause());
+            }
+            if (scrubVideo && scrubVideo.paused) {
+                scrubVideo.play().then(() => scrubVideo.pause());
+            }
+            window.removeEventListener('touchstart', wakeVideos);
+        };
+        window.addEventListener('touchstart', wakeVideos);
+
+        if (introSection && introVideoEl) {
             const sectionHeight = introSection.offsetHeight;
             const scrollPercent = Math.min(Math.max(scroll / (sectionHeight - vh), 0), 1);
 
             if (scroll < sectionHeight) {
-                // Scrub intro video based on scroll
-                if (introVideoEl.duration && !isNaN(introVideoEl.duration)) {
+                if (introVideoEl.duration) {
                     const targetTime = introVideoEl.duration * scrollPercent;
-                    if (Math.abs(introVideoEl.currentTime - targetTime) > 0.05) {
-                        introVideoEl.currentTime = targetTime;
-                    }
+                    introVideoEl.currentTime = targetTime;
                 }
             }
 
@@ -120,18 +130,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // 2. Second Video Scrubbing Logic
         const scrubSection = document.querySelector('.video-scrub-section');
         const scrubVideo = document.getElementById('scrub-video');
-        if (scrubSection && scrubVideo && scrubVideo.readyState >= 2) {
+        if (scrubSection && scrubVideo) {
             const sTop = scrubSection.offsetTop;
             const sHeight = scrubSection.offsetHeight;
             const sDistance = scroll - sTop;
             const sPercent = Math.min(Math.max(sDistance / (sHeight - vh), 0), 1);
 
-            // Update video time based on scroll position
-            if (scrubVideo.duration && !isNaN(scrubVideo.duration)) {
-                const targetTime = scrubVideo.duration * sPercent;
-                // Only update if difference is significant to avoid jitter
-                if (Math.abs(scrubVideo.currentTime - targetTime) > 0.05) {
-                    scrubVideo.currentTime = targetTime;
+            if (sDistance >= -vh && sDistance <= sHeight) {
+                if (scrubVideo.duration) {
+                    scrubVideo.currentTime = scrubVideo.duration * sPercent;
                 }
             }
         }
