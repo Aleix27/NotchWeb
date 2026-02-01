@@ -93,15 +93,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const scroll = window.pageYOffset;
         const vh = window.innerHeight;
 
-        // 1. Intro Scroll Logic (WebP - Simple Scale)
-        if (introSection) {
+        // 1. Intro Video Scrubbing Logic
+        const introVideoEl = document.getElementById('intro-video');
+        if (introSection && introVideoEl && introVideoEl.readyState >= 2) {
             const sectionHeight = introSection.offsetHeight;
             const scrollPercent = Math.min(Math.max(scroll / (sectionHeight - vh), 0), 1);
 
             if (scroll < sectionHeight) {
-                if (introVideo) {
-                    introVideo.style.transform = `scale(${1 + scrollPercent * 0.1})`;
-                    introVideo.style.opacity = scrollPercent > 0.9 ? (1 - scrollPercent) * 10 : 1;
+                // Scrub intro video based on scroll
+                if (introVideoEl.duration && !isNaN(introVideoEl.duration)) {
+                    const targetTime = introVideoEl.duration * scrollPercent;
+                    if (Math.abs(introVideoEl.currentTime - targetTime) > 0.05) {
+                        introVideoEl.currentTime = targetTime;
+                    }
                 }
             }
 
