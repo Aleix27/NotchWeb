@@ -53,10 +53,7 @@ nav.visible {
 }
 
 @media (max-width: 768px) {
-    .intro-scroll-section {
-        height: 100vh;
-        /* Shorter on mobile for performance */
-    }
+    /* Intro retains full height for scrubbing */
 }
 
 * {

@@ -93,13 +93,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const scroll = window.pageYOffset;
         const vh = window.innerHeight;
 
-        // Intro Video Scrubbing (Desktop only)
+        // Intro Video Scrubbing
         if (introSection) {
             const sectionHeight = introSection.offsetHeight;
+            const scrollPercent = Math.min(Math.max(scroll / (sectionHeight - vh), 0), 1);
 
-            if (!isMobile && introVideo && introVideo.duration) {
-                const scrollPercent = Math.min(Math.max(scroll / (sectionHeight - vh), 0), 1);
-                if (scroll < sectionHeight) {
+            // Logic: Scrub if video is ready (readyState >= 2), otherwise simple image fallback persists
+            if (introVideo) {
+                if (introVideo.readyState >= 2 && introVideo.duration) {
+                    // Force play once to unlock audio/video context on mobile if needed
+                    if (introVideo.paused && scrollPercent > 0.01 && scrollPercent < 0.1) {
+                        // Silent play promise to warm up decoder
+                        introVideo.play().then(() => introVideo.pause()).catch(() => { });
+                    }
                     introVideo.currentTime = introVideo.duration * scrollPercent;
                 }
             }
