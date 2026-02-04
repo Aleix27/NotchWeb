@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdgeFlow | El Panel Definitivo</title>
+    <meta name="description" content="El panel lateral líquido para macOS que redefine tu flujo de trabajo.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #050505;
+            --white: #ffffff;
+            --accent: #6366f1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #wave-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            mix-blend-mode: difference;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-size: clamp(60px, 15vw, 200px);
+            font-weight: 900;
+            letter-spacing: -8px;
+            line-height: 0.85;
+            text-transform: uppercase;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 3vw, 28px);
+            font-weight: 300;
+            margin-top: 30px;
+            opacity: 0.8;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.6;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-hint span {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .scroll-hint::after {
+            content: '↓';
+            font-size: 24px;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        /* ========== IMMERSIVE FEATURE SECTIONS ========== */
+        .feature-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 100px 60px;
+        }
+
+        .feature-section.dark {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .feature-section.light {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .section-inner {
+            max-width: 1400px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .section-inner.reverse {
+            direction: rtl;
+        }
+
+        .section-inner.reverse>* {
+            direction: ltr;
+        }
+
+        .feature-text {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .feature-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-tag {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: clamp(40px, 6vw, 80px);
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 1;
+            margin-bottom: 30px;
+        }
+
+        .feature-desc {
+            font-size: 20px;
+            line-height: 1.6;
+            opacity: 0.7;
+            max-width: 500px;
+        }
+
+        .feature-visual {
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+        }
+
+        .feature-visual.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .mockup-window {
+            background: transparent;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+            transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+            transition: transform 0.5s ease;
+        }
+
+        .mockup-window:hover {
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.02);
+        }
+
+        .mockup-window img {
+            width: 100%;
+            display: block;
+            /* Scale up slightly to crop out imperfect borders */
+            transform: scale(1.02);
+            border-radius: 20px;
+        }
+
+        /* ========== STATS SECTION ========== */
+        .stats-section {
+            min-height: 100vh;
+            background: linear-gradient(180deg, var(--black) 0%, #0a0a0a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .stats-title {
+            font-size: clamp(30px, 5vw, 60px);
+            font-weight: 900;
+            margin-bottom: 80px;
+            letter-spacing: -2px;
+        }
+
+        .stats-grid {
+            display: flex;
+            /* Changed from grid to flex for better centering */
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 60px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .stat-item {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.6s ease;
+            flex: 1;
+            min-width: 250px;
+            /* Ensure they don't get too squished */
+            max-width: 350px;
+        }
+
+        .stat-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-value {
+            font-size: clamp(60px, 10vw, 120px);
+            font-weight: 900;
+            letter-spacing: -4px;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            /* Monospace digits prevent layout shift during counting */
+            font-variant-numeric: tabular-nums;
+            min-width: 3ch;
+            display: inline-block;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 15px;
+            opacity: 0.6;
+        }
+
+        .stat-desc {
+            font-size: 16px;
+            opacity: 0.4;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        /* ========== CTA SECTION ========== */
+        .cta-section {
+            min-height: 60vh;
+            background: var(--black);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: clamp(40px, 8vw, 100px);
+            font-weight: 900;
+            letter-spacing: -4px;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: var(--white);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
+        }
+
+        .back-link {
+            position: fixed;
+            top: 30px;
+            left: 40px;
+            z-index: 1000;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            mix-blend-mode: difference;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+
+        .hero-cta-btn {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            color: #000;
+            background: #fff;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: 2px solid transparent;
+        }
+
+        .hero-cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+            background: #000;
+            color: #fff;
+            border-color: #fff;
+        }
+
+        /* ========== ANIMATED FORM ========== */
+        .waitlist-form {
+            position: relative;
+            z-index: 10;
+            transition: transform 0.3s ease;
+        }
+
+        .waitlist-form:hover {
+            transform: scale(1.25);
+            /* Slight grow on hover - removed !important as it might conflict with transitions */
+        }
+
+        .cta-input {
+            padding: 20px 30px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 18px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            width: 350px;
+            backdrop-filter: blur(20px);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+            transition: color 0.3s;
+        }
+
+        .cta-input:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #6366f1;
+            width: 380px;
+            box-shadow: 0 0 50px rgba(99, 102, 241, 0.4);
+        }
+
+        .cta-input:focus::placeholder {
+            color: transparent;
+        }
+
+        .cta-submit {
+            border: none;
+            cursor: pointer;
+            padding: 20px 40px;
+            font-size: 18px;
+            background: #fff;
+            color: #000;
+            border-radius: 50px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-submit:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.8);
+        }
+
+        .cta-glow-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 120%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0) 60%);
+            z-index: 1;
+            pointer-events: none;
+            animation: pulseGlow 3s infinite alternate ease-in-out;
+            mix-blend-mode: screen;
+        }
+
+        @keyframes pulseGlow {
+            from {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        /* ========== FOOTER ========== */
+        .ef-footer {
+            padding: 40px;
+            text-align: center;
+            background: #050505;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 20;
+        }
+
+        .more-apps-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 15px 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .more-apps-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .more-apps-link img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .more-text span {
+            display: block;
+            text-align: left;
+        }
+
+        .more-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+
+        .more-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            .section-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .section-inner.reverse {
+                direction: ltr;
+            }
+
+            .feature-desc {
+                margin: 0 auto;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .feature-section {
+                padding: 80px 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="../index.html" class="back-link">← VibeNotch</a>
+
+    <!-- ========== HERO WITH WAVE ========== -->
+    <section class="hero-section">
+        <canvas id="wave-canvas"></canvas>
+        <div class="hero-content">
+            <h1 class="hero-title">EdgeFlow</h1>
+            <p class="hero-subtitle">El panel lateral definitivo para macOS</p>
+            <a href="#download" class="hero-cta-btn">Unirse a la Beta</a>
+        </div>
+        <div class="scroll-hint">
+            <span>Descubre</span>
+        </div>
+    </section>
+
+    <!-- ========== FEATURE 1: SHORTCUTS ========== -->
+    <section class="feature-section dark">
+        <div class="section-inner">
+            <div class="feature-text">
+                <span class="feature-tag">Tus Atajos</span>
+                <h2 class="feature-title">Todo a un gesto.</h2>
+                <p class="feature-desc">
+                    Añade tus apps favoritas, enlaces web, y atajos de teclado.
+                    Accede a ellos desde el borde de la pantalla con un simple movimiento del ratón.
+                </p>
+            </div>
+            <div class="feature-visual">
+                <div class="mockup-window">
+                    <img src="settings-buttons.webp" alt="EdgeFlow Shortcuts">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FEATURE 2: CUSTOMIZATION ========== -->
+    <section class="feature-section light">
+        <div class="section-inner reverse">
+            <div class="feature-text">
+                <span class="feature-tag">Personalización</span>
+                <h2 class="feature-title">Tú decides dónde.</h2>
+                <p class="feature-desc">
+                    Borde izquierdo o derecho. Ajusta la posición vertical.
+                    Elige si quieres el icono en la barra de menú.
+                    EdgeFlow se adapta a ti, no al revés.
+                </p>
+            </div>
+            <div class="feature-visual">
+                <div class="mockup-window">
+                    <img src="settings-general.webp" alt="EdgeFlow Settings">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== STATS SECTION ========== -->
+    <section class="stats-section">
+        <h2 class="stats-title">Diseñado para desaparecer.</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value" data-target="0" data-suffix="%">0%</div>
+                <div class="stat-label">CPU en Reposo</div>
+                <div class="stat-desc">Invisible para tu rendimiento</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" data-target="35" data-prefix="<" data-suffix="MB">35</div>
+                <div class="stat-label">MB de RAM</div>
+                <div class="stat-desc">Ligero como una pluma</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" data-target="100" data-suffix="%">100%</div>
+                <div class="stat-label">Swift Nativo</div>
+                <div class="stat-desc">Integración perfecta con macOS</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== VIDEO SHOWCASE ========== -->
+    <section class="video-section" style="width: 100vw; overflow: hidden; position: relative; margin-bottom: 0;">
+        <video autoplay muted loop playsinline
+            style="width: 100%; height: 100vh; object-fit: cover; display: block; mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);">
+            <source src="Video%20edgeflow.mp4" type="video/mp4">
+        </video>
+        <div
+            style="position: absolute; bottom: 0; width: 100%; text-align: center; z-index: 10; padding-bottom: 100px; padding-top: 150px; background: linear-gradient(to top, #000 0%, transparent 100%);">
+            <h2
+                style="font-size: clamp(30px, 5vw, 60px); font-weight: 900; margin-bottom: 20px; text-transform: uppercase; letter-spacing: -2px; text-shadow: 0 10px 30px rgba(0,0,0,0.8);">
+                El bisel de tu Mac se derrite.</h2>
+            <p style="color: rgba(255,255,255,0.7); font-size: 14px; letter-spacing: 2px; text-transform: uppercase;">
+                Experiencia Real</p>
+        </div>
+    </section>
+
+    <!-- ========== WAITLIST CTA ========== -->
+    <section id="download" class="cta-section" style="position: relative; overflow: hidden; padding: 120px 20px;">
+        <div class="cta-glow-bg"></div>
+        <h2 class="cta-title" style="position: relative; z-index: 10; margin-bottom: 20px;">Apúntate a la Beta</h2>
+        <p class="demo-subtitle"
+            style="margin-bottom: 60px; color: #ccc; position: relative; z-index: 10; font-size: 20px;">Sé el primero en
+            probar la fluidez.</p>
+
+        <form id="waitlistForm" class="waitlist-form"
+            style="display: flex; gap: 15px; max-width: 600px; margin: 0 auto; flex-wrap: wrap; justify-content: center;">
+            <input type="email" id="emailInput" class="cta-input" name="entry.1921152412" placeholder="Tu email..."
+                required>
+            <button type="submit" class="cta-submit">Unirse</button>
+        </form>
+        <div id="successMsg"
+            style="display: none; color: #6366f1; font-size: 28px; font-weight: 800; margin-top: 30px; text-align: center; text-shadow: 0 0 30px rgba(99, 102, 241, 0.8); position: relative; z-index: 10;">
+            ¡Estás dentro! 🌊</div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="ef-footer"
+        style="padding: 60px 40px; display: flex; flex-direction: column; align-items: center; gap: 40px;">
+
+        <div class="creator-info" style="text-align: center; max-width: 600px;">
+            <p
+                style="font-size: 14px; color: #888; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px;">
+                Creado por</p>
+            <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 15px;">Aleix Carles Sales</h3>
+            <p style="font-size: 16px; color: #aaa; line-height: 1.6;">
+                Desarrollador independiente apasionado por crear experiencias de software fluidas y nativas para macOS.
+                Desde Tarragona para el mundo 🌍
+            </p>
+        </div>
+
+        <a href="../index.html" class="more-apps-link">
+            <img src="VibeNotch icon-iOS-Default-1024x1024@1x.png" alt="VibeNotch Icon">
+            <div class="more-text">
+                <span class="more-label">Más Apps</span>
+                <span class="more-title">VibeNotch</span>
+            </div>
+            <span style="margin-left: 10px; opacity: 0.5;">→</span>
+        </a>
+
+        <div class="footer-links" style="margin-top: 20px; display: flex; gap: 20px;">
+            <a href="privacy.html" style="color: #666; text-decoration: none; font-size: 14px;">Privacidad</a>
+            <a href="support.html" style="color: #666; text-decoration: none; font-size: 14px;">Soporte</a>
+        </div>
+
+        <p style="color: #444; font-size: 12px; margin-top: 10px;">© 2026 EdgeFlow. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // FORM HANDLING
+        document.getElementById('waitlistForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const form = this;
+            const email = document.getElementById('emailInput').value;
+            const url = 'https://docs.google.com/forms/d/e/1FAIpQLSe3GrX4FudiQN3LfmSx-BB33I0tPNWUKVPMXFKJGgDw3HoeNQ/formResponse';
+            const params = new URLSearchParams();
+            params.append('entry.1921152412', email);
+
+            fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: params.toString()
+            }).then(() => {
+                form.style.display = 'none';
+                const msg = document.getElementById('successMsg');
+                msg.style.display = 'block';
+                // Trigger confetti or generic celebration if we had the library, for now simple text
+            }).catch(err => {
+                console.error(err);
+                form.style.display = 'none';
+                document.getElementById('successMsg').style.display = 'block';
+            });
+        });
+    </script>
+
+    <script>
+        // ========== WAVE CANVAS (Hero) ==========
+        const canvas = document.getElementById('wave-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let mouseX = 0.5, mouseY = 0.5;
+        let targetMouseX = 0.5, targetMouseY = 0.5;
+        const numPoints = 6;
+        let points = [];
+        let time = 0;
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initPoints();
+        }
+
+        function initPoints() {
+            points = [];
+            for (let i = 0; i <= numPoints; i++) {
+                points.push({
+                    y: (i / numPoints) * height,
+                    baseX: width / 2,
+                    x: width / 2,
+                    speed: 0.15 + Math.random() * 0.3,
+                    amplitude: 250 + Math.random() * 150,
+                    phase: Math.random() * Math.PI * 2
+                });
+            }
+        }
+
+        function lerp(a, b, t) { return a + (b - a) * t; }
+
+        function drawWave() {
+            time += 0.008;
+            mouseX = lerp(mouseX, targetMouseX, 0.04);
+            mouseY = lerp(mouseY, targetMouseY, 0.08);
+
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+
+            for (let i = 0; i <= numPoints; i++) {
+                const point = points[i];
+                const y = point.y;
+                const normalizedY = y / height;
+                const distY = Math.abs(normalizedY - mouseY);
+                const mouseInfluence = Math.exp(-Math.pow(distY * 3.5, 2));
+                const mousePush = (mouseX - 0.5) * 500 * mouseInfluence;
+                const wave1 = Math.sin(time * point.speed + point.phase) * point.amplitude;
+                const wave2 = Math.sin(time * 0.2 + y * 0.0005) * 80;
+                point.x = point.baseX + wave1 + wave2 + mousePush;
+
+                if (i === 0) {
+                    ctx.lineTo(point.x, 0);
+                } else {
+                    const prev = points[i - 1];
+                    ctx.quadraticCurveTo(prev.x, prev.y, (prev.x + point.x) / 2, (prev.y + y) / 2);
+                }
+            }
+
+            ctx.lineTo(points[numPoints].x, height);
+            ctx.lineTo(0, height);
+            ctx.closePath();
+            ctx.fillStyle = '#050505';
+            ctx.fill();
+
+            requestAnimationFrame(drawWave);
+        }
+
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            targetMouseX = e.clientX / width;
+            targetMouseY = e.clientY / height;
+        });
+
+        window.addEventListener('resize', resize);
+        resize();
+        drawWave();
+
+        // ========== SCROLL REVEAL & COUNTING ==========
+        const observerOptions = {
+            threshold: 0.3
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    // Trigger counting if it's a stat item
+                    const statVal = entry.target.querySelector('.stat-value');
+                    if (statVal && !statVal.dataset.counted) {
+                        animateValue(statVal);
+                        statVal.dataset.counted = true;
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-text, .feature-visual, .stat-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        function animateValue(obj) {
+            const target = parseInt(obj.dataset.target);
+            const prefix = obj.dataset.prefix || "";
+            const suffix = obj.dataset.suffix || "";
+            let start = 0;
+
+            if (target === 0) {
+                start = 5;
+            }
+
+            const duration = 1500;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const ease = 1 - Math.pow(1 - progress, 3); // cubic out
+
+                let current;
+                if (target === 0) {
+                    current = Math.floor(start * (1 - ease));
+                } else {
+                    current = Math.floor(target * ease);
+                }
+
+                obj.innerHTML = prefix + current + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    obj.innerHTML = prefix + target + suffix;
+                }
+            }
+            requestAnimationFrame(update);
+        }
+    </script>
+</body>
+
+</html>

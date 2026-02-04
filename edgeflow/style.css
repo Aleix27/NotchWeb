@@ -1,0 +1,241 @@
+:root {
+    --black: #050505;
+    --white: #ffffff;
+    --accent: #3b82f6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background: var(--white);
+    display: flex;
+}
+
+/* NAVIGATION */
+.ef-nav {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    z-index: 100;
+}
+
+.back-link {
+    text-decoration: none;
+    color: var(--black);
+    font-weight: 600;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+    font-size: 14px;
+}
+
+.back-link:hover {
+    opacity: 1;
+}
+
+/* LAYOUT SIDES */
+.split-side {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+}
+
+.side-black {
+    left: 0;
+    background: var(--black);
+    color: var(--white);
+    z-index: 10;
+}
+
+.side-white {
+    right: 0;
+    background: var(--white);
+    color: var(--black);
+    z-index: 5;
+    padding-left: 100px;
+}
+
+/* CONTENTS */
+.content-wrapper {
+    max-width: 500px;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.5s forwards;
+}
+
+.align-right {
+    margin-left: auto;
+    text-align: right;
+    padding-right: 60px;
+}
+
+.align-left {
+    margin-right: auto;
+    text-align: left;
+    padding-left: 60px;
+}
+
+.brand-title {
+    font-size: 100px;
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -4px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.brand-desc {
+    font-size: 20px;
+    line-height: 1.5;
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+.dark-text {
+    color: #444;
+}
+
+/* FEATURE LIST */
+.feature-list {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-end;
+}
+
+.feat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+/* CTA */
+.cta-button {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 18px 40px;
+    background: var(--black);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* WAVE SEPARATOR CONTAINER */
+.wave-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    /* Width of the wave area */
+    height: 100%;
+    z-index: 15;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.sine-wave {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.wave-path {
+    stroke: var(--black);
+    stroke-width: 2;
+    fill: none;
+}
+
+/* Fill the left side of the wave with black using a clip path trick.
+   We create a rectangle that starts from far left and ends at the wave line. */
+.wave-fill-black {
+    position: absolute;
+    top: 0;
+    left: -50vw;
+    /* Extend far left */
+    width: calc(50vw + 50px);
+    /* Go up to center of wave container */
+    height: 100%;
+    background: var(--black);
+    z-index: -1;
+    /* Masked by wave via JS */
+}
+
+/* Since we can't easily clip with the dynamic path, 
+   we use a different approach: make the path have a thick stroke
+   and layer the sections so the black section overlaps the center exactly. */
+
+/* BETTER APPROACH: Use SVG fill instead of stroke */
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        overflow-y: auto;
+        height: auto;
+    }
+
+    .split-side {
+        position: relative;
+        width: 100%;
+        height: auto;
+        min-height: 60vh;
+        left: auto;
+        right: auto;
+    }
+
+    .wave-container {
+        display: none;
+        /* Simplify on mobile */
+    }
+
+    .align-right,
+    .align-left {
+        text-align: center;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .feature-list {
+        align-items: center;
+    }
+
+    .side-white {
+        padding: 60px 20px;
+    }
+
+    .brand-title {
+        font-size: 60px;
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
