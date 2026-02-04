@@ -21,6 +21,63 @@
         content="La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.">
     <link rel="canonical" href="https://vibenotch.es/">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Footer Styles for More Apps */
+        .ef-footer {
+            padding: 60px 40px;
+            text-align: center;
+            background: #050505;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .more-apps-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 15px 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .more-apps-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .more-apps-link img {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .more-text span {
+            display: block;
+            text-align: left;
+        }
+
+        .more-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+
+        .more-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+        }
+    </style>
 
     <!-- FAVICOn -->
     <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
@@ -497,12 +554,26 @@
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="footer-logo">VibeNotch</div>
-        <p class="copyright">© 2026 VibeNotch. Minimalismo hecho en Tarragona.</p>
-        <div class="footer-legal">
-            <a href="support.html" style="color: #888; text-decoration: none; font-size: 14px;">Soporte</a>
-            <a href="privacy.html" style="color: #888; text-decoration: none; font-size: 14px;">Privacidad</a>
+    <footer class="ef-footer">
+        <a href="edgeflow/index.html" class="more-apps-link">
+            <img src="edgeflow/EdgeFlow icon-iOS-Default-1024x1024@1x.png" alt="EdgeFlow Icon">
+            <div class="more-text">
+                <span class="more-label">Más Apps</span>
+                <span class="more-title">EdgeFlow</span>
+            </div>
+            <span style="margin-left: 10px; opacity: 0.5;">→</span>
+        </a>
+
+        <div style="margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <div class="footer-logo" style="color: #fff; font-weight: 700; font-size: 20px;">VibeNotch</div>
+            <p class="copyright" style="color: #666; font-size: 13px;">© 2026 VibeNotch. Minimalismo hecho en Tarragona.
+            </p>
+            <div class="footer-legal">
+                <a href="support.html"
+                    style="color: #888; text-decoration: none; font-size: 14px; margin: 0 10px;">Soporte</a>
+                <a href="privacy.html"
+                    style="color: #888; text-decoration: none; font-size: 14px; margin: 0 10px;">Privacidad</a>
+            </div>
         </div>
     </footer>
 
