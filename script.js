@@ -303,22 +303,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 13.1 APP SWITCHER TOGGLE
-    const switcher = document.getElementById('appSwitcher');
-    if (switcher) {
-        const trigger = switcher.querySelector('.switcher-trigger');
-        trigger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            switcher.classList.toggle('active');
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!switcher.contains(e.target)) {
-                switcher.classList.remove('active');
-            }
-        });
-    }
-
     // 14. FLOATING PARTICLES
     const particleContainer = document.createElement('div');
     particleContainer.classList.add('particles');
@@ -333,4 +317,35 @@ document.addEventListener('DOMContentLoaded', () => {
         particleContainer.appendChild(particle);
     }
 
+    // 15. APP CABINET PULL-DOWN
+    const cabinet = document.getElementById('app-cabinet');
+    let pullStartY = 0;
+    let isPulling = false;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) {
+            cabinet.classList.remove('show');
+        }
+    }, { passive: true });
+
+    // Desktop/Wheel "Force Down"
+    window.addEventListener('wheel', (e) => {
+        if (window.scrollY === 0 && e.deltaY < -30) {
+            cabinet.classList.add('show');
+        }
+    }, { passive: true });
+
+    // Mobile "Pull Down"
+    window.addEventListener('touchstart', (e) => {
+        if (window.scrollY === 0) pullStartY = e.touches[0].pageY;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+        if (window.scrollY === 0) {
+            const pullDist = e.touches[0].pageY - pullStartY;
+            if (pullDist > 100) {
+                cabinet.classList.add('show');
+            }
+        }
+    }, { passive: true });
 });
