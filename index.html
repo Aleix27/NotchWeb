@@ -157,18 +157,19 @@
 
         /* ========== APP CABINET ========== */
         .app-cabinet {
-            background: #000;
-            padding: 20px 0;
+            background: #fff;
+            padding: 24px 0;
             display: flex;
             justify-content: center;
             overflow-x: auto;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
-            margin-top: -140px;
+            margin-top: -150px;
             transition: margin-top 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             z-index: 1001;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .app-cabinet.show {
@@ -206,10 +207,11 @@
 
         .cabinet-item span {
             font-size: 11px;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(0, 0, 0, 0.5);
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1.5px;
+            transition: color 0.3s;
         }
 
         .cabinet-item:hover {
@@ -222,7 +224,7 @@
         }
 
         .cabinet-item:hover span {
-            color: #fff;
+            color: #000;
         }
 
         .cabinet-item.active {

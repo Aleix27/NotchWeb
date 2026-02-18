@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Desktop/Wheel "Force Down"
     window.addEventListener('wheel', (e) => {
-        if (window.scrollY === 0 && e.deltaY < -30) {
+        if (window.scrollY === 0 && e.deltaY < -15) {
             cabinet.classList.add('show');
         }
     }, { passive: true });
@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('touchmove', (e) => {
         if (window.scrollY === 0) {
             const pullDist = e.touches[0].pageY - pullStartY;
-            if (pullDist > 100) {
+            if (pullDist > 40) {
                 cabinet.classList.add('show');
             }
         }
