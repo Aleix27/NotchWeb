@@ -554,6 +554,50 @@
         </div>
     </section>
 
+    <!-- ========== NEWSLETTER ========== -->
+    <section id="newsletter" class="newsletter-section"
+        style="padding: 80px 20px; background: #f5f5f7; text-align: center;">
+        <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 20px; color: #1d1d1f;">Novedades y Trucos</h2>
+        <p style="color: #86868b; margin-bottom: 40px; font-size: 18px;">Únete a la lista para recibir actualizaciones
+            sobre VibeNotch.</p>
+
+        <form id="vibenotchNewsletter"
+            style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; max-width: 500px; margin: 0 auto;">
+            <input type="email" name="entry.1921152412" placeholder="Tu email..." required
+                style="padding: 15px 20px; border-radius: 12px; border: 1px solid #d2d2d7; font-size: 16px; flex: 1; min-width: 250px;">
+            <button type="submit"
+                style="background: #0071e3; color: white; border: none; padding: 15px 30px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer;">Suscribirse</button>
+        </form>
+        <div id="vnSuccessMsg" style="display: none; color: #0071e3; margin-top: 20px; font-weight: 600;">¡Gracias por
+            suscribirte! </div>
+
+        <script>
+            document.getElementById('vibenotchNewsletter').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const form = this;
+                const email = form.querySelector('input[type="email"]').value;
+                // Using the same Google Form URL as EdgeFlow for now, assuming shared list or user will update
+                const url = 'https://docs.google.com/forms/d/e/1FAIpQLSe3GrX4FudiQN3LfmSx-BB33I0tPNWUKVPMXFKJGgDw3HoeNQ/formResponse';
+                const params = new URLSearchParams();
+                params.append('entry.1921152412', email);
+
+                fetch(url, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: params.toString()
+                }).then(() => {
+                    form.style.display = 'none';
+                    document.getElementById('vnSuccessMsg').style.display = 'block';
+                }).catch(err => {
+                    console.error(err);
+                    form.style.display = 'none';
+                    document.getElementById('vnSuccessMsg').style.display = 'block';
+                });
+            });
+        </script>
+    </section>
+
     <footer class="ef-footer">
         <a href="edgeflow/index.html" class="more-apps-link">
             <img src="edgeflow/EdgeFlow icon-iOS-Default-1024x1024@1x.png" alt="EdgeFlow Icon">
