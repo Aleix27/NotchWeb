@@ -303,6 +303,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 13.1 APP SWITCHER TOGGLE
+    const switcher = document.getElementById('appSwitcher');
+    if (switcher) {
+        const trigger = switcher.querySelector('.switcher-trigger');
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            switcher.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!switcher.contains(e.target)) {
+                switcher.classList.remove('active');
+            }
+        });
+    }
+
     // 14. FLOATING PARTICLES
     const particleContainer = document.createElement('div');
     particleContainer.classList.add('particles');

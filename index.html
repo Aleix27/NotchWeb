@@ -154,6 +154,93 @@
             box-shadow: 0 15px 50px rgba(255, 255, 255, 0.4);
             background: #fdfdfd;
         }
+
+        /* ========== APP SWITCHER ========== */
+        .switcher-container {
+            position: relative;
+        }
+
+        .switcher-trigger {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 14px;
+            color: #1d1d1f;
+        }
+
+        .switcher-trigger:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .switcher-dropdown {
+            position: absolute;
+            top: calc(100% + 15px);
+            right: 0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 28px;
+            padding: 25px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            display: flex;
+            gap: 25px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-15px) scale(0.95);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 2000;
+        }
+
+        .switcher-container.active .switcher-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .switcher-app-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #1d1d1f;
+            gap: 12px;
+            width: 90px;
+            transition: all 0.3s ease;
+        }
+
+        .switcher-app-item:hover {
+            transform: translateY(-8px);
+        }
+
+        .switcher-app-item img {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .switcher-app-item span {
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .switcher-arrow {
+            font-size: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .switcher-container.active .switcher-arrow {
+            transform: rotate(180deg);
+        }
     </style>
 
     <!-- FAVICOn -->
@@ -252,7 +339,25 @@
                 <a href="#design">Diseño</a>
                 <a href="#metrics">Potencia</a>
                 <a href="support.html">Soporte</a>
-                <a href="#appstore" class="btn-primary" style="text-decoration: none;">Descargar</a>
+                <a href="#appstore" class="btn-primary" style="text-decoration: none; margin-right: 15px;">Descargar</a>
+
+                <!-- APP SWITCHER -->
+                <div class="switcher-container" id="appSwitcher">
+                    <div class="switcher-trigger">
+                        <span>Mis Apps</span>
+                        <span class="switcher-arrow">▼</span>
+                    </div>
+                    <div class="switcher-dropdown">
+                        <a href="index.html" class="switcher-app-item">
+                            <img src="assets/VibeNotch icon-iOS-Default-1024x1024@1x.png" alt="VibeNotch">
+                            <span>VibeNotch</span>
+                        </a>
+                        <a href="edgeflow/index.html" class="switcher-app-item">
+                            <img src="edgeflow/EdgeFlow icon-iOS-Default-1024x1024@1x.png" alt="EdgeFlow">
+                            <span>EdgeFlow</span>
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="menu-toggle" id="mobile-menu-btn">
                 <span></span>
