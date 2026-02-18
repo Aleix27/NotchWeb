@@ -539,6 +539,81 @@
             color: #fff;
         }
 
+        /* ========== PREMIUM BUTTON & GLOW ========== */
+        .as-btn-container {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .as-btn-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(0, 113, 227, 0.4) 0%, rgba(0, 113, 227, 0) 70%);
+            filter: blur(30px);
+            z-index: 1;
+            opacity: 0.6;
+            animation: glowPulse 4s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        .as-btn-premium {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            background: #0071e3;
+            color: white;
+            padding: 20px 50px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 22px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 35px rgba(0, 113, 227, 0.4);
+            z-index: 2;
+            animation: floatBtn 3s infinite ease-in-out;
+        }
+
+        .as-btn-premium:hover {
+            transform: scale(1.08) translateY(-5px);
+            box-shadow: 0 25px 60px rgba(0, 113, 227, 0.7);
+            background: #007eff;
+        }
+
+        .as-btn-premium svg {
+            width: 26px;
+            height: 26px;
+            fill: white;
+            margin-right: 15px;
+        }
+
+        @keyframes floatBtn {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes glowPulse {
+            0% {
+                opacity: 0.4;
+                transform: translate(-50%, -50%) scale(0.85);
+            }
+
+            100% {
+                opacity: 0.9;
+                transform: translate(-50%, -50%) scale(1.15);
+            }
+        }
+
         /* ========== RESPONSIVE ========== */
         @media (max-width: 900px) {
             .section-inner {
@@ -668,14 +743,16 @@
             style="width: 180px; height: 180px; border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); margin-bottom: 40px; transition: transform 0.3s ease;">
         <h2 style="font-size: clamp(35px, 6vw, 60px); font-weight: 900; margin-bottom: 30px; letter-spacing: -2px;">
             Disponible Ahora</h2>
-        <a href="https://apps.apple.com/es/app/edgeflow/id6758726367" target="_blank"
-            style="display: inline-flex; align-items: center; background: #0071e3; color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 20px; transition: all 0.3s ease; box-shadow: 0 10px 40px rgba(0, 113, 227, 0.4);">
-            <svg viewBox="0 0 384 512" style="width: 24px; height: 24px; fill: white; margin-right: 15px;">
-                <path
-                    d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 52.3-11.4 69.5-34.3z" />
-            </svg>
-            Ver en el App Store
-        </a>
+        <div class="as-btn-container">
+            <div class="as-btn-glow"></div>
+            <a href="https://apps.apple.com/es/app/edgeflow/id6758726367" target="_blank" class="as-btn-premium">
+                <svg viewBox="0 0 384 512">
+                    <path
+                        d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 52.3-11.4 69.5-34.3z" />
+                </svg>
+                Ver en el App Store
+            </a>
+        </div>
     </section>
 
     <!-- ========== WAITLIST CTA ========== -->
