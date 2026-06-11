@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile autoplay removed to enforce scroll scrubbing
 
     // 6. SIMPLE HOVER BUTTONS
-    document.querySelectorAll('.btn-primary, .btn-blue, .btn-appstore, .as-btn-get').forEach(btn => {
+    document.querySelectorAll('.btn-primary, .btn-blue, .btn-yellow, .btn-appstore, .as-btn-get').forEach(btn => {
         btn.addEventListener('mouseenter', () => {
             btn.style.transform = btn.style.transform + ' scale(1.06)';
         });
@@ -363,4 +363,82 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }, { passive: true });
+
+    // ==========================================
+    // 16. SHORTCUTS LAUNCHPAD CAROUSEL
+    // ==========================================
+    const shortcutBtns = document.querySelectorAll('.utility-btn');
+    const shortcutSlides = document.querySelectorAll('.shortcut-notch-img');
+    let activeShortcutSlide = 0;
+    let shortcutInterval;
+
+    const showShortcutSlide = (index) => {
+        shortcutBtns.forEach((btn, idx) => {
+            if (idx === index) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        shortcutSlides.forEach((slide, idx) => {
+            if (idx === index) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.remove('active');
+            }
+        });
+        activeShortcutSlide = index;
+    };
+
+    const startShortcutRotation = () => {
+        shortcutInterval = setInterval(() => {
+            if (shortcutSlides.length > 0) {
+                let next = (activeShortcutSlide + 1) % shortcutSlides.length;
+                showShortcutSlide(next);
+            }
+        }, 5000);
+    };
+
+    const stopShortcutRotation = () => {
+        if (shortcutInterval) clearInterval(shortcutInterval);
+    };
+
+    shortcutBtns.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            stopShortcutRotation();
+            showShortcutSlide(index);
+        });
+    });
+
+    if (shortcutBtns.length > 0 && shortcutSlides.length > 0) {
+        startShortcutRotation();
+    }
+
+    // ==========================================
+    // 17. PROMO VIDEO CONTROL BUTTONS
+    // ==========================================
+    const promoVideo = document.getElementById('promo-video');
+    const promoMuteBtn = document.getElementById('promo-mute-btn');
+    const promoPlayBtn = document.getElementById('promo-play-btn');
+
+    if (promoVideo) {
+        if (promoMuteBtn) {
+            promoMuteBtn.addEventListener('click', () => {
+                promoVideo.muted = !promoVideo.muted;
+                promoMuteBtn.textContent = promoVideo.muted ? '🔇 Silencio' : '🔊 Sonido';
+            });
+        }
+        if (promoPlayBtn) {
+            promoPlayBtn.addEventListener('click', () => {
+                if (promoVideo.paused) {
+                    promoVideo.play();
+                    promoPlayBtn.textContent = '⏸ Pausar';
+                } else {
+                    promoVideo.pause();
+                    promoPlayBtn.textContent = '▶ Reproducir';
+                }
+            });
+        }
+    }
 });

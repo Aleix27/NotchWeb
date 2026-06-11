@@ -345,7 +345,7 @@
                 <a href="#design">Diseño</a>
                 <a href="#metrics">Potencia</a>
                 <a href="support.html">Soporte</a>
-                <a href="#appstore" class="btn-primary" style="text-decoration: none;">Descargar</a>
+                <a href="#appstore" class="btn-yellow" style="text-decoration: none;">Descargar</a>
             </div>
             <div class="menu-toggle" id="mobile-menu-btn">
                 <span></span>
@@ -362,7 +362,7 @@
         <p class="reveal-scroll">La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.</p>
         <div class="btn-group reveal-scroll"
             style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
-            <a href="#appstore" class="btn-blue">Descargar ahora</a>
+            <a href="#appstore" class="btn-yellow">Descargar ahora (v1.8)</a>
             <span class="app-store-tag">Ya disponible en la Mac App Store</span>
         </div>
     </header>
@@ -444,12 +444,17 @@
     </section>
 
     <!-- IMMERSIVE VIDEO -->
-    <section class="video-demo-section reveal-scroll">
+    <section class="video-demo-section reveal-scroll" style="position: relative;">
         <div class="video-container">
-            <video autoplay muted loop playsinline class="notch-video">
-                <source src="assets/399F7428-4545-46E5-9748-343551436B86.mp4" type="video/mp4">
+            <video id="promo-video" autoplay muted loop playsinline class="notch-video">
+                <source src="assets/anuncio_notch.mov" type="video/quicktime">
+                <source src="assets/anuncio_notch.mov" type="video/mp4">
                 Tu navegador no soporta el video.
             </video>
+        </div>
+        <div class="video-controls-overlay">
+            <button id="promo-mute-btn" class="video-control-btn">🔇 Silencio</button>
+            <button id="promo-play-btn" class="video-control-btn">⏸ Pausar</button>
         </div>
     </section>
 
@@ -458,6 +463,29 @@
         <p class="video-disclaimer">Demostración de la aplicación en acción. VibeNotch se integra perfectamente con tu
             sistema.</p>
     </div>
+
+    <!-- FULLSCREEN VIDEO SIMULATIONS -->
+    <section class="fullscreen-video-section reveal-scroll">
+        <video autoplay muted loop playsinline>
+            <source src="assets/simulacion_comportamiento_notch.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay-text">
+            <span class="feature-tag">Experiencia Dinámica</span>
+            <h2>Comportamiento fluido.</h2>
+            <p>Siente la respuesta física de cada interacción. El notch se expande y se adapta con suavidad a tus gestos y clics cotidianos.</p>
+        </div>
+    </section>
+
+    <section class="fullscreen-video-section reveal-scroll">
+        <video autoplay muted loop playsinline>
+            <source src="assets/simulacion_caras_notch.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay-text right-side">
+            <span class="feature-tag">Diseño Adaptativo</span>
+            <h2>Múltiples caras.</h2>
+            <p>Personaliza la interfaz a tu gusto. Cambia el diseño visual del notch según tu estado de ánimo, la música que escuchas o las tareas que organizas.</p>
+        </div>
+    </section>
 
     <!-- NOVEDADES -->
     <section id="novedades" class="updates-section">
@@ -474,28 +502,8 @@
                     <h3>Eventos y lectura desde la muesca.</h3>
                     <p>Consulta lo próximo de tu calendario desde el notch, abre el acceso Event en un toque y usa Tele para tener texto o guías rápidas a mano mientras trabajas.</p>
                 </div>
-                <div class="card-illustration-box">
-                    <svg viewBox="0 0 400 280" fill="none" class="illust-svg" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#bf953f" />
-                                <stop offset="100%" stop-color="#b38728" />
-                            </linearGradient>
-                            <filter id="glow-filter" x="-20%" y="-20%" width="140%" height="140%">
-                                <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="rgba(0,0,0,0.06)"/>
-                            </filter>
-                        </defs>
-                        <rect x="50" y="40" width="300" height="200" rx="16" fill="rgba(0,0,0,0.03)" stroke="rgba(0,0,0,0.06)" stroke-width="2"/>
-                        <path d="M130 40h140v18c0 10-8 18-18 18h-104c-10 0-18-8-18-18V40z" fill="#000"/>
-                        <rect x="90" y="90" width="220" height="110" rx="12" fill="#fff" filter="url(#glow-filter)" style="filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.05));"/>
-                        <rect x="110" y="106" width="36" height="36" rx="8" fill="#e85d2a"/>
-                        <text x="128" y="129" fill="#fff" font-family="-apple-system, sans-serif" font-size="16" font-weight="bold" text-anchor="middle">18</text>
-                        <text x="160" y="118" fill="#1d1d1f" font-family="-apple-system, sans-serif" font-size="14" font-weight="bold">Reunión de Diseño</text>
-                        <text x="160" y="136" fill="#86868b" font-family="-apple-system, sans-serif" font-size="12">14:30 - 15:30 · En VibeNotch</text>
-                        <line x1="110" y1="156" x2="290" y2="156" stroke="#f5f5f7" stroke-width="1"/>
-                        <text x="110" y="181" fill="#86868b" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" letter-spacing="1">TELE NOTE</text>
-                        <text x="190" y="181" fill="#1d1d1f" font-family="-apple-system, sans-serif" font-size="12">"Cmd + Shift + T para apuntar..."</text>
-                    </svg>
+                <div class="card-illustration-box premium-contain">
+                    <img src="assets/teleprompter.jpg" class="illust-img-contain" alt="Eventos y Teleprompter">
                 </div>
             </article>
 
@@ -523,14 +531,8 @@
             </article>
 
             <article class="update-card reveal-scroll">
-                <div class="card-illustration-box">
-                    <svg viewBox="0 0 280 200" fill="none" class="illust-svg" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="20" y="20" width="240" height="160" rx="16" fill="rgba(0,0,0,0.03)" stroke="rgba(0,0,0,0.05)" stroke-width="1.5"/>
-                        <path d="M80 20h120v14c0 8-6 14-14 14H94c-8 0-14-6-14-14V20z" fill="#000"/>
-                        <rect x="40" y="60" width="200" height="90" rx="20" fill="rgba(255,255,255,0.4)" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" style="backdrop-filter: blur(20px); filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.04));"/>
-                        <path d="M60 110 Q 90 90, 120 110 T 180 110 T 220 110" stroke="url(#grad1)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-                        <path d="M70 120 Q 100 130, 130 115 T 190 125 T 210 110" stroke="#ffd45a" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-                    </svg>
+                <div class="card-illustration-box premium-contain">
+                    <img src="assets/foto_mac_actualizacion_1.8_goldengate.png" class="illust-img-contain" alt="Liquid Glass">
                 </div>
                 <div class="update-copy">
                     <span class="update-kicker">Liquid Glass</span>
@@ -562,43 +564,43 @@
     <section id="vision" class="vision-section">
         <div class="vision-container reveal-scroll">
             <span class="feature-tag">NUESTRA VISIÓN</span>
-            <h2>Como si viniera de fábrica.</h2>
-            <p class="vision-subtitle">Creemos que las mejores herramientas son las que desaparecen. Diseñamos VibeNotch
-                para que se sienta como una extensión natural de macOS.</p>
-
-            <div class="vision-principles">
-                <div class="vision-card">
-                    <div class="vision-icon">✨</div>
-                    <h3>Simple</h3>
-                    <p>Una aplicación que hace una cosa y la hace excepcionalmente bien. Sin funciones innecesarias ni
-                        complejidad añadida.</p>
+            <div class="vision-grid">
+                <div class="vision-text-side">
+                    <h2>Como si viniera de fábrica.</h2>
+                    <p class="vision-subtitle">Creemos que las mejores herramientas son las que desaparecen. Diseñamos VibeNotch para que se sienta como una extensión natural de macOS.</p>
+                    
+                    <div class="vision-principles">
+                        <div class="vision-card">
+                            <div class="vision-icon">✨</div>
+                            <h3>Simple</h3>
+                            <p>Una aplicación que hace una cosa y la hace excepcionalmente bien. Sin funciones innecesarias.</p>
+                        </div>
+                        <div class="vision-card">
+                            <div class="vision-icon">💰</div>
+                            <h3>Económica</h3>
+                            <p>Un único pago, tuya para siempre. Sin suscripciones ni cargos ocultos.</p>
+                        </div>
+                        <div class="vision-card">
+                            <div class="vision-icon">🔒</div>
+                            <h3>Privada</h3>
+                            <p>Cero recopilación de datos. Lo que haces en tu Mac se queda en tu Mac.</p>
+                        </div>
+                        <div class="vision-card">
+                            <div class="vision-icon">⚡</div>
+                            <h3>Invisible</h3>
+                            <p>0% CPU en reposo, consumo de RAM y batería inexistente.</p>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="vision-card">
-                    <div class="vision-icon">💰</div>
-                    <h3>Económica</h3>
-                    <p>Un único pago, tuya para siempre. Sin suscripciones mensuales, sin cargos ocultos, sin trucos.
-                    </p>
+                
+                <div class="vision-visual-side">
+                    <div class="vision-img-frame">
+                        <img src="assets/demostracion.png" alt="Integración Real VibeNotch">
+                    </div>
+                    <div class="vision-quote">
+                        <blockquote>"El objetivo es crear algo que parezca que Apple olvidó incluir. Una pieza que encaje perfectamente en el ecosistema."</blockquote>
+                    </div>
                 </div>
-
-                <div class="vision-card">
-                    <div class="vision-icon">🔒</div>
-                    <h3>Privada</h3>
-                    <p>Cero recopilación de datos. Lo que haces en tu Mac, se queda en tu Mac. Sin telemetría, sin
-                        analytics.</p>
-                </div>
-
-                <div class="vision-card">
-                    <div class="vision-icon">⚡</div>
-                    <h3>Invisible</h3>
-                    <p>Diseñada para no afectar el rendimiento. 0% CPU en reposo, consumo mínimo de RAM. Como si no
-                        estuviera ahí.</p>
-                </div>
-            </div>
-
-            <div class="vision-quote">
-                <blockquote>"El objetivo es crear algo que parezca que Apple olvidó incluir. Una pieza que encaje
-                    perfectamente en el ecosistema."</blockquote>
             </div>
         </div>
     </section>
@@ -611,27 +613,45 @@
             <p>Acciones rápidas y herramientas a un solo click. Totalmente configurable para adaptarse a tu flujo de
                 trabajo diario.</p>
             <div class="launchpad-image-container">
-                <img src="assets/optimized/vibe notch utilities.webp" alt="Notch Launchpad" class="launchpad-img"
-                    loading="lazy">
+                <!-- Interactive macOS Screen Mockup showing notch screenshots -->
+                <div class="shortcuts-mockup">
+                    <div class="shortcuts-screen">
+                        <div class="shortcuts-menubar">
+                            <div class="left">
+                                <span></span>
+                                <span class="bold">Finder</span>
+                                <span>Archivo</span>
+                                <span>Edición</span>
+                            </div>
+                            <div class="right">
+                                <span>󰂄 100%</span>
+                                <span>󰖩</span>
+                                <span>󰞯</span>
+                                <span>Dom 11 Ene</span>
+                            </div>
+                        </div>
+                        <div class="shortcuts-notch-carousel">
+                            <img src="assets/notch_musica.png" class="shortcut-notch-img active" alt="Notch Música">
+                            <img src="assets/notch_calendario.png" class="shortcut-notch-img" alt="Notch Calendario">
+                            <img src="assets/notch_asistente.png" class="shortcut-notch-img" alt="Notch Asistente">
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Interactive Utility Buttons -->
+            <!-- Interactive Utility Buttons (now acting as slide controls) -->
             <div class="utility-buttons">
-                <button class="utility-btn" data-tooltip="Captura de Pantalla">
-                    <span class="utility-icon">📷</span>
-                    <span class="utility-label">Captura</span>
+                <button class="utility-btn active" data-slide="0" data-tooltip="Control de Música">
+                    <span class="utility-icon">🎵</span>
+                    <span class="utility-label">Música</span>
                 </button>
-                <button class="utility-btn" data-tooltip="Notas Rápidas">
-                    <span class="utility-icon">📝</span>
-                    <span class="utility-label">Notas</span>
+                <button class="utility-btn" data-slide="1" data-tooltip="Eventos del Calendario">
+                    <span class="utility-icon">📅</span>
+                    <span class="utility-label">Calendario</span>
                 </button>
-                <button class="utility-btn" data-tooltip="Grabar Pantalla">
-                    <span class="utility-icon">🎬</span>
-                    <span class="utility-label">Grabar</span>
-                </button>
-                <button class="utility-btn add-more" data-tooltip="Añadir Más">
-                    <span class="utility-icon">➕</span>
-                    <span class="utility-label">Añadir</span>
+                <button class="utility-btn" data-slide="2" data-tooltip="Asistente de Voz">
+                    <span class="utility-icon">🎙️</span>
+                    <span class="utility-label">Asistente</span>
                 </button>
             </div>
         </div>
@@ -809,11 +829,11 @@
 
             <div class="download-actions"
                 style="margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
-                <a href="https://apps.apple.com/app/vibenotch/id6757723688" target="_blank" class="btn-appstore">
-                    <span class="as-icon"></span>
+                <a href="https://apps.apple.com/app/vibenotch/id6757723688" target="_blank" class="btn-appstore btn-yellow" style="color: #000 !important; text-decoration: none;">
+                    <span class="as-icon" style="color: #000;"></span>
                     <div class="as-text">
-                        <span class="as-small">Consíguelo en el</span>
-                        <span class="as-big">App Store</span>
+                        <span class="as-small" style="color: rgba(0,0,0,0.65);">Consigue la versión 1.8 en el App Store</span>
+                        <span class="as-big" style="color: #000; font-weight: 800;">App Store</span>
                     </div>
                 </a>
             </div>
