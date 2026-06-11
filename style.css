@@ -1394,7 +1394,7 @@ footer.footer {
 
 /* HERO GRADIENT ANIMATION */
 .hero h1 {
-    background: linear-gradient(90deg, #1d1d1f, #0071e3, #1d1d1f);
+    background: linear-gradient(90deg, #7b3f16 0%, #d48926 30%, #ffd45a 50%, #d48926 70%, #7b3f16 100%);
     background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;
@@ -1725,6 +1725,7 @@ footer.footer {
     letter-spacing: -2px;
     margin-bottom: 20px;
 }
+
 
 /* ========== MOBILE RESPONSIVE ========== */
 @media (max-width: 768px) {
@@ -2134,6 +2135,8 @@ footer.footer {
     .reveal-scroll {
         transform: translateY(40px);
     }
+
+
 }
 
 /* ========== UPDATE BADGE 1.8 (Golden Gate) ========== */
