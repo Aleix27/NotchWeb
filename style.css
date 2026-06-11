@@ -222,18 +222,18 @@ nav {
 /* Demo Mac */
 .demo-section {
     padding: 0 0 100px;
-    /* Reduced padding for desktop */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 0;
+    background: #ffffff;
 }
 
 .macbook-air {
     position: relative;
     width: 100%;
-    max-width: 900px;
+    max-width: 1060px;
     margin: 0 auto;
     transition: transform 1.2s var(--liquid-ease);
     flex-shrink: 0;
@@ -332,6 +332,47 @@ nav {
     height: 180px;
     border-radius: 0 0 40px 40px;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+}
+
+.notch-camera {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    opacity: 0.85;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.web-notch.active .notch-camera {
+    opacity: 0;
+}
+
+.camera-lens {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #0e1e38 0%, #000000 75%);
+    border: 0.5px solid #222;
+}
+
+.camera-led {
+    width: 2.5px;
+    height: 2.5px;
+    border-radius: 50%;
+    background: #00ff66;
+    box-shadow: 0 0 5px #00ff66;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.web-notch-hitbox:hover ~ .web-notch .camera-led,
+.web-notch:hover .camera-led {
+    opacity: 1;
 }
 
 .island-compact {
@@ -512,7 +553,7 @@ nav {
 }
 
 .mega-feature.reversed {
-    background: #fafafa;
+    background: #ffffff;
 }
 
 .feature-tag {
@@ -1720,7 +1761,7 @@ footer.footer {
 /* ========== NOVEDADES (Updates Section) ========== */
 .updates-section {
     padding: 130px 24px 150px;
-    background: #fbfbfd;
+    background: #ffffff;
     color: var(--text);
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -2439,7 +2480,7 @@ nav .btn-yellow {
     position: absolute;
     top: 2.86%;
     left: 50%;
-    width: 22%;
+    width: 27%;
     transform: translateX(-50%);
     z-index: 10;
     pointer-events: none;
