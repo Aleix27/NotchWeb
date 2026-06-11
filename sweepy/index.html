@@ -248,107 +248,7 @@
       </div>
     </section>
 
-    <!-- ============ 5 · MÓDULO SALUD ============ -->
-    <section class="section" id="salud">
-      <header class="sec-head" data-reveal>
-        <p class="eyebrow">Módulo Salud · incluido con Sweepy Pro</p>
-        <h2>Tu Mac, bajo <span class="grad">control</span>.</h2>
-        <p class="sec-sub">Acciones rápidas, batería líquida, procesos, red en vivo, discos externos y recomendaciones de cuidado.</p>
-      </header>
 
-      <div class="health-grid" data-reveal-group>
-        <!-- Memoria -->
-        <article class="health-card glass" data-tilt data-viz>
-          <h3><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 1.8v3.2M15 1.8v3.2M9 19v3.2M15 19v3.2M1.8 9H5M1.8 15H5M19 9h3.2M19 15h3.2"/></svg> Memoria</h3>
-          <div class="gauge-wrap">
-            <svg class="gauge" viewBox="0 0 120 68" aria-hidden="true">
-              <defs>
-                <linearGradient id="gradRam" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0" stop-color="#40d4ff"/><stop offset="1" stop-color="#a36bff"/>
-                </linearGradient>
-              </defs>
-              <path class="gauge-bg" d="M12 62 A 48 48 0 0 1 108 62" pathLength="100"/>
-              <path class="gauge-fill" d="M12 62 A 48 48 0 0 1 108 62" pathLength="100" stroke="url(#gradRam)" style="--v:42"/>
-            </svg>
-            <p class="gauge-value"><span data-count="42">42</span> %</p>
-          </div>
-          <p class="health-note">Presión de memoria · 11,4 de 16 GB en uso. Libera RAM con un clic.</p>
-        </article>
-
-        <!-- Batería -->
-        <article class="health-card glass" data-tilt data-viz>
-          <h3><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 11v2"/></svg> Batería líquida</h3>
-          <div class="ring-wrap">
-            <svg class="ring" viewBox="0 0 96 96" aria-hidden="true">
-              <defs>
-                <linearGradient id="gradBat" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#5cfab3"/><stop offset="1" stop-color="#40d4ff"/>
-                </linearGradient>
-              </defs>
-              <circle class="ring-bg" cx="48" cy="48" r="40" pathLength="100"/>
-              <circle class="ring-fill" cx="48" cy="48" r="40" pathLength="100" stroke="url(#gradBat)" style="--v:87"/>
-            </svg>
-            <p class="ring-value"><span data-count="87">87</span> %<small>salud</small></p>
-          </div>
-          <ul class="health-mini">
-            <li><strong data-count="312">312</strong> ciclos</li>
-            <li><strong data-count="31">31</strong> °C</li>
-            <li>Modo bajo consumo</li>
-          </ul>
-        </article>
-
-        <!-- CPU -->
-        <article class="health-card glass" data-tilt data-viz>
-          <h3><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2"/><rect x="3.5" y="3.5" width="17" height="17" rx="4"/></svg> CPU por proceso</h3>
-          <ul class="cpu-list">
-            <li><span>Xcode</span><span class="bar"><span class="bar-fill" style="--w:38%"></span></span><strong>38 %</strong></li>
-            <li><span>Chrome</span><span class="bar"><span class="bar-fill" style="--w:21%"></span></span><strong>21 %</strong></li>
-            <li><span>Simulator</span><span class="bar"><span class="bar-fill" style="--w:14%"></span></span><strong>14 %</strong></li>
-            <li><span>node</span><span class="bar"><span class="bar-fill" style="--w:9%"></span></span><strong>9 %</strong></li>
-          </ul>
-          <p class="health-note">Top de procesos con botón para cerrar la app glotona.</p>
-        </article>
-
-        <!-- Acciones rápidas -->
-        <article class="health-card glass" data-tilt>
-          <h3><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2.5 5 13.5h6l-1 8 8-11h-6Z"/></svg> Mantenimiento</h3>
-          <ul class="chip-list">
-            <li>Liberar RAM</li>
-            <li>Purgar DNS</li>
-            <li>Renovar IP</li>
-            <li>Reindexar Spotlight</li>
-            <li>Reiniciar Finder y Dock</li>
-            <li>Vaciar papelera</li>
-          </ul>
-          <p class="health-note">Acciones de mantenimiento a un clic, sin abrir Terminal.</p>
-        </article>
-
-        <!-- Red -->
-        <article class="health-card glass" data-tilt data-viz>
-          <h3><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 13.5c5.2-5.4 13.8-5.4 19 0M5.8 16.6c3.5-3.5 8.9-3.5 12.4 0"/><circle cx="12" cy="19.4" r="1.2"/></svg> Red en vivo</h3>
-          <svg class="spark" viewBox="0 0 220 56" aria-hidden="true" preserveAspectRatio="none">
-            <polyline class="spark-line" points="0,44 18,40 36,42 54,30 72,34 90,18 108,24 126,12 144,20 162,9 180,16 198,7 220,12"/>
-          </svg>
-          <ul class="health-mini">
-            <li><strong>↓ 480</strong> Mb/s</li>
-            <li><strong>↑ 96</strong> Mb/s</li>
-            <li>IP local visible</li>
-          </ul>
-        </article>
-
-        <!-- Ranking de apps -->
-        <article class="health-card glass" data-tilt data-viz>
-          <h3><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg> Apps que más ocupan</h3>
-          <ul class="rank-list">
-            <li><span>Xcode</span><span class="bar"><span class="bar-fill" style="--w:92%"></span></span><strong>11,2 GB</strong></li>
-            <li><span>Photoshop</span><span class="bar"><span class="bar-fill" style="--w:36%"></span></span><strong>4,3 GB</strong></li>
-            <li><span>Final Cut</span><span class="bar"><span class="bar-fill" style="--w:26%"></span></span><strong>3,1 GB</strong></li>
-            <li><span>Chrome</span><span class="bar"><span class="bar-fill" style="--w:11%"></span></span><strong>1,2 GB</strong></li>
-          </ul>
-          <p class="health-note">Ranking de /Applications con «Mostrar en Finder».</p>
-        </article>
-      </div>
-    </section>
 
     <!-- ============ 6 · GALERÍA ============ -->
     <section class="section" id="galeria">
@@ -402,7 +302,7 @@
       <header class="sec-head" data-reveal>
         <p class="eyebrow">Sweepy Pro</p>
         <h2>El análisis es gratis. <span class="grad">Siempre</span>.</h2>
-        <p class="sec-sub">Escanea tu Mac tantas veces como quieras sin pagar nada. La limpieza con un clic y el módulo Salud se desbloquean con Sweepy Pro.</p>
+        <p class="sec-sub">Escanea tu Mac tantas veces como quieras sin pagar nada. La limpieza con un clic se desbloquea con Sweepy Pro.</p>
       </header>
 
       <div class="billing-toggle-wrap" data-reveal>
@@ -437,7 +337,6 @@
           <ul class="feat-list">
             <li>Todo lo del análisis gratuito</li>
             <li>Limpieza ilimitada con un clic</li>
-            <li>Módulo Salud completo</li>
             <li>Restauración de compras y códigos promocionales</li>
           </ul>
           <span class="btn btn-primary btn-block btn-soon-solid" aria-disabled="true">Muy pronto en el Mac App Store</span>
@@ -464,7 +363,7 @@
         </details>
         <details class="faq-item glass">
           <summary>¿De verdad el análisis es gratis?<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"/></svg></summary>
-          <p>Gratis e ilimitado, siempre. Escanea tu Mac tantas veces como quieras y mira cuánto espacio puedes recuperar sin pagar nada. Solo la limpieza con un clic (y el módulo Salud) requieren Sweepy Pro.</p>
+          <p>Gratis e ilimitado, siempre. Escanea tu Mac tantas veces como quieras y mira cuánto espacio puedes recuperar sin pagar nada. Solo la limpieza con un clic requiere Sweepy Pro.</p>
         </details>
         <details class="faq-item glass">
           <summary>¿Cuánto cuesta Sweepy Pro?<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"/></svg></summary>
