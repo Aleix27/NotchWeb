@@ -62,6 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    notch.addEventListener('mouseenter', () => {
+        if (window.innerWidth > 768) {
+            notch.classList.add('active');
+        }
+    });
+
     trigger.addEventListener('mouseleave', checkHover);
     notch.addEventListener('mouseleave', checkHover);
 
