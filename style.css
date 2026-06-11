@@ -2134,3 +2134,49 @@ footer.footer {
     .reveal-scroll {
         transform: translateY(40px);
     }
+}
+
+/* ========== UPDATE BADGE 1.8 (Golden Gate) ========== */
+.update-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 28px;
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+    color: #8a5a00;
+    background: linear-gradient(90deg, rgba(255, 196, 0, 0.14), rgba(255, 122, 0, 0.10));
+    border: 1px solid rgba(214, 148, 0, 0.35);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.update-badge:hover {
+    box-shadow: 0 6px 24px rgba(255, 166, 0, 0.25);
+    transform: translateY(-1px);
+}
+
+.update-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffc400, #ff7a00);
+    box-shadow: 0 0 0 0 rgba(255, 166, 0, 0.5);
+    animation: goldenPulse 2s infinite;
+}
+
+@keyframes goldenPulse {
+    70% { box-shadow: 0 0 0 8px rgba(255, 166, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 166, 0, 0); }
+}
+
+@media (max-width: 768px) {
+    .update-badge {
+        margin: 0 16px 22px;
+        font-size: 11.5px;
+        text-align: center;
+    }
+}

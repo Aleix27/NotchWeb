@@ -41,14 +41,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusText = document.querySelector('.status-text');
     let isPlaying = false;
 
+    const syncHitbox = () => {
+        // con la isla abierta, el hitbox no debe robar los clicks de los controles
+        trigger.style.pointerEvents = notch.classList.contains('active') ? 'none' : '';
+    };
+
     trigger.addEventListener('click', (e) => {
         e.stopPropagation();
         notch.classList.toggle('active');
+        syncHitbox();
+    });
+
+    trigger.addEventListener('mouseenter', () => {
+        if (window.innerWidth > 768) {
+            notch.classList.add('active');
+            syncHitbox();
+        }
     });
 
     document.addEventListener('click', (e) => {
         if (!notch.contains(e.target) && !trigger.contains(e.target)) {
             notch.classList.remove('active');
+            syncHitbox();
         }
     });
 
@@ -56,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     notch.addEventListener('mouseleave', () => {
         if (window.innerWidth > 768) {
             notch.classList.remove('active');
+            syncHitbox();
         }
     });
 
