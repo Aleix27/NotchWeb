@@ -364,9 +364,9 @@ nav {
 }
 
 .web-notch.active {
-    width: 360px; /* Reduced width to match the aspect ratio of the real music notch */
+    width: 360px; /* Reduced width to match the ratio of the real music notch */
     height: 112px; /* Calculated from aspect ratio 3.215: 360 / 3.215 = 112 */
-    border-radius: 0;
+    border-radius: 0 0 16px 16px; /* Maintained rounded corners to prevent straight edges during transition */
     box-shadow: none;
     border-color: transparent;
     background-color: transparent;
@@ -2070,7 +2070,7 @@ footer.footer {
     .web-notch.active {
         width: 200px;
         height: 62px; /* Adjusted to match the aspect ratio of the real music notch on mobile */
-        border-radius: 0;
+        border-radius: 0 0 8px 8px; /* Maintained rounded corners to prevent straight edges during transition */
         box-shadow: none;
         border: none;
         background: transparent;
