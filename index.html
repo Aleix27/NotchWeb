@@ -369,75 +369,72 @@
 
     <section id="demo" class="demo-section">
         <div class="macbook-air">
-            <div class="screen-container">
-                <div class="mac-screen">
-                    <div class="fake-menubar">
-                        <div class="left">
-                            <span></span>
-                            <span class="bold">Finder</span>
-                            <span>Archivo</span>
-                            <span>Edición</span>
-                        </div>
-                        <div class="right">
-                            <span>󰂄 100%</span>
-                            <span>󰖩</span>
-                            <span>󰞯</span>
-                            <span>Dom 11 Ene</span>
+            <img src="assets/macbook_para_simular_notch_inicio.webp" class="mac-base-img" alt="MacBook Air Simulation">
+            
+            <div class="mac-screen-overlay">
+                <div class="fake-menubar">
+                    <div class="left">
+                        <span></span>
+                        <span class="bold">Finder</span>
+                        <span>Archivo</span>
+                        <span>Edición</span>
+                    </div>
+                    <div class="right">
+                        <span>󰂄 100%</span>
+                        <span>󰖩</span>
+                        <span>󰞯</span>
+                        <span>Dom 11 Ene</span>
+                    </div>
+                </div>
+
+                <div class="web-notch-hitbox"></div>
+                <div id="web-notch" class="web-notch">
+                    <div class="island-compact">
+                        <div class="compact-art"
+                            style="background-image: url('assets/album_art.png'); background-size: cover;"></div>
+                        <div class="compact-visualizer">
+                            <span></span><span></span><span></span><span></span><span></span><span></span>
                         </div>
                     </div>
 
-                    <div class="web-notch-hitbox"></div>
-                    <div id="web-notch" class="web-notch">
-                        <div class="island-compact">
-                            <div class="compact-art"
-                                style="background-image: url('assets/album_art.png'); background-size: cover;"></div>
-                            <div class="compact-visualizer">
-                                <span></span><span></span><span></span><span></span><span></span><span></span>
+                    <div class="island-expanded">
+                        <div class="exp-top-row">
+                            <div class="battery-status">
+                                <span class="batt-icon">🔋</span>
+                                <span>46%</span>
+                            </div>
+                            <div class="top-right-icons">
+                                <span class="gear-icon">⚙️</span>
                             </div>
                         </div>
 
-                        <div class="island-expanded">
-                            <div class="exp-top-row">
-                                <div class="battery-status">
-                                    <span class="batt-icon">🔋</span>
-                                    <span>46%</span>
+                        <div class="exp-mid-row">
+                            <div class="main-album-art"
+                                style="background-image: url('assets/album_art.png'); background-size: cover; background-position: center;">
+                            </div>
+                            <div class="song-info-block">
+                                <div class="playback-status">
+                                    <span class="apple-logo"></span>
+                                    <span class="status-text">PAUSED</span>
                                 </div>
-                                <div class="top-right-icons">
-                                    <span class="gear-icon">⚙️</span>
+                                <div class="song-title">Digital Horizon</div>
+                                <div class="artist-name">Antigravity Arts</div>
+                                <div class="progress-container">
+                                    <div class="progress-bar">
+                                        <div class="progress-knob"></div>
+                                    </div>
+                                    <div class="time-stamp">-2:40</div>
                                 </div>
                             </div>
-
-                            <div class="exp-mid-row">
-                                <div class="main-album-art"
-                                    style="background-image: url('assets/album_art.png'); background-size: cover; background-position: center;">
-                                </div>
-                                <div class="song-info-block">
-                                    <div class="playback-status">
-                                        <span class="apple-logo"></span>
-                                        <span class="status-text">PAUSED</span>
-                                    </div>
-                                    <div class="song-title">Digital Horizon</div>
-                                    <div class="artist-name">Antigravity Arts</div>
-                                    <div class="progress-container">
-                                        <div class="progress-bar">
-                                            <div class="progress-knob"></div>
-                                        </div>
-                                        <div class="time-stamp">-2:40</div>
-                                    </div>
-                                </div>
-                                <div class="main-controls">
-                                    <span class="control-btn">⏮</span>
-                                    <span class="control-btn play">▶</span>
-                                    <span class="control-btn">⏭</span>
-                                </div>
+                            <div class="main-controls">
+                                <span class="control-btn">⏮</span>
+                                <span class="control-btn play">▶</span>
+                                <span class="control-btn">⏭</span>
                             </div>
-                            <!-- SE HAN ELIMINADO LOS BOTONES DE ABAJO -->
                         </div>
                     </div>
-                    <!-- TEXTO ELIMINADO DE LA PANTALLA -->
                 </div>
             </div>
-            <div class="keyboard-base"></div>
         </div>
         <p class="demo-disclaimer">Esta es una demostración interactiva. La experiencia real en la aplicación nativa es
             superior.</p>
@@ -569,10 +566,9 @@
         <div class="teleprompter-container reveal-scroll">
             <h2>Teleprompter integrado</h2>
             <p class="teleprompter-minimal-desc">Lee tus apuntes o guiones desde el notch sin desviar la mirada de la cámara.</p>
-            
-            <div class="teleprompter-large-frame">
-                <img src="assets/teleprompter.jpg" alt="Teleprompter en VibeNotch">
-            </div>
+        </div>
+        <div class="teleprompter-fullscreen-frame reveal-scroll">
+            <img src="assets/teleprompter.jpg" alt="Teleprompter en VibeNotch">
         </div>
     </section>
 
@@ -646,7 +642,7 @@
         <div class="reveal-scroll" style="text-align: center; max-width: 1000px; margin: 0 auto; padding: 0 20px;">
             <span class="feature-tag">DISEÑO Y UTILIDAD</span>
             <h2>El notch es mucho más.</h2>
-            <p style="color: rgba(255,255,255,0.6); font-size: clamp(16px, 2vw, 20px); max-width: 600px; margin: 0 auto 50px auto; line-height: 1.5;">Una transición automática e inteligente. Observa cómo cambia la muesca de tu pantalla según las herramientas que utilices.</p>
+            <p style="color: rgba(0,0,0,0.6); font-size: clamp(16px, 2vw, 20px); max-width: 600px; margin: 0 auto 50px auto; line-height: 1.5;">Una transición automática e inteligente. Observa cómo cambia la muesca de tu pantalla según las herramientas que utilices.</p>
             
             <!-- MacBook Big screen overlay container -->
             <div class="mac-showcase-container">
