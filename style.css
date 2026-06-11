@@ -2406,171 +2406,147 @@ nav .btn-yellow {
     font-weight: 700;
 }
 
-/* LAUNCHPAD INTERACTIVE MOCKUP */
-/* SEGMENTED CONTROL BAR & MINIMALIST VIEWER */
-.segmented-control-bar {
-    display: inline-flex;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 6px;
-    border-radius: 30px;
-    gap: 8px;
-    margin: 40px auto 40px auto;
-    position: relative;
-    z-index: 10;
-}
-
-.segmented-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.6);
-    font-weight: 700;
-    font-size: 15px;
-    padding: 12px 28px;
-    border-radius: 24px;
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-    outline: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.segmented-btn:hover {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.segmented-btn.active {
-    color: #000000 !important;
-    background: linear-gradient(135deg, #ffd45a 0%, #ffa500 100%) !important;
-    box-shadow: 0 4px 15px rgba(255, 212, 90, 0.35);
-}
-
-.shortcuts-minimal-viewer {
-    width: 100%;
-    max-width: 700px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.01);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 24px;
-    padding: 60px 40px;
+/* MACBOOK SHOWCASE WITH AUTO-ROTATING NOTCH */
+.notch-is-more-section {
+    padding: 140px 0 !important;
+    background: #050505;
     position: relative;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 240px;
-    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.45);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
-.viewer-ambient-glow {
-    position: absolute;
-    width: 320px;
-    height: 140px;
-    background: rgba(255, 212, 90, 0.15);
-    filter: blur(60px);
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: background 0.6s ease, filter 0.6s ease;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.viewer-notch-container {
+.mac-showcase-container {
     position: relative;
     width: 100%;
-    max-width: 440px;
-    z-index: 2;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.viewer-notch-container .shortcut-notch-img {
-    width: 100%;
-    height: auto;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%) scale(0.96);
-    opacity: 0;
-    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.viewer-notch-container .shortcut-notch-img.active {
-    opacity: 1;
-    transform: translateX(-50%) scale(1);
-    position: relative;
-}
-
-/* PREMIUM VISION SECTION REDESIGN */
-.vision-grid {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 60px;
-    align-items: center;
-    text-align: left;
-    margin-top: 40px;
-}
-
-.vision-section {
-    padding: 160px 20px !important;
-}
-
-.vision-section h2 {
-    font-size: clamp(38px, 5.5vw, 64px) !important;
-    text-align: left !important;
-    margin-bottom: 20px;
-    letter-spacing: -2.5px !important;
-    line-height: 1.05 !important;
-}
-
-.vision-subtitle {
-    text-align: left !important;
-    margin: 0 0 50px 0 !important;
-    max-width: 100% !important;
-}
-
-.vision-principles {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 20px !important;
-    margin-bottom: 0 !important;
-}
-
-.vision-visual-side {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    align-items: center;
-}
-
-.vision-img-frame {
-    width: 100%;
-    border-radius: 24px;
+    max-width: 900px;
+    margin: 40px auto 0 auto;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 25px 65px rgba(0, 0, 0, 0.55), 0 0 45px rgba(0, 113, 227, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: transform 0.6s var(--liquid-ease);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 50px rgba(255, 212, 90, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.5s ease;
 }
 
-.vision-img-frame:hover {
-    transform: translateY(-6px) scale(1.02);
+.mac-showcase-container:hover {
+    transform: translateY(-4px) scale(1.01);
 }
 
-.vision-img-frame img {
+.mac-screen-bg {
     width: 100%;
     height: auto;
     display: block;
 }
 
-.vision-quote {
-    margin: 0 !important;
-    max-width: 100% !important;
-    padding: 0 10px !important;
+.mac-notch-overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 48%; /* Precise proportional width of the notch expanded images relative to the Mac screen */
+    z-index: 10;
+    pointer-events: none;
+}
+
+.mac-notch-overlay-container .shortcut-notch-img {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: scale(0.97) translateY(-4px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mac-notch-overlay-container .shortcut-notch-img.active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    position: relative;
+}
+
+/* PREMIUM VISION SECTION REDESIGN (CENTERED) */
+.vision-section {
+    padding: 140px 20px !important;
+    text-align: center;
+    background: #000000;
+}
+
+.vision-section h2 {
+    font-size: clamp(38px, 5.5vw, 60px) !important;
+    text-align: center !important;
+    margin: 0 auto 20px auto;
+    letter-spacing: -2px !important;
+    line-height: 1.08 !important;
+    max-width: 800px;
+    background: linear-gradient(135deg, #ffffff 0%, #a1a1a6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.vision-subtitle {
+    text-align: center !important;
+    margin: 0 auto 60px auto !important;
+    max-width: 680px !important;
+    font-size: clamp(16px, 1.8vw, 20px) !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    line-height: 1.5;
+}
+
+.vision-principles {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 24px !important;
+    margin-bottom: 0 !important;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.vision-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 40px 20px 30px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.vision-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 212, 90, 0.2);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 212, 90, 0.05);
+}
+
+.vision-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 212, 90, 0.06);
+    border: 1px solid rgba(255, 212, 90, 0.12);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.vision-card:hover .vision-icon {
+    background: rgba(255, 212, 90, 0.15);
+    border-color: #ffd45a;
+    box-shadow: 0 0 15px rgba(255, 212, 90, 0.2);
+}
+
+.vision-svg-icon {
+    width: 26px;
+    height: 26px;
+    color: #ffd45a;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.vision-card:hover .vision-svg-icon {
+    transform: scale(1.12) rotate(5deg);
+    color: #ffffff;
 }
 
 /* NOVEDADES SCREENSHOT ILLUSTRATIONS */
@@ -2877,15 +2853,10 @@ nav .btn-yellow {
 
 /* RESPONSIVE LAYOUTS FOR NEW SECTIONS */
 @media (max-width: 992px) {
-    .vision-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-    .vision-section h2, .vision-subtitle {
-        text-align: center !important;
-    }
     .vision-principles {
-        margin-bottom: 40px !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+        margin-bottom: 0 !important;
     }
     .teleprompter-grid {
         grid-template-columns: 1fr;
@@ -2905,28 +2876,9 @@ nav .btn-yellow {
 }
 
 @media (max-width: 768px) {
-    .segmented-control-bar {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        padding: 4px;
-        gap: 4px;
-        margin: 20px auto 30px auto;
-    }
-    .segmented-btn {
-        padding: 10px 14px;
-        font-size: 13px;
-        flex-grow: 1;
-        text-align: center;
-        border-radius: 20px;
-    }
-    .shortcuts-minimal-viewer {
-        padding: 30px 15px;
-        min-height: 180px;
-    }
-    .viewer-notch-container {
-        max-width: 280px;
+    .vision-principles {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
     }
     .card-illustration-box.premium-contain,
     .update-card-large .card-illustration-box.premium-contain {

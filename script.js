@@ -365,29 +365,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
 
     // ==========================================
-    // 16. SHORTCUTS LAUNCHPAD CAROUSEL
+    // 16. AUTOMATIC NOTCH ROTATION SHOWCASE
     // ==========================================
-    const shortcutBtns = document.querySelectorAll('.segmented-btn');
     const shortcutSlides = document.querySelectorAll('.shortcut-notch-img');
-    const viewerGlow = document.getElementById('viewer-glow');
     let activeShortcutSlide = 0;
     let shortcutInterval;
 
-    const glows = [
-        'rgba(255, 212, 90, 0.15)',  // Yellow/Gold for Music
-        'rgba(0, 113, 227, 0.15)',   // Blue for Calendar
-        'rgba(168, 85, 247, 0.15)'   // Purple for Assistant
-    ];
-
     const showShortcutSlide = (index) => {
-        shortcutBtns.forEach((btn, idx) => {
-            if (idx === index) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
-
         shortcutSlides.forEach((slide, idx) => {
             if (idx === index) {
                 slide.classList.add('active');
@@ -395,11 +379,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 slide.classList.remove('active');
             }
         });
-
-        if (viewerGlow && glows[index]) {
-            viewerGlow.style.background = glows[index];
-        }
-
         activeShortcutSlide = index;
     };
 
@@ -409,21 +388,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 let next = (activeShortcutSlide + 1) % shortcutSlides.length;
                 showShortcutSlide(next);
             }
-        }, 5000);
+        }, 4000); // Rotate automatically every 4 seconds
     };
 
-    const stopShortcutRotation = () => {
-        if (shortcutInterval) clearInterval(shortcutInterval);
-    };
-
-    shortcutBtns.forEach((btn, index) => {
-        btn.addEventListener('click', () => {
-            stopShortcutRotation();
-            showShortcutSlide(index);
-        });
-    });
-
-    if (shortcutBtns.length > 0 && shortcutSlides.length > 0) {
+    if (shortcutSlides.length > 0) {
         startShortcutRotation();
     }
 
