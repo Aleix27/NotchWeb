@@ -1938,8 +1938,8 @@ footer.footer {
 
     /* Hero */
     .hero {
-        padding-top: 120px;
-        padding-bottom: 60px;
+        padding-top: 90px; /* Reduced from 120px to utilize vertical space on mobile */
+        padding-bottom: 15px; /* Reduced from 60px to move the MacBook simulation closer to the buttons */
     }
 
     .hero h1 {

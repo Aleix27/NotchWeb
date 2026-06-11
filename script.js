@@ -321,12 +321,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 14. FLOATING PARTICLES
+    // 14. FLOATING PARTICLES (Optimized for Mobile Performance)
     const particleContainer = document.createElement('div');
     particleContainer.classList.add('particles');
     document.body.appendChild(particleContainer);
 
-    for (let i = 0; i < 30; i++) {
+    const particleCount = window.innerWidth <= 768 ? 8 : 30; // Limit to 8 on mobile to save CPU/battery
+    for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.classList.add('particle');
         particle.style.left = Math.random() * 100 + '%';
@@ -423,5 +424,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+    }
+
+    // 18. LAZY LOAD & PLAY/PAUSE AUTOPLAY VIDEOS (Performance Optimization for Mobile)
+    const autoplayVideos = document.querySelectorAll('.bright-sim-video, #promo-video');
+    if ('IntersectionObserver' in window) {
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target;
+                if (entry.isIntersecting) {
+                    if (video.paused) {
+                        video.play().catch(() => {});
+                    }
+                } else {
+                    if (!video.paused) {
+                        video.pause();
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        autoplayVideos.forEach(video => videoObserver.observe(video));
     }
 });
