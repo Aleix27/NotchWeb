@@ -233,8 +233,8 @@ nav {
 .macbook-air {
     position: relative;
     width: 100%;
-    max-width: 1200px;
-    margin: -35px auto 0; /* Pulled up closer to the hero text */
+    max-width: 980px; /* Reduced from 1200px to make it more elegant and proportionate */
+    margin: -25px auto 0; /* Pulled up closer to the hero text */
     transition: transform 1.2s var(--liquid-ease);
     flex-shrink: 0;
 }
@@ -309,7 +309,7 @@ nav {
 
 .web-notch {
     position: absolute;
-    top: 8px; /* Lowered slightly to match the physical screen bezels and notch curve */
+    top: 12px; /* Lowered slightly to prevent it from overlapping with the top bezel / border of the Mac */
     left: 50%;
     transform: translateX(-50%);
     width: 180px;
