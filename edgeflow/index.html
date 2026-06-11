@@ -2,895 +2,1103 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EdgeFlow — Tus atajos en el borde de la pantalla | App para macOS</title>
-  <meta name="description"
-    content="EdgeFlow convierte los bordes de la pantalla de tu Mac en un panel de cristal líquido con tus apps, webs y Atajos de Apple. Nativo en Swift, 0 % de CPU en reposo. Descárgalo en el Mac App Store.">
-  <meta name="author" content="Aleix Carles Sales">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://vibenotch.es/edgeflow/">
-  <meta name="theme-color" content="#04060c">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdgeFlow - El Panel Lateral Definitivo para macOS</title>
+    <meta name="description"
+        content="EdgeFlow es la utilidad de panel lateral líquido para macOS que mejora tu productividad. Accede a apps y atajos al instante. Descárgalo en la App Store.">
+    <meta name="keywords"
+        content="EdgeFlow app, panel lateral mac, macOS sidebar, launcher, productividad mac, atajos, swift, app nativa, vibenotch, utilidad mac">
+    <meta name="author" content="Aleix Carles">
+    <meta name="robots" content="index, follow">
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="VibeNotch">
-  <meta property="og:locale" content="es_ES">
-  <meta property="og:url" content="https://vibenotch.es/edgeflow/">
-  <meta property="og:title" content="EdgeFlow — Tus atajos en el borde de la pantalla de tu Mac">
-  <meta property="og:description"
-    content="Empuja el ratón contra el borde y un panel de cristal líquido emerge con tus apps, webs y Atajos de Apple. Nativo para macOS, disponible en el Mac App Store.">
-  <meta property="og:image" content="https://vibenotch.es/edgeflow/EdgeFlow%20icon-iOS-Default-1024x1024@1x.png">
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vibenotch.es/edgeflow/">
+    <meta property="og:title" content="EdgeFlow - El Panel Lateral Definitivo para macOS">
+    <meta property="og:description"
+        content="Mejora tu flujo de trabajo con EdgeFlow. Un panel lateral líquido y nativo para acceder a tus herramientas favoritas al instante. Disponible en la App Store.">
+    <meta property="og:image" content="https://vibenotch.es/edgeflow/EdgeFlow%20icon-iOS-Default-1024x1024@1x.png">
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="EdgeFlow — Tus atajos en el borde de la pantalla de tu Mac">
-  <meta name="twitter:description"
-    content="Empuja el ratón contra el borde y un panel de cristal líquido emerge con tus apps, webs y Atajos de Apple. Nativo para macOS.">
-  <meta name="twitter:image" content="https://vibenotch.es/edgeflow/EdgeFlow%20icon-iOS-Default-1024x1024@1x.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://vibenotch.es/edgeflow/">
+    <meta property="twitter:title" content="EdgeFlow - El Panel Lateral Definitivo para macOS">
+    <meta property="twitter:description"
+        content="Mejora tu flujo de trabajo con EdgeFlow. Un panel lateral líquido y nativo para acceder a tus herramientas favoritas al instante. Disponible en la App Store.">
+    <meta property="twitter:image" content="https://vibenotch.es/edgeflow/EdgeFlow%20icon-iOS-Default-1024x1024@1x.png">
 
-  <!-- Favicons (familia VibeNotch) -->
-  <link rel="icon" href="../assets/favicon/favicon.ico" sizes="any">
-  <link rel="icon" type="image/svg+xml" href="../assets/favicon/favicon.svg">
-  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon/favicon-96x96.png">
-  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="EdgeFlow icon-iOS-Default-1024x1024@1x.png">
 
-  <!-- Tipografías -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
-    rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #050505;
+            --white: #ffffff;
+            --accent: #6366f1;
+        }
 
-  <link rel="stylesheet" href="style.css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "EdgeFlow",
-    "operatingSystem": "macOS 13.0 o superior",
-    "applicationCategory": "UtilitiesApplication",
-    "description": "Utilidad nativa para macOS que convierte los bordes de la pantalla en un panel de cristal líquido con atajos: abre apps, webs y Atajos de Apple con un gesto del ratón.",
-    "url": "https://vibenotch.es/edgeflow/",
-    "image": "https://vibenotch.es/edgeflow/EdgeFlow%20icon-iOS-Default-1024x1024@1x.png",
-    "installUrl": "https://apps.apple.com/es/app/edgeflow/id6758726367",
-    "inLanguage": ["es", "en", "zh-Hans"],
-    "author": {
-      "@type": "Person",
-      "name": "Aleix Carles Sales"
-    }
-  }
-  </script>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #wave-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            mix-blend-mode: difference;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-size: clamp(60px, 15vw, 200px);
+            font-weight: 900;
+            letter-spacing: -8px;
+            line-height: 0.85;
+            text-transform: uppercase;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 3vw, 28px);
+            font-weight: 300;
+            margin-top: 30px;
+            opacity: 0.8;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.6;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-hint span {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .scroll-hint::after {
+            content: '↓';
+            font-size: 24px;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        /* ========== IMMERSIVE FEATURE SECTIONS ========== */
+        .feature-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 100px 60px;
+        }
+
+        .feature-section.dark {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .feature-section.light {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .section-inner {
+            max-width: 1400px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .section-inner.reverse {
+            direction: rtl;
+        }
+
+        .section-inner.reverse>* {
+            direction: ltr;
+        }
+
+        .feature-text {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .feature-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-tag {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: clamp(40px, 6vw, 80px);
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 1;
+            margin-bottom: 30px;
+        }
+
+        .feature-desc {
+            font-size: 20px;
+            line-height: 1.6;
+            opacity: 0.7;
+            max-width: 500px;
+        }
+
+        .feature-visual {
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+        }
+
+        .feature-visual.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .mockup-window {
+            background: transparent;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+            transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+            transition: transform 0.5s ease;
+        }
+
+        .mockup-window:hover {
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.02);
+        }
+
+        .mockup-window img {
+            width: 100%;
+            display: block;
+            /* Scale up slightly to crop out imperfect borders */
+            transform: scale(1.02);
+            border-radius: 20px;
+        }
+
+        /* ========== STATS SECTION ========== */
+        .stats-section {
+            min-height: 100vh;
+            background: linear-gradient(180deg, var(--black) 0%, #0a0a0a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .stats-title {
+            font-size: clamp(30px, 5vw, 60px);
+            font-weight: 900;
+            margin-bottom: 80px;
+            letter-spacing: -2px;
+        }
+
+        .stats-grid {
+            display: flex;
+            /* Changed from grid to flex for better centering */
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 60px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .stat-item {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.6s ease;
+            flex: 1;
+            min-width: 250px;
+            /* Ensure they don't get too squished */
+            max-width: 350px;
+        }
+
+        .stat-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-value {
+            font-size: clamp(60px, 10vw, 120px);
+            font-weight: 900;
+            letter-spacing: -4px;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            /* Monospace digits prevent layout shift during counting */
+            font-variant-numeric: tabular-nums;
+            min-width: 3ch;
+            display: inline-block;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 15px;
+            opacity: 0.6;
+        }
+
+        .stat-desc {
+            font-size: 16px;
+            opacity: 0.4;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        /* ========== CTA SECTION ========== */
+        .cta-section {
+            min-height: 60vh;
+            background: var(--black);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: clamp(40px, 8vw, 100px);
+            font-weight: 900;
+            letter-spacing: -4px;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: var(--white);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
+        }
+
+        .back-link {
+            position: fixed;
+            top: 30px;
+            left: 40px;
+            z-index: 1000;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            mix-blend-mode: difference;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+
+        .hero-cta-btn {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            color: #000;
+            background: #fff;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: 2px solid transparent;
+        }
+
+        .hero-cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+            background: #000;
+            color: #fff;
+            border-color: #fff;
+        }
+
+        /* ========== ANIMATED FORM ========== */
+        .waitlist-form {
+            position: relative;
+            z-index: 10;
+            transition: transform 0.3s ease;
+        }
+
+        .waitlist-form:hover {
+            transform: scale(1.25);
+            /* Slight grow on hover - removed !important as it might conflict with transitions */
+        }
+
+        .cta-input {
+            padding: 20px 30px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 18px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            width: 350px;
+            backdrop-filter: blur(20px);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+            transition: color 0.3s;
+        }
+
+        .cta-input:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #6366f1;
+            width: 380px;
+            box-shadow: 0 0 50px rgba(99, 102, 241, 0.4);
+        }
+
+        .cta-input:focus::placeholder {
+            color: transparent;
+        }
+
+        .cta-submit {
+            border: none;
+            cursor: pointer;
+            padding: 20px 40px;
+            font-size: 18px;
+            background: #fff;
+            color: #000;
+            border-radius: 50px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-submit:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.8);
+        }
+
+        .cta-glow-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 120%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.4) 0%, rgba(0, 0, 0, 0) 60%);
+            z-index: 1;
+            pointer-events: none;
+            animation: pulseGlow 3s infinite alternate ease-in-out;
+            mix-blend-mode: screen;
+        }
+
+        @keyframes pulseGlow {
+            from {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        /* ========== FOOTER ========== */
+        .ef-footer {
+            padding: 40px;
+            text-align: center;
+            background: #050505;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 20;
+        }
+
+        .more-apps-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 15px 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .more-apps-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .more-apps-link img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .more-text span {
+            display: block;
+            text-align: left;
+        }
+
+        .more-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+
+        .more-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* ========== PREMIUM BUTTON & GLOW ========== */
+        .as-btn-container {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .as-btn-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(0, 113, 227, 0.4) 0%, rgba(0, 113, 227, 0) 70%);
+            filter: blur(30px);
+            z-index: 1;
+            opacity: 0.6;
+            animation: glowPulse 4s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        .as-btn-premium {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            background: #0071e3;
+            color: white;
+            padding: 20px 50px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 22px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 35px rgba(0, 113, 227, 0.4);
+            z-index: 2;
+            animation: floatBtn 3s infinite ease-in-out;
+        }
+
+        .as-btn-premium:hover {
+            transform: scale(1.08) translateY(-5px);
+            box-shadow: 0 25px 60px rgba(0, 113, 227, 0.7);
+            background: #007eff;
+        }
+
+        .as-btn-premium svg {
+            width: 26px;
+            height: 26px;
+            fill: white;
+            margin-right: 15px;
+        }
+
+        @keyframes floatBtn {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes glowPulse {
+            0% {
+                opacity: 0.4;
+                transform: translate(-50%, -50%) scale(0.85);
+            }
+
+            100% {
+                opacity: 0.9;
+                transform: translate(-50%, -50%) scale(1.15);
+            }
+        }
+
+        /* ========== APP CABINET ========== */
+        .app-cabinet {
+            background: #000;
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            margin-top: -140px;
+            transition: margin-top 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 1001;
+        }
+
+        .app-cabinet.show {
+            margin-top: 0;
+        }
+
+        .app-cabinet::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cabinet-inner {
+            display: flex;
+            gap: 30px;
+            padding: 0 40px;
+        }
+
+        .cabinet-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            min-width: 90px;
+        }
+
+        .cabinet-item img {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .cabinet-item span {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .cabinet-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .cabinet-item:hover img {
+            border-color: #0071e3;
+            box-shadow: 0 0 25px rgba(0, 113, 227, 0.5);
+        }
+
+        .cabinet-item:hover span {
+            color: #fff;
+        }
+
+        .cabinet-item.active {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            .section-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .section-inner.reverse {
+                direction: ltr;
+            }
+
+            .feature-desc {
+                margin: 0 auto;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .feature-section {
+                padding: 80px 30px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <canvas id="bg-canvas" aria-hidden="true"></canvas>
-  <div class="edge-aura edge-aura--left" aria-hidden="true"></div>
-  <div class="edge-aura edge-aura--right" aria-hidden="true"></div>
-
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
-
-  <!-- ============ Navegación ============ -->
-  <header class="nav-wrap">
-    <nav class="nav" aria-label="Principal">
-      <a class="nav__brand" href="./" aria-label="EdgeFlow, inicio">
-        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="30" height="30" rx="8" fill="#0b1430"/>
-          <rect x="0.5" y="0.5" width="29" height="29" rx="7.5" stroke="white" stroke-opacity="0.18"/>
-          <path d="M30 0v30h-9c0-4 4.5-5.5 4.5-9.5S20 16 20 12s5.5-5 5.5-9c0-1.2-.3-2.2-.8-3H30z" fill="url(#efw)"/>
-          <defs>
-            <linearGradient id="efw" x1="20" y1="0" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#22d3ee"/>
-              <stop offset="1" stop-color="#6366f1"/>
-            </linearGradient>
-          </defs>
-        </svg>
-        EdgeFlow
-      </a>
-
-      <div class="nav__links" id="nav-links">
-        <a href="../">VibeNotch</a>
-        <a href="./" class="is-current" aria-current="page">EdgeFlow</a>
-        <a href="../sweepy/">Sweepy</a>
-      </div>
-
-      <div class="nav__right">
-        <a class="btn btn--primary btn--nav magnetic" href="https://apps.apple.com/es/app/edgeflow/id6758726367"
-          rel="noopener">Descargar</a>
-        <button class="nav__burger" id="nav-burger" aria-expanded="false" aria-controls="nav-links"
-          aria-label="Abrir menú de navegación">
-          <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-            stroke-linecap="round" aria-hidden="true">
-            <path d="M4 7h16M4 12h16M4 17h16"/>
-          </svg>
-          <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-            stroke-linecap="round" aria-hidden="true">
-            <path d="M6 6l12 12M18 6L6 18"/>
-          </svg>
-        </button>
-      </div>
-    </nav>
-  </header>
-
-  <main id="contenido">
-
-    <!-- ============ Héroe ============ -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="container">
-        <p class="hero__badge reveal"><span class="dot" aria-hidden="true"></span> Nativo para macOS · Ya en el Mac App
-          Store</p>
-        <h1 class="hero__title reveal" id="hero-title">Toca el borde.<br><span class="text-grad">Lanza lo que
-            quieras.</span></h1>
-        <p class="hero__sub reveal">EdgeFlow convierte los bordes de la pantalla de tu Mac en un dock invisible: empuja
-          el ratón y un panel de cristal líquido emerge con tus apps, webs y Atajos de Apple. Un gesto, cero fricción.</p>
-
-        <div class="hero__cta reveal">
-          <a class="btn btn--primary magnetic" href="https://apps.apple.com/es/app/edgeflow/id6758726367"
-            rel="noopener">
-            <svg width="17" height="20" viewBox="0 0 17 20" fill="currentColor" aria-hidden="true">
-              <path d="M13.9 10.6c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-2.9-.8C4.8 5.5 3.4 6.3 2.6 7.6 1 10.3 2.2 14.3 3.7 16.5c.8 1.1 1.7 2.3 2.9 2.2 1.1 0 1.6-.7 2.9-.7 1.4 0 1.8.7 2.9.7 1.2 0 2-1.1 2.7-2.2.9-1.2 1.2-2.4 1.2-2.5 0 0-2.4-.9-2.4-3.4zM11.7 3.7c.6-.8 1-1.8.9-2.9-.9 0-1.9.6-2.6 1.3-.6.7-1 1.7-.9 2.8 1 .1 2-.5 2.6-1.2z"/>
-            </svg>
-            Descargar en el Mac App Store
-          </a>
-          <a class="btn btn--ghost" href="#video">Ver la demo real</a>
+    <div id="app-cabinet" class="app-cabinet">
+        <div class="cabinet-inner">
+            <a href="../index.html" class="cabinet-item">
+                <img src="../assets/VibeNotch icon-iOS-Default-1024x1024@1x.png" alt="VibeNotch">
+                <span>VibeNotch</span>
+            </a>
+            <a href="index.html" class="cabinet-item active">
+                <img src="EdgeFlow icon-iOS-Default-1024x1024@1x.png" alt="EdgeFlow">
+                <span>EdgeFlow</span>
+            </a>
+            <a href="../sweepy/index.html" class="cabinet-item">
+                <img src="../sweepy/assets/sweepy-icon-256.png" alt="Sweepy">
+                <span>Sweepy</span>
+            </a>
         </div>
-
-        <ul class="hero__chips reveal" data-stagger>
-          <li class="reveal">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
-            0&nbsp;% de CPU en reposo
-          </li>
-          <li class="reveal">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
-            Sin permisos especiales
-          </li>
-          <li class="reveal">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
-            macOS 13 Ventura o superior
-          </li>
-        </ul>
-
-        <!-- Maqueta de escritorio Mac con demo animada e interactiva -->
-        <div class="demo-stage reveal">
-          <div class="mac" id="mac-demo" role="img"
-            aria-label="Demostración animada: el cursor toca el borde de la pantalla de un Mac, el borde se ilumina y un panel de cristal con atajos se despliega; al pulsar un atajo se lanza la aplicación.">
-            <div class="mac__menubar" aria-hidden="true">
-              <svg viewBox="0 0 17 20" fill="currentColor">
-                <path d="M13.9 10.6c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-2.9-.8C4.8 5.5 3.4 6.3 2.6 7.6 1 10.3 2.2 14.3 3.7 16.5c.8 1.1 1.7 2.3 2.9 2.2 1.1 0 1.6-.7 2.9-.7 1.4 0 1.8.7 2.9.7 1.2 0 2-1.1 2.7-2.2.9-1.2 1.2-2.4 1.2-2.5 0 0-2.4-.9-2.4-3.4zM11.7 3.7c.6-.8 1-1.8.9-2.9-.9 0-1.9.6-2.6 1.3-.6.7-1 1.7-.9 2.8 1 .1 2-.5 2.6-1.2z"/>
-              </svg>
-              <span class="mb-app">Finder</span>
-              <span class="mb-item">Archivo</span>
-              <span class="mb-item">Edición</span>
-              <span class="mb-item">Visualización</span>
-              <span class="mb-spacer"></span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                <path d="M3 12h13M3 12c0-5 13-5 13 0M3 12c0 5 13 5 13 0"/>
-                <rect x="18" y="9" width="4" height="6" rx="1.4"/>
-              </svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                <path d="M5 13a10 10 0 0 1 14 0M8 16.2a6 6 0 0 1 8 0M11 19.3a2.4 2.4 0 0 1 2 0"/>
-              </svg>
-              <span>9:41</span>
-            </div>
-
-            <div class="mac__desktop" aria-hidden="true">
-              <div class="mac__orb"></div>
-
-              <div class="mac__dock">
-                <i class="dk-1"></i><i class="dk-2"></i><i class="dk-3"></i><i class="dk-4"></i><i class="dk-5"></i><i class="dk-6"></i>
-              </div>
-
-              <span class="edge-beam edge-beam--left"></span>
-              <span class="edge-beam edge-beam--right"></span>
-
-              <!-- Panel izquierdo -->
-              <aside class="epanel epanel--left">
-                <span class="ep-btn" data-name="Finder">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                    <rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/>
-                    <path d="M12.5 3.5c-1.6 4-2 9-1 17M8.4 10v1.8M16 10v1.8M8 15.4c2.6 1.9 5.7 1.9 8.3 0"/>
-                  </svg>
-                </span>
-                <span class="ep-btn" data-name="Safari">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                    <circle cx="12" cy="12" r="8.5"/>
-                    <path d="M15.5 8.5l-2.1 4.9-4.9 2.1 2.1-4.9z" fill="currentColor" stroke="none"/>
-                  </svg>
-                </span>
-                <span class="ep-btn" data-name="Terminal">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <rect x="3.5" y="4.5" width="17" height="15" rx="3.5"/>
-                    <path d="M7.5 9.5l2.8 2.5-2.8 2.5M12.5 15h4"/>
-                  </svg>
-                </span>
-                <span class="ep-btn" data-name="vibenotch.es" data-toast="Abriendo vibenotch.es…">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                    <circle cx="12" cy="12" r="8.5"/>
-                    <path d="M3.5 12h17M12 3.5c-4.7 4.7-4.7 12.3 0 17M12 3.5c4.7 4.7 4.7 12.3 0 17"/>
-                  </svg>
-                </span>
-                <span class="ep-btn" data-name="Atajo" data-toast="Atajo de Apple ejecutado">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M13.2 2.5L5 13.4h4.9l-1.1 8.1 8.2-10.9h-4.9z"/>
-                  </svg>
-                </span>
-                <span class="ep-btn" data-name="Ajustes" data-toast="Abriendo Ajustes de EdgeFlow…">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                    <circle cx="12" cy="12" r="3.2"/>
-                    <path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/>
-                  </svg>
-                </span>
-              </aside>
-
-              <!-- Panel derecho -->
-              <aside class="epanel epanel--right">
-                <span class="ep-btn" data-name="Finder">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                    <rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/>
-                    <path d="M12.5 3.5c-1.6 4-2 9-1 17M8.4 10v1.8M16 10v1.8M8 15.4c2.6 1.9 5.7 1.9 8.3 0"/>
-                  </svg>
-                </span>
-                <span class="ep-btn" data-name="Safari">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                    <circle cx="12" cy="12" r="8.5"/>
-                    <path d="M15.5 8.5l-2.1 4.9-4.9 2.1 2.1-4.9z" fill="currentColor" stroke="none"/>
-                  </svg>
-                </span>
-                <span class="ep-btn" data-name="Terminal">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <rect x="3.5" y="4.5" width="17" height="15" rx="3.5"/>
-                    <path d="M7.5 9.5l2.8 2.5-2.8 2.5M12.5 15h4"/>
-                  </svg>
-                </span>
-                <span class="ep-btn" data-name="vibenotch.es" data-toast="Abriendo vibenotch.es…">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                    <circle cx="12" cy="12" r="8.5"/>
-                    <path d="M3.5 12h17M12 3.5c-4.7 4.7-4.7 12.3 0 17M12 3.5c4.7 4.7 4.7 12.3 0 17"/>
-                  </svg>
-                </span>
-                <span class="ep-btn" data-name="Atajo" data-toast="Atajo de Apple ejecutado">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M13.2 2.5L5 13.4h4.9l-1.1 8.1 8.2-10.9h-4.9z"/>
-                  </svg>
-                </span>
-                <span class="ep-btn" data-name="Ajustes" data-toast="Abriendo Ajustes de EdgeFlow…">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                    <circle cx="12" cy="12" r="3.2"/>
-                    <path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/>
-                  </svg>
-                </span>
-              </aside>
-
-              <span class="edge-hot edge-hot--left" aria-hidden="true"></span>
-              <span class="edge-hot edge-hot--right" aria-hidden="true"></span>
-
-              <div class="mac-toast" role="presentation">
-                <span class="mac-toast__icon"></span>
-                <span class="mac-toast__text">Abriendo Safari…</span>
-              </div>
-
-              <svg class="demo-cursor" viewBox="0 0 20 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 1l14 12.5-6.6.8 3.6 7-3 1.4-3.5-7L2 20.4z" fill="#fff" stroke="#0a0f1d" stroke-width="1.4"/>
-              </svg>
-            </div>
-          </div>
-          <p class="demo-caption"><strong>Demostración interactiva:</strong> acerca el puntero a los bordes laterales
-            de la maqueta. La experiencia real en la app nativa es aún más fluida.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ El concepto ============ -->
-    <section id="concepto" aria-labelledby="concepto-title">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="eyebrow">El concepto</p>
-          <h2 class="section-title" id="concepto-title">Tu dock invisible.</h2>
-          <p class="section-lead">Sin iconos permanentes, sin barras flotantes, sin robar un solo píxel de tu
-            escritorio. Tus atajos esperan justo detrás del borde de la pantalla, en el borde izquierdo o derecho que
-            tú elijas.</p>
-        </header>
-
-        <div class="steps" data-stagger>
-          <article class="step reveal">
-            <span class="step__num" aria-hidden="true">01</span>
-            <span class="step__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M3 12h12M11 8l4 4-4 4"/>
-                <path d="M20 4v16"/>
-              </svg>
-            </span>
-            <h3>Empuja el ratón</h3>
-            <p>Lleva el cursor al borde de la pantalla. Una franja sensora invisible de solo 4&nbsp;píxeles lo detecta
-              al instante, sin monitores globales de eventos.</p>
-          </article>
-
-          <article class="step reveal">
-            <span class="step__num" aria-hidden="true">02</span>
-            <span class="step__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                <rect x="8" y="3" width="8" height="18" rx="4"/>
-                <circle cx="12" cy="8" r="1.4"/>
-                <circle cx="12" cy="12.5" r="1.4"/>
-                <circle cx="12" cy="17" r="1.4"/>
-              </svg>
-            </span>
-            <h3>El panel emerge</h3>
-            <p>Un panel de cristal líquido se despliega con animación spring, renderizado en la GPU. El botón más
-              cercano al cursor crece como una gota.</p>
-          </article>
-
-          <article class="step reveal">
-            <span class="step__num" aria-hidden="true">03</span>
-            <span class="step__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M13 2.5L5 13.4h4.9L8.8 21.5 17 10.6h-4.9z"/>
-              </svg>
-            </span>
-            <h3>Lanza y sigue</h3>
-            <p>Un clic y la app, la web o el Atajo se ejecuta. Aleja el ratón y el panel desaparece sin dejar rastro.
-              Tu flujo no se interrumpe.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ Acciones ============ -->
-    <section id="acciones" aria-labelledby="acciones-title">
-      <div class="container">
-        <header class="section-head section-head--center reveal">
-          <p class="eyebrow">Acciones</p>
-          <h2 class="section-title" id="acciones-title">Todo lo que puedes lanzar.</h2>
-          <p class="section-lead">Cuatro tipos de acción, un mismo gesto. Cada botón muestra el icono real de la app o
-            el favicon de la web: reconoces lo que vas a abrir antes de hacer clic.</p>
-        </header>
-
-        <div class="actions-grid" data-stagger>
-          <article class="action-card tilt reveal">
-            <div class="action-card__art" aria-hidden="true">
-              <svg class="art-window" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round">
-                <g class="win-pop">
-                  <rect x="10" y="14" width="44" height="36" rx="6"/>
-                  <path d="M10 24h44"/>
-                  <circle cx="17" cy="19" r="1.6" fill="currentColor" stroke="none"/>
-                  <circle cx="23" cy="19" r="1.6" fill="currentColor" stroke="none"/>
-                  <circle cx="29" cy="19" r="1.6" fill="currentColor" stroke="none"/>
-                  <path d="M18 33h18M18 40h26"/>
-                </g>
-              </svg>
-            </div>
-            <h3>Aplicaciones</h3>
-            <p>Abre cualquier app de tu Mac al instante. Finder, Safari y Terminal vienen configuradas de serie; añade
-              las tuyas en segundos.</p>
-          </article>
-
-          <article class="action-card tilt reveal">
-            <div class="action-card__art" aria-hidden="true">
-              <svg class="art-globe" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round">
-                <circle cx="32" cy="32" r="18"/>
-                <path d="M14 32h36M32 14c-9.5 9.5-9.5 26.5 0 36M32 14c9.5 9.5 9.5 26.5 0 36"/>
-                <g class="globe-orbit">
-                  <circle cx="32" cy="9" r="3" fill="currentColor" stroke="none"/>
-                </g>
-              </svg>
-            </div>
-            <h3>Webs y URLs</h3>
-            <p>Lanza tus webs de siempre en el navegador por defecto. Cada botón luce el favicon del sitio, recortado
-              en círculo.</p>
-          </article>
-
-          <article class="action-card tilt reveal">
-            <div class="action-card__art" aria-hidden="true">
-              <svg class="art-bolt" viewBox="0 0 64 64" fill="none">
-                <circle class="bolt-ring" cx="32" cy="32" r="22" stroke="currentColor" stroke-width="1.5"/>
-                <circle class="bolt-ring bolt-ring--late" cx="32" cy="32" r="22" stroke="currentColor"
-                  stroke-width="1.5"/>
-                <path d="M35 12L20 34h10l-2 18 16-22H34z" fill="currentColor"/>
-              </svg>
-            </div>
-            <h3>Atajos de Apple</h3>
-            <p>EdgeFlow lee tu biblioteca de Atajos y ejecuta cualquiera con un clic en el borde. Automatización real,
-              sin teclado.</p>
-          </article>
-
-          <article class="action-card tilt reveal">
-            <div class="action-card__art" aria-hidden="true">
-              <svg class="art-gear" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round">
-                <g class="gear-rotor">
-                  <circle cx="32" cy="32" r="9"/>
-                  <path d="M32 8v7M32 49v7M8 32h7M49 32h7M15 15l5 5M44 44l5 5M49 15l-5 5M20 44l-5 5"/>
-                </g>
-                <circle cx="32" cy="32" r="3.5" fill="currentColor" stroke="none"/>
-              </svg>
-            </div>
-            <h3>Ajustes al instante</h3>
-            <p>Un botón fijo al final del panel te lleva a la configuración. Añade, edita y reordena sin buscar nada
-              por los menús.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ Personalización ============ -->
-    <section id="ajustes" aria-labelledby="ajustes-title">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="eyebrow">Personalización</p>
-          <h2 class="section-title" id="ajustes-title">EdgeFlow se adapta a ti.</h2>
-          <p class="section-lead">No al revés. Una ventana de ajustes clara, con todo lo importante a un clic desde la
-            barra de menús.</p>
-        </header>
-
-        <div class="feature-row">
-          <div class="feature-row__copy reveal">
-            <h3>Tú decides el borde.</h3>
-            <p>Configura EdgeFlow exactamente como lo quieres usar, pantalla a pantalla.</p>
-            <ul>
-              <li>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                  stroke-linecap="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
-                Borde izquierdo o derecho, donde mejor encaje en tu flujo.
-              </li>
-              <li>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                  stroke-linecap="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
-                Altura del primer botón ajustable de 0 a 600&nbsp;px.
-              </li>
-              <li>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                  stroke-linecap="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
-                Panel escalable de S a XL (0,8× a 1,5×).
-              </li>
-              <li>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                  stroke-linecap="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
-                Con o sin icono en la barra de menús, y arranque al iniciar sesión.
-              </li>
-            </ul>
-          </div>
-          <figure class="shot tilt reveal" style="margin:0">
-            <img src="settings-general.webp" alt="Ajustes generales de EdgeFlow: selección de borde de activación, posición vertical e icono de la barra de menús" width="1024" height="911" loading="lazy" decoding="async">
-          </figure>
-        </div>
-
-        <div class="feature-row feature-row--flip">
-          <div class="feature-row__copy reveal">
-            <h3>Tus atajos, tu orden.</h3>
-            <p>La pestaña Botones es tu centro de mando: una lista limpia con el icono real de cada acción.</p>
-            <ul>
-              <li>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                  stroke-linecap="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
-                Añade aplicaciones, webs y Atajos de Apple desde un único menú.
-              </li>
-              <li>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                  stroke-linecap="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
-                Reordena arrastrando filas. Tu orden, tus reglas.
-              </li>
-              <li>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                  stroke-linecap="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
-                Edita o elimina cualquier atajo en segundos.
-              </li>
-              <li>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                  stroke-linecap="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
-                Etiquetas flotantes opcionales al pasar el cursor por cada botón.
-              </li>
-            </ul>
-          </div>
-          <figure class="shot tilt reveal" style="margin:0">
-            <img src="settings-buttons.webp" alt="Pestaña Botones de EdgeFlow con la lista reordenable de atajos: aplicaciones, webs y Atajos de Apple" width="1024" height="912" loading="lazy" decoding="async">
-          </figure>
-        </div>
-
-        <p class="settings-note reveal">Capturas reales de la app. Interfaz disponible en español, inglés y chino
-          simplificado, con cambio de idioma integrado.</p>
-      </div>
-    </section>
-
-    <!-- ============ Bento: a fondo ============ -->
-    <section id="detalles" aria-labelledby="detalles-title">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="eyebrow">A fondo</p>
-          <h2 class="section-title" id="detalles-title">Pensado hasta el último píxel.</h2>
-        </header>
-
-        <div class="bento" data-stagger>
-          <article class="bento__cell bento__cell--w3 reveal">
-            <span class="bento__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                <rect x="2.5" y="5" width="11" height="8" rx="1.5"/>
-                <rect x="15.5" y="8" width="6" height="11" rx="1.5"/>
-                <path d="M6 16.5h4M8 13v3.5"/>
-              </svg>
-            </span>
-            <h3>Multipantalla inteligente</h3>
-            <p>Actívalo en todas tus pantallas o solo en las que quieras. En bordes compartidos entre monitores, una
-              pausa breve de 0,3&nbsp;s evita aperturas accidentales al cruzar el cursor. Los sensores se reconstruyen
-              solos al conectar o desconectar pantallas.</p>
-            <div class="bento__monitors" aria-hidden="true">
-              <span class="bento__monitor bento__monitor--a"></span>
-              <span class="bento__monitor bento__monitor--b"></span>
-            </div>
-          </article>
-
-          <figure class="bento__cell bento__cell--w3 bento__cell--img reveal">
-            <img src="refined_bento_gestures.png" alt="Ilustración promocional de EdgeFlow: el gesto de llevar el ratón al borde junto a la ventana de ajustes" width="640" height="640" loading="lazy" decoding="async">
-            <figcaption>Todo a un gesto: tus atajos viven en el borde.</figcaption>
-          </figure>
-
-          <article class="bento__cell bento__cell--w2 reveal">
-            <span class="bento__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                <rect x="3" y="3" width="13" height="13" rx="2.5"/>
-                <path d="M19 8.5a2.5 2.5 0 0 1 2 2.45V18.5a2.5 2.5 0 0 1-2.5 2.5h-7.55a2.5 2.5 0 0 1-2.45-2"/>
-              </svg>
-            </span>
-            <h3>Espacios y pantalla completa</h3>
-            <p>El panel te sigue a cualquier Espacio de macOS, incluso sobre apps a pantalla completa.</p>
-          </article>
-
-          <article class="bento__cell bento__cell--w2 reveal">
-            <span class="bento__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                <path d="M4 14l6.5-6.5a2 2 0 0 1 1.4-.6H18a2 2 0 0 1 2 2v6.1a2 2 0 0 1-.6 1.4L12.9 23"/>
-                <path d="M4 14l8.9 8.9"/>
-                <circle cx="16.2" cy="10.8" r="1.3"/>
-              </svg>
-            </span>
-            <h3>Etiquetas opcionales</h3>
-            <p>Nombres flotantes al pasar el cursor. Actívalas mientras aprendes, escóndelas cuando ya no las
-              necesites.</p>
-          </article>
-
-          <article class="bento__cell bento__cell--w2 reveal">
-            <span class="bento__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                <path d="M12 3v18M12 3l-3 3M12 3l3 3M12 21l-3-3M12 21l3-3"/>
-                <path d="M5 12h14"/>
-              </svg>
-            </span>
-            <h3>Reordena arrastrando</h3>
-            <p>Organiza tus atajos arrastrando filas en los ajustes. El orden del panel es exactamente el tuyo.</p>
-          </article>
-
-          <article class="bento__cell bento__cell--w2 reveal">
-            <span class="bento__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                <path d="M12 3v8M8.2 5.5a8 8 0 1 0 7.6 0" />
-              </svg>
-            </span>
-            <h3>Arranca contigo</h3>
-            <p>Ábrelo al iniciar sesión y olvídate: siempre estará a un gesto, sin icono en el Dock.</p>
-          </article>
-
-          <article class="bento__cell bento__cell--w2 reveal">
-            <span class="bento__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M3 8l9-4 9 4-9 4z"/>
-                <path d="M7 10v5c0 1.5 2.2 3 5 3s5-1.5 5-3v-5M21 8v6"/>
-              </svg>
-            </span>
-            <h3>Tutorial integrado</h3>
-            <p>Una guía visual en el primer arranque te enseña el gesto en segundos. Repítela cuando quieras desde
-              Ajustes.</p>
-          </article>
-
-          <article class="bento__cell bento__cell--w2 reveal">
-            <span class="bento__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                <circle cx="12" cy="12" r="8.5"/>
-                <path d="M3.5 12h17M12 3.5c-4.7 4.7-4.7 12.3 0 17M12 3.5c4.7 4.7 4.7 12.3 0 17"/>
-              </svg>
-            </span>
-            <h3>En tu idioma</h3>
-            <p>Disponible en español, inglés y chino simplificado, con selector de idioma dentro de la propia app.</p>
-          </article>
-
-          <figure class="bento__cell bento__cell--w2 bento__cell--img reveal">
-            <img src="render_action_moment.png" alt="Render minimalista de EdgeFlow: una onda líquida negra con el lema La perfección no es una línea recta" width="640" height="640" loading="lazy" decoding="async">
-            <figcaption>La perfección no es una línea recta.</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ Rendimiento ============ -->
-    <section id="rendimiento" aria-labelledby="rendimiento-title">
-      <div class="container">
-        <header class="section-head section-head--center reveal">
-          <p class="eyebrow">Rendimiento</p>
-          <h2 class="section-title" id="rendimiento-title">Diseñado para desaparecer.</h2>
-          <p class="section-lead">Nada de Electron: SwiftUI y AppKit puros, renderizado en GPU y animaciones spring
-            nativas. El sensor solo trabaja mientras el panel está activo.</p>
-        </header>
-
-        <div class="stats" data-stagger>
-          <div class="stat reveal">
-            <span class="stat__value" data-count="0" data-suffix="%">0%</span>
-            <span class="stat__label">CPU en reposo</span>
-            <span class="stat__hint">Invisible para tu rendimiento</span>
-          </div>
-          <div class="stat reveal">
-            <span class="stat__value" data-count="35" data-prefix="&lt;" data-suffix=" MB">&lt;35 MB</span>
-            <span class="stat__label">de RAM</span>
-            <span class="stat__hint">Ligero como una pluma</span>
-          </div>
-          <div class="stat reveal">
-            <span class="stat__value" data-count="4" data-suffix=" px">4 px</span>
-            <span class="stat__label">de sensor invisible</span>
-            <span class="stat__hint">No roba el foco de tus apps</span>
-          </div>
-          <div class="stat reveal">
-            <span class="stat__value" data-count="100" data-suffix="%">100%</span>
-            <span class="stat__label">Swift nativo</span>
-            <span class="stat__hint">Integración total con macOS</span>
-          </div>
-        </div>
-
-        <div class="privacy-strip reveal">
-          <span class="privacy-strip__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/>
-              <path d="M9 12l2 2 4-4.5"/>
-            </svg>
-          </span>
-          <div>
-            <h3>Privado por diseño</h3>
-            <p>Sin analíticas, sin servidores propios y sin permisos especiales: EdgeFlow no necesita Accesibilidad ni
-              Monitorización de Entrada. Funciona dentro del sandbox de la App Store y todo ocurre en tu Mac; solo se
-              descargan de internet los favicons de tus atajos web.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ Vídeo demo ============ -->
-    <section id="video" aria-labelledby="video-title">
-      <div class="container">
-        <header class="section-head section-head--center reveal">
-          <p class="eyebrow">Experiencia real</p>
-          <h2 class="section-title" id="video-title">El bisel de tu Mac se derrite.</h2>
-          <p class="section-lead">Grabación real de EdgeFlow en macOS. Sin retoques, sin maquetas: así fluye en tu
-            escritorio.</p>
-        </header>
-
-        <div class="video-frame reveal">
-          <video id="demo-video" src="Video%20edgeflow.mp4" width="1660" height="1080" muted loop playsinline
-            preload="metadata" aria-label="Vídeo de demostración: el panel líquido de EdgeFlow desplegándose en el borde de la pantalla de un Mac"></video>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ FAQ ============ -->
-    <section id="faq" aria-labelledby="faq-title">
-      <div class="container">
-        <header class="section-head section-head--center reveal">
-          <p class="eyebrow">FAQ</p>
-          <h2 class="section-title" id="faq-title">Preguntas frecuentes.</h2>
-        </header>
-
-        <div class="faq-list" data-stagger>
-          <details class="faq-item reveal">
-            <summary>
-              ¿Cómo activo el panel?
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-            </summary>
-            <p>Lleva el cursor al borde configurado (izquierdo o derecho) y empuja suavemente. El sensor mide solo
-              4&nbsp;píxeles: no estorba ni interfiere con tus ventanas. El panel se repliega solo al alejar el
-              ratón.</p>
-          </details>
-
-          <details class="faq-item reveal">
-            <summary>
-              ¿Qué puedo poner en el panel?
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-            </summary>
-            <p>Aplicaciones de tu Mac, webs y URLs, Atajos de Apple (la app Atajos) y un acceso directo a los ajustes
-              de EdgeFlow. Cada botón muestra el icono real de la app o el favicon de la web.</p>
-          </details>
-
-          <details class="faq-item reveal">
-            <summary>
-              ¿Funciona con varias pantallas?
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-            </summary>
-            <p>Sí. Actívalo en todas tus pantallas o solo en las que elijas. En los bordes compartidos entre monitores
-              hay un retardo de 0,3&nbsp;s que evita aperturas accidentales al cruzar el cursor. También funciona en
-              todos los Espacios y sobre apps a pantalla completa.</p>
-          </details>
-
-          <details class="faq-item reveal">
-            <summary>
-              ¿Consume batería o recursos?
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-            </summary>
-            <p>No. En reposo no hay ningún temporizador activo: 0&nbsp;% de CPU y menos de 35&nbsp;MB de RAM. Está
-              programado en Swift nativo y diseñado para desaparecer.</p>
-          </details>
-
-          <details class="faq-item reveal">
-            <summary>
-              ¿Necesita permisos especiales?
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-            </summary>
-            <p>No. EdgeFlow no pide Accesibilidad ni Monitorización de Entrada: usa áreas de seguimiento propias de
-              macOS y funciona íntegramente dentro del sandbox de la App Store.</p>
-          </details>
-
-          <details class="faq-item reveal">
-            <summary>
-              ¿Es compatible con mi Mac?
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-            </summary>
-            <p>EdgeFlow requiere macOS 13 Ventura o superior y funciona en Macs con Intel y Apple Silicon. La interfaz
-              está disponible en español, inglés y chino simplificado.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ Familia (cross-promo) ============ -->
-    <section id="familia" aria-labelledby="familia-title">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="eyebrow">La familia</p>
-          <h2 class="section-title" id="familia-title">Hecho en Tarragona, como sus hermanas.</h2>
-          <p class="section-lead">Tres utilidades nativas para macOS, creadas por un desarrollador independiente con la
-            misma obsesión: que se sientan de fábrica.</p>
-        </header>
-
-        <div class="family-grid" data-stagger>
-          <a class="family-card reveal" href="../">
-            <span class="family-card__icon">
-              <img src="../assets/favicon/web-app-manifest-192x192.png" alt="Icono de VibeNotch" width="192"
-                height="192" loading="lazy" decoding="async">
-            </span>
-            <span>
-              <h3>VibeNotch</h3>
-              <p>Convierte el notch de tu MacBook en una isla dinámica: música, batería y utilidades a un clic.</p>
-            </span>
-            <span class="family-card__go" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </span>
-          </a>
-
-          <a class="family-card reveal" href="../sweepy/">
-            <span class="family-card__icon">
-              <img src="../sweepy/assets/sweepy-icon-256.png" alt="Icono de Sweepy" width="192" height="192"
-                loading="lazy" decoding="async">
-            </span>
-            <span>
-              <h3>Sweepy</h3>
-              <p>Limpieza profunda para Macs de desarrollo e IA. Analiza gratis y recupera gigas en minutos.</p>
-            </span>
-            <span class="family-card__go" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CTA final + newsletter ============ -->
-    <section id="descargar" class="final-cta" aria-labelledby="descargar-title">
-      <div class="container">
-        <img class="final-cta__icon reveal" src="EdgeFlow%20icon-iOS-Default-1024x1024@1x.png"
-          alt="Icono de EdgeFlow: una onda líquida azul sobre fondo azul marino" width="1024" height="1024"
-          loading="lazy" decoding="async">
-        <h2 class="reveal" id="descargar-title">Tu Mac, más fluido que nunca.</h2>
-        <p class="section-lead reveal">Descarga EdgeFlow en el Mac App Store y convierte los bordes de tu pantalla en
-          tu herramienta más rápida.</p>
-
-        <div class="final-cta__buttons reveal">
-          <a class="btn btn--primary magnetic" href="https://apps.apple.com/es/app/edgeflow/id6758726367"
-            rel="noopener">
-            <svg width="17" height="20" viewBox="0 0 17 20" fill="currentColor" aria-hidden="true">
-              <path d="M13.9 10.6c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-2.9-.8C4.8 5.5 3.4 6.3 2.6 7.6 1 10.3 2.2 14.3 3.7 16.5c.8 1.1 1.7 2.3 2.9 2.2 1.1 0 1.6-.7 2.9-.7 1.4 0 1.8.7 2.9.7 1.2 0 2-1.1 2.7-2.2.9-1.2 1.2-2.4 1.2-2.5 0 0-2.4-.9-2.4-3.4zM11.7 3.7c.6-.8 1-1.8.9-2.9-.9 0-1.9.6-2.6 1.3-.6.7-1 1.7-.9 2.8 1 .1 2-.5 2.6-1.2z"/>
-            </svg>
-            Descargar en el Mac App Store
-          </a>
-          <a class="btn btn--ghost" href="support.html">¿Dudas? Soporte</a>
-        </div>
-        <p class="final-cta__req reveal">macOS 13 Ventura o superior · Intel y Apple Silicon · Compra única, sin
-          suscripciones</p>
-
-        <div class="newsletter reveal">
-          <h3>Novedades y trucos</h3>
-          <p>Recibe noticias de EdgeFlow y del resto de la familia VibeNotch. Sin ruido, sin spam.</p>
-          <form id="newsletter-form">
-            <label class="visually-hidden" for="nl-email">Tu correo electrónico</label>
-            <input id="nl-email" type="email" name="entry.1921152412" autocomplete="email" placeholder="Tu email…" required>
-            <button class="btn btn--primary" type="submit">Suscribirme</button>
-          </form>
-          <p class="nl-success" id="nl-success" hidden>¡Listo! Te avisaremos con las novedades de EdgeFlow.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- ============ Pie de página ============ -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div>
-          <a class="footer__brand" href="./">
-            <svg width="28" height="28" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true">
-              <rect width="30" height="30" rx="8" fill="#0b1430"/>
-              <rect x="0.5" y="0.5" width="29" height="29" rx="7.5" stroke="white" stroke-opacity="0.18"/>
-              <path d="M30 0v30h-9c0-4 4.5-5.5 4.5-9.5S20 16 20 12s5.5-5 5.5-9c0-1.2-.3-2.2-.8-3H30z" fill="url(#efw2)"/>
-              <defs>
-                <linearGradient id="efw2" x1="20" y1="0" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#22d3ee"/>
-                  <stop offset="1" stop-color="#6366f1"/>
-                </linearGradient>
-              </defs>
-            </svg>
-            EdgeFlow
-          </a>
-          <p class="footer__tag">Tus atajos en el borde de la pantalla. Una utilidad nativa para macOS creada por Aleix
-            Carles Sales.</p>
-        </div>
-
-        <nav aria-label="Apps de la familia">
-          <h3>Apps</h3>
-          <ul>
-            <li><a href="../">VibeNotch</a></li>
-            <li><a href="./">EdgeFlow</a></li>
-            <li><a href="../sweepy/">Sweepy</a></li>
-          </ul>
-        </nav>
-
-        <nav aria-label="Soporte">
-          <h3>Soporte</h3>
-          <ul>
-            <li><a href="support.html">Soporte EdgeFlow</a></li>
-            <li><a href="mailto:aleix.carles@vibenotch.es">Contacto</a></li>
-            <li><a href="https://instagram.com/aleixxet" rel="noopener">Instagram</a></li>
-          </ul>
-        </nav>
-
-        <nav aria-label="Legal">
-          <h3>Legal</h3>
-          <ul>
-            <li><a href="privacy.html">Privacidad</a></li>
-          </ul>
-        </nav>
-      </div>
-
-      <div class="footer__bottom">
-        <span>© 2026 VibeNotch</span>
-        <span>Hecho con cariño en Tarragona</span>
-      </div>
     </div>
-  </footer>
+    <a href="../index.html" class="back-link">← VibeNotch</a>
 
-  <script src="script.js" defer></script>
+    <!-- ========== HERO WITH WAVE ========== -->
+    <section class="hero-section">
+        <canvas id="wave-canvas"></canvas>
+        <div class="hero-content">
+            <h1 class="hero-title">EdgeFlow</h1>
+            <p class="hero-subtitle">El panel lateral definitivo para macOS</p>
+            <a href="https://apps.apple.com/es/app/edgeflow/id6758726367" target="_blank" class="hero-cta-btn">Descargar
+                en el App Store</a>
+        </div>
+        <div class="scroll-hint">
+            <span>Descubre</span>
+        </div>
+    </section>
+
+    <!-- ========== FEATURE 1: SHORTCUTS ========== -->
+    <section class="feature-section dark">
+        <div class="section-inner">
+            <div class="feature-text">
+                <span class="feature-tag">Tus Atajos</span>
+                <h2 class="feature-title">Todo a un gesto.</h2>
+                <p class="feature-desc">
+                    Añade tus apps favoritas, enlaces web, y atajos de teclado.
+                    Accede a ellos desde el borde de la pantalla con un simple movimiento del ratón.
+                </p>
+            </div>
+            <div class="feature-visual">
+                <div class="mockup-window">
+                    <img src="settings-buttons.webp" alt="EdgeFlow Shortcuts">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FEATURE 2: CUSTOMIZATION ========== -->
+    <section class="feature-section light">
+        <div class="section-inner reverse">
+            <div class="feature-text">
+                <span class="feature-tag">Personalización</span>
+                <h2 class="feature-title">Tú decides dónde.</h2>
+                <p class="feature-desc">
+                    Borde izquierdo o derecho. Ajusta la posición vertical.
+                    Elige si quieres el icono en la barra de menú.
+                    EdgeFlow se adapta a ti, no al revés.
+                </p>
+            </div>
+            <div class="feature-visual">
+                <div class="mockup-window">
+                    <img src="settings-general.webp" alt="EdgeFlow Settings">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== STATS SECTION ========== -->
+    <section class="stats-section">
+        <h2 class="stats-title">Diseñado para desaparecer.</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value" data-target="0" data-suffix="%">0%</div>
+                <div class="stat-label">CPU en Reposo</div>
+                <div class="stat-desc">Invisible para tu rendimiento</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" data-target="35" data-prefix="<" data-suffix="MB">35</div>
+                <div class="stat-label">MB de RAM</div>
+                <div class="stat-desc">Ligero como una pluma</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" data-target="100" data-suffix="%">100%</div>
+                <div class="stat-label">Swift Nativo</div>
+                <div class="stat-desc">Integración perfecta con macOS</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== VIDEO SHOWCASE ========== -->
+    <section class="video-section" style="width: 100vw; overflow: hidden; position: relative; margin-bottom: 0;">
+        <video autoplay muted loop playsinline
+            style="width: 100%; height: 100vh; object-fit: cover; display: block; mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);">
+            <source src="Video%20edgeflow.mp4" type="video/mp4">
+        </video>
+        <div
+            style="position: absolute; bottom: 0; width: 100%; text-align: center; z-index: 10; padding-bottom: 100px; padding-top: 150px; background: linear-gradient(to top, #000 0%, transparent 100%);">
+            <h2
+                style="font-size: clamp(30px, 5vw, 60px); font-weight: 900; margin-bottom: 20px; text-transform: uppercase; letter-spacing: -2px; text-shadow: 0 10px 30px rgba(0,0,0,0.8);">
+                El bisel de tu Mac se derrite.</h2>
+            <p style="color: rgba(255,255,255,0.7); font-size: 14px; letter-spacing: 2px; text-transform: uppercase;">
+                Experiencia Real</p>
+        </div>
+    </section>
+
+    <!-- ========== APP STORE SHOWCASE ========== -->
+    <section class="appstore-section"
+        style="background: #000; padding: 120px 40px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <img src="EdgeFlow%20icon-iOS-Default-1024x1024@1x.png" alt="EdgeFlow App Icon"
+            style="width: 180px; height: 180px; border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); margin-bottom: 40px; transition: transform 0.3s ease;">
+        <h2 style="font-size: clamp(35px, 6vw, 60px); font-weight: 900; margin-bottom: 30px; letter-spacing: -2px;">
+            Disponible Ahora</h2>
+        <div class="as-btn-container">
+            <div class="as-btn-glow"></div>
+            <a href="https://apps.apple.com/es/app/edgeflow/id6758726367" target="_blank" class="as-btn-premium">
+                <svg viewBox="0 0 384 512">
+                    <path
+                        d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 52.3-11.4 69.5-34.3z" />
+                </svg>
+                Ver en el App Store
+            </a>
+        </div>
+    </section>
+
+    <!-- ========== WAITLIST CTA ========== -->
+    <section id="newsletter" class="cta-section" style="position: relative; overflow: hidden; padding: 120px 20px;">
+        <div class="cta-glow-bg"></div>
+        <h2 class="cta-title" style="position: relative; z-index: 10; margin-bottom: 20px;">Mantente Actualizado</h2>
+        <p class="demo-subtitle"
+            style="margin-bottom: 60px; color: #ccc; position: relative; z-index: 10; font-size: 20px;">Recibe noticias
+            y trucos para sacarle el máximo partido.</p>
+
+        <form id="waitlistForm" class="waitlist-form"
+            style="display: flex; gap: 15px; max-width: 600px; margin: 0 auto; flex-wrap: wrap; justify-content: center;">
+            <input type="email" id="emailInput" class="cta-input" name="entry.1921152412" placeholder="Tu email..."
+                required>
+            <button type="submit" class="cta-submit">Suscribirse</button>
+        </form>
+        <div id="successMsg"
+            style="display: none; color: #6366f1; font-size: 28px; font-weight: 800; margin-top: 30px; text-align: center; text-shadow: 0 0 30px rgba(99, 102, 241, 0.8); position: relative; z-index: 10;">
+            ¡Suscrito! 🌊</div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="ef-footer"
+        style="padding: 60px 40px; display: flex; flex-direction: column; align-items: center; gap: 40px;">
+
+        <div class="creator-info" style="text-align: center; max-width: 600px;">
+            <p
+                style="font-size: 14px; color: #888; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px;">
+                Creado por</p>
+            <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 15px;">Aleix Carles Sales</h3>
+            <p style="font-size: 16px; color: #aaa; line-height: 1.6;">
+                Desarrollador independiente apasionado por crear experiencias de software fluidas y nativas para macOS.
+                Desde Tarragona para el mundo 🌍
+            </p>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
+            <a href="../index.html" class="more-apps-link">
+                <img src="VibeNotch icon-iOS-Default-1024x1024@1x.png" alt="VibeNotch Icon">
+                <div class="more-text">
+                    <span class="more-label">Más Apps</span>
+                    <span class="more-title">VibeNotch</span>
+                </div>
+                <span style="margin-left: 10px; opacity: 0.5;">→</span>
+            </a>
+            <a href="../sweepy/index.html" class="more-apps-link">
+                <img src="../sweepy/assets/sweepy-icon-256.png" alt="Sweepy Icon">
+                <div class="more-text">
+                    <span class="more-label">Nueva App</span>
+                    <span class="more-title">Sweepy</span>
+                </div>
+                <span style="margin-left: 10px; opacity: 0.5;">→</span>
+            </a>
+        </div>
+
+        <div class="footer-links" style="margin-top: 20px; display: flex; gap: 20px;">
+            <a href="privacy.html" style="color: #666; text-decoration: none; font-size: 14px;">Privacidad</a>
+            <a href="support.html" style="color: #666; text-decoration: none; font-size: 14px;">Soporte</a>
+        </div>
+
+        <p style="color: #444; font-size: 12px; margin-top: 10px;">© 2026 EdgeFlow. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // FORM HANDLING
+        document.getElementById('waitlistForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const form = this;
+            const email = document.getElementById('emailInput').value;
+            const url = 'https://docs.google.com/forms/d/e/1FAIpQLSe3GrX4FudiQN3LfmSx-BB33I0tPNWUKVPMXFKJGgDw3HoeNQ/formResponse';
+            const params = new URLSearchParams();
+            params.append('entry.1921152412', email);
+
+            fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: params.toString()
+            }).then(() => {
+                form.style.display = 'none';
+                const msg = document.getElementById('successMsg');
+                msg.style.display = 'block';
+                // Trigger confetti or generic celebration if we had the library, for now simple text
+            }).catch(err => {
+                console.error(err);
+                form.style.display = 'none';
+                document.getElementById('successMsg').style.display = 'block';
+            });
+        });
+    </script>
+
+    <script>
+        // ========== WAVE CANVAS (Hero) ==========
+        const canvas = document.getElementById('wave-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let mouseX = 0.5, mouseY = 0.5;
+        let targetMouseX = 0.5, targetMouseY = 0.5;
+        const numPoints = 6;
+        let points = [];
+        let time = 0;
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initPoints();
+        }
+
+        function initPoints() {
+            points = [];
+            for (let i = 0; i <= numPoints; i++) {
+                points.push({
+                    y: (i / numPoints) * height,
+                    baseX: width / 2,
+                    x: width / 2,
+                    speed: 0.15 + Math.random() * 0.3,
+                    amplitude: 250 + Math.random() * 150,
+                    phase: Math.random() * Math.PI * 2
+                });
+            }
+        }
+
+        function lerp(a, b, t) { return a + (b - a) * t; }
+
+        function drawWave() {
+            time += 0.008;
+            mouseX = lerp(mouseX, targetMouseX, 0.04);
+            mouseY = lerp(mouseY, targetMouseY, 0.08);
+
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+
+            for (let i = 0; i <= numPoints; i++) {
+                const point = points[i];
+                const y = point.y;
+                const normalizedY = y / height;
+                const distY = Math.abs(normalizedY - mouseY);
+                const mouseInfluence = Math.exp(-Math.pow(distY * 3.5, 2));
+                const mousePush = (mouseX - 0.5) * 500 * mouseInfluence;
+                const wave1 = Math.sin(time * point.speed + point.phase) * point.amplitude;
+                const wave2 = Math.sin(time * 0.2 + y * 0.0005) * 80;
+                point.x = point.baseX + wave1 + wave2 + mousePush;
+
+                if (i === 0) {
+                    ctx.lineTo(point.x, 0);
+                } else {
+                    const prev = points[i - 1];
+                    ctx.quadraticCurveTo(prev.x, prev.y, (prev.x + point.x) / 2, (prev.y + y) / 2);
+                }
+            }
+
+            ctx.lineTo(points[numPoints].x, height);
+            ctx.lineTo(0, height);
+            ctx.closePath();
+            ctx.fillStyle = '#050505';
+            ctx.fill();
+
+            requestAnimationFrame(drawWave);
+        }
+
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            targetMouseX = e.clientX / width;
+            targetMouseY = e.clientY / height;
+        });
+
+        window.addEventListener('resize', resize);
+        resize();
+        drawWave();
+
+        // ========== SCROLL REVEAL & COUNTING ==========
+        const observerOptions = {
+            threshold: 0.3
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    // Trigger counting if it's a stat item
+                    const statVal = entry.target.querySelector('.stat-value');
+                    if (statVal && !statVal.dataset.counted) {
+                        animateValue(statVal);
+                        statVal.dataset.counted = true;
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-text, .feature-visual, .stat-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        function animateValue(obj) {
+            const target = parseInt(obj.dataset.target);
+            const prefix = obj.dataset.prefix || "";
+            const suffix = obj.dataset.suffix || "";
+            let start = 0;
+
+            if (target === 0) {
+                start = 5;
+            }
+
+            const duration = 1500;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const ease = 1 - Math.pow(1 - progress, 3); // cubic out
+
+                let current;
+                if (target === 0) {
+                    current = Math.floor(start * (1 - ease));
+                } else {
+                    current = Math.floor(target * ease);
+                }
+
+                obj.innerHTML = prefix + current + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    obj.innerHTML = prefix + target + suffix;
+                }
+            }
+            requestAnimationFrame(update);
+        }
+        // App Cabinet Pull-Down Logic
+        const cabinet = document.getElementById('app-cabinet');
+        let pullStartY = 0;
+        window.addEventListener('wheel', (e) => {
+            if (window.scrollY === 0 && e.deltaY < -30) {
+                cabinet.classList.add('show');
+            }
+        }, { passive: true });
+        window.addEventListener('touchstart', (e) => {
+            if (window.scrollY === 0) pullStartY = e.touches[0].pageY;
+        }, { passive: true });
+        window.addEventListener('touchmove', (e) => {
+            if (window.scrollY === 0) {
+                const pullDist = e.touches[0].pageY - pullStartY;
+                if (pullDist > 100) cabinet.classList.add('show');
+            }
+        }, { passive: true });
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 150) cabinet.classList.remove('show');
+        }, { passive: true });
+    </script>
 </body>
 
 </html>
