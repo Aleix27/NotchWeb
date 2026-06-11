@@ -234,7 +234,7 @@ nav {
     position: relative;
     width: 100%;
     max-width: 850px; /* Increased slightly to make the MacBook a bit larger */
-    margin: -20px auto 0; /* Pulled up closer to the hero text */
+    margin: 10px auto 0; /* Lowered slightly to prevent overlap with the button and tag */
     transition: transform 1.2s var(--liquid-ease);
     flex-shrink: 0;
 }
