@@ -2407,99 +2407,104 @@ nav .btn-yellow {
 }
 
 /* LAUNCHPAD INTERACTIVE MOCKUP */
-.shortcuts-mockup {
-    width: 100%;
-    max-width: 800px;
-    margin: 50px auto 0;
-    background: #000000;
-    padding: 3px;
-    border-radius: 14px;
-    box-shadow: 0 25px 65px rgba(0, 0, 0, 0.25);
+/* SEGMENTED CONTROL BAR & MINIMALIST VIEWER */
+.segmented-control-bar {
+    display: inline-flex;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 6px;
+    border-radius: 30px;
+    gap: 8px;
+    margin: 40px auto 40px auto;
     position: relative;
-    overflow: hidden;
+    z-index: 10;
 }
 
-.shortcuts-screen {
-    width: 100%;
-    height: 420px;
-    background-image: url('assets/optimized/wallpaper_pro.webp');
-    background-size: cover;
-    background-position: center;
-    border-radius: 11px;
-    position: relative;
-    overflow: hidden;
+.segmented-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 12px 28px;
+    border-radius: 24px;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    outline: none;
     display: flex;
-    flex-direction: column;
-}
-
-.shortcuts-menubar {
-    width: 100%;
-    height: 28px;
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    display: flex;
-    justify-content: space-between;
-    padding: 0 24px;
     align-items: center;
-    font-size: 10px;
-    font-weight: 500;
-    color: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+}
+
+.segmented-btn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.segmented-btn.active {
+    color: #000000 !important;
+    background: linear-gradient(135deg, #ffd45a 0%, #ffa500 100%) !important;
+    box-shadow: 0 4px 15px rgba(255, 212, 90, 0.35);
+}
+
+.shortcuts-minimal-viewer {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 24px;
+    padding: 60px 40px;
     position: relative;
-    z-index: 2;
-}
-
-.shortcuts-menubar .left,
-.shortcuts-menubar .right {
+    overflow: hidden;
     display: flex;
-    gap: 14px;
-    cursor: default;
+    justify-content: center;
+    align-items: center;
+    min-height: 240px;
+    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.45);
 }
 
-.shortcuts-notch-carousel {
+.viewer-ambient-glow {
+    position: absolute;
+    width: 320px;
+    height: 140px;
+    background: rgba(255, 212, 90, 0.15);
+    filter: blur(60px);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: background 0.6s ease, filter 0.6s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.viewer-notch-container {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    z-index: 2;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.viewer-notch-container .shortcut-notch-img {
+    width: 100%;
+    height: auto;
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translateX(-50%);
-    width: 440px;
-    height: auto;
-    z-index: 10;
-    pointer-events: none;
-}
-
-.shortcut-notch-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
+    transform: translateX(-50%) scale(0.96);
     opacity: 0;
-    transform: scale(0.96) translateY(-8px);
-    transition: opacity 0.5s var(--liquid-ease), transform 0.5s var(--liquid-ease);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.shortcut-notch-img.active {
+.viewer-notch-container .shortcut-notch-img.active {
     opacity: 1;
+    transform: translateX(-50%) scale(1);
     position: relative;
-    transform: scale(1) translateY(0);
-}
-
-.utility-buttons {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-
-.utility-btn.active {
-    background: #0071e3;
-    color: #fff;
-    border-color: #0071e3;
-}
-
-.utility-btn.active .utility-label {
-    color: #fff;
 }
 
 /* PREMIUM VISION SECTION REDESIGN */
@@ -2602,76 +2607,241 @@ nav .btn-yellow {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* FULLSCREEN VIDEO SIMULATIONS */
-.fullscreen-video-section {
+/* ==========================================
+   TELEPROMPTER SECTION
+   ========================================== */
+.teleprompter-section {
+    padding: 120px 20px !important;
+    background: #000000;
     position: relative;
-    width: 100vw;
-    height: 100vh;
     overflow: hidden;
-    background: #000;
-    display: flex;
+}
+
+.teleprompter-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+.teleprompter-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 60px;
     align-items: center;
 }
 
-.fullscreen-video-section video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
+.teleprompter-text-side {
+    text-align: left;
 }
 
-.fullscreen-video-section::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.72) 100%);
-    z-index: 2;
-}
-
-.video-overlay-text {
-    position: relative;
-    z-index: 3;
+.teleprompter-text-side h2 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
     color: #ffffff;
-    max-width: 580px;
-    padding: 0 40px;
-    margin-left: 10%;
 }
 
-.video-overlay-text.right-side {
-    margin-left: auto;
-    margin-right: 10%;
-    text-align: right;
+.teleprompter-text-side h2 .highlight-gold {
+    background: linear-gradient(135deg, #ffd45a 0%, #ffa500 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.video-overlay-text .feature-tag {
-    color: #ffc400;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 16px;
+.teleprompter-subtitle {
+    font-size: clamp(16px, 1.8vw, 20px);
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.5;
+    margin-bottom: 40px;
+}
+
+.tele-features {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.tele-feat-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.tele-feat-icon {
+    font-size: 28px;
+    background: rgba(255, 212, 90, 0.1);
+    border: 1px solid rgba(255, 212, 90, 0.2);
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    flex-shrink: 0;
+}
+
+.tele-feat-content h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+}
+
+.tele-feat-content p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.45;
+}
+
+.tele-actions {
+    margin-top: 40px;
+}
+
+.teleprompter-visual-side {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.teleprompter-img-frame {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 212, 90, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.teleprompter-img-frame:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 212, 90, 0.15);
+}
+
+.teleprompter-img-frame img {
+    width: 100%;
+    height: auto;
     display: block;
 }
 
-.video-overlay-text h2 {
-    font-size: clamp(34px, 5.5vw, 60px);
+.teleprompter-caption {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 500;
+}
+
+/* ==========================================
+   DEDICATED SIMULATION GALLERY (BRIGHT VIDEOS)
+   ========================================== */
+.simulations-section {
+    padding: 140px 20px !important;
+    background: #050505;
+    position: relative;
+}
+
+.simulations-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.simulations-heading {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.simulations-heading h2 {
+    font-size: clamp(36px, 5.5vw, 56px);
     font-weight: 900;
-    line-height: 1.05;
     letter-spacing: -2px;
-    margin-bottom: 22px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: #ffffff;
     background: linear-gradient(135deg, #ffffff 0%, #a1a1a6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.video-overlay-text p {
-    font-size: clamp(15px, 1.8vw, 21px);
-    color: rgba(255, 255, 255, 0.75);
-    line-height: 1.45;
-    font-weight: 500;
+.simulations-heading p {
+    font-size: clamp(16px, 2vw, 20px);
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+.simulations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.simulation-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.5s;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.simulation-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 212, 90, 0.2);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 212, 90, 0.05);
+}
+
+.simulation-video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.bright-sim-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(1.05) contrast(1.02);
+}
+
+.simulation-copy {
+    text-align: left;
+    padding: 0 8px;
+}
+
+.simulation-copy .sim-tag {
+    color: #ffd45a;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.simulation-copy h3 {
+    font-size: clamp(20px, 2.5vw, 26px);
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.simulation-copy p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.5;
 }
 
 /* ANNOUNCEMENT VIDEO CONTROLS */
@@ -2717,31 +2887,46 @@ nav .btn-yellow {
     .vision-principles {
         margin-bottom: 40px !important;
     }
+    .teleprompter-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .teleprompter-text-side h2, .teleprompter-subtitle {
+        text-align: center !important;
+    }
+    .tele-actions {
+        display: flex;
+        justify-content: center;
+    }
+    .simulations-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
 }
 
 @media (max-width: 768px) {
-    .shortcuts-screen {
-        height: 220px;
+    .segmented-control-bar {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 4px;
+        gap: 4px;
+        margin: 20px auto 30px auto;
     }
-    .shortcuts-notch-carousel {
-        width: 170px;
-    }
-    .shortcuts-menubar {
-        height: 16px;
-        font-size: 7px;
-        padding: 0 10px;
-    }
-    .utility-buttons {
-        gap: 12px;
-        margin-top: 25px;
-    }
-    .fullscreen-video-section {
-        height: 80vh;
-    }
-    .video-overlay-text, .video-overlay-text.right-side {
-        margin: 0 auto;
-        padding: 0 24px;
+    .segmented-btn {
+        padding: 10px 14px;
+        font-size: 13px;
+        flex-grow: 1;
         text-align: center;
+        border-radius: 20px;
+    }
+    .shortcuts-minimal-viewer {
+        padding: 30px 15px;
+        min-height: 180px;
+    }
+    .viewer-notch-container {
+        max-width: 280px;
     }
     .card-illustration-box.premium-contain,
     .update-card-large .card-illustration-box.premium-contain {

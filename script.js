@@ -367,10 +367,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 16. SHORTCUTS LAUNCHPAD CAROUSEL
     // ==========================================
-    const shortcutBtns = document.querySelectorAll('.utility-btn');
+    const shortcutBtns = document.querySelectorAll('.segmented-btn');
     const shortcutSlides = document.querySelectorAll('.shortcut-notch-img');
+    const viewerGlow = document.getElementById('viewer-glow');
     let activeShortcutSlide = 0;
     let shortcutInterval;
+
+    const glows = [
+        'rgba(255, 212, 90, 0.15)',  // Yellow/Gold for Music
+        'rgba(0, 113, 227, 0.15)',   // Blue for Calendar
+        'rgba(168, 85, 247, 0.15)'   // Purple for Assistant
+    ];
 
     const showShortcutSlide = (index) => {
         shortcutBtns.forEach((btn, idx) => {
@@ -388,6 +395,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 slide.classList.remove('active');
             }
         });
+
+        if (viewerGlow && glows[index]) {
+            viewerGlow.style.background = glows[index];
+        }
+
         activeShortcutSlide = index;
     };
 
