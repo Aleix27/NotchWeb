@@ -41,36 +41,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusText = document.querySelector('.status-text');
     let isPlaying = false;
 
-    const syncHitbox = () => {
-        // con la isla abierta, el hitbox no debe robar los clicks de los controles
-        trigger.style.pointerEvents = notch.classList.contains('active') ? 'none' : '';
+    const checkHover = () => {
+        if (window.innerWidth > 768) {
+            setTimeout(() => {
+                if (!notch.matches(':hover') && !trigger.matches(':hover')) {
+                    notch.classList.remove('active');
+                }
+            }, 50);
+        }
     };
 
     trigger.addEventListener('click', (e) => {
         e.stopPropagation();
         notch.classList.toggle('active');
-        syncHitbox();
     });
 
     trigger.addEventListener('mouseenter', () => {
         if (window.innerWidth > 768) {
             notch.classList.add('active');
-            syncHitbox();
         }
     });
+
+    trigger.addEventListener('mouseleave', checkHover);
+    notch.addEventListener('mouseleave', checkHover);
 
     document.addEventListener('click', (e) => {
         if (!notch.contains(e.target) && !trigger.contains(e.target)) {
             notch.classList.remove('active');
-            syncHitbox();
-        }
-    });
-
-    // Handle touch/hover for desktop feel but keep click as primary
-    notch.addEventListener('mouseleave', () => {
-        if (window.innerWidth > 768) {
-            notch.classList.remove('active');
-            syncHitbox();
         }
     });
 

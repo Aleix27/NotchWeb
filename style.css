@@ -233,8 +233,8 @@ nav {
 .macbook-air {
     position: relative;
     width: 100%;
-    max-width: 780px; /* Reduced from 980px to make it smaller as requested */
-    margin: -15px auto 0; /* Pulled up closer to the hero text */
+    max-width: 850px; /* Increased slightly to make the MacBook a bit larger */
+    margin: -20px auto 0; /* Pulled up closer to the hero text */
     transition: transform 1.2s var(--liquid-ease);
     flex-shrink: 0;
 }
@@ -304,7 +304,7 @@ nav {
     transform: translateX(-50%);
     width: 220px;
     height: 55px;
-    z-index: 9999;
+    z-index: 9998; /* Placed behind web-notch to allow direct clicking of inner controls when active */
 }
 
 .web-notch {
@@ -314,10 +314,10 @@ nav {
     transform: translateX(-50%);
     width: 180px;
     height: 34px;
-    background: #000;
+    background-color: #000;
     border-radius: 0 0 10px 10px;
-    z-index: 9998;
-    transition: width 0.6s var(--liquid-ease), height 0.6s var(--liquid-ease), border-radius 0.6s var(--liquid-ease), box-shadow 0.6s var(--liquid-ease);
+    z-index: 9999; /* Placed on top of the hitbox so inner active buttons can be clicked */
+    transition: width 0.6s var(--liquid-ease), height 0.6s var(--liquid-ease), border-radius 0.6s var(--liquid-ease), box-shadow 0.6s var(--liquid-ease), background-color 0.6s var(--liquid-ease), border-color 0.6s var(--liquid-ease);
     color: white;
     display: flex;
     align-items: center;
@@ -369,7 +369,7 @@ nav {
     border-radius: 0;
     box-shadow: none;
     border-color: transparent;
-    background: transparent;
+    background-color: transparent;
 }
 
 .notch-camera {
