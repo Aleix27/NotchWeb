@@ -2468,84 +2468,142 @@ nav .btn-yellow {
     padding: 140px 20px !important;
     text-align: center;
     background: #000000;
+    display: flex;
+    justify-content: center;
 }
 
-.vision-section h2 {
-    font-size: clamp(38px, 5.5vw, 60px) !important;
+.vision-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vision-horizontal-card {
+    width: 100%;
+    max-width: 1100px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 28px;
+    padding: 60px 50px;
+    text-align: center;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.vision-horizontal-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.07) 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+.vision-horizontal-card:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 212, 90, 0.15);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 212, 90, 0.03);
+    transform: translateY(-2px);
+}
+
+.vision-card-header {
+    margin-bottom: 50px;
+}
+
+.vision-card-header h2 {
+    font-size: clamp(34px, 4.8vw, 48px) !important;
     text-align: center !important;
     margin: 0 auto 20px auto;
-    letter-spacing: -2px !important;
-    line-height: 1.08 !important;
-    max-width: 800px;
+    letter-spacing: -1.5px !important;
+    line-height: 1.1 !important;
+    font-weight: 800;
     background: linear-gradient(135deg, #ffffff 0%, #a1a1a6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.vision-subtitle {
-    text-align: center !important;
-    margin: 0 auto 60px auto !important;
-    max-width: 680px !important;
-    font-size: clamp(16px, 1.8vw, 20px) !important;
-    color: rgba(255, 255, 255, 0.6) !important;
-    line-height: 1.5;
+.vision-card-header p {
+    font-size: clamp(16px, 1.8vw, 19px);
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 760px;
+    margin: 0 auto;
+    line-height: 1.55;
 }
 
-.vision-principles {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 24px !important;
-    margin-bottom: 0 !important;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+.vision-principles-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 45px;
 }
 
-.vision-card {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 40px 20px 30px;
-    border-radius: 20px;
-    text-align: center;
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+.vision-principle-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+    flex: 1;
+    min-width: 210px;
+    transition: transform 0.3s ease;
 }
 
-.vision-card:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 212, 90, 0.2);
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 212, 90, 0.05);
+.vision-principle-item:hover {
+    transform: translateY(-2px);
 }
 
-.vision-icon {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 20px auto;
+.vision-icon-small {
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 212, 90, 0.06);
-    border: 1px solid rgba(255, 212, 90, 0.12);
-    border-radius: 16px;
+    background: rgba(255, 212, 90, 0.05);
+    border: 1px solid rgba(255, 212, 90, 0.1);
+    border-radius: 12px;
+    flex-shrink: 0;
     transition: all 0.3s ease;
 }
 
-.vision-card:hover .vision-icon {
-    background: rgba(255, 212, 90, 0.15);
+.vision-principle-item:hover .vision-icon-small {
+    background: rgba(255, 212, 90, 0.14);
     border-color: #ffd45a;
-    box-shadow: 0 0 15px rgba(255, 212, 90, 0.2);
+    box-shadow: 0 0 12px rgba(255, 212, 90, 0.2);
 }
 
 .vision-svg-icon {
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
     color: #ffd45a;
-    transition: transform 0.3s ease, color 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
-.vision-card:hover .vision-svg-icon {
-    transform: scale(1.12) rotate(5deg);
+.vision-principle-item:hover .vision-svg-icon {
+    transform: scale(1.08);
+}
+
+.vision-principle-text h3 {
+    font-size: 16px;
+    font-weight: 700;
     color: #ffffff;
+    margin: 0 0 4px 0;
+    letter-spacing: -0.3px;
+}
+
+.vision-principle-text p {
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    line-height: 1.4;
 }
 
 /* NOVEDADES SCREENSHOT ILLUSTRATIONS */
@@ -2586,10 +2644,11 @@ nav .btn-yellow {
    TELEPROMPTER SECTION
    ========================================== */
 .teleprompter-section {
-    padding: 120px 20px !important;
+    padding: 140px 20px !important;
     background: #000000;
     position: relative;
     overflow: hidden;
+    text-align: center;
 }
 
 .teleprompter-container {
@@ -2597,115 +2656,59 @@ nav .btn-yellow {
     margin: 0 auto;
     position: relative;
     z-index: 10;
-}
-
-.teleprompter-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 60px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
-.teleprompter-text-side {
-    text-align: left;
-}
-
-.teleprompter-text-side h2 {
-    font-size: clamp(36px, 5vw, 56px);
-    font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: -2px;
-    margin-bottom: 20px;
+.teleprompter-section h2 {
+    font-size: clamp(38px, 5.5vw, 56px) !important;
+    text-align: center !important;
+    margin: 0 auto 20px auto;
+    letter-spacing: -2px !important;
+    line-height: 1.08 !important;
+    max-width: 800px;
     color: #ffffff;
 }
 
-.teleprompter-text-side h2 .highlight-gold {
+.teleprompter-section h2 .highlight-gold {
     background: linear-gradient(135deg, #ffd45a 0%, #ffa500 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.teleprompter-subtitle {
-    font-size: clamp(16px, 1.8vw, 20px);
-    color: rgba(255, 255, 255, 0.65);
+.teleprompter-minimal-desc {
+    font-size: clamp(16px, 1.8vw, 20px) !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
     line-height: 1.5;
-    margin-bottom: 40px;
-}
-
-.tele-features {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-
-.tele-feat-item {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-}
-
-.tele-feat-icon {
-    font-size: 28px;
-    background: rgba(255, 212, 90, 0.1);
-    border: 1px solid rgba(255, 212, 90, 0.2);
-    width: 54px;
-    height: 54px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 14px;
-    flex-shrink: 0;
-}
-
-.tele-feat-content h3 {
-    font-size: 18px;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 6px;
-    letter-spacing: -0.5px;
-}
-
-.tele-feat-content p {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.55);
-    line-height: 1.45;
 }
 
 .tele-actions {
-    margin-top: 40px;
+    margin-bottom: 50px;
 }
 
-.teleprompter-visual-side {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-}
-
-.teleprompter-img-frame {
+.teleprompter-large-frame {
     width: 100%;
-    border-radius: 20px;
+    max-width: 950px;
+    border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 212, 90, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75), 0 0 50px rgba(255, 212, 90, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.teleprompter-img-frame:hover {
-    transform: translateY(-5px) scale(1.01);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 212, 90, 0.15);
+.teleprompter-large-frame:hover {
+    transform: translateY(-6px) scale(1.008);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.85), 0 0 60px rgba(255, 212, 90, 0.12);
 }
 
-.teleprompter-img-frame img {
+.teleprompter-large-frame img {
     width: 100%;
     height: auto;
     display: block;
-}
-
-.teleprompter-caption {
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.4);
-    font-weight: 500;
 }
 
 /* ==========================================
@@ -2852,21 +2855,8 @@ nav .btn-yellow {
 
 /* RESPONSIVE LAYOUTS FOR NEW SECTIONS */
 @media (max-width: 992px) {
-    .vision-principles {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 20px !important;
-        margin-bottom: 0 !important;
-    }
-    .teleprompter-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-    .teleprompter-text-side h2, .teleprompter-subtitle {
-        text-align: center !important;
-    }
-    .tele-actions {
-        display: flex;
-        justify-content: center;
+    .vision-principles-row {
+        gap: 20px;
     }
     .simulations-grid {
         grid-template-columns: 1fr;
@@ -2875,9 +2865,18 @@ nav .btn-yellow {
 }
 
 @media (max-width: 768px) {
-    .vision-principles {
-        grid-template-columns: 1fr !important;
-        gap: 16px !important;
+    .vision-horizontal-card {
+        padding: 40px 24px;
+    }
+    .vision-principles-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        padding-top: 35px;
+    }
+    .vision-principle-item {
+        width: 100%;
+        justify-content: flex-start;
     }
     .card-illustration-box.premium-contain,
     .update-card-large .card-illustration-box.premium-contain {
