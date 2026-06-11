@@ -233,8 +233,8 @@ nav {
 .macbook-air {
     position: relative;
     width: 100%;
-    max-width: 980px; /* Reduced from 1200px to make it more elegant and proportionate */
-    margin: -25px auto 0; /* Pulled up closer to the hero text */
+    max-width: 780px; /* Reduced from 980px to make it smaller as requested */
+    margin: -15px auto 0; /* Pulled up closer to the hero text */
     transition: transform 1.2s var(--liquid-ease);
     flex-shrink: 0;
 }
