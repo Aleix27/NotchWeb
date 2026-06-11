@@ -4,795 +4,845 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VibeNotch | La Interacción Redefinida</title>
-    <meta name="description" content="La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.">
-    <meta name="keywords"
-        content="VibeNotch, interacción, UX, experiencia de usuario, innovación, tecnología, comunidad">
-    <meta name="author" content="VibeNotch Team">
+    <title>VibeNotch — El notch de tu Mac, reinventado | Liquid Glass</title>
+    <meta name="description"
+        content="VibeNotch convierte el notch de tu MacBook en una isla dinámica: música, calendario, teleprompter y alertas inteligentes. Ahora con Liquid Glass. Pago único, 100% nativo en Swift.">
+    <meta name="author" content="Aleix Carles Sales">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="VibeNotch | La Interacción Redefinida">
-    <meta property="og:description"
-        content="La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vibenotch.es/">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="VibeNotch | La Interacción Redefinida">
-    <meta name="twitter:description"
-        content="La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.">
+    <meta name="theme-color" content="#050507">
     <link rel="canonical" href="https://vibenotch.es/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="VibeNotch">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:title" content="VibeNotch — El notch de tu Mac, reinventado">
+    <meta property="og:description"
+        content="Llega Liquid Glass: un notch translúcido inspirado en la nueva Dynamic Island de Siri. Portadas reales, menos consumo y una isla más fluida que nunca.">
+    <meta property="og:url" content="https://vibenotch.es/">
+    <meta property="og:image" content="https://vibenotch.es/assets/optimized/Gemini_Generated_Image_r2yk35r2yk35r2yk.jpeg">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1071">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VibeNotch — El notch de tu Mac, reinventado">
+    <meta name="twitter:description"
+        content="Llega Liquid Glass: un notch translúcido inspirado en la nueva Dynamic Island de Siri. Portadas reales, menos consumo y una isla más fluida que nunca.">
+    <meta name="twitter:image" content="https://vibenotch.es/assets/optimized/Gemini_Generated_Image_r2yk35r2yk35r2yk.jpeg">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Hero asset preload -->
+    <link rel="preload" as="image" href="assets/optimized/wallpaper_pro.webp">
+
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Footer Styles for More Apps */
-        .ef-footer {
-            padding: 60px 40px;
-            text-align: center;
-            background: #050505;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 20;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
 
-        .more-apps-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.6);
-            padding: 15px 30px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .more-apps-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            transform: translateY(-2px);
-        }
-
-        .more-apps-link img {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .more-text span {
-            display: block;
-            text-align: left;
-        }
-
-        .more-label {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.7;
-        }
-
-        .more-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        /* ========== PREMIUM NEWSLETTER (EdgeFlow Style) ========== */
-        .newsletter-section {
-            background: #000 !important;
-            padding: 120px 20px !important;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-glow-bg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 120%;
-            background: radial-gradient(circle at center, rgba(0, 113, 227, 0.3) 0%, rgba(0, 0, 0, 0) 65%);
-            z-index: 1;
-            pointer-events: none;
-            animation: pulseGlow 4s infinite alternate ease-in-out;
-            mix-blend-mode: screen;
-        }
-
-        @keyframes pulseGlow {
-            from {
-                opacity: 0.4;
-                transform: translate(-50%, -50%) scale(0.9);
-            }
-
-            to {
-                opacity: 0.8;
-                transform: translate(-50%, -50%) scale(1.1);
-            }
-        }
-
-        .cta-input-premium {
-            padding: 20px 30px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 18px;
-            outline: none;
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            width: 350px;
-            backdrop-filter: blur(20px);
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .cta-input-premium:focus {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: #0071e3;
-            width: 380px;
-            box-shadow: 0 0 50px rgba(0, 113, 227, 0.3);
-        }
-
-        .cta-submit-premium {
-            border: none;
-            cursor: pointer;
-            padding: 20px 45px;
-            font-size: 18px;
-            background: #fff;
-            color: #000;
-            border-radius: 50px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-        }
-
-        .cta-submit-premium:hover {
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 15px 50px rgba(255, 255, 255, 0.4);
-            background: #fdfdfd;
-        }
-
-        /* ========== APP CABINET ========== */
-        .app-cabinet {
-            background: #fff;
-            padding: 24px 0;
-            display: flex;
-            justify-content: center;
-            overflow-x: auto;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            margin-top: -150px;
-            transition: margin-top 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            z-index: 1001;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .app-cabinet.show {
-            margin-top: 0;
-        }
-
-        .app-cabinet::-webkit-scrollbar {
-            display: none;
-        }
-
-        .cabinet-inner {
-            display: flex;
-            gap: 30px;
-            padding: 0 40px;
-        }
-
-        .cabinet-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            transition: all 0.4s ease;
-            min-width: 90px;
-        }
-
-        .cabinet-item img {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .cabinet-item span {
-            font-size: 11px;
-            color: rgba(0, 0, 0, 0.5);
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: color 0.3s;
-        }
-
-        .cabinet-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .cabinet-item:hover img {
-            border-color: #0071e3;
-            box-shadow: 0 0 25px rgba(0, 113, 227, 0.5);
-        }
-
-        .cabinet-item:hover span {
-            color: #000;
-        }
-
-        .cabinet-item.active {
-            opacity: 0.6;
-            pointer-events: none;
-        }
-    </style>
-
-    <!-- FAVICOn -->
-    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="assets/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="assets/favicon/site.webmanifest" />
-
-    <!-- STRUCTED DATA -->
+    <!-- Structured data -->
     <script type="application/ld+json">
-                {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "VibeNotch",
-  "description": "La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "macOS",
-  "softwareVersion": "1.0",
-  "offers": {
-    "@type": "Offer",
-    "price": "3.99",
-    "priceCurrency": "EUR"
-  },
-  "abstract": "VibeNotch está diseñado con un principio simple: tu Mac es tuyo. No recopilamos datos, no hay análisis de uso, no hay servidores externos. La aplicación funciona completamente offline.",
-  "privacyPolicy": "https://vibenotch.es/privacy.html",
-  "isAccessibleForFree": false
-}
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "VibeNotch",
+      "description": "Transforma el notch de tu MacBook en un centro dinámico, fluido e interactivo: música, calendario, teleprompter y alertas inteligentes del sistema. Ahora con diseño Liquid Glass.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "macOS 14.0 o posterior",
+      "softwareVersion": "1.8.0",
+      "dateModified": "2026-06-09",
+      "url": "https://vibenotch.es/",
+      "image": "https://vibenotch.es/assets/optimized/Gemini_Generated_Image_r2yk35r2yk35r2yk.jpeg",
+      "downloadUrl": "https://apps.apple.com/app/vibenotch/id6757723688",
+      "author": { "@type": "Person", "name": "Aleix Carles Sales" },
+      "offers": { "@type": "Offer", "price": "4.99", "priceCurrency": "EUR" },
+      "inLanguage": ["es", "en", "zh"],
+      "privacyPolicy": "https://vibenotch.es/privacy.html",
+      "isAccessibleForFree": false
+    }
     </script>
-
-    <script type="application/ld+json">
-
-
-        {
-          "@context": "https://schema.org",
-          "@type": "Product",
-          "name": "VibeNotch",
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5",
-            "reviewCount": "4"
-          },
-          "review": [
-            {
-              "@type": "Review",
-              "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-              "author": { "@type": "Person", "name": "TechCrunch" },
-              "reviewBody": "Mejor interacción de la década."
-            },
-            {
-              "@type": "Review",
-              "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-              "author": { "@type": "Person", "name": "macOS Addict" },
-              "reviewBody": "Indispensable para mi flujo."
-            },
-            {
-              "@type": "Review",
-              "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-              "author": { "@type": "Person", "name": "Verge" },
-              "reviewBody": "Apple debería comprar esto."
-            },
-            {
-              "@type": "Review",
-              "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-              "author": { "@type": "Person", "name": "Dribbble Community" },
-              "reviewBody": "Limpio, rápido y precioso."
-            }
-          ]
-        }
-        </script>
 </head>
 
 <body>
-    <div id="app-cabinet" class="app-cabinet">
-        <div class="cabinet-inner">
-            <a href="index.html" class="cabinet-item active">
-                <img src="assets/VibeNotch icon-iOS-Default-1024x1024@1x.png" alt="VibeNotch">
-                <span>VibeNotch</span>
-            </a>
-            <a href="edgeflow/index.html" class="cabinet-item">
-                <img src="edgeflow/EdgeFlow icon-iOS-Default-1024x1024@1x.png" alt="EdgeFlow">
-                <span>EdgeFlow</span>
-            </a>
-        </div>
-    </div>
-    <!-- INTRO SCROLL SECTION (HIDDEN)
-    <section class="intro-scroll-section">
-        <div class="sticky-wrapper">
-            <div class="intro-media">
-                <video id="intro-video" class="intro-video" preload="auto" muted playsinline webkit-playsinline
-                    poster="assets/optimized/Gemini_Generated_Image_r2yk35r2yk35r2yk.webp">
-                    <source src="assets/optimized/intro_optimized.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </section>
-    -->
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-    <nav class="visible">
-        <div class="nav-content">
-            <div class="logo-group">
-                <img src="assets/VibeNotch icon-iOS-Default-1024x1024@1x.png" alt="VibeNotch Icon" class="nav-icon">
-                <div class="logo">VibeNotch</div>
-            </div>
-            <div class="nav-links">
-                <a href="#vision">Visión</a>
-                <a href="#appstore">Tienda</a>
-                <a href="#design">Diseño</a>
-                <a href="#metrics">Potencia</a>
-                <a href="support.html">Soporte</a>
-                <a href="#appstore" class="btn-primary" style="text-decoration: none;">Descargar</a>
-            </div>
-            <div class="menu-toggle" id="mobile-menu-btn">
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+    <!-- Ambient background -->
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+    <div class="ambient ambient-a" aria-hidden="true"></div>
+    <div class="ambient ambient-b" aria-hidden="true"></div>
 
-    <header class="hero">
-        <h1 class="reveal-scroll">
-            <span class="giant">El notch</span>
-            <span class="soul">más óptimo.</span>
-        </h1>
-        <p class="reveal-scroll">La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.</p>
-        <div class="btn-group reveal-scroll"
-            style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
-            <a href="#appstore" class="btn-blue">Descargar ahora</a>
-            <span class="app-store-tag">Ya disponible en la Mac App Store</span>
-        </div>
+    <!-- ============ NAV ============ -->
+    <header class="site-header">
+        <nav class="nav-shell" aria-label="Navegación principal">
+            <a class="brand" href="./" aria-label="VibeNotch, inicio">
+                <img src="assets/favicon/favicon-96x96.png" alt="" width="32" height="32" decoding="async">
+                <span class="brand-name">VibeNotch</span>
+            </a>
+            <div class="nav-center" id="nav-center">
+                <a href="./" class="nav-link is-current" aria-current="page">VibeNotch</a>
+                <a href="edgeflow/" class="nav-link">EdgeFlow</a>
+                <a href="sweepy/" class="nav-link">Sweepy</a>
+                <a href="support.html" class="nav-link nav-link-extra">Soporte</a>
+            </div>
+            <div class="nav-actions">
+                <a class="btn btn-primary btn-sm magnetic" href="https://apps.apple.com/app/vibenotch/id6757723688"
+                    rel="noopener">
+                    <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="currentColor">
+                        <path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z"/>
+                    </svg>
+                    <span>Descargar</span>
+                </a>
+                <button class="nav-burger" id="nav-burger" aria-expanded="false" aria-controls="nav-center"
+                    aria-label="Abrir menú de navegación">
+                    <span></span><span></span>
+                </button>
+            </div>
+        </nav>
     </header>
 
-    <section id="demo" class="demo-section">
-        <div class="macbook-air">
-            <div class="screen-container">
-                <div class="mac-screen">
-                    <div class="fake-menubar">
-                        <div class="left">
-                            <span></span>
-                            <span class="bold">Finder</span>
-                            <span>Archivo</span>
-                            <span>Edición</span>
+    <main id="contenido">
+
+        <!-- ============ HERO ============ -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-inner">
+                <p class="hero-badge" data-reveal>
+                    <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/>
+                        <path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z"/>
+                    </svg>
+                    Nuevo · v1.8 — Liquid Glass
+                </p>
+                <h1 class="hero-title" id="hero-title" data-reveal>
+                    El notch de tu Mac,<br><span class="grad-text">reinventado.</span>
+                </h1>
+                <p class="hero-sub" data-reveal>
+                    VibeNotch transforma la cámara de tu MacBook en una isla dinámica: música con portadas reales,
+                    calendario, teleprompter y alertas inteligentes. Ahora fundida en cristal líquido.
+                </p>
+                <div class="hero-ctas" data-reveal>
+                    <a class="btn btn-primary btn-lg magnetic" href="https://apps.apple.com/app/vibenotch/id6757723688"
+                        rel="noopener">
+                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">
+                            <path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z"/>
+                        </svg>
+                        Descargar en el App Store
+                    </a>
+                    <a class="btn btn-ghost btn-lg" href="#novedades">Ver novedades</a>
+                </div>
+                <p class="hero-meta" data-reveal>4,99&nbsp;€ pago único · macOS 14+ · Apple Silicon M1–M4 · Sin suscripciones</p>
+            </div>
+
+            <!-- Interactive notch demo -->
+            <div class="mac-stage" data-reveal>
+                <div class="mac-mock">
+                    <div class="mac-screen">
+                        <div class="mac-menubar" aria-hidden="true">
+                            <span class="mb-left">
+                                <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor" aria-hidden="true">
+                                    <path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z"/>
+                                </svg>
+                                <b>Finder</b><i>Archivo</i><i>Edición</i><i>Visualización</i>
+                            </span>
+                            <span class="mb-right">
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor"
+                                    stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+                                    <path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                                    <circle cx="12" cy="19.5" r=".8" fill="currentColor" stroke="none"/>
+                                </svg>
+                                <svg viewBox="0 0 24 24" width="14" height="12" fill="none" stroke="currentColor"
+                                    stroke-width="1.5" aria-hidden="true">
+                                    <rect x="2" y="8" width="16" height="8" rx="2"/><path d="M20 11v2"/>
+                                    <rect x="3.5" y="9.5" width="10" height="5" rx="1" fill="currentColor" stroke="none"/>
+                                </svg>
+                                <i>9:41</i>
+                            </span>
                         </div>
-                        <div class="right">
-                            <span>󰂄 100%</span>
-                            <span>󰖩</span>
-                            <span>󰞯</span>
-                            <span>Dom 11 Ene</span>
+
+                        <div class="notch" id="hero-notch" tabindex="0"
+                            aria-label="Demostración interactiva del notch: pasa el cursor o pulsa para expandir la isla multimedia">
+                            <div class="notch-compact" aria-hidden="true">
+                                <span class="mini-cover"></span>
+                                <span class="mini-eq"><i></i><i></i><i></i></span>
+                            </div>
+                            <div class="notch-expanded">
+                                <div class="cover-wrap" aria-hidden="true">
+                                    <div class="cover-art"></div>
+                                </div>
+                                <div class="track" aria-hidden="true">
+                                    <div class="track-marquee">
+                                        <span class="track-title">Copa De Alcohol — JULI &amp; Mckenzyrb&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+                                        <span class="track-title">Copa De Alcohol — JULI &amp; Mckenzyrb&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+                                    </div>
+                                    <div class="track-progress"><span class="track-progress-fill"></span></div>
+                                </div>
+                                <div class="island-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+                                <div class="controls">
+                                    <button class="ctl" id="ctl-prev" aria-label="Canción anterior">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+                                            <path d="M6 5h2v14H6zM20 5v14L9.5 12 20 5z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="ctl ctl-play" id="ctl-play" aria-label="Pausar reproducción" aria-pressed="false">
+                                        <svg class="ic-pause" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                                            <path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/>
+                                        </svg>
+                                        <svg class="ic-play" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                                            <path d="M8 5l11 7-11 7V5z"/>
+                                        </svg>
+                                    </button>
+                                    <button class="ctl" id="ctl-next" aria-label="Siguiente canción">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+                                            <path d="M16 5h2v14h-2zM4 5v14l10.5-7L4 5z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="mac-base" aria-hidden="true"></div>
+                </div>
+                <p class="demo-hint">Pasa el cursor —o toca— el notch. La experiencia real en macOS es aún más fluida.</p>
+            </div>
+        </section>
 
-                    <div class="web-notch-hitbox"></div>
-                    <div id="web-notch" class="web-notch">
-                        <div class="island-compact">
-                            <div class="compact-art"
-                                style="background-image: url('assets/album_art.png'); background-size: cover;"></div>
-                            <div class="compact-visualizer">
-                                <span></span><span></span><span></span><span></span><span></span><span></span>
-                            </div>
-                        </div>
-
-                        <div class="island-expanded">
-                            <div class="exp-top-row">
-                                <div class="battery-status">
-                                    <span class="batt-icon">🔋</span>
-                                    <span>46%</span>
-                                </div>
-                                <div class="top-right-icons">
-                                    <span class="gear-icon">⚙️</span>
-                                </div>
-                            </div>
-
-                            <div class="exp-mid-row">
-                                <div class="main-album-art"
-                                    style="background-image: url('assets/album_art.png'); background-size: cover; background-position: center;">
-                                </div>
-                                <div class="song-info-block">
-                                    <div class="playback-status">
-                                        <span class="apple-logo"></span>
-                                        <span class="status-text">PAUSED</span>
-                                    </div>
-                                    <div class="song-title">Digital Horizon</div>
-                                    <div class="artist-name">Antigravity Arts</div>
-                                    <div class="progress-container">
-                                        <div class="progress-bar">
-                                            <div class="progress-knob"></div>
-                                        </div>
-                                        <div class="time-stamp">-2:40</div>
-                                    </div>
-                                </div>
-                                <div class="main-controls">
-                                    <span class="control-btn">⏮</span>
-                                    <span class="control-btn play">▶</span>
-                                    <span class="control-btn">⏭</span>
-                                </div>
-                            </div>
-                            <!-- SE HAN ELIMINADO LOS BOTONES DE ABAJO -->
-                        </div>
+        <!-- ============ PRUEBA SOCIAL ============ -->
+        <section class="proof" aria-label="Hitos de VibeNotch">
+            <div class="container">
+                <div class="proof-strip glass" data-reveal>
+                    <div class="proof-item">
+                        <span class="proof-num">N.º <span data-count="1">1</span></span>
+                        <span class="proof-label">App de pago para Mac en España</span>
                     </div>
-                    <!-- TEXTO ELIMINADO DE LA PANTALLA -->
+                    <div class="proof-item">
+                        <span class="proof-num"><span data-count="72">0</span> h</span>
+                        <span class="proof-label">Para llegar al Top&nbsp;1 en varios países</span>
+                    </div>
+                    <div class="proof-item">
+                        <span class="proof-num">+<span data-count="1000">0</span></span>
+                        <span class="proof-label">Usuarios en lista de espera antes del lanzamiento</span>
+                    </div>
+                    <div class="proof-item">
+                        <span class="proof-num"><span data-count="1">0</span></span>
+                        <span class="proof-label">Persona detrás de todo: sin inversores, sin trucos</span>
+                    </div>
+                </div>
+                <div class="press-grid">
+                    <a class="press-card glass tilt" data-reveal rel="noopener"
+                        href="https://isenacode.com/vibenotch-la-app-que-convierte-el-notch-del-mac-en-una-dynamic-island-util-y-nativa/">
+                        <blockquote>
+                            «En solo tres días desde su lanzamiento en la App Store, VibeNotch se colocó como la app de
+                            pago número 1 para Mac en varios países. Y no es casualidad. Está bien hecha, pensada con
+                            cabeza y, sobre todo: no viene de una gran empresa.»
+                        </blockquote>
+                        <cite>— Albert Llambrich, iSenaCode</cite>
+                    </a>
+                    <a class="press-card glass tilt" data-reveal rel="noopener"
+                        href="https://www.macquero.com/2026/01/m4-unbound-el-renacimiento-de-la-interfaz-con-vibenotch-disponible-en-el-app-store/">
+                        <blockquote>
+                            «El renacimiento de la interfaz con VibeNotch. Busca convertirse en un centro de control
+                            predictivo, aprovechando los nuevos chips para animaciones fluidas imposibles de igualar.»
+                        </blockquote>
+                        <cite>— Macquero</cite>
+                    </a>
                 </div>
             </div>
-            <div class="keyboard-base"></div>
-        </div>
-        <p class="demo-disclaimer">Esta es una demostración interactiva. La experiencia real en la aplicación nativa es
-            superior.</p>
-    </section>
+        </section>
 
-    <!-- IMMERSIVE VIDEO -->
-    <section class="video-demo-section reveal-scroll">
-        <div class="video-container">
-            <video autoplay muted loop playsinline class="notch-video">
-                <source src="assets/399F7428-4545-46E5-9748-343551436B86.mp4" type="video/mp4">
-                Tu navegador no soporta el video.
-            </video>
-        </div>
-    </section>
+        <!-- ============ LIQUID GLASS ============ -->
+        <section class="section" id="liquid-glass" aria-labelledby="lg-title">
+            <div class="container">
+                <p class="eyebrow" data-reveal>Novedad estrella · 1.8.0</p>
+                <h2 class="section-title" id="lg-title" data-reveal>Negro sobre la cámara.<br><span class="grad-text">Cristal en los bordes.</span></h2>
+                <p class="section-lead" data-reveal>
+                    El nuevo notch Liquid Glass se mantiene negro sobre el notch real y se difumina a cristal translúcido
+                    en el borde más alejado, al estilo de la nueva Dynamic Island de Siri. Idéntico con click y con hover,
+                    y translúcido en modo Disco. ¿Prefieres el clásico look sólido? Cámbialo cuando quieras en
+                    Ajustes&nbsp;›&nbsp;Apariencia.
+                </p>
 
-    <!-- VIDEO DISCLAIMER (on white) -->
-    <div class="video-disclaimer-wrapper">
-        <p class="video-disclaimer">Demostración de la aplicación en acción. VibeNotch se integra perfectamente con tu
-            sistema.</p>
-    </div>
-
-    <!-- VISION SECTION -->
-    <section id="vision" class="vision-section">
-        <div class="vision-container reveal-scroll">
-            <span class="feature-tag">NUESTRA VISIÓN</span>
-            <h2>Como si viniera de fábrica.</h2>
-            <p class="vision-subtitle">Creemos que las mejores herramientas son las que desaparecen. Diseñamos VibeNotch
-                para que se sienta como una extensión natural de macOS.</p>
-
-            <div class="vision-principles">
-                <div class="vision-card">
-                    <div class="vision-icon">✨</div>
-                    <h3>Simple</h3>
-                    <p>Una aplicación que hace una cosa y la hace excepcionalmente bien. Sin funciones innecesarias ni
-                        complejidad añadida.</p>
+                <div class="lg-compare glass-frame" data-reveal>
+                    <div class="lg-pane lg-pane-solid" aria-hidden="true">
+                        <div class="lg-scene">
+                            <div class="lg-menubar"></div>
+                            <div class="lg-notch lg-notch-solid">
+                                <span class="lg-dot"></span>
+                                <span class="lg-bars"><i></i><i></i><i></i></span>
+                            </div>
+                        </div>
+                        <span class="lg-tag lg-tag-left">Sólido clásico</span>
+                    </div>
+                    <div class="lg-pane lg-pane-glass" id="lg-pane-glass" aria-hidden="true">
+                        <div class="lg-scene">
+                            <div class="lg-menubar"></div>
+                            <div class="lg-notch lg-notch-glass">
+                                <span class="lg-dot"></span>
+                                <span class="lg-bars lg-bars-color"><i></i><i></i><i></i></span>
+                            </div>
+                        </div>
+                        <span class="lg-tag lg-tag-right">Liquid Glass</span>
+                    </div>
+                    <div class="lg-handle" id="lg-handle" aria-hidden="true">
+                        <span class="lg-grip">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M9 6l-4 6 4 6M15 6l4 6-4 6"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <input type="range" class="lg-range" id="lg-range" min="0" max="100" value="50" step="0.5"
+                        aria-label="Comparar el notch sólido clásico con el nuevo notch Liquid Glass">
                 </div>
+                <p class="caption" data-reveal>Arrastra el control para comparar. Con fallback automático para sistemas antiguos.</p>
+            </div>
+        </section>
 
-                <div class="vision-card">
-                    <div class="vision-icon">💰</div>
-                    <h3>Económica</h3>
-                    <p>Un único pago, tuya para siempre. Sin suscripciones mensuales, sin cargos ocultos, sin trucos.
+        <!-- ============ ISLA MULTIMEDIA ============ -->
+        <section class="section" id="isla" aria-labelledby="isla-title">
+            <div class="container feature-split">
+                <div class="feature-copy" data-reveal>
+                    <p class="eyebrow">Isla multimedia</p>
+                    <h2 class="section-title" id="isla-title">Portadas reales.<br>Se acabaron las carátulas equivocadas.</h2>
+                    <p class="section-lead">
+                        Controla Apple Music y Spotify directamente desde el notch. Desde la 1.8.0, la carátula llega
+                        directa de tu reproductor —la URL de artwork de Spotify y el artwork incrustado de Apple Music—
+                        y la búsqueda en catálogo queda solo como respaldo.
                     </p>
+                    <ul class="check-list">
+                        <li>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                            Waveform animado con los colores de la carátula
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5 3.5-5 3.5v-7z"/></svg>
+                            Controles premium con barra de progreso y scrubbing
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+                            La barra de progreso se actualiza sin re-renderizar toda la isla
+                        </li>
+                    </ul>
                 </div>
+                <figure class="feature-media glass-frame tilt" data-reveal>
+                    <img src="assets/optimized/err.webp" alt="Primer plano del notch de un MacBook expandido reproduciendo Neon Echo de Synthwave Dreams con carátula y controles"
+                        width="1920" height="1200" loading="lazy" decoding="async">
+                </figure>
+            </div>
+        </section>
 
-                <div class="vision-card">
-                    <div class="vision-icon">🔒</div>
-                    <h3>Privada</h3>
-                    <p>Cero recopilación de datos. Lo que haces en tu Mac, se queda en tu Mac. Sin telemetría, sin
-                        analytics.</p>
+        <!-- ============ EVENTOS ============ -->
+        <section class="section" id="eventos" aria-labelledby="eventos-title">
+            <div class="container feature-split feature-split-rev">
+                <div class="feature-copy" data-reveal>
+                    <p class="eyebrow">Eventos y recordatorios</p>
+                    <h2 class="section-title" id="eventos-title">Tu agenda, a un vistazo.<br>Sin abrir ninguna app.</h2>
+                    <p class="section-lead">
+                        Consulta tus próximas citas y marca recordatorios como completados desde el propio notch.
+                        Las notificaciones de recordatorio llegan con campana pulsante y título con desplazamiento
+                        suave: imposible que se te escape nada.
+                    </p>
+                    <ul class="check-list">
+                        <li>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+                            Próximos eventos del calendario en la isla
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>
+                            Marca recordatorios como hechos con un click
+                        </li>
+                    </ul>
                 </div>
-
-                <div class="vision-card">
-                    <div class="vision-icon">⚡</div>
-                    <h3>Invisible</h3>
-                    <p>Diseñada para no afectar el rendimiento. 0% CPU en reposo, consumo mínimo de RAM. Como si no
-                        estuviera ahí.</p>
-                </div>
+                <figure class="feature-media glass-frame tilt" data-reveal>
+                    <img src="assets/optimized/Gemini_Generated_Image_x5y8ubx5y8ubx5y8-2.jpeg"
+                        alt="Notch expandido mostrando el panel de eventos con una cita del calendario y un recordatorio pendiente"
+                        width="1920" height="898" loading="lazy" decoding="async">
+                </figure>
             </div>
+        </section>
 
-            <div class="vision-quote">
-                <blockquote>"El objetivo es crear algo que parezca que Apple olvidó incluir. Una pieza que encaje
-                    perfectamente en el ecosistema."</blockquote>
-            </div>
-        </div>
-    </section>
-
-    <!-- LAUNCHPAD FEATURE -->
-    <section class="mega-feature launchpad-section">
-        <div class="feature-content reveal-scroll">
-            <span class="feature-tag">PRODUCTIVIDAD</span>
-            <h2>Notch Launchpad.</h2>
-            <p>Acciones rápidas y herramientas a un solo click. Totalmente configurable para adaptarse a tu flujo de
-                trabajo diario.</p>
-            <div class="launchpad-image-container">
-                <img src="assets/optimized/vibe notch utilities.webp" alt="Notch Launchpad" class="launchpad-img"
-                    loading="lazy">
-            </div>
-
-            <!-- Interactive Utility Buttons -->
-            <div class="utility-buttons">
-                <button class="utility-btn" data-tooltip="Captura de Pantalla">
-                    <span class="utility-icon">📷</span>
-                    <span class="utility-label">Captura</span>
-                </button>
-                <button class="utility-btn" data-tooltip="Notas Rápidas">
-                    <span class="utility-icon">📝</span>
-                    <span class="utility-label">Notas</span>
-                </button>
-                <button class="utility-btn" data-tooltip="Grabar Pantalla">
-                    <span class="utility-icon">🎬</span>
-                    <span class="utility-label">Grabar</span>
-                </button>
-                <button class="utility-btn add-more" data-tooltip="Añadir Más">
-                    <span class="utility-icon">➕</span>
-                    <span class="utility-label">Añadir</span>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <section id="appstore" class="appstore-hero">
-        <div class="appstore-container reveal-scroll">
-            <div class="as-left">
-                <img src="assets/VibeNotch icon-iOS-Default-1024x1024@1x.png" alt="Icon" class="as-big-icon">
-            </div>
-            <div class="as-right">
-                <div class="as-meta">
-                    <h2 class="meta-heading-1 text-black">VibeNotch</h2>
-                    <span class="meta-heading-2">La muesca más inteligente.</span>
-                    <p class="as-dev">Aleix Carles</p>
-                </div>
-                <div class="as-actions">
-                    <a href="https://apps.apple.com/app/vibenotch/id6757723688" target="_blank" class="as-btn-get"
-                        style="text-decoration: none;">OBTENER</a>
-                </div>
-                <div class="as-badges">
-                    <div class="as-badge">
-                        <span class="b-val">4.9</span>
-                        <span class="b-label">402 VALORACIONES</span>
+        <!-- ============ TELEPROMPTER ============ -->
+        <section class="section" id="teleprompter" aria-labelledby="tp-title">
+            <div class="container">
+                <p class="eyebrow" data-reveal>Teleprompter</p>
+                <h2 class="section-title" id="tp-title" data-reveal>Lee tu guion<br>sin apartar la mirada de la cámara.</h2>
+                <p class="section-lead" data-reveal>
+                    Pega cualquier texto y léelo como ticker fluido o como créditos de cine, justo al lado de la cámara.
+                    Perfecto para presentaciones, grabaciones y videollamadas.
+                </p>
+                <div class="tp-demo" data-reveal>
+                    <div class="tp-notch glass-ring" id="tp-notch" data-mode="ticker">
+                        <span class="tp-cam" aria-hidden="true"></span>
+                        <div class="tp-viewport" aria-hidden="true">
+                            <p class="tp-ticker">Hola a todos y bienvenidos a la demo&nbsp;&nbsp;·&nbsp;&nbsp;pega tu guion en VibeNotch y léelo junto a la cámara&nbsp;&nbsp;·&nbsp;&nbsp;tu audiencia nunca notará que estabas leyendo&nbsp;&nbsp;·&nbsp;&nbsp;</p>
+                            <div class="tp-credits">
+                                <p>Hola a todos y bienvenidos a la demo.</p>
+                                <p>Pega tu guion en VibeNotch</p>
+                                <p>y léelo junto a la cámara,</p>
+                                <p>como créditos de cine.</p>
+                                <p>Tu audiencia nunca notará</p>
+                                <p>que estabas leyendo.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="as-badge">
-                        <span class="b-val">4+</span>
-                        <span class="b-label">EDAD</span>
-                    </div>
-                    <div class="as-badge">
-                        <span class="b-val">#1</span>
-                        <span class="b-label">UTILIDADES</span>
+                    <div class="tp-controls" role="group" aria-label="Modo del teleprompter">
+                        <button class="chip is-active" data-tp="ticker" aria-pressed="true">Ticker fluido</button>
+                        <button class="chip" data-tp="credits" aria-pressed="false">Créditos de cine</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FEATURE 1: SWIFT NATIVE -->
-    <section id="design" class="mega-feature">
-        <div class="feature-content reveal-scroll">
-            <div class="feature-icon">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M21.985 14.978C19.818 20.143 13.987 23.037 8.51 21.318C5.7 20.372 3.442 18.407 2.107 15.869C4.96 17.952 8.627 18.846 12.106 18.278C14.86 17.816 17.429 16.457 19.354 14.416C18.131 14.933 16.829 15.253 15.497 15.362C11.889 15.689 8.276 14.428 5.623 11.921C5.217 11.534 4.839 11.119 4.492 10.679C4.492 10.679 8.907 13.647 13.66 12.092C15.24 11.576 16.659 10.65 17.785 9.405C14.925 10.972 11.433 11.113 8.445 9.775C6.628 8.962 5.056 7.68 3.889 6.07C8.413 9.849 15.02 10.377 20.076 7.375C20.076 7.375 20.359 7.195 20.77 6.893C21.014 7.906 21.132 8.953 21.117 10.003C21.092 11.679 20.713 13.351 19.985 14.878"
-                        fill="#F05138" />
-                </svg>
+        <!-- ============ ALERTAS INTELIGENTES ============ -->
+        <section class="section" id="alertas" aria-labelledby="alertas-title">
+            <div class="container">
+                <p class="eyebrow" data-reveal>Alertas inteligentes</p>
+                <h2 class="section-title" id="alertas-title" data-reveal>Tu sistema te habla.<br><span class="grad-text">El notch traduce.</span></h2>
+                <p class="section-lead" data-reveal>
+                    Notificaciones elegantes para todo lo que importa, cada una activable individualmente.
+                    Sin ruido: solo lo que tú decidas.
+                </p>
+                <div class="alert-grid">
+                    <article class="alert-card glass tilt" data-reveal>
+                        <span class="alert-icon ai-battery" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7.5" width="17" height="9" rx="2.5"/><path d="M22 10.5v3"/><rect class="batt-fill" x="4" y="9.5" width="8" height="5" rx="1" fill="currentColor" stroke="none"/></svg>
+                        </span>
+                        <h3>Batería</h3>
+                        <p>Avisos de nivel con estilo, justo cuando los necesitas.</p>
+                    </article>
+                    <article class="alert-card glass tilt" data-reveal>
+                        <span class="alert-icon ai-bolt" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+                        </span>
+                        <h3>Carga</h3>
+                        <p>Conecta el cable y la isla responde al instante.</p>
+                    </article>
+                    <article class="alert-card glass tilt" data-reveal>
+                        <span class="alert-icon ai-bt" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l10 10-5 4.5v-19L17 7 7 17"/></svg>
+                        </span>
+                        <h3>Bluetooth</h3>
+                        <p>Tus AirPods y dispositivos, anunciados con elegancia.</p>
+                    </article>
+                    <article class="alert-card glass tilt" data-reveal>
+                        <span class="alert-icon ai-wifi" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path class="w1" d="M2.5 9.5a14 14 0 0 1 19 0"/><path class="w2" d="M5.5 13a9.5 9.5 0 0 1 13 0"/><path class="w3" d="M8.5 16.5a5 5 0 0 1 7 0"/><circle cx="12" cy="19.8" r="1" fill="currentColor" stroke="none"/></svg>
+                        </span>
+                        <h3>Wi-Fi</h3>
+                        <p>Cambios de red visibles sin abrir Ajustes.</p>
+                    </article>
+                    <article class="alert-card glass tilt" data-reveal>
+                        <span class="alert-icon ai-focus" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+                        </span>
+                        <h3>Concentración</h3>
+                        <p>Activa un modo de concentración y el notch lo refleja.</p>
+                    </article>
+                    <article class="alert-card glass tilt" data-reveal>
+                        <span class="alert-icon ai-audio" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4V5z"/><path class="s1" d="M15.5 9.5a3.5 3.5 0 0 1 0 5"/><path class="s2" d="M18 7a7 7 0 0 1 0 10"/></svg>
+                        </span>
+                        <h3>Salida de audio</h3>
+                        <p>¿Altavoz o auriculares? Siempre sabrás por dónde suena.</p>
+                    </article>
+                    <article class="alert-card glass tilt" data-reveal>
+                        <span class="alert-icon ai-mute" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-2 8-2 8h16s-2-1-2-8"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/><path class="slash" d="M3 3l18 18"/></svg>
+                        </span>
+                        <h3>Silencio</h3>
+                        <p>Modo silencio dentro y fuera, confirmado al momento.</p>
+                    </article>
+                    <article class="alert-card glass tilt" data-reveal>
+                        <span class="alert-icon ai-clip" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2.5"/><path d="M9 4.5V3.5A1.5 1.5 0 0 1 10.5 2h3A1.5 1.5 0 0 1 15 3.5v1"/><path class="check" d="M9 13l2.2 2.2L15.5 11"/></svg>
+                        </span>
+                        <h3>Portapapeles</h3>
+                        <p>Cada copia, confirmada con una animación sutil.</p>
+                    </article>
+                </div>
             </div>
-            <span class="feature-tag">RENDIMIENTO</span>
-            <h2>Nativo en Swift.</h2>
-            <p>Programado desde cero en Swift para macOS, aprovechando cada gramo de potencia de Apple Silicon sin
-                compromisos.</p>
-            <div class="feature-image-container reveal-scroll" style="margin-top: 50px;">
-                <img src="assets/optimized/err.webp" alt="Notch Render"
-                    style="width: 100%; height: auto; display: block;" loading="lazy">
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FEATURE 2: CREATED BY USERS -->
-    <section class="mega-feature reversed">
-        <div class="feature-content reveal-scroll">
-            <div class="feature-icon heart-pulse">
-                <span>❤️</span>
+        <!-- ============ MODOS: DISCO + BURBUJA ============ -->
+        <section class="section" id="modos" aria-labelledby="modos-title">
+            <div class="container">
+                <p class="eyebrow" data-reveal>Modos con personalidad</p>
+                <h2 class="section-title" id="modos-title" data-reveal>Dos formas de romper las reglas.</h2>
+                <div class="modes-grid">
+                    <article class="mode-card mode-disco glass" data-reveal>
+                        <div class="disco-stage" aria-hidden="true">
+                            <div class="disco-island">
+                                <span class="disco-glow"></span>
+                                <span class="disco-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                            </div>
+                        </div>
+                        <h3>Modo Disco</h3>
+                        <p>La isla late al ritmo de tu música, con colores extraídos de la portada del álbum.
+                            Y con Liquid Glass, ahora también translúcida mientras baila.</p>
+                    </article>
+                    <article class="mode-card mode-bubble glass" data-reveal>
+                        <div class="bubble-stage" aria-hidden="true">
+                            <div class="bubble-screen bubble-screen-a"><span class="bubble-pill"></span></div>
+                            <div class="bubble-screen bubble-screen-b"></div>
+                        </div>
+                        <h3>Modo Burbuja</h3>
+                        <p>¿Tu Mac no tiene notch físico? Una isla flotante que funciona en cualquier pantalla:
+                            iMac, monitores externos y configuraciones multipantalla.</p>
+                    </article>
+                </div>
             </div>
-            <span class="feature-tag">FILOSOFÍA</span>
-            <h2>Creado por usuarios.</h2>
-            <p>Un notch programado de un usuario de Mac para usuarios de Mac, donde la fluidez, utilidad, fidelidad y
-                rendimiento son la única prioridad.</p>
-        </div>
-    </section>
+        </section>
 
-    <!-- FEATURE 3: COMPATIBILITY -->
-    <section class="mega-feature">
-        <div class="feature-content reveal-scroll">
-            <span class="feature-tag">COMPATIBILIDAD</span>
-            <h2>Funciona en tu Mac.</h2>
-            <p>Compatible con todos los MacBooks con notch y los modelos anteriores gracias al modo píldora flotante.
-            </p>
-            <div class="pill-demo">
-                <div class="pill-notch-v2">
-                    <div class="pill-music-icon">
-                        <span>♪</span>
+        <!-- ============ EFICIENCIA ============ -->
+        <section class="section" id="eficiencia" aria-labelledby="efi-title">
+            <div class="container">
+                <p class="eyebrow" data-reveal>Eficiencia 1.8.0</p>
+                <h2 class="section-title" id="efi-title" data-reveal>Optimizada<br><span class="grad-text">hasta la obsesión.</span></h2>
+                <p class="section-lead" data-reveal>
+                    Gran limpieza energética: el sondeo del portapapeles se detiene cuando no hace falta, los timers
+                    agrupan los despertares de CPU y el waveform se renderiza a la mitad de frecuencia sin diferencia
+                    visible. Los wakeups en reposo bajan sustancialmente.
+                </p>
+                <div class="metrics-grid">
+                    <div class="metric glass" data-reveal>
+                        <span class="metric-num"><span data-count="0">0</span><small>%</small></span>
+                        <span class="metric-label">CPU en reposo</span>
                     </div>
-                    <div class="pill-visualizer">
-                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    <div class="metric glass" data-reveal>
+                        <span class="metric-num"><small>&lt;</small><span data-count="35">0</span><small>MB</small></span>
+                        <span class="metric-label">de RAM en uso</span>
+                    </div>
+                    <div class="metric glass" data-reveal>
+                        <span class="metric-num"><span data-count="50">0</span><small>%</small></span>
+                        <span class="metric-label">menos renders del waveform</span>
+                    </div>
+                    <div class="metric glass" data-reveal>
+                        <span class="metric-num"><span data-count="100">0</span><small>%</small></span>
+                        <span class="metric-label">local: sin telemetría ni servidores</span>
                     </div>
                 </div>
-                <span class="pill-label">Modo Píldora para Macs sin notch</span>
+                <p class="caption" data-reveal>Swift nativo, sin frameworks pesados. Impacto en batería prácticamente nulo, incluso en uso intensivo.</p>
             </div>
-            <div class="mac-lineup-container reveal-scroll"
-                style="margin-top: 60px; width: 100%; margin-left: auto; margin-right: auto;">
-                <img src="assets/optimized/Gemini_Generated_Image_k23uzrk23uzrk23u.webp" alt="Mac Lineup"
-                    style="width: 100%; height: auto; display: block;" loading="lazy">
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="metrics" class="metrics">
-        <div class="metrics-horizontal">
-            <div class="metric-item-h reveal-h-1">
-                <span class="h-label">RAM</span>
-                <span class="h-value">
-                    < 35MB</span>
-                        <p>Uso mínimo de memoria.</p>
+        <!-- ============ NOVEDADES 1.8.0 ============ -->
+        <section class="section" id="novedades" aria-labelledby="nov-title">
+            <div class="container container-narrow">
+                <p class="eyebrow" data-reveal>Changelog</p>
+                <h2 class="section-title" id="nov-title" data-reveal>Novedades de la 1.8.0<br><span class="grad-text">«Liquid Glass»</span></h2>
+                <p class="section-lead" data-reveal>Publicada el 9 de junio de 2026.</p>
+                <ol class="timeline">
+                    <li data-reveal>
+                        <span class="tl-dot" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/></svg>
+                        </span>
+                        <div class="tl-body">
+                            <h3>Notch Liquid Glass, activado por defecto</h3>
+                            <p>El área sobre el notch real se mantiene negra y se difumina a cristal en el borde más
+                                alejado, al estilo de la nueva Dynamic Island de Siri. Idéntico con click y con hover,
+                                translúcido en modo Disco y con fallback para sistemas antiguos.</p>
+                        </div>
+                    </li>
+                    <li data-reveal>
+                        <span class="tl-dot" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                        </span>
+                        <div class="tl-body">
+                            <h3>Portadas reales</h3>
+                            <p>La carátula llega directa del reproductor —la URL de artwork de Spotify y el artwork
+                                incrustado de Apple Music— en vez de una búsqueda en catálogo que a veces mostraba otro
+                                álbum. La búsqueda queda solo como respaldo.</p>
+                        </div>
+                    </li>
+                    <li data-reveal>
+                        <span class="tl-dot" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7.5" width="17" height="9" rx="2.5"/><path d="M22 10.5v3M6 10.5v3M10 10.5v3"/></svg>
+                        </span>
+                        <div class="tl-body">
+                            <h3>Gran limpieza energética</h3>
+                            <p>El sondeo del portapapeles se detiene por completo cuando no hace falta; todos los timers
+                                tienen tolerancias para que macOS agrupe los despertares de CPU; el waveform se renderiza
+                                a la mitad de frecuencia sin diferencia visible.</p>
+                        </div>
+                    </li>
+                    <li data-reveal>
+                        <span class="tl-dot" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+                        </span>
+                        <div class="tl-body">
+                            <h3>Rendimiento</h3>
+                            <p>El progreso de reproducción ya no re-renderiza toda la isla cada segundo: solo la barra
+                                de progreso. Reproducción más fluida que nunca.</p>
+                        </div>
+                    </li>
+                    <li data-reveal>
+                        <span class="tl-dot" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>
+                        </span>
+                        <div class="tl-body">
+                            <h3>Arquitectura y estabilidad</h3>
+                            <p>Contenido de la isla dividido en archivos enfocados; los controladores de ventana limpian
+                                timers y observers del sistema al cambiar de pantalla, con varios arreglos de ciclo de vida.</p>
+                        </div>
+                    </li>
+                    <li data-reveal>
+                        <span class="tl-dot" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+                        </span>
+                        <div class="tl-body">
+                            <h3>Localización</h3>
+                            <p>Nuevas cadenas en español, inglés y chino simplificado.</p>
+                        </div>
+                    </li>
+                </ol>
             </div>
-            <div class="metric-item-h reveal-h-2">
-                <span class="h-label">CPU</span>
-                <span class="h-value">0%</span>
-                <p>Consumo cero en reposo.</p>
-            </div>
-            <div class="metric-item-h reveal-h-3">
-                <span class="h-label">BATERÍA</span>
-                <span class="h-value">0%</span>
-                <p>Consumo de batería inexistente.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- REVIEWS MARQUEE -->
-    <section class="reviews-section">
-        <span class="feature-tag">RESEÑAS</span>
-        <h2>Lo que opinan <br> nuestros usuarios</h2>
-        <div class="marquee">
-            <div class="marquee-content">
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Mejor interacción de la década."</p>
-                    <span class="author">— TechCrunch</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Indispensable para mi flujo."</p>
-                    <span class="author">— macOS Addict</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Apple debería comprar esto."</p>
-                    <span class="author">— Verge</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Limpio, rápido y precioso."</p>
-                    <span class="author">— Dribbble Community</span>
-                </div>
-                <!-- Exactly duplicate for infinite loop -->
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Mejor interacción de la década."</p>
-                    <span class="author">— TechCrunch</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Indispensable para mi flujo."</p>
-                    <span class="author">— macOS Addict</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Apple debería comprar esto."</p>
-                    <span class="author">— Verge</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Limpio, rápido y precioso."</p>
-                    <span class="author">— Dribbble Community</span>
+        <!-- ============ GALERÍA ============ -->
+        <section class="section" id="galeria" aria-labelledby="gal-title">
+            <div class="container">
+                <p class="eyebrow" data-reveal>Galería</p>
+                <h2 class="section-title" id="gal-title" data-reveal>Así se ve. Así se siente.</h2>
+                <div class="gallery-grid">
+                    <figure class="g-item g-wide glass-frame" data-reveal>
+                        <video src="assets/optimized/intro_optimized.mp4" width="1280" height="692" autoplay muted loop
+                            playsinline preload="metadata" poster="assets/optimized/Gemini_Generated_Image_r2yk35r2yk35r2yk.webp"
+                            aria-label="Vídeo cinematográfico de presentación de VibeNotch"></video>
+                        <figcaption>El spot de presentación</figcaption>
+                    </figure>
+                    <figure class="g-item g-tall glass-frame" data-reveal>
+                        <video src="assets/optimized/demo_optimized.mp4" width="720" height="1280" autoplay muted loop
+                            playsinline preload="metadata"
+                            aria-label="Demostración de VibeNotch en acción sobre macOS"></video>
+                        <figcaption>VibeNotch en acción, sin cortes</figcaption>
+                    </figure>
+                    <figure class="g-item g-duo glass-frame" data-reveal>
+                        <img src="assets/optimized/Gemini_Generated_Image_1l7f0d1l7f0d1l7f.webp"
+                            alt="MacBook con fondo de montañas ilustradas y el notch expandido reproduciendo música"
+                            width="1920" height="1025" loading="lazy" decoding="async">
+                        <figcaption>Liquid Glass sobre cualquier fondo</figcaption>
+                    </figure>
+                    <figure class="g-item g-duo glass-frame" data-reveal>
+                        <img src="assets/optimized/Gemini_Generated_Image_htbx5dhtbx5dhtbx.webp"
+                            alt="Detalle minimalista del notch expandido sobre una pantalla clara"
+                            width="1920" height="1025" loading="lazy" decoding="async">
+                        <figcaption>Minimalismo, de serie</figcaption>
+                    </figure>
+                    <figure class="g-item g-band glass-frame" data-reveal>
+                        <img src="assets/optimized/Gemini_Generated_Image_usi4czusi4czusi4.webp"
+                            alt="Primer plano del notch saludando con el mensaje Hola Aleix y el nivel de batería"
+                            width="1920" height="596" loading="lazy" decoding="async">
+                        <figcaption>Hasta te da los buenos días</figcaption>
+                    </figure>
+                    <figure class="g-item g-pair glass-frame" data-reveal>
+                        <img src="assets/optimized/Gemini_Generated_Image_x5y8ubx5y8ubx5y8.webp"
+                            alt="Notch reproduciendo Copa De Alcohol con los botones de modo Disco y Eventos visibles"
+                            width="1920" height="601" loading="lazy" decoding="async">
+                        <figcaption>Isla multimedia con Disco y Eventos</figcaption>
+                    </figure>
+                    <figure class="g-item g-pair glass-frame" data-reveal>
+                        <img src="assets/optimized/vibe%20notch%20utilities.webp"
+                            alt="Notch expandido con el reproductor de música y la fila de utilidades rápidas"
+                            width="1920" height="616" loading="lazy" decoding="async">
+                        <figcaption>Utilidades rápidas a un click</figcaption>
+                    </figure>
+                    <figure class="g-item g-band g-band-crop glass-frame" data-reveal>
+                        <img src="assets/optimized/Gemini_Generated_Image_k23uzrk23uzrk23u.webp"
+                            alt="Tres MacBook en fila, el central con la isla multimedia de VibeNotch activa"
+                            width="1920" height="1071" loading="lazy" decoding="async">
+                        <figcaption>Compatible con todos los MacBook con notch — y sin él, gracias al Modo Burbuja</figcaption>
+                    </figure>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="download" class="waitlist-section">
-        <div class="waitlist-container reveal-scroll">
-            <h2>El futuro ya está aquí.</h2>
-            <p>Descarga VibeNotch y lleva tu Mac al siguiente nivel.</p>
+        <!-- ============ PRECIO / APP STORE ============ -->
+        <section class="section" id="precio" aria-labelledby="precio-title">
+            <div class="container container-narrow">
+                <div class="price-card glass-frame" data-reveal>
+                    <img class="price-icon" src="assets/favicon/web-app-manifest-512x512.png"
+                        alt="Icono de la aplicación VibeNotch" width="512" height="512" loading="lazy" decoding="async">
+                    <h2 id="precio-title">VibeNotch</h2>
+                    <p class="price-tagline">El notch de tu Mac, reinventado.</p>
+                    <p class="price-amount"><strong>4,99&nbsp;€</strong> · pago único, tuya para siempre</p>
+                    <ul class="price-specs">
+                        <li>macOS 14.0 o posterior</li>
+                        <li>Optimizada para Apple Silicon (M1–M4)</li>
+                        <li>No requiere notch físico: Modo Burbuja</li>
+                        <li>Español · Inglés · Chino simplificado</li>
+                    </ul>
+                    <a class="btn btn-primary btn-lg magnetic" href="https://apps.apple.com/app/vibenotch/id6757723688"
+                        rel="noopener">
+                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">
+                            <path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z"/>
+                        </svg>
+                        Consíguelo en el App Store
+                    </a>
+                    <p class="price-note">Sin suscripciones, sin cargos ocultos, sin trucos. Tu información nunca sale de tu Mac.</p>
+                </div>
+            </div>
+        </section>
 
-            <div class="download-actions"
-                style="margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
-                <a href="https://apps.apple.com/app/vibenotch/id6757723688" target="_blank" class="btn-appstore">
-                    <span class="as-icon"></span>
-                    <div class="as-text">
-                        <span class="as-small">Consíguelo en el</span>
-                        <span class="as-big">App Store</span>
-                    </div>
+        <!-- ============ FAQ ============ -->
+        <section class="section" id="faq" aria-labelledby="faq-title">
+            <div class="container container-narrow">
+                <p class="eyebrow" data-reveal>Preguntas frecuentes</p>
+                <h2 class="section-title" id="faq-title" data-reveal>Dudas, resueltas.</h2>
+                <div class="faq-list">
+                    <details class="faq-item glass" data-reveal>
+                        <summary>¿Es compatible con mi Mac?<span class="faq-marker" aria-hidden="true"></span></summary>
+                        <p>VibeNotch es compatible con todos los MacBook Air y MacBook Pro con notch físico, y también
+                            con Macs sin notch gracias al Modo Burbuja: una isla flotante que funciona en cualquier
+                            pantalla, incluidos monitores externos. Requiere macOS 14.0 o superior.</p>
+                    </details>
+                    <details class="faq-item glass" data-reveal>
+                        <summary>¿Afecta a la batería?<span class="faq-marker" aria-hidden="true"></span></summary>
+                        <p>No. VibeNotch está escrita en Swift nativo y optimizada hasta la obsesión: 0% de CPU en
+                            reposo, menos de 35&nbsp;MB de RAM y, desde la 1.8.0, muchos menos despertares de CPU.
+                            No notarás ninguna diferencia en la autonomía de tu Mac.</p>
+                    </details>
+                    <details class="faq-item glass" data-reveal>
+                        <summary>¿Qué apps de música soporta?<span class="faq-marker" aria-hidden="true"></span></summary>
+                        <p>Apple Music, Spotify y cualquier aplicación que use los controles de reproducción nativos de
+                            macOS (como YouTube en Safari o Chrome). Desde la 1.8.0, las portadas llegan directas del
+                            reproductor: se acabaron las carátulas equivocadas.</p>
+                    </details>
+                    <details class="faq-item glass" data-reveal>
+                        <summary>¿Qué es exactamente Liquid Glass?<span class="faq-marker" aria-hidden="true"></span></summary>
+                        <p>El nuevo aspecto por defecto de la isla: negro sobre el notch real y cristal translúcido en
+                            los bordes, inspirado en la nueva Dynamic Island de Siri. Si prefieres el clásico look
+                            sólido, puedes cambiarlo cuando quieras en Ajustes&nbsp;›&nbsp;Apariencia.</p>
+                    </details>
+                    <details class="faq-item glass" data-reveal>
+                        <summary>¿Es de pago único?<span class="faq-marker" aria-hidden="true"></span></summary>
+                        <p>Sí. Odiamos las suscripciones tanto como tú: un único pago de 4,99&nbsp;€ y tendrás acceso a
+                            todas las funciones y actualizaciones futuras para siempre.</p>
+                    </details>
+                    <details class="faq-item glass" data-reveal>
+                        <summary>¿Y mi privacidad?<span class="faq-marker" aria-hidden="true"></span></summary>
+                        <p>VibeNotch no recopila, almacena ni comparte datos personales. Sin telemetría, sin analytics,
+                            sin servidores propios. El único uso de red es obtener carátulas mediante la API pública de
+                            iTunes cuando no hay artwork local. <a href="privacy.html">Lee la política completa</a>.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CROSS-PROMO ============ -->
+        <section class="section" id="apps" aria-labelledby="apps-title">
+            <div class="container">
+                <p class="eyebrow" data-reveal>La familia</p>
+                <h2 class="section-title" id="apps-title" data-reveal>Más apps del mismo taller.</h2>
+                <div class="promo-grid">
+                    <a class="promo-card glass tilt" href="edgeflow/" data-reveal>
+                        <img src="edgeflow/EdgeFlow%20icon-iOS-Default-1024x1024@1x.png"
+                            alt="Icono de EdgeFlow" width="1024" height="1024" loading="lazy" decoding="async">
+                        <div class="promo-copy">
+                            <h3>EdgeFlow</h3>
+                            <p>Paneles de atajos que se despliegan al llevar el ratón a los bordes de tu pantalla:
+                                apps, URLs y Apple Shortcuts a un gesto.</p>
+                            <span class="promo-link">Descubrir EdgeFlow
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                            </span>
+                        </div>
+                    </a>
+                    <a class="promo-card glass tilt" href="sweepy/" data-reveal>
+                        <img src="sweepy/assets/sweepy-icon-256.png"
+                            alt="Icono de Sweepy" width="256" height="256" loading="lazy" decoding="async">
+                        <div class="promo-copy">
+                            <h3>Sweepy</h3>
+                            <p>Limpieza profunda para macOS orientada a desarrollo e IA: cachés, dependencias y modelos
+                                olvidados. Análisis gratis.</p>
+                            <span class="promo-link">Descubrir Sweepy
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CTA FINAL + NEWSLETTER ============ -->
+        <section class="section final-cta" id="descargar" aria-labelledby="cta-title">
+            <div class="container container-narrow">
+                <div class="final-glow" aria-hidden="true"></div>
+                <h2 class="section-title cta-title" id="cta-title" data-reveal>
+                    Tu notch lleva años<br><span class="grad-text">esperando esto.</span>
+                </h2>
+                <p class="section-lead" data-reveal>Descarga VibeNotch y convierte la cámara de tu MacBook en lo mejor de tu pantalla.</p>
+                <div class="hero-ctas" data-reveal>
+                    <a class="btn btn-primary btn-lg magnetic" href="https://apps.apple.com/app/vibenotch/id6757723688"
+                        rel="noopener">
+                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">
+                            <path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z"/>
+                        </svg>
+                        Descargar — 4,99&nbsp;€
+                    </a>
+                </div>
+                <div class="newsletter-block glass" data-reveal>
+                    <h3>Novedades y trucos</h3>
+                    <p>Únete a la lista para recibir actualizaciones exclusivas sobre VibeNotch.</p>
+                    <form id="newsletter-form" class="newsletter-form"
+                        action="https://docs.google.com/forms/d/e/1FAIpQLSe3GrX4FudiQN3LfmSx-BB33I0tPNWUKVPMXFKJGgDw3HoeNQ/formResponse"
+                        method="POST">
+                        <label class="sr-only" for="nl-email">Tu correo electrónico</label>
+                        <input id="nl-email" type="email" name="entry.1921152412" required autocomplete="email"
+                            placeholder="tu@email.com">
+                        <button class="btn btn-primary" type="submit">Suscribirme</button>
+                    </form>
+                    <p class="nl-msg" id="nl-msg" role="status" aria-live="polite"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a class="brand" href="./" aria-label="VibeNotch, inicio">
+                    <img src="assets/favicon/favicon-96x96.png" alt="" width="32" height="32" loading="lazy" decoding="async">
+                    <span class="brand-name">VibeNotch</span>
+                </a>
+                <p>El notch de tu Mac, reinventado. Minimalismo hecho en Tarragona.</p>
+                <a class="footer-social" href="https://instagram.com/aleixxet" rel="noopener">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor" stroke="none"/></svg>
+                    @aleixxet
                 </a>
             </div>
-
-            <a href="https://instagram.com/aleixxet" target="_blank" class="instagram-link">
-                <span class="ig-icon">📸</span> Sígueme en Instagram para estar al día · @aleixxet
-            </a>
+            <nav class="footer-col" aria-label="Apps">
+                <h3>Apps</h3>
+                <a href="./">VibeNotch</a>
+                <a href="edgeflow/">EdgeFlow</a>
+                <a href="sweepy/">Sweepy</a>
+            </nav>
+            <nav class="footer-col" aria-label="Soporte">
+                <h3>Soporte</h3>
+                <a href="support.html">Centro de soporte</a>
+                <a href="mailto:aleix.carles@vibenotch.es">aleix.carles@vibenotch.es</a>
+                <a href="#novedades">Novedades 1.8.0</a>
+            </nav>
+            <nav class="footer-col" aria-label="Legal">
+                <h3>Legal</h3>
+                <a href="privacy.html">Privacidad</a>
+            </nav>
         </div>
-    </section>
-
-    <!-- ========== NEWSLETTER ========== -->
-    <section id="newsletter" class="newsletter-section">
-        <div class="cta-glow-bg"></div>
-        <div style="position: relative; z-index: 10; text-align: center;">
-            <h2
-                style="font-size: clamp(32px, 5vw, 48px); font-weight: 800; margin-bottom: 20px; color: #fff; letter-spacing: -1px;">
-                Novedades y Trucos</h2>
-            <p
-                style="color: rgba(255,255,255,0.6); margin-bottom: 60px; font-size: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                Únete a la lista para recibir actualizaciones exclusivas sobre VibeNotch.</p>
-
-            <form id="vibenotchNewsletter"
-                style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; max-width: 650px; margin: 0 auto; align-items: center;">
-                <input type="email" name="entry.1921152412" class="cta-input-premium" placeholder="Tu email..."
-                    required>
-                <button type="submit" class="cta-submit-premium">Suscribirse</button>
-            </form>
-            <div id="vnSuccessMsg"
-                style="display: none; color: #0071e3; margin-top: 30px; font-size: 24px; font-weight: 800; text-shadow: 0 0 20px rgba(0, 113, 227, 0.5);">
-                ¡Gracias por suscribirte! </div>
-        </div>
-
-        <script>
-            document.getElementById('vibenotchNewsletter').addEventListener('submit', function (e) {
-                e.preventDefault();
-                const form = this;
-                const email = form.querySelector('input[type="email"]').value;
-                const url = 'https://docs.google.com/forms/d/e/1FAIpQLSe3GrX4FudiQN3LfmSx-BB33I0tPNWUKVPMXFKJGgDw3HoeNQ/formResponse';
-                const params = new URLSearchParams();
-                params.append('entry.1921152412', email);
-
-                fetch(url, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: params.toString()
-                }).then(() => {
-                    form.style.display = 'none';
-                    document.getElementById('vnSuccessMsg').style.display = 'block';
-                }).catch(err => {
-                    console.error(err);
-                    form.style.display = 'none';
-                    document.getElementById('vnSuccessMsg').style.display = 'block';
-                });
-            });
-        </script>
-    </section>
-
-    <footer class="ef-footer">
-        <a href="edgeflow/index.html" class="more-apps-link">
-            <img src="edgeflow/EdgeFlow icon-iOS-Default-1024x1024@1x.png" alt="EdgeFlow Icon">
-            <div class="more-text">
-                <span class="more-label">Más Apps</span>
-                <span class="more-title">EdgeFlow</span>
-            </div>
-            <span style="margin-left: 10px; opacity: 0.5;">→</span>
-        </a>
-
-        <div style="margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <div class="footer-logo" style="color: #fff; font-weight: 700; font-size: 20px;">VibeNotch</div>
-            <p class="copyright" style="color: #666; font-size: 13px;">© 2026 VibeNotch. Minimalismo hecho en Tarragona.
-            </p>
-            <div class="footer-legal">
-                <a href="support.html"
-                    style="color: #888; text-decoration: none; font-size: 14px; margin: 0 10px;">Soporte</a>
-                <a href="privacy.html"
-                    style="color: #888; text-decoration: none; font-size: 14px; margin: 0 10px;">Privacidad</a>
-            </div>
+        <div class="container footer-base">
+            <p>© 2026 VibeNotch</p>
+            <p>Diseñada y programada por una sola persona, en Swift nativo.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>

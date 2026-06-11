@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sweepy — Limpieza profunda para Macs de desarrollo</title>
+  <meta name="description" content="Sweepy encuentra la basura que otros limpiadores no ven: cachés de IA, simuladores de iOS, builds de Xcode y más. 36 categorías, 100 % local y análisis gratis ilimitado. Muy pronto en el Mac App Store.">
+  <meta name="author" content="Aleix Carles">
+  <link rel="canonical" href="https://vibenotch.es/sweepy/">
+  <meta name="theme-color" content="#040406">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sweepy">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="Sweepy — Limpieza profunda para Macs de desarrollo">
+  <meta property="og:description" content="La basura que otros limpiadores no ven: cachés de IA, simuladores de iOS, builds de Xcode y más. El análisis es gratis. Siempre.">
+  <meta property="og:url" content="https://vibenotch.es/sweepy/">
+  <meta property="og:image" content="https://vibenotch.es/sweepy/assets/promo-subscription-1024.png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sweepy — Limpieza profunda para Macs de desarrollo">
+  <meta name="twitter:description" content="La basura que otros limpiadores no ven: cachés de IA, simuladores de iOS, builds de Xcode y más. El análisis es gratis. Siempre.">
+  <meta name="twitter:image" content="https://vibenotch.es/sweepy/assets/promo-subscription-1024.png">
+
+  <!-- Favicons (compartidos del sitio) -->
+  <link rel="icon" href="../assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Asset crítico del hero -->
+  <link rel="preload" as="image" href="assets/sweepy-icon-256.png">
+
+  <link rel="stylesheet" href="sweepy.css">
+  <script>document.documentElement.classList.add('js');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Sweepy: Deep Clean",
+    "alternateName": "Sweepy",
+    "description": "Limpiador nativo para macOS que encuentra la basura que otros no ven: cachés de agentes de IA, simuladores de iOS, builds de Xcode y mucho más. El análisis es gratis. Siempre.",
+    "operatingSystem": "macOS",
+    "applicationCategory": "UtilitiesApplication",
+    "inLanguage": "es",
+    "url": "https://vibenotch.es/sweepy/",
+    "image": "https://vibenotch.es/sweepy/assets/sweepy-icon-1024.png",
+    "author": { "@type": "Person", "name": "Aleix Carles" },
+    "offers": [
+      { "@type": "Offer", "name": "Análisis completo", "price": "0", "priceCurrency": "EUR", "description": "Escaneo ilimitado y gratuito de las 36 categorías." },
+      { "@type": "Offer", "name": "Sweepy Pro mensual", "price": "2.99", "priceCurrency": "EUR" },
+      { "@type": "Offer", "name": "Sweepy Pro anual", "price": "19.99", "priceCurrency": "EUR" }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Fondo: starfield + glows -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="bg-glows" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="site-header">
+    <nav class="nav-pill" id="navPill" aria-label="Navegación principal">
+      <a class="brand" href="./">
+        <img src="assets/sweepy-icon-256.png" width="30" height="30" alt="" decoding="async">
+        <span>Sweepy</span>
+      </a>
+      <div class="nav-center" id="navLinks">
+        <a href="../">VibeNotch</a>
+        <a href="../edgeflow/">EdgeFlow</a>
+        <a href="./" class="active" aria-current="page">Sweepy</a>
+        <a class="nav-cta-mobile" href="#descargar">Muy pronto en el Mac App Store</a>
+      </div>
+      <a class="nav-cta magnetic" href="#descargar">Muy pronto</a>
+      <button class="nav-burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ 1 · HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow" data-reveal>Sweepy para macOS</p>
+          <h1 data-reveal>Limpieza <span class="grad">profunda</span> para Macs de desarrollo.</h1>
+          <p class="hero-sub" data-reveal>La basura que otros limpiadores no ven: cachés de agentes de IA, simuladores de iOS, builds de Xcode y mucho más. <strong>El análisis es gratis. Siempre.</strong></p>
+          <div class="hero-ctas" data-reveal>
+            <span class="btn btn-soon" aria-disabled="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M11.624 7.222c-.876 0-2.232-.996-3.66-.96-1.884.024-3.612 1.092-4.584 2.784-1.956 3.396-.504 8.412 1.404 11.172.936 1.344 2.04 2.856 3.504 2.808 1.404-.06 1.932-.912 3.636-.912 1.692 0 2.172.912 3.66.876 1.512-.024 2.472-1.368 3.396-2.724 1.068-1.56 1.512-3.072 1.536-3.156-.036-.012-2.94-1.128-2.976-4.488-.024-2.808 2.292-4.152 2.4-4.212-1.32-1.932-3.348-2.148-4.056-2.196-1.848-.144-3.396 1.008-4.26 1.008Zm3.12-2.832c.78-.936 1.296-2.244 1.152-3.54-1.116.048-2.46.744-3.264 1.68-.72.828-1.344 2.16-1.176 3.432 1.236.096 2.508-.636 3.288-1.572Z"/></svg>
+              Muy pronto en el Mac App Store
+            </span>
+            <a class="btn btn-ghost magnetic" href="#demo">Probar el análisis
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14m0 0 6-6m-6 6-6-6"/></svg>
+            </a>
+          </div>
+          <ul class="hero-badges" data-reveal>
+            <li>100 % local · sin telemetría</li>
+            <li>Análisis gratis ilimitado</li>
+            <li>36 categorías</li>
+          </ul>
+        </div>
+
+        <!-- Esfera aurora -->
+        <div class="sphere-stage" id="heroSphere" aria-hidden="true">
+          <div class="sphere-glow"></div>
+          <div class="sphere">
+            <div class="sphere-rays"></div>
+            <div class="sphere-aurora a1"></div>
+            <div class="sphere-aurora a2"></div>
+            <div class="sphere-aurora a3"></div>
+            <div class="sphere-waves"></div>
+            <div class="sphere-spec"></div>
+            <div class="sphere-rim"></div>
+          </div>
+          <div class="orbiters">
+            <span class="orbiter chip-c1" data-plane="0"></span>
+            <span class="orbiter chip-c2" data-plane="1"></span>
+            <span class="orbiter chip-c3" data-plane="2"></span>
+            <span class="orbiter chip-c4" data-plane="0"></span>
+            <span class="orbiter chip-c5" data-plane="1"></span>
+            <span class="orbiter chip-c6" data-plane="2"></span>
+            <span class="orbiter chip-c7" data-plane="0"></span>
+            <span class="orbiter chip-c8" data-plane="1"></span>
+            <span class="orbiter chip-c9" data-plane="2"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Banda de cifras -->
+    <section class="stats-band" aria-label="Sweepy en cifras">
+      <div class="stats-grid" data-reveal-group>
+        <div class="stat"><span class="stat-num"><span data-count="36">36</span></span><span class="stat-label">categorías de limpieza</span></div>
+        <div class="stat"><span class="stat-num"><span data-count="5">5</span></span><span class="stat-label">grupos: del código a la IA</span></div>
+        <div class="stat"><span class="stat-num"><span data-count="100">100</span> %</span><span class="stat-label">local, en tu Mac</span></div>
+        <div class="stat"><span class="stat-num"><span data-count="0">0</span></span><span class="stat-label">datos recogidos</span></div>
+      </div>
+    </section>
+
+    <!-- ============ 2 · LO QUE OTROS NO VEN ============ -->
+    <section class="section" id="categorias">
+      <header class="sec-head" data-reveal>
+        <p class="eyebrow">Radiografía completa</p>
+        <h2>Lo que otros <span class="grad">no ven</span>.</h2>
+        <p class="sec-sub">¿Tu disco siempre está lleno y no sabes por qué? La respuesta suele esconderse en «Datos del sistema». Sweepy cubre 36 categorías en 5 grupos, del desarrollo moderno a los agentes de IA.</p>
+      </header>
+
+      <div class="tabs" role="tablist" aria-label="Grupos de categorías" data-reveal>
+        <button class="tab" role="tab" id="tab-dev" aria-controls="panel-dev" aria-selected="true">Desarrollo <span class="tab-count">11</span></button>
+        <button class="tab" role="tab" id="tab-ia" aria-controls="panel-ia" aria-selected="false" tabindex="-1">Inteligencia Artificial <span class="tab-count">7</span></button>
+        <button class="tab" role="tab" id="tab-sys" aria-controls="panel-sys" aria-selected="false" tabindex="-1">Sistema <span class="tab-count">8</span></button>
+        <button class="tab" role="tab" id="tab-apps" aria-controls="panel-apps" aria-selected="false" tabindex="-1">Aplicaciones <span class="tab-count">7</span></button>
+        <button class="tab" role="tab" id="tab-nav" aria-controls="panel-nav" aria-selected="false" tabindex="-1">Navegadores <span class="tab-count">3</span></button>
+      </div>
+
+      <div class="tab-panels">
+        <div class="tab-panel group-dev" role="tabpanel" id="panel-dev" aria-labelledby="tab-dev">
+          <article class="cat-card"><h3>Xcode DerivedData</h3><p>Builds intermedios. Se regeneran al compilar.</p></article>
+          <article class="cat-card"><h3>iOS DeviceSupport</h3><p>Símbolos de iPhones antiguos conectados.</p></article>
+          <article class="cat-card"><h3>Xcode Archives</h3><p>Archives de versiones que ya distribuiste.</p></article>
+          <article class="cat-card"><h3>Simuladores iOS</h3><p>Dispositivos simulados y sus datos.</p></article>
+          <article class="cat-card"><h3>npm / pnpm / yarn</h3><p>Caché de paquetes JavaScript.</p></article>
+          <article class="cat-card"><h3>Gradle / CocoaPods / SwiftPM</h3><p>Cachés de dependencias compiladas.</p></article>
+          <article class="cat-card"><h3>Python pip / uv</h3><p>Caché de paquetes de Python.</p></article>
+          <article class="cat-card"><h3>Go / Rust</h3><p>Cachés de módulos y de compilación.</p></article>
+          <article class="cat-card"><h3>VS Code / JetBrains</h3><p>Cachés de editores e IDEs.</p></article>
+          <article class="cat-card"><h3>Homebrew</h3><p>Descargas y versiones antiguas de fórmulas.</p></article>
+          <article class="cat-card"><h3>Playwright / Puppeteer</h3><p>Navegadores descargados para testing.</p></article>
+        </div>
+        <div class="tab-panel group-ia" role="tabpanel" id="panel-ia" aria-labelledby="tab-ia" hidden>
+          <article class="cat-card"><h3>Antigravity / Gemini</h3><p>Grabaciones de navegador y temporales del agente.</p></article>
+          <article class="cat-card"><h3>OpenAI Codex</h3><p>Runtimes descargados y logs del agente.</p></article>
+          <article class="cat-card"><h3>Claude</h3><p>Cachés de la app y VMs precalentadas.</p></article>
+          <article class="cat-card"><h3>ChatGPT</h3><p>Caché de la app de escritorio.</p></article>
+          <article class="cat-card"><h3>Cursor</h3><p>Cachés del editor con IA.</p></article>
+          <article class="cat-card"><h3>Hugging Face</h3><p>Modelos y datasets descargados.</p></article>
+          <article class="cat-card"><h3>Modelos Ollama / LM Studio</h3><p>Modelos LLM locales descargados.</p></article>
+        </div>
+        <div class="tab-panel group-sys" role="tabpanel" id="panel-sys" aria-labelledby="tab-sys" hidden>
+          <article class="cat-card"><h3>Logs y diagnósticos</h3><p>Registros antiguos del sistema y de tus apps.</p></article>
+          <article class="cat-card"><h3>Estados de apps guardados</h3><p>Sesiones y ventanas que macOS ya no necesita.</p></article>
+          <article class="cat-card"><h3>Papelera</h3><p>Todo lo que espera ser eliminado de verdad.</p></article>
+          <article class="cat-card"><h3>Backups de iPhone/iPad</h3><p>Copias locales completas de tus dispositivos.</p></article>
+          <article class="cat-card"><h3>Adjuntos de Mail</h3><p>Archivos adjuntos descargados por Mail.</p></article>
+          <article class="cat-card"><h3>Actualizaciones de iOS</h3><p>Firmwares descargados que ya no sirven.</p></article>
+          <article class="cat-card"><h3>Instaladores de macOS</h3><p>Apps «Instalar macOS…» olvidadas (suelen ocupar +12 GB).</p></article>
+          <article class="cat-card"><h3>Instaladores antiguos en Descargas</h3><p>DMG, PKG y ZIP con más de 30 días en Descargas.</p></article>
+        </div>
+        <div class="tab-panel group-apps" role="tabpanel" id="panel-apps" aria-labelledby="tab-apps" hidden>
+          <article class="cat-card"><h3>Spotify</h3><p>Caché de canciones y portadas.</p></article>
+          <article class="cat-card"><h3>Discord</h3><p>Caché y datos temporales.</p></article>
+          <article class="cat-card"><h3>Slack / Zoom</h3><p>Cachés de mensajes y reuniones.</p></article>
+          <article class="cat-card"><h3>Adobe</h3><p>Cachés y temporales de Creative Cloud.</p></article>
+          <article class="cat-card"><h3>Actualizadores</h3><p>Actualizadores residuales que se quedan instalados.</p></article>
+          <article class="cat-card"><h3>WhatsApp / Telegram</h3><p>Caché de fotos y vídeos recibidos.</p></article>
+          <article class="cat-card"><h3>Cachés del resto de apps</h3><p>Todas las demás cachés de usuario, de golpe.</p></article>
+        </div>
+        <div class="tab-panel group-nav" role="tabpanel" id="panel-nav" aria-labelledby="tab-nav" hidden>
+          <article class="cat-card"><h3>Google Chrome</h3><p>Caché web. No toca historial ni contraseñas.</p></article>
+          <article class="cat-card"><h3>Firefox</h3><p>Caché web del navegador.</p></article>
+          <article class="cat-card"><h3>Edge / Brave / Opera</h3><p>Cachés de navegadores basados en Chromium.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3 · DEMO DE ESCANEO ============ -->
+    <section class="section" id="demo">
+      <header class="sec-head" data-reveal>
+        <p class="eyebrow">Demo interactiva</p>
+        <h2>Escanea <span class="grad">tu Mac</span>.</h2>
+        <p class="sec-sub">Así se siente Sweepy: pulsa «Escanear a fondo» y mira cómo la esfera absorbe la basura. Demo simulada con tamaños típicos de un Mac de desarrollo.</p>
+      </header>
+
+      <div class="demo-grid">
+        <div class="demo-sphere-col" data-reveal>
+          <div class="sphere-stage sphere-stage--demo" id="demoSphere" aria-hidden="true">
+            <div class="sphere-glow"></div>
+            <div class="sphere">
+              <div class="sphere-rays"></div>
+              <div class="sphere-aurora a1"></div>
+              <div class="sphere-aurora a2"></div>
+              <div class="sphere-aurora a3"></div>
+              <div class="sphere-waves"></div>
+              <div class="sphere-spec"></div>
+              <div class="sphere-rim"></div>
+            </div>
+            <div class="orbiters">
+              <span class="orbiter chip-c2" data-plane="0"></span>
+              <span class="orbiter chip-c5" data-plane="1"></span>
+              <span class="orbiter chip-c1" data-plane="2"></span>
+              <span class="orbiter chip-c7" data-plane="0"></span>
+              <span class="orbiter chip-c3" data-plane="1"></span>
+              <span class="orbiter chip-c9" data-plane="2"></span>
+              <span class="orbiter chip-c4" data-plane="0"></span>
+              <span class="orbiter chip-c6" data-plane="1"></span>
+            </div>
+          </div>
+          <p class="demo-sphere-status" id="sphereStatus" aria-live="polite">Los iconos de tus apps orbitan la esfera. Al escanear, los absorbe.</p>
+        </div>
+
+        <div class="scan-window glass" data-reveal>
+          <div class="scan-titlebar">
+            <span class="tl-dot td-r"></span><span class="tl-dot td-y"></span><span class="tl-dot td-g"></span>
+            <span class="scan-title">Sweepy — Análisis</span>
+          </div>
+
+          <div class="scan-body">
+            <div class="scan-total">
+              <span class="odometer" id="scanOdometer" aria-hidden="true">47,3</span>
+              <span class="scan-total-label"><strong>GB</strong> encontrados</span>
+            </div>
+            <p class="scan-status" id="scanStatus" role="status">Pulsa «Escanear a fondo» para empezar.</p>
+
+            <ol class="scan-list" id="scanList">
+              <li class="scan-row" data-gb="12.4" style="--c:#40d4ff"><span class="scan-dot"></span><span class="scan-meta"><strong>Xcode DerivedData</strong><em>Desarrollo</em></span><span class="scan-size">12,4 GB</span></li>
+              <li class="scan-row" data-gb="9.8" style="--c:#5c85ff"><span class="scan-dot"></span><span class="scan-meta"><strong>Simuladores iOS</strong><em>Desarrollo</em></span><span class="scan-size">9,8 GB</span></li>
+              <li class="scan-row" data-gb="5.6" style="--c:#ffd166"><span class="scan-dot"></span><span class="scan-meta"><strong>Hugging Face</strong><em>Inteligencia Artificial</em></span><span class="scan-size">5,6 GB</span></li>
+              <li class="scan-row" data-gb="4.2" style="--c:#5cfab3"><span class="scan-dot"></span><span class="scan-meta"><strong>npm / pnpm / yarn</strong><em>Desarrollo</em></span><span class="scan-size">4,2 GB</span></li>
+              <li class="scan-row" data-gb="4.1" style="--c:#c7ccd9"><span class="scan-dot"></span><span class="scan-meta"><strong>Papelera</strong><em>Sistema</em></span><span class="scan-size">4,1 GB</span></li>
+              <li class="scan-row" data-gb="3.1" style="--c:#a36bff"><span class="scan-dot"></span><span class="scan-meta"><strong>Antigravity / Gemini</strong><em>Inteligencia Artificial</em></span><span class="scan-size">3,1 GB</span></li>
+              <li class="scan-row" data-gb="2.7" style="--c:#ff8a5c"><span class="scan-dot"></span><span class="scan-meta"><strong>Claude</strong><em>Inteligencia Artificial</em></span><span class="scan-size">2,7 GB</span></li>
+              <li class="scan-row" data-gb="2.3" style="--c:#ff5c5c"><span class="scan-dot"></span><span class="scan-meta"><strong>Google Chrome</strong><em>Navegadores</em></span><span class="scan-size">2,3 GB</span></li>
+              <li class="scan-row" data-gb="1.9" style="--c:#3ddc84"><span class="scan-dot"></span><span class="scan-meta"><strong>Spotify</strong><em>Aplicaciones</em></span><span class="scan-size">1,9 GB</span></li>
+              <li class="scan-row" data-gb="1.2" style="--c:#9aa1b5"><span class="scan-dot"></span><span class="scan-meta"><strong>Logs y diagnósticos</strong><em>Sistema</em></span><span class="scan-size">1,2 GB</span></li>
+            </ol>
+
+            <div class="scan-actions">
+              <button class="btn btn-primary magnetic" id="scanBtn" type="button">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+                Escanear a fondo
+              </button>
+              <button class="btn btn-clean" id="cleanBtn" type="button" hidden>
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17l11-11"/></svg>
+                Limpiar 47,3 GB
+              </button>
+            </div>
+          </div>
+
+          <!-- Momento Pro -->
+          <div class="pro-moment" id="proMoment" hidden>
+            <div class="pro-moment-card">
+              <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2.2"/><path d="M8 11V7.8a4 4 0 0 1 8 0V11"/></svg>
+              <h3>La limpieza con un clic es cosa de Sweepy&nbsp;Pro</h3>
+              <p>El análisis es gratis. Siempre. La limpieza con un clic y el módulo Salud se desbloquean con Sweepy Pro: 2,99 €/mes con 1 mes de prueba gratis.</p>
+              <div class="pro-moment-actions">
+                <a class="btn btn-primary magnetic" href="#pro">Ver Sweepy Pro</a>
+                <button class="btn btn-link" id="rescanBtn" type="button">Volver a escanear</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4 · SEGURO POR DISEÑO ============ -->
+    <section class="section" id="seguridad">
+      <header class="sec-head" data-reveal>
+        <p class="eyebrow">Seguro por diseño</p>
+        <h2>Limpieza sin <span class="grad">sustos</span>.</h2>
+        <p class="sec-sub">Catálogo fijo y curado en código. Sweepy jamás toca tus documentos, fotos o proyectos.</p>
+      </header>
+      <div class="safe-grid" data-reveal-group>
+        <article class="safe-card glass" data-tilt>
+          <span class="safe-icon ic-ice">
+            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 5 6v5.2c0 4.4 3 8.2 7 9.6 4-1.4 7-5.2 7-9.6V6Z"/><path d="m9.2 12.1 2 2 3.8-4"/></svg>
+          </span>
+          <h3>Nada se borra sin tu aprobación</h3>
+          <p>Cada categoría se muestra con su tamaño real y un interruptor. Tú revisas, tú decides, y solo entonces Sweepy limpia.</p>
+        </article>
+        <article class="safe-card glass" data-tilt>
+          <span class="safe-icon ic-mint">
+            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.9-3M4 13a8 8 0 0 0 14.9 3"/><path d="M5.5 4v4h4M18.5 20v-4h-4"/></svg>
+          </span>
+          <h3>Solo cachés regenerables</h3>
+          <p>Únicamente rutas de caché conocidas que el sistema vuelve a crear cuando hacen falta. Tus proyectos y archivos, intocables.</p>
+        </article>
+        <article class="safe-card glass" data-tilt>
+          <span class="safe-icon ic-violet">
+            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="10" rx="5"/><circle cx="8" cy="12" r="2.6"/></svg>
+          </span>
+          <h3>Lo delicado, apagado por defecto</h3>
+          <p>Simuladores, backups de iPhone, modelos LLM o la papelera vienen desactivados y con aviso. Sin sorpresas.</p>
+        </article>
+        <article class="safe-card glass" data-tilt>
+          <span class="safe-icon ic-magenta">
+            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11 12 4l8.5 7"/><path d="M6 9.8V19a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9.8"/></svg>
+          </span>
+          <h3>100 % local, sin telemetría</h3>
+          <p>Sweepy no recoge ni envía ningún dato. La única conexión de red de la app es con el App Store para validar la suscripción.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 5 · MÓDULO SALUD ============ -->
+    <section class="section" id="salud">
+      <header class="sec-head" data-reveal>
+        <p class="eyebrow">Módulo Salud · incluido con Sweepy Pro</p>
+        <h2>Tu Mac, bajo <span class="grad">control</span>.</h2>
+        <p class="sec-sub">Acciones rápidas, batería líquida, procesos, red en vivo, discos externos y recomendaciones de cuidado.</p>
+      </header>
+
+      <div class="health-grid" data-reveal-group>
+        <!-- Memoria -->
+        <article class="health-card glass" data-tilt data-viz>
+          <h3><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 1.8v3.2M15 1.8v3.2M9 19v3.2M15 19v3.2M1.8 9H5M1.8 15H5M19 9h3.2M19 15h3.2"/></svg> Memoria</h3>
+          <div class="gauge-wrap">
+            <svg class="gauge" viewBox="0 0 120 68" aria-hidden="true">
+              <defs>
+                <linearGradient id="gradRam" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#40d4ff"/><stop offset="1" stop-color="#a36bff"/>
+                </linearGradient>
+              </defs>
+              <path class="gauge-bg" d="M12 62 A 48 48 0 0 1 108 62" pathLength="100"/>
+              <path class="gauge-fill" d="M12 62 A 48 48 0 0 1 108 62" pathLength="100" stroke="url(#gradRam)" style="--v:42"/>
+            </svg>
+            <p class="gauge-value"><span data-count="42">42</span> %</p>
+          </div>
+          <p class="health-note">Presión de memoria · 11,4 de 16 GB en uso. Libera RAM con un clic.</p>
+        </article>
+
+        <!-- Batería -->
+        <article class="health-card glass" data-tilt data-viz>
+          <h3><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="16" height="8" rx="2.4"/><path d="M21.5 11v2"/></svg> Batería líquida</h3>
+          <div class="ring-wrap">
+            <svg class="ring" viewBox="0 0 96 96" aria-hidden="true">
+              <defs>
+                <linearGradient id="gradBat" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#5cfab3"/><stop offset="1" stop-color="#40d4ff"/>
+                </linearGradient>
+              </defs>
+              <circle class="ring-bg" cx="48" cy="48" r="40" pathLength="100"/>
+              <circle class="ring-fill" cx="48" cy="48" r="40" pathLength="100" stroke="url(#gradBat)" style="--v:87"/>
+            </svg>
+            <p class="ring-value"><span data-count="87">87</span> %<small>salud</small></p>
+          </div>
+          <ul class="health-mini">
+            <li><strong data-count="312">312</strong> ciclos</li>
+            <li><strong data-count="31">31</strong> °C</li>
+            <li>Modo bajo consumo</li>
+          </ul>
+        </article>
+
+        <!-- CPU -->
+        <article class="health-card glass" data-tilt data-viz>
+          <h3><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2"/><rect x="3.5" y="3.5" width="17" height="17" rx="4"/></svg> CPU por proceso</h3>
+          <ul class="cpu-list">
+            <li><span>Xcode</span><span class="bar"><span class="bar-fill" style="--w:38%"></span></span><strong>38 %</strong></li>
+            <li><span>Chrome</span><span class="bar"><span class="bar-fill" style="--w:21%"></span></span><strong>21 %</strong></li>
+            <li><span>Simulator</span><span class="bar"><span class="bar-fill" style="--w:14%"></span></span><strong>14 %</strong></li>
+            <li><span>node</span><span class="bar"><span class="bar-fill" style="--w:9%"></span></span><strong>9 %</strong></li>
+          </ul>
+          <p class="health-note">Top de procesos con botón para cerrar la app glotona.</p>
+        </article>
+
+        <!-- Acciones rápidas -->
+        <article class="health-card glass" data-tilt>
+          <h3><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2.5 5 13.5h6l-1 8 8-11h-6Z"/></svg> Mantenimiento</h3>
+          <ul class="chip-list">
+            <li>Liberar RAM</li>
+            <li>Purgar DNS</li>
+            <li>Renovar IP</li>
+            <li>Reindexar Spotlight</li>
+            <li>Reiniciar Finder y Dock</li>
+            <li>Vaciar papelera</li>
+          </ul>
+          <p class="health-note">Acciones de mantenimiento a un clic, sin abrir Terminal.</p>
+        </article>
+
+        <!-- Red -->
+        <article class="health-card glass" data-tilt data-viz>
+          <h3><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 13.5c5.2-5.4 13.8-5.4 19 0M5.8 16.6c3.5-3.5 8.9-3.5 12.4 0"/><circle cx="12" cy="19.4" r="1.2"/></svg> Red en vivo</h3>
+          <svg class="spark" viewBox="0 0 220 56" aria-hidden="true" preserveAspectRatio="none">
+            <polyline class="spark-line" points="0,44 18,40 36,42 54,30 72,34 90,18 108,24 126,12 144,20 162,9 180,16 198,7 220,12"/>
+          </svg>
+          <ul class="health-mini">
+            <li><strong>↓ 480</strong> Mb/s</li>
+            <li><strong>↑ 96</strong> Mb/s</li>
+            <li>IP local visible</li>
+          </ul>
+        </article>
+
+        <!-- Ranking de apps -->
+        <article class="health-card glass" data-tilt data-viz>
+          <h3><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg> Apps que más ocupan</h3>
+          <ul class="rank-list">
+            <li><span>Xcode</span><span class="bar"><span class="bar-fill" style="--w:92%"></span></span><strong>11,2 GB</strong></li>
+            <li><span>Photoshop</span><span class="bar"><span class="bar-fill" style="--w:36%"></span></span><strong>4,3 GB</strong></li>
+            <li><span>Final Cut</span><span class="bar"><span class="bar-fill" style="--w:26%"></span></span><strong>3,1 GB</strong></li>
+            <li><span>Chrome</span><span class="bar"><span class="bar-fill" style="--w:11%"></span></span><strong>1,2 GB</strong></li>
+          </ul>
+          <p class="health-note">Ranking de /Applications con «Mostrar en Finder».</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 6 · GALERÍA ============ -->
+    <section class="section" id="galeria">
+      <header class="sec-head" data-reveal>
+        <p class="eyebrow">La app</p>
+        <h2>Tan bonita que <span class="grad">da gusto</span> limpiar.</h2>
+        <p class="sec-sub">Una esfera de cristal viva con los iconos de tus propias apps orbitando a su alrededor. Al escanear, la esfera los absorbe y se tiñe con sus colores.</p>
+      </header>
+
+      <div class="gallery" data-reveal>
+        <div class="gallery-track" id="galleryTrack" tabindex="0" aria-label="Capturas de pantalla de Sweepy (desliza para ver más)">
+          <figure class="shot">
+            <button class="shot-btn" type="button" data-full="assets/screenshot-01-dashboard.png" aria-label="Ampliar captura: panel principal">
+              <img src="assets/screenshot-01-dashboard.png" width="1600" height="1000" loading="lazy" decoding="async" alt="Panel principal de Sweepy: la esfera aurora muestra que el 62 % del disco está libre, con iconos de apps orbitando alrededor.">
+            </button>
+            <figcaption>El panel principal: tu disco, de un vistazo.</figcaption>
+          </figure>
+          <figure class="shot">
+            <button class="shot-btn" type="button" data-full="assets/screenshot-02-escaneo.png" aria-label="Ampliar captura: escaneo en marcha">
+              <img src="assets/screenshot-02-escaneo.png" width="1600" height="1000" loading="lazy" decoding="async" alt="Escaneo en marcha: la esfera absorbe los iconos mientras la lista lateral suma 1,18 GB de basura detectada por categoría.">
+            </button>
+            <figcaption>El escaneo: la esfera absorbe la basura en directo.</figcaption>
+          </figure>
+          <figure class="shot">
+            <button class="shot-btn" type="button" data-full="assets/screenshot-03-revision.png" aria-label="Ampliar captura: pantalla de revisión">
+              <img src="assets/screenshot-03-revision.png" width="1600" height="1000" loading="lazy" decoding="async" alt="Pantalla de revisión de Sweepy: 1,18 GB recuperables en 9 categorías, cada una con su tamaño real y su interruptor.">
+            </button>
+            <figcaption>Revisa cada categoría antes de limpiar. Tú mandas.</figcaption>
+          </figure>
+          <figure class="shot">
+            <button class="shot-btn" type="button" data-full="assets/screenshot-04-paywall.png" aria-label="Ampliar captura: Sweepy Pro">
+              <img src="assets/screenshot-04-paywall.png" width="2880" height="1800" loading="lazy" decoding="async" alt="Pantalla de Sweepy Pro con los planes anual de 19,99 € y mensual de 2,99 €, ambos con un mes de prueba gratis.">
+            </button>
+            <figcaption>Sweepy Pro: limpieza ilimitada con un clic.</figcaption>
+          </figure>
+        </div>
+        <div class="gallery-nav">
+          <button class="gal-btn" id="galPrev" type="button" aria-label="Captura anterior">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m14.5 6-6 6 6 6"/></svg>
+          </button>
+          <div class="gallery-dots" id="galleryDots" role="presentation"></div>
+          <button class="gal-btn" id="galNext" type="button" aria-label="Captura siguiente">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9.5 6 6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7 · SWEEPY PRO ============ -->
+    <section class="section" id="pro">
+      <header class="sec-head" data-reveal>
+        <p class="eyebrow">Sweepy Pro</p>
+        <h2>El análisis es gratis. <span class="grad">Siempre</span>.</h2>
+        <p class="sec-sub">Escanea tu Mac tantas veces como quieras sin pagar nada. La limpieza con un clic y el módulo Salud se desbloquean con Sweepy Pro.</p>
+      </header>
+
+      <div class="billing-toggle-wrap" data-reveal>
+        <div class="billing-toggle" id="billingToggle" data-period="monthly" role="group" aria-label="Periodo de facturación">
+          <span class="bt-thumb" aria-hidden="true"></span>
+          <button class="bt-opt is-active" type="button" data-period="monthly" aria-pressed="true">Mensual</button>
+          <button class="bt-opt" type="button" data-period="yearly" aria-pressed="false">Anual <span class="save-pill">−44 %</span></button>
+        </div>
+      </div>
+
+      <div class="pricing-grid" data-reveal-group>
+        <article class="price-card glass" data-tilt>
+          <h3>Sweepy</h3>
+          <p class="price"><span class="price-num">0 €</span><span class="price-period">para siempre</span></p>
+          <p class="price-note">Sin cuenta. Sin tarjeta. Sin límite de escaneos.</p>
+          <ul class="feat-list">
+            <li>Análisis ilimitado de las 36 categorías</li>
+            <li>Tamaño real de cada categoría</li>
+            <li>Revisión con interruptores por categoría</li>
+            <li>100 % local, cero datos recogidos</li>
+          </ul>
+          <span class="btn btn-soon btn-block" aria-disabled="true">Muy pronto en el Mac App Store</span>
+        </article>
+
+        <article class="price-card price-card--pro glass" data-tilt>
+          <span class="pro-badge">1 mes de prueba gratis</span>
+          <h3>Sweepy Pro</h3>
+          <p class="price">
+            <span class="price-num" id="proPrice">2,99 €</span><span class="price-period" id="proPeriod">/mes</span>
+          </p>
+          <p class="price-note" id="proNote">Cancela cuando quieras desde el App Store.</p>
+          <ul class="feat-list">
+            <li>Todo lo del análisis gratuito</li>
+            <li>Limpieza ilimitada con un clic</li>
+            <li>Módulo Salud completo</li>
+            <li>Restauración de compras y códigos promocionales</li>
+          </ul>
+          <span class="btn btn-primary btn-block btn-soon-solid" aria-disabled="true">Muy pronto en el Mac App Store</span>
+        </article>
+      </div>
+      <p class="pricing-footnote" data-reveal>Suscripción gestionada íntegramente por el App Store. Sweepy nunca ve tus datos de pago.</p>
+    </section>
+
+    <!-- ============ 8 · FAQ ============ -->
+    <section class="section section--narrow" id="faq">
+      <header class="sec-head" data-reveal>
+        <p class="eyebrow">Dudas razonables</p>
+        <h2>Preguntas <span class="grad">frecuentes</span>.</h2>
+      </header>
+
+      <div class="faq-list" data-reveal-group>
+        <details class="faq-item glass">
+          <summary>¿Qué hace exactamente Sweepy?<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"/></svg></summary>
+          <p>Escanea 36 categorías de basura en 5 grupos —Desarrollo, Inteligencia Artificial, Sistema, Aplicaciones y Navegadores—, te enseña exactamente qué ocupa cuánto y elimina solo lo que tú apruebes.</p>
+        </details>
+        <details class="faq-item glass">
+          <summary>¿Es seguro borrar lo que encuentra?<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"/></svg></summary>
+          <p>Sí. Sweepy trabaja con un catálogo fijo y curado en código de rutas de caché conocidas y regenerables. Jamás toca tus documentos, fotos o proyectos, y las categorías delicadas vienen desactivadas por defecto con aviso.</p>
+        </details>
+        <details class="faq-item glass">
+          <summary>¿De verdad el análisis es gratis?<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"/></svg></summary>
+          <p>Gratis e ilimitado, siempre. Escanea tu Mac tantas veces como quieras y mira cuánto espacio puedes recuperar sin pagar nada. Solo la limpieza con un clic (y el módulo Salud) requieren Sweepy Pro.</p>
+        </details>
+        <details class="faq-item glass">
+          <summary>¿Cuánto cuesta Sweepy Pro?<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"/></svg></summary>
+          <p>2,99 €/mes o 19,99 €/año (un 44 % de ahorro), con 1 mes de prueba gratis para nuevos suscriptores. Se gestiona desde el App Store y puedes cancelar cuando quieras.</p>
+        </details>
+        <details class="faq-item glass">
+          <summary>¿Recopila algún dato?<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"/></svg></summary>
+          <p>Ninguno. Sweepy es 100 % local: sin cuentas, sin analíticas, sin rastreadores. Su única conexión de red es con los servidores de Apple (StoreKit) para validar la suscripción.</p>
+        </details>
+        <details class="faq-item glass">
+          <summary>¿Por qué no usar otro limpiador cualquiera?<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"/></svg></summary>
+          <p>Los limpiadores tradicionales ignoran la basura del desarrollo moderno: DerivedData de Xcode, simuladores de iOS, cachés de npm, runtimes de agentes de IA o modelos LLM descargados. Sweepy nació exactamente para eso.</p>
+        </details>
+        <details class="faq-item glass">
+          <summary>¿Cuándo estará disponible?<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9.5 6 6 6-6"/></svg></summary>
+          <p>Muy pronto en el Mac App Store. El análisis será gratuito desde el primer día. Si tienes dudas mientras tanto, escribe a <a href="mailto:aleix.carles@vibenotch.es">aleix.carles@vibenotch.es</a>.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============ 9 · CROSS-PROMO ============ -->
+    <section class="section" id="apps">
+      <header class="sec-head" data-reveal>
+        <p class="eyebrow">La familia</p>
+        <h2>Más apps para <span class="grad">tu Mac</span>.</h2>
+      </header>
+      <div class="promo-grid" data-reveal-group>
+        <a class="promo-card glass" href="../" data-tilt>
+          <img src="../assets/VibeNotch%20icon-iOS-Default-1024x1024@1x.png" width="72" height="72" loading="lazy" decoding="async" alt="Icono de VibeNotch">
+          <div>
+            <h3>VibeNotch</h3>
+            <p>La isla dinámica del notch de tu MacBook: música, batería y utilidades, como de fábrica.</p>
+            <span class="promo-link">Descubrir VibeNotch
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg>
+            </span>
+          </div>
+        </a>
+        <a class="promo-card glass" href="../edgeflow/" data-tilt>
+          <img src="../edgeflow/EdgeFlow%20icon-iOS-Default-1024x1024@1x.png" width="72" height="72" loading="lazy" decoding="async" alt="Icono de EdgeFlow">
+          <div>
+            <h3>EdgeFlow</h3>
+            <p>Paneles de atajos que se despliegan en los bordes de tu pantalla: apps, URLs y Apple Shortcuts.</p>
+            <span class="promo-link">Descubrir EdgeFlow
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg>
+            </span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ 10 · CTA FINAL ============ -->
+    <section class="final-cta" id="descargar">
+      <div class="final-cta-inner glass" data-reveal>
+        <img src="assets/sweepy-icon-256.png" width="96" height="96" loading="lazy" decoding="async" alt="Icono de Sweepy: esfera aurora con iconos de apps orbitando">
+        <h2>Que tu disco vuelva a <span class="grad">respirar</span>.</h2>
+        <p>Sweepy está dando sus últimos retoques antes de aterrizar. El análisis será gratis desde el día uno.</p>
+        <div class="hero-ctas">
+          <span class="btn btn-soon" aria-disabled="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M11.624 7.222c-.876 0-2.232-.996-3.66-.96-1.884.024-3.612 1.092-4.584 2.784-1.956 3.396-.504 8.412 1.404 11.172.936 1.344 2.04 2.856 3.504 2.808 1.404-.06 1.932-.912 3.636-.912 1.692 0 2.172.912 3.66.876 1.512-.024 2.472-1.368 3.396-2.724 1.068-1.56 1.512-3.072 1.536-3.156-.036-.012-2.94-1.128-2.976-4.488-.024-2.808 2.292-4.152 2.4-4.212-1.32-1.932-3.348-2.148-4.056-2.196-1.848-.144-3.396 1.008-4.26 1.008Zm3.12-2.832c.78-.936 1.296-2.244 1.152-3.54-1.116.048-2.46.744-3.264 1.68-.72.828-1.344 2.16-1.176 3.432 1.236.096 2.508-.636 3.288-1.572Z"/></svg>
+            Muy pronto en el Mac App Store
+          </span>
+          <a class="btn btn-ghost magnetic" href="#demo">Volver a la demo</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="./">
+          <img src="assets/sweepy-icon-256.png" width="34" height="34" loading="lazy" decoding="async" alt="">
+          <span>Sweepy</span>
+        </a>
+        <p>Limpieza profunda para Macs de desarrollo. Hecha con cariño (y SwiftUI) por un desarrollador indie.</p>
+      </div>
+      <nav class="footer-col" aria-label="Apps">
+        <h3>Apps</h3>
+        <a href="../">VibeNotch</a>
+        <a href="../edgeflow/">EdgeFlow</a>
+        <a href="./">Sweepy</a>
+      </nav>
+      <nav class="footer-col" aria-label="Soporte">
+        <h3>Soporte</h3>
+        <a href="mailto:aleix.carles@vibenotch.es?subject=Soporte%20de%20Sweepy">Soporte de Sweepy</a>
+        <a href="mailto:aleix.carles@vibenotch.es">aleix.carles@vibenotch.es</a>
+      </nav>
+      <nav class="footer-col" aria-label="Legal">
+        <h3>Legal</h3>
+        <a href="privacy.html">Privacidad</a>
+      </nav>
+    </div>
+    <p class="footer-copy">© 2026 VibeNotch</p>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Captura ampliada">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Cerrar la captura ampliada">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <img id="lightboxImg" alt="">
+  </div>
+
+  <script src="sweepy.js" defer></script>
+</body>
+</html>

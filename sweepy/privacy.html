@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Política de privacidad — Sweepy</title>
+  <meta name="description" content="Política de privacidad de Sweepy: la app no recoge, almacena ni transmite ningún dato. Todo el procesamiento ocurre localmente en tu Mac.">
+  <meta name="author" content="Aleix Carles">
+  <link rel="canonical" href="https://vibenotch.es/sweepy/privacy.html">
+  <meta name="theme-color" content="#040406">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sweepy">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="Política de privacidad — Sweepy">
+  <meta property="og:description" content="Sweepy no recoge, almacena ni transmite ningún dato. Todo ocurre localmente en tu Mac.">
+  <meta property="og:url" content="https://vibenotch.es/sweepy/privacy.html">
+  <meta property="og:image" content="https://vibenotch.es/sweepy/assets/promo-subscription-1024.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Política de privacidad — Sweepy">
+  <meta name="twitter:description" content="Sweepy no recoge, almacena ni transmite ningún dato. Todo ocurre localmente en tu Mac.">
+  <meta name="twitter:image" content="https://vibenotch.es/sweepy/assets/promo-subscription-1024.png">
+
+  <!-- Favicons (compartidos del sitio) -->
+  <link rel="icon" href="../assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon/favicon.svg">
+  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="sweepy.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <!-- Fondo: starfield + glows -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="bg-glows" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="site-header">
+    <nav class="nav-pill" id="navPill" aria-label="Navegación principal">
+      <a class="brand" href="./">
+        <img src="assets/sweepy-icon-256.png" width="30" height="30" alt="" decoding="async">
+        <span>Sweepy</span>
+      </a>
+      <div class="nav-center" id="navLinks">
+        <a href="../">VibeNotch</a>
+        <a href="../edgeflow/">EdgeFlow</a>
+        <a href="./" class="active" aria-current="page">Sweepy</a>
+        <a class="nav-cta-mobile" href="./#descargar">Muy pronto en el Mac App Store</a>
+      </div>
+      <a class="nav-cta magnetic" href="./#descargar">Muy pronto</a>
+      <button class="nav-burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="legal-main" id="main">
+    <header data-reveal>
+      <p class="eyebrow">Legal</p>
+      <h1>Política de privacidad de <span class="grad">Sweepy</span></h1>
+      <p class="legal-updated">Última actualización: junio de 2026</p>
+    </header>
+
+    <div class="legal-summary glass" data-reveal>
+      <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 5 6v5.2c0 4.4 3 8.2 7 9.6 4-1.4 7-5.2 7-9.6V6Z"/><path d="m9.2 12.1 2 2 3.8-4"/></svg>
+      <div>
+        <h2>Tu privacidad, en corto</h2>
+        <p>Sweepy funciona completamente en tu Mac. Sin cuentas, sin analíticas, sin rastreadores y sin publicidad. Lo que hay en tu disco se queda en tu disco.</p>
+      </div>
+    </div>
+
+    <article class="legal-body glass" data-reveal>
+      <h2>Resumen: no recogemos ningún dato</h2>
+      <p>Sweepy funciona completamente en tu Mac. No recoge, almacena, transmite ni vende ningún dato personal ni de uso. No hay cuentas, no hay analíticas, no hay rastreadores y no hay publicidad.</p>
+
+      <h2>Qué hace la app con tus archivos</h2>
+      <p>Sweepy analiza carpetas de caché conocidas dentro de tu carpeta de usuario para calcular su tamaño y, solo si tú lo apruebas, eliminarlas. Todo este procesamiento ocurre localmente en tu equipo. Ningún nombre de archivo, ruta ni contenido sale de tu Mac.</p>
+
+      <h2>Acceso a carpetas</h2>
+      <p>En el primer arranque, Sweepy te pide acceso a tu carpeta de usuario mediante el panel estándar de macOS. Este permiso se guarda de forma segura en tu equipo (security-scoped bookmark) y puedes revocarlo eliminando la app.</p>
+
+      <h2>Compras</h2>
+      <p>La suscripción Sweepy Pro se gestiona íntegramente a través del App Store de Apple. Sweepy no ve ni almacena ningún dato de pago. Consulta la <a href="https://www.apple.com/legal/privacy/" rel="noopener">política de privacidad de Apple</a> para las compras.</p>
+
+      <h2>Conexiones de red</h2>
+      <p>La única comunicación de red de la app es con los servidores de Apple (StoreKit) para validar la suscripción.</p>
+
+      <h2>Contacto</h2>
+      <p>Si tienes cualquier duda: <a href="mailto:aleix.carles@vibenotch.es">aleix.carles@vibenotch.es</a></p>
+    </article>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="./">
+          <img src="assets/sweepy-icon-256.png" width="34" height="34" loading="lazy" decoding="async" alt="">
+          <span>Sweepy</span>
+        </a>
+        <p>Limpieza profunda para Macs de desarrollo. Hecha con cariño (y SwiftUI) por un desarrollador indie.</p>
+      </div>
+      <nav class="footer-col" aria-label="Apps">
+        <h3>Apps</h3>
+        <a href="../">VibeNotch</a>
+        <a href="../edgeflow/">EdgeFlow</a>
+        <a href="./">Sweepy</a>
+      </nav>
+      <nav class="footer-col" aria-label="Soporte">
+        <h3>Soporte</h3>
+        <a href="mailto:aleix.carles@vibenotch.es?subject=Soporte%20de%20Sweepy">Soporte de Sweepy</a>
+        <a href="mailto:aleix.carles@vibenotch.es">aleix.carles@vibenotch.es</a>
+      </nav>
+      <nav class="footer-col" aria-label="Legal">
+        <h3>Legal</h3>
+        <a href="privacy.html" aria-current="page">Privacidad</a>
+      </nav>
+    </div>
+    <p class="footer-copy">© 2026 VibeNotch</p>
+  </footer>
+
+  <script src="sweepy.js" defer></script>
+</body>
+</html>
