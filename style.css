@@ -98,7 +98,13 @@ body.recording-ad .demo-disclaimer {
 }
 
 html.recording-ad .hero {
-    padding-top: clamp(150px, 16vh, 190px);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
 }
 
 html.recording-ad .hero h1 {
@@ -123,11 +129,7 @@ html.recording-ad .hero p {
 }
 
 html.recording-ad .notch-ad-stage {
-    width: min(1600px, 100vw);
-}
-
-html.recording-ad #demo {
-    padding-bottom: max(900px, 85vh);
+    width: min(1100px, 82vw);
 }
 
 html.recording-ad #demo ~ * {

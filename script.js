@@ -121,6 +121,25 @@ document.addEventListener('DOMContentLoaded', () => {
     let videoUnlocked = false;
     const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
+    if (isRecording) {
+        const adjustRecordingLayout = () => {
+            const vh = window.innerHeight;
+            const stage = document.querySelector('.notch-ad-stage');
+            const demoSection = document.getElementById('demo');
+            if (stage && demoSection) {
+                const rect = stage.getBoundingClientRect();
+                const H = rect.height || (stage.offsetWidth * 10 / 16);
+                const spacerHeight = Math.max(0, (vh - H) / 2);
+                demoSection.style.paddingBottom = `${spacerHeight}px`;
+            }
+        };
+        window.addEventListener('load', adjustRecordingLayout);
+        window.addEventListener('resize', adjustRecordingLayout);
+        setTimeout(adjustRecordingLayout, 100);
+        setTimeout(adjustRecordingLayout, 500);
+        setTimeout(adjustRecordingLayout, 1500);
+    }
+
     // MOBILE: Unlock video on first touch (required by iOS/Android)
     const unlockVideo = () => {
         if (introVideo && !videoUnlocked) {
@@ -187,14 +206,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const relativeScroll = scroll - introOffset;
 
         if (hero && relativeScroll > -vh) {
-            hero.style.transform = `translateY(${Math.max(relativeScroll * 0.2, 0)}px)`;
+            if (!isRecording) {
+                hero.style.transform = `translateY(${Math.max(relativeScroll * 0.2, 0)}px)`;
+            } else {
+                hero.style.transform = '';
+            }
             const heroFadeDistance = isRecording ? 360 : 700;
             hero.style.opacity = Math.max(0, Math.min(1, 1 - (relativeScroll / heroFadeDistance)));
         }
 
         if (adSection && adFrame && !prefersReducedMotion) {
-            const adRect = adSection.getBoundingClientRect();
-            const adProgress = clamp((vh - adRect.top) / (vh + adRect.height), 0, 1);
+            const startScroll = adSection.offsetTop - vh;
+            const endScroll = document.documentElement.scrollHeight - vh;
+            const adProgress = endScroll > startScroll 
+                ? clamp((scroll - startScroll) / (endScroll - startScroll), 0, 1)
+                : 0;
+
             const titleArc = adTitle ? Math.sin(adProgress * Math.PI) : 0;
             const videoReveal = clamp((adProgress - 0.04) / 0.34, 0, 1);
             const titleReturn = clamp((adProgress - 0.62) / 0.38, 0, 1);
