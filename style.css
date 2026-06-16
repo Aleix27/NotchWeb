@@ -123,7 +123,15 @@ html.recording-ad .hero p {
 }
 
 html.recording-ad .notch-ad-stage {
-    width: min(880px, 75vw);
+    width: min(1600px, 100vw);
+}
+
+html.recording-ad #demo {
+    padding-bottom: max(900px, 85vh);
+}
+
+html.recording-ad #demo ~ * {
+    display: none !important;
 }
 
 /* Nav */
