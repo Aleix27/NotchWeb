@@ -77,6 +77,7 @@ body {
 
 html.recording-ad,
 body.recording-ad {
+    scroll-behavior: auto !important;
     scrollbar-width: none;
     cursor: none;
 }
