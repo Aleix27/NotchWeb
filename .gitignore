@@ -1,0 +1,11 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+**/._*
+**/.DS_Store
+
+# Ignore large video files over 100MB (GitHub limit)
+assets/Grabación de pantalla 2026-03-11 a las 20.23.37.mov
+
+# Ignore raw frame directories under exports but track root files (like MP4 exports)
+exports/*/

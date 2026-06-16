@@ -75,6 +75,57 @@ body {
     overflow-x: hidden;
 }
 
+html.recording-ad,
+body.recording-ad {
+    scrollbar-width: none;
+    cursor: none;
+}
+
+html.recording-ad::-webkit-scrollbar,
+body.recording-ad::-webkit-scrollbar {
+    display: none;
+}
+
+html.recording-ad nav,
+html.recording-ad .app-cabinet,
+html.recording-ad .cursor-glow,
+html.recording-ad .demo-disclaimer,
+body.recording-ad nav,
+body.recording-ad .app-cabinet,
+body.recording-ad .cursor-glow,
+body.recording-ad .demo-disclaimer {
+    display: none !important;
+}
+
+html.recording-ad .hero {
+    padding-top: clamp(150px, 16vh, 190px);
+}
+
+html.recording-ad .hero h1 {
+    margin-bottom: 26px;
+}
+
+html.recording-ad .hero h1 .giant {
+    font-size: clamp(64px, 11vw, 130px);
+    line-height: 0.76;
+}
+
+html.recording-ad .hero h1 .soul {
+    font-size: clamp(26px, 3.8vw, 46px);
+    margin-top: 2px;
+}
+
+html.recording-ad .hero p {
+    max-width: 650px;
+    font-size: clamp(16px, 1.6vw, 21px);
+    line-height: 1.25;
+    margin-top: 20px;
+}
+
+html.recording-ad .notch-ad-stage {
+    width: min(880px, 75vw);
+}
+
 /* Nav */
 nav {
     position: fixed;
@@ -219,15 +270,127 @@ nav {
     opacity: 0.8;
 }
 
-/* Demo Mac */
+/* Demo Ad */
 .demo-section {
-    padding: 0 0 100px;
+    padding: clamp(18px, 4vw, 64px) 0 clamp(64px, 8vw, 112px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0;
+    gap: clamp(8px, 1.6vw, 22px);
     background: #ffffff;
+}
+
+.notch-ad-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.notch-ad-copy {
+    position: relative;
+    z-index: 2;
+    width: min(980px, 100%);
+    text-align: center;
+}
+
+.notch-ad-eyebrow {
+    display: inline-flex;
+    margin-bottom: 14px;
+    color: #6e6e73;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+.notch-ad-title {
+    margin: 0;
+    color: #111;
+    font-size: clamp(56px, 10vw, 130px); /* Made the title smaller */
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 0.78;
+    text-transform: uppercase;
+    transform-origin: 50% 52%;
+    will-change: transform;
+}
+
+.notch-ad-copy p {
+    max-width: 720px;
+    margin: clamp(18px, 3vw, 32px) auto 0;
+    color: var(--text-sec);
+    font-size: clamp(18px, 2.2vw, 28px);
+    font-weight: 560;
+    line-height: 1.24;
+    letter-spacing: 0;
+}
+
+.notch-ad-stage {
+    position: relative;
+    z-index: 3;
+    width: min(1200px, 85vw); /* Reduced width to make the MacBook mockup smaller */
+    margin: 0 auto;
+    perspective: 1200px;
+}
+
+.notch-demo-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    transform-origin: 50% 38%;
+    will-change: transform, opacity;
+}
+
+.notch-demo-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: scale(1.02);
+}
+
+.notch-ad-conversion {
+    width: min(760px, 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-top: clamp(14px, 2vw, 26px);
+    text-align: center;
+}
+
+.notch-ad-conversion p {
+    max-width: 560px;
+    color: #3d3d42;
+    font-size: clamp(17px, 1.7vw, 22px);
+    font-weight: 650;
+    line-height: 1.24;
+}
+
+.notch-ad-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.18);
+    transition: transform 0.25s var(--liquid-ease), box-shadow 0.25s var(--liquid-ease);
+}
+
+.notch-ad-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
 }
 
 .macbook-air {
@@ -258,7 +421,7 @@ nav {
 .demo-disclaimer {
     display: block;
     width: 100%;
-    margin-top: 120px;
+    margin-top: clamp(8px, 2vw, 22px);
     padding: 0 20px;
     font-size: 11px;
     color: #999;
@@ -2031,9 +2194,51 @@ footer.footer {
         height: 32px;
     }
 
-    /* MacBook Demo */
+    /* Notch Ad Demo */
     .demo-section {
-        padding: 0 10px 20px;
+        padding: 8px 0 56px;
+        gap: 10px;
+    }
+
+    .notch-ad-copy {
+        width: 100%;
+    }
+
+    .notch-ad-eyebrow {
+        margin-bottom: 10px;
+        font-size: 10px;
+    }
+
+    .notch-ad-title {
+        font-size: clamp(40px, 14vw, 68px); /* Made mobile title smaller */
+        letter-spacing: 0;
+    }
+
+    .notch-ad-copy p {
+        max-width: 360px;
+        margin-top: 16px;
+        font-size: 17px;
+        line-height: 1.28;
+    }
+
+    .notch-ad-stage {
+        width: 100vw;
+        margin-top: 0;
+    }
+
+    .notch-demo-frame {
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .notch-ad-conversion {
+        margin-top: 10px;
+        gap: 14px;
+    }
+
+    .notch-ad-conversion p {
+        max-width: 340px;
+        font-size: 16px;
     }
 
     .macbook-air {
@@ -2042,10 +2247,10 @@ footer.footer {
     }
 
     .demo-disclaimer {
-        margin-top: 30px;
+        margin-top: 8px;
         font-size: 10px;
         line-height: 1.4;
-        padding: 0 30px;
+        padding: 0 24px;
     }
 
     .web-notch-hitbox {

@@ -20,6 +20,15 @@
     <meta name="twitter:description"
         content="La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.">
     <link rel="canonical" href="https://vibenotch.es/">
+    <script>
+        if (new URLSearchParams(window.location.search).has('record')) {
+            document.documentElement.classList.add('recording-ad');
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
+            window.addEventListener('load', () => window.scrollTo(0, 0), { once: true });
+        }
+    </script>
     <link rel="stylesheet" href="style.css">
     <style>
         /* Footer Styles for More Apps */
@@ -367,67 +376,17 @@
         </div>
     </header>
 
-    <section id="demo" class="demo-section">
-        <div class="macbook-air">
-            <img src="assets/macbook_para_simular_notch_inicio.webp" class="mac-base-img" alt="MacBook Air Simulation">
-            
-            <div class="mac-screen-overlay">
-                <div class="web-notch-hitbox"></div>
-                <div id="web-notch" class="web-notch">
-                    <div class="notch-camera">
-                        <span class="camera-lens"></span>
-                        <span class="camera-led"></span>
-                    </div>
-                    
-                    <div class="island-compact">
-                        <div class="compact-art"
-                            style="background-image: url('assets/album_art.png'); background-size: cover;"></div>
-                        <div class="compact-visualizer">
-                            <span></span><span></span><span></span><span></span><span></span><span></span>
-                        </div>
-                    </div>
-
-                    <div class="island-expanded">
-                        <div class="exp-top-row">
-                            <div class="battery-status">
-                                <span class="batt-icon">🔋</span>
-                                <span>46%</span>
-                            </div>
-                            <div class="top-right-icons">
-                                <span class="gear-icon">⚙️</span>
-                            </div>
-                        </div>
-
-                        <div class="exp-mid-row">
-                            <div class="main-album-art"
-                                style="background-image: url('assets/album_art.png'); background-size: cover; background-position: center;">
-                            </div>
-                            <div class="song-info-block">
-                                <div class="playback-status">
-                                    <span class="apple-logo"></span>
-                                    <span class="status-text">PAUSED</span>
-                                </div>
-                                <div class="song-title">Digital Horizon</div>
-                                <div class="artist-name">Antigravity Arts</div>
-                                <div class="progress-container">
-                                    <div class="progress-bar">
-                                        <div class="progress-knob"></div>
-                                    </div>
-                                    <div class="time-stamp">-2:40</div>
-                                </div>
-                            </div>
-                            <div class="main-controls">
-                                <span class="control-btn">⏮</span>
-                                <span class="control-btn play">▶</span>
-                                <span class="control-btn">⏭</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <section id="demo" class="demo-section notch-ad-section" aria-label="Anuncio de VibeNotch">
+        <div class="notch-ad-stage" aria-label="MacBook mostrando VibeNotch en acción">
+            <div class="notch-demo-frame">
+                <video class="notch-demo-video" autoplay muted loop playsinline preload="metadata"
+                    poster="assets/notch-demo-poster.jpg">
+                    <source src="assets/notch-demo-cropped.mp4" type="video/mp4">
+                    Tu navegador no soporta el video.
+                </video>
             </div>
         </div>
-        <p class="demo-disclaimer">Esta es una demostración interactiva. La experiencia real en la aplicación nativa es
-            superior.</p>
+        <p class="demo-disclaimer">Grabación real de VibeNotch en macOS, recortada para mostrar solo la experiencia.</p>
     </section>
 
     <!-- IMMERSIVE VIDEO -->

@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+    if (new URLSearchParams(window.location.search).has('record')) {
+        document.documentElement.classList.add('recording-ad');
+        document.body.classList.add('recording-ad');
+    }
+
     // 1. REVEAL OBSERVER WITH STAGGER
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
@@ -41,43 +46,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusText = document.querySelector('.status-text');
     let isPlaying = false;
 
-    const checkHover = () => {
-        if (window.innerWidth > 768) {
-            setTimeout(() => {
-                if (!notch.matches(':hover') && !trigger.matches(':hover')) {
-                    notch.classList.remove('active');
-                }
-            }, 50);
-        }
-    };
+    if (trigger && notch) {
+        const checkHover = () => {
+            if (window.innerWidth > 768) {
+                setTimeout(() => {
+                    if (!notch.matches(':hover') && !trigger.matches(':hover')) {
+                        notch.classList.remove('active');
+                    }
+                }, 50);
+            }
+        };
 
-    trigger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        notch.classList.toggle('active');
-    });
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            notch.classList.toggle('active');
+        });
 
-    trigger.addEventListener('mouseenter', () => {
-        if (window.innerWidth > 768) {
-            notch.classList.add('active');
-        }
-    });
+        trigger.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 768) {
+                notch.classList.add('active');
+            }
+        });
 
-    notch.addEventListener('mouseenter', () => {
-        if (window.innerWidth > 768) {
-            notch.classList.add('active');
-        }
-    });
+        notch.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 768) {
+                notch.classList.add('active');
+            }
+        });
 
-    trigger.addEventListener('mouseleave', checkHover);
-    notch.addEventListener('mouseleave', checkHover);
+        trigger.addEventListener('mouseleave', checkHover);
+        notch.addEventListener('mouseleave', checkHover);
 
-    document.addEventListener('click', (e) => {
-        if (!notch.contains(e.target) && !trigger.contains(e.target)) {
-            notch.classList.remove('active');
-        }
-    });
+        document.addEventListener('click', (e) => {
+            if (!notch.contains(e.target) && !trigger.contains(e.target)) {
+                notch.classList.remove('active');
+            }
+        });
+    }
 
-    if (playBtn) {
+    if (playBtn && statusText) {
         playBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             isPlaying = !isPlaying;
@@ -102,11 +109,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. PARALLAX HERO & MAC & INTRO VIDEO SCRUBBING
     const hero = document.querySelector('.hero');
     const mac = document.querySelector('.macbook-air');
+    const adSection = document.querySelector('.notch-ad-section');
+    const adTitle = document.querySelector('.notch-ad-title');
+    const adFrame = document.querySelector('.notch-demo-frame');
     const introSection = document.querySelector('.intro-scroll-section');
     const introVideo = document.getElementById('intro-video');
     const nav = document.querySelector('nav');
     const isMobile = window.innerWidth <= 768;
+    const isRecording = document.documentElement.classList.contains('recording-ad');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let videoUnlocked = false;
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
     // MOBILE: Unlock video on first touch (required by iOS/Android)
     const unlockVideo = () => {
@@ -175,10 +188,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (hero && relativeScroll > -vh) {
             hero.style.transform = `translateY(${Math.max(relativeScroll * 0.2, 0)}px)`;
-            hero.style.opacity = 1 - (relativeScroll / 700);
+            const heroFadeDistance = isRecording ? 360 : 700;
+            hero.style.opacity = Math.max(0, Math.min(1, 1 - (relativeScroll / heroFadeDistance)));
         }
 
-        if (mac && relativeScroll > -vh && relativeScroll < 1000) {
+        if (adSection && adFrame && !prefersReducedMotion) {
+            const adRect = adSection.getBoundingClientRect();
+            const adProgress = clamp((vh - adRect.top) / (vh + adRect.height), 0, 1);
+            const titleArc = adTitle ? Math.sin(adProgress * Math.PI) : 0;
+            const videoReveal = clamp((adProgress - 0.04) / 0.34, 0, 1);
+            const titleReturn = clamp((adProgress - 0.62) / 0.38, 0, 1);
+
+            const titleTravel = isMobile ? 38 : 72;
+            const titleLift = isMobile ? 18 : 30;
+            const titleY = (titleTravel * titleArc) - (titleLift * titleReturn);
+            const titleScale = 1 - (0.09 * titleArc) + (0.015 * titleReturn);
+            const frameY = 42 - (videoReveal * 58) + (titleReturn * 10);
+            const frameScale = 0.82 + (videoReveal * 0.08) - (titleReturn * 0.015);
+
+            if (adTitle) {
+                adTitle.style.transform = `translate3d(0, ${titleY}px, 0) scale(${titleScale})`;
+            }
+            adFrame.style.opacity = 0.76 + (videoReveal * 0.24);
+            adFrame.style.transform = `translate3d(0, ${frameY}px, 0) scale(${frameScale})`;
+        } else if (adSection && adFrame) {
+            if (adTitle) {
+                adTitle.style.transform = '';
+            }
+            adFrame.style.transform = '';
+            adFrame.style.opacity = '';
+        } else if (mac && relativeScroll > -vh && relativeScroll < 1000) {
             mac.style.transform = `perspective(1000px) rotateX(${Math.max(relativeScroll * 0.02, 0)}deg) translateY(${Math.max(relativeScroll * 0.08, 0)}px)`;
         }
 
@@ -191,6 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ticking = true;
         }
     });
+    updateVideoFrame();
 
     // Mobile autoplay removed to enforce scroll scrubbing
 
@@ -293,12 +333,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 12. INITIAL NUDGE
-    setTimeout(() => {
-        notch.style.transform = 'translateX(-50%) translateY(5px)';
+    if (notch) {
         setTimeout(() => {
-            notch.style.transform = 'translateX(-50%) translateY(0)';
-        }, 400);
-    }, 1200);
+            notch.style.transform = 'translateX(-50%) translateY(5px)';
+            setTimeout(() => {
+                notch.style.transform = 'translateX(-50%) translateY(0)';
+            }, 400);
+        }, 1200);
+    }
 
     // 13. MOBILE MENU TOGGLE
     const menuBtn = document.getElementById('mobile-menu-btn');
@@ -427,7 +469,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 18. LAZY LOAD & PLAY/PAUSE AUTOPLAY VIDEOS (Performance Optimization for Mobile)
-    const autoplayVideos = document.querySelectorAll('.bright-sim-video, #promo-video');
+    const autoplayVideos = document.querySelectorAll('.bright-sim-video, #promo-video, .notch-demo-video');
     if ('IntersectionObserver' in window) {
         const videoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
