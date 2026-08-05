@@ -496,7 +496,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 18. LAZY LOAD & PLAY/PAUSE AUTOPLAY VIDEOS (Performance Optimization for Mobile)
-    const autoplayVideos = document.querySelectorAll('.bright-sim-video, #promo-video, .notch-demo-video');
+    // El vídeo principal lo controla premium.js mediante el scroll.
+    const autoplayVideos = document.querySelectorAll('.bright-sim-video, #promo-video');
     if ('IntersectionObserver' in window) {
         const videoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {

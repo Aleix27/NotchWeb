@@ -244,8 +244,10 @@
             const video = document.querySelector('.notch-demo-video');
             if (!section || !video || recording) return;
 
-            // En táctil o pantallas pequeñas el seek es poco fiable: reproducción normal.
-            if (coarse || reduced || window.innerWidth <= 900) {
+            const mobileScrub = coarse || window.innerWidth <= 900;
+
+            // El movimiento reducido conserva una reproducción convencional.
+            if (reduced) {
                 video.setAttribute('autoplay', '');
                 video.play().catch(() => { });
                 return;
@@ -254,49 +256,59 @@
             // En escritorio se sube a la copia de alta resolución; el móvil se
             // queda con la ligera y ahorra varios megas.
             const hdSource = video.querySelector('source[data-hd]');
-            if (hdSource) {
+            if (hdSource && !mobileScrub) {
                 hdSource.src = hdSource.dataset.hd;
                 video.load();
             }
 
             section.classList.add('vn-scrub');
+            section.classList.toggle('vn-scrub-mobile', mobileScrub);
             video.removeAttribute('autoplay');
             video.pause();
-            // script.js intenta reproducirlo al entrar en pantalla: lo neutralizamos
-            video.play = () => Promise.resolve();
 
             const bar = document.createElement('div');
             bar.className = 'vn-scrub-bar';
             bar.innerHTML = '<i></i>';
             const fill = bar.firstElementChild;
-            (section.querySelector('.notch-ad-stage') || section).appendChild(bar);
+            const stage = section.querySelector('.notch-ad-stage');
+            (stage || section).appendChild(bar);
 
             let duration = 0;
             let target = 0;
             let current = 0;
             let running = false;
             let top = 0, span = 1;
+            let mobileSeekFrame = 0;
+            let failed = false;
 
             const measure = () => {
                 const r = section.getBoundingClientRect();
                 top = r.top + window.scrollY;
-                span = Math.max(1, section.offsetHeight - window.innerHeight);
+                const viewportHeight = stage?.clientHeight
+                    || window.visualViewport?.height
+                    || window.innerHeight;
+                span = Math.max(1, section.offsetHeight - viewportHeight);
             };
             window.addEventListener('resize', measure);
+            window.addEventListener('orientationchange', measure);
+            window.visualViewport?.addEventListener('resize', measure, { passive: true });
             measure();
 
             // Si el navegador no puede decodificar el vídeo, se vuelve al modo normal
             const bailOut = () => {
+                if (failed) return;
+                failed = true;
                 section.classList.remove('vn-scrub');
+                section.classList.remove('vn-scrub-mobile');
                 bar.remove();
-                delete video.play;
+                video.style.removeProperty('transform');
                 video.setAttribute('autoplay', '');
-                video.play && video.play().catch(() => { });
+                video.play().catch(() => { });
             };
             video.addEventListener('error', bailOut, { once: true });
             setTimeout(() => { if (!duration) bailOut(); }, 6000);
 
-            // Interpolación suave: el vídeo persigue la posición del scroll
+            // Escritorio: interpolación suave entre la posición y el fotograma.
             const tick = () => {
                 const diff = target - current;
                 if (Math.abs(diff) < 0.008) {
@@ -312,24 +324,61 @@
                 }
             };
 
+            // Móvil: una única búsqueda pendiente. Al terminar se aplica solo el
+            // objetivo más reciente, evitando saturar el decodificador de Safari.
+            const seekMobile = () => {
+                mobileSeekFrame = 0;
+                if (!duration || failed || video.seeking) return;
+                if (Math.abs(video.currentTime - target) < 0.05) return;
+                try { video.currentTime = target; } catch (e) { }
+            };
+
+            const queueMobileSeek = () => {
+                if (!mobileSeekFrame) mobileSeekFrame = requestAnimationFrame(seekMobile);
+            };
+
+            video.addEventListener('seeked', () => {
+                if (mobileScrub && Math.abs(video.currentTime - target) >= 0.05) {
+                    queueMobileSeek();
+                }
+            });
+
             const onScroll = () => {
-                if (!duration) return;
+                if (!duration || failed) return;
                 const p = Math.min(Math.max((window.scrollY - top) / span, 0), 1);
                 target = p * (duration - 0.05);
                 section.classList.toggle('vn-playing', p > 0.02);
+                fill.style.width = (p * 100).toFixed(2) + '%';
 
                 // Zoom acompañando al del propio clip: llena la pantalla pero
                 // deja un respiro blanco en la parte superior.
-                const zoom = 1 + 0.31 * Math.min(p / 0.2, 1);
+                const zoomAmount = mobileScrub ? 0 : 0.31;
+                const zoom = 1 + zoomAmount * Math.min(p / 0.2, 1);
                 video.style.transform = 'scale(' + zoom.toFixed(3) + ')';
 
-                if (!running) { running = true; requestAnimationFrame(tick); }
+                if (mobileScrub) queueMobileSeek();
+                else if (!running) { running = true; requestAnimationFrame(tick); }
             };
 
             window.addEventListener('scroll', onScroll, { passive: true });
 
+            // Un primer toque prepara el decodificador de iOS sin dejar el vídeo
+            // reproduciéndose por su cuenta; después manda siempre el scroll.
+            if (mobileScrub) {
+                window.addEventListener('touchstart', () => {
+                    const priming = video.play();
+                    if (priming?.then) {
+                        priming.then(() => {
+                            video.pause();
+                            queueMobileSeek();
+                        }).catch(() => { });
+                    }
+                }, { once: true, passive: true });
+            }
+
             const onMeta = () => {
                 duration = video.duration || 0;
+                current = video.currentTime || 0;
                 measure();
                 onScroll();
             };
