@@ -230,13 +230,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const titleLift = isMobile ? 18 : 30;
             const titleY = (titleTravel * titleArc) - (titleLift * titleReturn);
             const titleScale = 1 - (0.09 * titleArc) + (0.015 * titleReturn);
-            const frameY = 42 - (videoReveal * 58) + (titleReturn * 10);
-            const frameScale = 0.82 + (videoReveal * 0.08) - (titleReturn * 0.015);
+            const frameY = 48 - (videoReveal * 48) + (titleReturn * 6);
+            const frameScale = 0.9 + (videoReveal * 0.1) - (titleReturn * 0.008);
 
             if (adTitle) {
                 adTitle.style.transform = `translate3d(0, ${titleY}px, 0) scale(${titleScale})`;
             }
-            adFrame.style.opacity = 0.76 + (videoReveal * 0.24);
+            adFrame.style.opacity = 0.72 + (videoReveal * 0.28);
             adFrame.style.transform = `translate3d(0, ${frameY}px, 0) scale(${frameScale})`;
         } else if (adSection && adFrame) {
             if (adTitle) {

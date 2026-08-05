@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VibeCapture — Captura el producto. Cuenta la historia.</title>
+  <meta name="description" content="VibeCapture convierte grabaciones de tu Mac o iPhone en vídeos de producto listos para publicar: zooms inteligentes, cámara, subtítulos, escenas y edición profesional, todo en local.">
+  <meta name="author" content="VibeCapture">
+  <meta name="theme-color" content="#05070a">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://vibenotch.es/vibecapture/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="VibeCapture">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="VibeCapture — Captura el producto. Cuenta la historia.">
+  <meta property="og:description" content="Graba, dirige, edita y entrega cada formato desde una única línea de tiempo local en tu Mac.">
+  <meta property="og:url" content="https://vibenotch.es/vibecapture/">
+  <meta property="og:image" content="https://vibenotch.es/vibecapture/campaign/01-key-visual-1200x628.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="628">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VibeCapture — Captura el producto. Cuenta la historia.">
+  <meta name="twitter:description" content="Tu estudio de vídeo de producto, diseñado para Mac.">
+  <meta name="twitter:image" content="https://vibenotch.es/vibecapture/campaign/01-key-visual-1200x628.png">
+
+  <link rel="icon" type="image/png" href="assets/vibecapture-icon.png">
+  <link rel="apple-touch-icon" href="assets/vibecapture-icon.png">
+  <link rel="preload" as="image" href="assets/vibecapture-demo-poster.jpg" fetchpriority="high">
+  <link rel="stylesheet" href="vibecapture.css">
+  <script>document.documentElement.classList.add('js');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "VibeCapture",
+    "softwareVersion": "1.0.0",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "macOS 14 or later",
+    "description": "Estudio de vídeo de producto para Mac con captura de pantalla e iPhone, zooms inteligentes, edición multipista, subtítulos locales, escenas de dispositivo y exportación profesional.",
+    "url": "https://vibenotch.es/vibecapture/",
+    "image": "https://vibenotch.es/vibecapture/assets/vibecapture-icon.png",
+    "screenshot": [
+      "https://vibenotch.es/vibecapture/assets/hero-editor.jpg",
+      "https://vibenotch.es/vibecapture/assets/recording-studio-settings.jpg",
+      "https://vibenotch.es/vibecapture/assets/formats-scene.jpg"
+    ],
+    "author": { "@type": "Organization", "name": "VibeNotch" }
+  }
+  </script>
+</head>
+<body>
+  <div class="page-progress" aria-hidden="true"><span id="pageProgress"></span></div>
+  <div class="ambient ambient-a" aria-hidden="true"></div>
+  <div class="ambient ambient-b" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header" id="siteHeader">
+    <nav class="nav-shell" aria-label="Navegación principal">
+      <a class="brand" href="./" aria-label="VibeCapture, inicio">
+        <img src="assets/vibecapture-icon.png" width="38" height="38" alt="">
+        <span>VibeCapture</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#captura">Captura</a>
+        <a href="#edicion">Edición</a>
+        <a href="#escenas">Escenas</a>
+        <a href="#local">Local</a>
+      </div>
+
+      <div class="nav-actions">
+        <details class="app-switcher">
+          <summary aria-label="Abrir selector de apps">Apps <span aria-hidden="true">⌄</span></summary>
+          <div class="app-menu">
+            <a href="../">
+              <img src="../assets/VibeNotch%20icon-iOS-Default-1024x1024@1x.png" width="38" height="38" alt="">
+              <span><strong>VibeNotch</strong><small>Tu notch, elevado.</small></span>
+            </a>
+            <a href="../edgeflow/">
+              <img src="../edgeflow/EdgeFlow%20icon-iOS-Default-1024x1024@1x.png" width="38" height="38" alt="">
+              <span><strong>EdgeFlow</strong><small>Atajos en los bordes.</small></span>
+            </a>
+            <a href="../sweepy/">
+              <img src="../sweepy/assets/sweepy-icon-256.png" width="38" height="38" alt="">
+              <span><strong>Sweepy</strong><small>Limpieza profunda.</small></span>
+            </a>
+            <a href="./" class="current" aria-current="page">
+              <img src="assets/vibecapture-icon.png" width="38" height="38" alt="">
+              <span><strong>VibeCapture</strong><small>Vídeo de producto.</small></span>
+            </a>
+          </div>
+        </details>
+        <a class="nav-cta" href="#disponibilidad">Muy pronto</a>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-orbit hero-orbit-a" aria-hidden="true"></div>
+      <div class="hero-orbit hero-orbit-b" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <div class="hero-badge" data-reveal>
+          <span class="record-dot" aria-hidden="true"></span>
+          Nuevo para macOS
+        </div>
+        <img class="hero-icon" src="assets/vibecapture-icon.png" width="116" height="116" alt="Icono de VibeCapture" data-reveal>
+        <p class="hero-product" data-reveal>VibeCapture</p>
+        <h1 data-reveal>Captura el producto.<br><span>Cuenta la historia.</span></h1>
+        <p class="hero-lede" data-reveal>Graba tu Mac o iPhone. Deja que VibeCapture dirija la atención, marque el ritmo y entregue cada formato desde una única línea de tiempo.</p>
+        <div class="hero-actions" data-reveal>
+          <a class="button button-primary" href="#captura">Ver cómo funciona <span aria-hidden="true">↓</span></a>
+          <a class="button button-secondary" href="#disponibilidad">Próximamente para Mac</a>
+        </div>
+        <ul class="hero-meta" data-reveal aria-label="Compatibilidad y privacidad">
+          <li>macOS 14+</li>
+          <li>Apple silicon + Intel</li>
+          <li>Procesamiento local</li>
+        </ul>
+      </div>
+
+      <div class="hero-visual" data-reveal>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="window-shell demo-shell">
+          <video id="heroDemo" muted loop playsinline preload="metadata" poster="assets/vibecapture-demo-poster.jpg" aria-label="Vídeo de ejemplo creado con VibeCapture">
+            <source src="assets/vibecapture-demo.mp4" type="video/mp4">
+            Tu navegador no puede reproducir el vídeo. <a href="assets/vibecapture-demo.mp4">Abrir el ejemplo</a>.
+          </video>
+          <div class="demo-chrome">
+            <span class="demo-kicker"><i aria-hidden="true"></i> Hecho con VibeCapture · 00:25</span>
+            <button class="demo-toggle" id="demoToggle" type="button" aria-label="Reproducir vídeo" aria-pressed="false">
+              <span data-demo-icon aria-hidden="true">▶</span>
+              <span data-demo-label>Reproducir</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="capability-ribbon" aria-label="Funciones principales">
+      <div class="ribbon-track">
+        <span>Pantalla</span><i>●</i><span>Ventana</span><i>●</i><span>Área</span><i>●</i><span>iPhone</span><i>●</i><span>Audio del sistema</span><i>●</i><span>Cámara</span><i>●</i><span>Zoom inteligente</span><i>●</i><span>Subtítulos</span><i>●</i><span>4K</span><i>●</i>
+      </div>
+    </div>
+
+    <section class="manifesto section-pad" aria-labelledby="manifestoTitle">
+      <p class="eyebrow" data-reveal>De interacción a historia</p>
+      <h2 id="manifestoTitle" data-reveal>Una grabación entra.<br><span>Una producción sale.</span></h2>
+      <div class="story-line" data-reveal-group>
+        <div><b>01</b><span>Captura</span></div>
+        <i aria-hidden="true"></i>
+        <div><b>02</b><span>Dirige</span></div>
+        <i aria-hidden="true"></i>
+        <div><b>03</b><span>Edita</span></div>
+        <i aria-hidden="true"></i>
+        <div><b>04</b><span>Publica</span></div>
+      </div>
+    </section>
+
+    <section class="capture-stage" id="captura" aria-labelledby="captureTitle">
+      <div class="capture-backdrop" aria-hidden="true"></div>
+      <div class="capture-copy">
+        <p class="eyebrow" data-reveal>01 · Captura</p>
+        <h2 id="captureTitle" data-reveal>Exactamente lo que importa.</h2>
+        <p data-reveal>Elige una pantalla, ventana o área y comprueba el resultado en directo. Audio del sistema, micrófono y cámara quedan preparados como fuentes separadas antes de pulsar grabar.</p>
+        <div class="capture-pills" data-reveal-group>
+          <span>Display</span><span>Window</span><span>Area</span><span>System audio</span><span>Mic</span><span>Camera</span>
+        </div>
+      </div>
+      <div class="capture-product" data-reveal>
+        <img src="assets/recording-studio-settings.jpg" width="1324" height="768" loading="lazy" alt="Estudio de grabación actual de VibeCapture con vista previa en directo y ajustes para audio del sistema, micrófono, cámara, zoom inteligente, sonidos y atajos">
+        <span class="visual-label">Preflight · Audio / Camera / Smart zoom</span>
+      </div>
+    </section>
+
+    <section class="direction section-pad" aria-labelledby="directionTitle">
+      <div class="direction-grid">
+        <div class="direction-copy">
+          <p class="eyebrow" data-reveal>02 · Dirección automática</p>
+          <h2 id="directionTitle" data-reveal>El foco, siempre en el lugar exacto.</h2>
+          <p data-reveal>Los zooms inteligentes siguen cada acción. El cursor suavizado, los clics físicos y los atajos visibles hacen que todo se entienda sin explicaciones.</p>
+          <dl class="direction-stats" data-reveal-group>
+            <div><dt>Zoom</dt><dd>Acciones detectadas</dd></div>
+            <div><dt>Cursor</dt><dd>Movimiento natural</dd></div>
+            <div><dt>⌘ K</dt><dd>Atajos visibles</dd></div>
+          </dl>
+        </div>
+        <div class="motion-visual" data-reveal>
+          <img src="assets/motion-library.jpg" width="1324" height="768" loading="lazy" alt="Panel Motion actual de VibeCapture con zoom inteligente, seguimiento del cursor y estilos de cámara">
+          <span class="visual-label">Motion · Follow cursor</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="editor-section" id="edicion" aria-labelledby="editorTitle">
+      <div class="editor-heading section-pad">
+        <p class="eyebrow" data-reveal>03 · Edición no destructiva</p>
+        <h2 id="editorTitle" data-reveal>Todo sigue siendo editable.</h2>
+        <p data-reveal>Cortes, velocidad, texto, cámara, audio, subtítulos y zooms viven en una línea de tiempo magnética. Cambia de idea sin volver a grabar.</p>
+      </div>
+      <div class="timeline-stage" data-reveal>
+        <img src="assets/captions-editor.jpg" width="1324" height="768" loading="lazy" alt="Editor multipista actual de VibeCapture con subtítulos locales, estilos de texto y línea de tiempo magnética">
+        <span class="visual-label">Text · Local captions</span>
+      </div>
+      <div class="edit-marquee" aria-hidden="true">
+        <span>Corta</span><i></i><span>Reencuadra</span><i></i><span>Subtitula</span><i></i><span>Limpia audio</span><i></i><span>Oculta datos</span><i></i><span>Anima</span>
+      </div>
+    </section>
+
+    <section class="ad-studio section-pad" aria-labelledby="adTitle">
+      <div class="ad-copy">
+        <p class="eyebrow" data-reveal>Formatos integrados</p>
+        <h2 id="adTitle" data-reveal>Una edición.<br><span>Cada formato.</span></h2>
+        <p data-reveal>Cambia entre horizontal, vertical, cuadrado o 4:5 desde el mismo proyecto. El encuadre, la escena, los subtítulos y el audio siguen separados y editables.</p>
+        <div class="format-selector" role="list" aria-label="Formatos disponibles" data-reveal-group>
+          <span role="listitem">16:9</span><span role="listitem">9:16</span><span role="listitem">1:1</span><span role="listitem">4:5</span>
+        </div>
+      </div>
+      <div class="ad-visual format-showcase" data-reveal aria-label="El mismo vídeo preparado en formatos 16:9, 9:16, 1:1 y 4:5">
+        <figure class="format-card format-landscape">
+          <img src="assets/vibecapture-demo-poster.jpg" width="1920" height="1080" loading="lazy" alt="">
+          <figcaption>16:9</figcaption>
+        </figure>
+        <figure class="format-card format-square">
+          <img src="assets/vibecapture-demo-poster.jpg" width="1920" height="1080" loading="lazy" alt="">
+          <figcaption>1:1</figcaption>
+        </figure>
+        <figure class="format-card format-feed">
+          <img src="assets/vibecapture-demo-poster.jpg" width="1920" height="1080" loading="lazy" alt="">
+          <figcaption>4:5</figcaption>
+        </figure>
+        <figure class="format-card format-vertical">
+          <img src="assets/vibecapture-demo-poster.jpg" width="1920" height="1080" loading="lazy" alt="">
+          <figcaption>9:16</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="device-section" id="escenas" aria-labelledby="deviceTitle">
+      <div class="device-head section-pad">
+        <p class="eyebrow" data-reveal>04 · Escenas</p>
+        <h2 id="deviceTitle" data-reveal>No enseñes una pantalla.<br><span>Ponla en escena.</span></h2>
+        <p data-reveal>Presenta tu vídeo en un MacBook, iMac, Studio Display, iPhone, navegador o lienzo libre. El contenido sigue siendo tuyo; el acabado deja de parecer una captura.</p>
+        <div class="device-tabs" role="tablist" aria-label="Elegir dispositivo" data-reveal>
+          <button type="button" role="tab" aria-selected="true" data-device="macbook">MacBook Pro</button>
+          <button type="button" role="tab" aria-selected="false" data-device="imac">iMac</button>
+          <button type="button" role="tab" aria-selected="false" data-device="iphone">iPhone</button>
+        </div>
+      </div>
+      <div class="device-canvas" id="deviceCanvas" data-device="macbook" data-reveal>
+        <div class="device-aura" aria-hidden="true"></div>
+        <div class="device-model model-macbook" aria-hidden="true">
+          <div class="device-screen">
+            <img src="assets/stage-liquid-glass.jpg" width="1536" height="1024" loading="lazy" alt="">
+            <div class="screen-story">
+              <span>PRODUCT STORY</span>
+              <strong>Every action.<br>Beautifully clear.</strong>
+              <i>● 00:18</i>
+            </div>
+          </div>
+          <img class="device-frame" src="assets/macbook-pro.png" width="1672" height="941" loading="lazy" alt="">
+        </div>
+        <div class="device-model model-imac" aria-hidden="true">
+          <div class="device-screen">
+            <img src="assets/stage-liquid-glass.jpg" width="1536" height="1024" loading="lazy" alt="">
+            <div class="screen-story">
+              <span>PRODUCT STORY</span>
+              <strong>Every action.<br>Beautifully clear.</strong>
+              <i>● 00:18</i>
+            </div>
+          </div>
+          <img class="device-frame" src="assets/imac.png" width="1672" height="941" loading="lazy" alt="">
+        </div>
+        <div class="device-model model-iphone" aria-hidden="true">
+          <div class="device-screen">
+            <img src="assets/stage-liquid-glass.jpg" width="1536" height="1024" loading="lazy" alt="">
+            <div class="screen-story">
+              <span>PRODUCT STORY</span>
+              <strong>Every action.<br>Beautifully clear.</strong>
+              <i>● 00:18</i>
+            </div>
+          </div>
+          <img class="device-frame" src="assets/iphone-pro.png" width="853" height="1844" loading="lazy" alt="">
+        </div>
+        <span class="scene-badge" aria-hidden="true">Studio · Hero move</span>
+      </div>
+    </section>
+
+    <section class="local-section" id="local" aria-labelledby="localTitle">
+      <div class="local-core" data-reveal>
+        <div class="local-rings" aria-hidden="true"><span></span><span></span><span></span></div>
+        <img src="assets/vibecapture-icon.png" width="150" height="150" loading="lazy" alt="">
+        <div class="local-seal"><b>100%</b><span>LOCAL</span></div>
+      </div>
+      <div class="local-copy section-pad">
+        <p class="eyebrow" data-reveal>Privacidad por diseño</p>
+        <h2 id="localTitle" data-reveal>Tu historia no sale de tu Mac.</h2>
+        <p data-reveal>Grabación, análisis de zoom, transcripción, edición y renderizado suceden en local. Sin cuenta del desarrollador, sin analítica y sin una nube mirando tu trabajo.</p>
+        <div class="local-list" data-reveal-group>
+          <span>Sin tracking</span><span>Sin subidas</span><span>Sin cuenta</span><span>Proyectos locales</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="export-section section-pad" aria-labelledby="exportTitle">
+      <div class="export-copy">
+        <p class="eyebrow" data-reveal>05 · Entrega</p>
+        <h2 id="exportTitle" data-reveal>Una historia.<br><span>Todas las entregas.</span></h2>
+        <p data-reveal>Exporta el vídeo final, solo la pantalla, solo la cámara o todas las fuentes separadas. De 720p a 4K, con entregas por lotes cuando el proyecto pide más de una versión.</p>
+        <div class="codec-line" data-reveal aria-label="Formatos de exportación">
+          <span>H.264</span><span>HEVC</span><span>ProRes 422</span><span>GIF</span><span>SRT</span><span>WebVTT</span>
+        </div>
+      </div>
+      <div class="export-visual" data-reveal>
+        <div class="export-card export-card-back" aria-hidden="true"><span>SCREEN ONLY</span></div>
+        <div class="export-card export-card-mid" aria-hidden="true"><span>CAMERA</span></div>
+        <img src="assets/export-sheet.jpg" width="660" height="720" loading="lazy" alt="Hoja de exportación actual de VibeCapture con vídeo final, formatos sociales y presets profesionales">
+        <span class="export-status" aria-hidden="true">● Ready to render</span>
+      </div>
+    </section>
+
+    <section class="free-section" aria-labelledby="freeTitle">
+      <div class="free-number" data-reveal>3</div>
+      <div class="free-copy">
+        <p class="eyebrow" data-reveal>Empieza sin compromiso</p>
+        <h2 id="freeTitle" data-reveal>exportaciones gratis.<br><span>Cada semana.</span></h2>
+        <p data-reveal>Graba y edita sin pagar. Cuando publiques más, VibeCapture Pro desbloquea exportaciones ilimitadas y todas las entregas profesionales.</p>
+      </div>
+    </section>
+
+    <section class="faq section-pad" aria-labelledby="faqTitle">
+      <div class="faq-head">
+        <p class="eyebrow" data-reveal>Lo esencial</p>
+        <h2 id="faqTitle" data-reveal>Antes de grabar.</h2>
+      </div>
+      <div class="faq-list" data-reveal-group>
+        <details>
+          <summary>¿Qué puedo grabar?<span aria-hidden="true">+</span></summary>
+          <p>La pantalla completa de tu Mac, una ventana concreta o un área. También puedes capturar una pantalla de iPhone mediante una fuente compatible, y añadir audio del sistema, micrófono y cámara.</p>
+        </details>
+        <details>
+          <summary>¿La edición modifica la grabación original?<span aria-hidden="true">+</span></summary>
+          <p>No. La edición es no destructiva: cortes, velocidad, zooms, cursor, cámara, audio, texto y subtítulos se aplican sin reescribir el archivo fuente.</p>
+        </details>
+        <details>
+          <summary>¿Necesito subir mis vídeos?<span aria-hidden="true">+</span></summary>
+          <p>No. VibeCapture trabaja en tu Mac. La captura, la transcripción, la edición y el renderizado permanecen locales.</p>
+        </details>
+        <details>
+          <summary>¿Cuándo podré descargarlo?<span aria-hidden="true">+</span></summary>
+          <p>VibeCapture 1.0 está terminando su preparación para distribución. Puedes pedir que te avisemos en cuanto exista una descarga pública verificada.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="final-cta" id="disponibilidad" aria-labelledby="finalTitle">
+      <div class="final-glow" aria-hidden="true"></div>
+      <img src="assets/vibecapture-icon.png" width="128" height="128" loading="lazy" alt="Icono de VibeCapture" data-reveal>
+      <p class="eyebrow" data-reveal>VibeCapture para macOS</p>
+      <h2 id="finalTitle" data-reveal>Haz que cada demo<br><span>parezca una producción.</span></h2>
+      <p data-reveal>Próximamente para macOS 14 o posterior.</p>
+      <div class="final-actions" data-reveal>
+        <a class="button button-primary" href="mailto:aleix.carles@vibenotch.es?subject=Av%C3%ADsame%20cuando%20VibeCapture%20est%C3%A9%20disponible">Avísame cuando esté disponible</a>
+        <a class="button button-secondary" href="#inicio">Volver al inicio ↑</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <a class="brand footer-brand" href="./">
+        <img src="assets/vibecapture-icon.png" width="42" height="42" loading="lazy" alt="">
+        <span>VibeCapture</span>
+      </a>
+      <p>Smart product video studio for Mac.<br>Diseñado en Tarragona.</p>
+    </div>
+    <nav class="footer-links" aria-label="Apps de VibeNotch">
+      <h3>Apps</h3>
+      <a href="../">VibeNotch</a>
+      <a href="../edgeflow/">EdgeFlow</a>
+      <a href="../sweepy/">Sweepy</a>
+      <a href="./" aria-current="page">VibeCapture</a>
+    </nav>
+    <nav class="footer-links" aria-label="VibeCapture">
+      <h3>VibeCapture</h3>
+      <a href="#captura">Captura</a>
+      <a href="#edicion">Edición</a>
+      <a href="#escenas">Escenas</a>
+      <a href="#local">Privacidad</a>
+    </nav>
+    <nav class="footer-links" aria-label="Soporte">
+      <h3>Soporte</h3>
+      <a href="mailto:aleix.carles@vibenotch.es">Contacto</a>
+      <a href="../privacy.html">Privacidad del sitio</a>
+    </nav>
+    <p class="footer-copy">© 2026 VibeCapture. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="vibecapture.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+Communication job: By the end, prospective Mac creators should understand that VibeCapture turns a real screen recording into a directed, editable, multi-format product video because the campaign shows the current capture UI, editor controls, export sheet, and an actual output video.
+
+Brand system
+- #05070A deep ink
+- #0C1118 surface
+- #171E2A raised surface
+- #C7F66B lime focus accent
+- #6FA8FF blue light accent
+- #F6F8FB primary text
+- #9DA7B7 secondary text
+- Helvetica Neue / SF-like system typography
+
+Local source assets
+- /Users/aleixc/Documents/VibeNotchWeb/vibecapture/assets/vibecapture-icon.png — official current app icon.
+- /Users/aleixc/Documents/VibeNotchWeb/vibecapture/assets/hero-editor.jpg — current editor and export inspector.
+- /Users/aleixc/Documents/VibeNotchWeb/vibecapture/assets/recording-studio-live.jpg — current clean capture screen with live preview.
+- /Users/aleixc/Documents/VibeNotchWeb/vibecapture/assets/recording-studio-settings.jpg — current capture preflight controls.
+- /Users/aleixc/Documents/VibeNotchWeb/vibecapture/assets/motion-library.jpg — current Motion inspector.
+- /Users/aleixc/Documents/VibeNotchWeb/vibecapture/assets/captions-editor.jpg — current local captions inspector and timeline.
+- /Users/aleixc/Documents/VibeNotchWeb/vibecapture/assets/formats-scene.jpg — current Scene inspector and output ratios.
+- /Users/aleixc/Documents/VibeNotchWeb/vibecapture/assets/export-sheet.jpg — current export sheet.
+- /Users/aleixc/Downloads/recordingaug21559-2.mp4 — user-supplied 1920x1080 example output video; still frames extracted locally for deterministic composition.
+
+Claim policy
+- Use only capabilities visible in the supplied current UI or already stated in the supplied product copy.
+- Do not invent performance metrics, awards, testimonials, availability, pricing, or integrations.
+- Keep the supplied icon and UI recognizable, frontal, and undistorted.
+- Static ads and slide text are deterministic overlays; no image-generation text.
+
+Rights caveat
+- The supplied example video visibly contains third-party music/interface content. It is used because the user explicitly supplied it as an example. Public paid-media clearance remains the user's responsibility.

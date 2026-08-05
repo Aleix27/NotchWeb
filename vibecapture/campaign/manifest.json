@@ -1,0 +1,68 @@
+{
+  "campaign": "VibeCapture — Captura el producto. Cuenta la historia.",
+  "palette": [
+    "#05070A",
+    "#C7F66B",
+    "#6FA8FF"
+  ],
+  "outputs": [
+    {
+      "file": "01-key-visual-1200x628.png",
+      "width": 1200,
+      "height": 628,
+      "role": "landscape key visual"
+    },
+    {
+      "file": "02-focus-feed-1080x1350.png",
+      "width": 1080,
+      "height": 1350,
+      "role": "focus feature feed ad"
+    },
+    {
+      "file": "03-formats-feed-1080x1350.png",
+      "width": 1080,
+      "height": 1350,
+      "role": "multi-format feed ad"
+    },
+    {
+      "file": "04-local-square-1080x1080.png",
+      "width": 1080,
+      "height": 1080,
+      "role": "local captions square ad"
+    },
+    {
+      "file": "05-demo-story-preview.png",
+      "width": 1080,
+      "height": 1920,
+      "role": "story preview"
+    },
+    {
+      "file": "05-demo-story-1080x1920.mp4",
+      "width": 1080,
+      "height": 1920,
+      "durationSeconds": 12,
+      "role": "animated story and reel ad"
+    },
+    {
+      "file": "vibecapture-product-presentation.pptx",
+      "width": 1920,
+      "height": 1080,
+      "slides": 8,
+      "role": "editable product presentation"
+    }
+  ],
+  "storyVideoFrame": {
+    "left": 40,
+    "top": 650,
+    "width": 1000,
+    "height": 562
+  },
+  "exactCopy": [
+    "Captura el producto. Cuenta la historia.",
+    "La atención, donde toca.",
+    "Una edición. Cada formato.",
+    "Subtítulos locales.",
+    "Captura. Edita. Publica."
+  ],
+  "provenance": "See sources.txt and the [Sources] speaker notes on every slide."
+}
