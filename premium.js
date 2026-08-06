@@ -303,6 +303,8 @@
                 section.classList.remove('vn-scrub');
                 section.classList.remove('vn-scrub-mobile');
                 story?.classList.remove('is-scrubbing');
+                story?.classList.remove('video-copy-hidden');
+                story?.style.removeProperty('--hero-support-opacity');
                 bar.remove();
                 video.style.removeProperty('transform');
                 video.setAttribute('autoplay', '');
@@ -352,6 +354,16 @@
                 target = p * (duration - 0.05);
                 section.classList.toggle('vn-playing', p > 0.02);
                 fill.style.width = (p * 100).toFixed(2) + '%';
+
+                if (mobileScrub && story) {
+                    const supportProgress = Math.min(
+                        Math.max((window.scrollY - Math.max(top, 0)) / span, 0),
+                        1
+                    );
+                    const supportOpacity = Math.max(0, 1 - (supportProgress / 0.055));
+                    story.style.setProperty('--hero-support-opacity', supportOpacity.toFixed(3));
+                    story.classList.toggle('video-copy-hidden', supportOpacity <= 0.02);
+                }
 
                 // Zoom acompañando al del propio clip: llena la pantalla pero
                 // deja un respiro blanco en la parte superior.

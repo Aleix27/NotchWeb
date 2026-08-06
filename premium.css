@@ -2562,6 +2562,21 @@ nav.vn-hidden {
         pointer-events: auto;
     }
 
+    /* Al empezar la demostración queda únicamente el titular sobre el vídeo. */
+    .hero-demo-story.is-scrubbing .hero > p,
+    .hero-demo-story.is-scrubbing .hero > .btn-group {
+        opacity: var(--hero-support-opacity, 1) !important;
+        transition: opacity 80ms linear !important;
+        will-change: opacity;
+    }
+
+    .hero-demo-story.is-scrubbing.video-copy-hidden .hero > p,
+    .hero-demo-story.is-scrubbing.video-copy-hidden .hero > .btn-group,
+    .hero-demo-story.is-scrubbing.video-copy-hidden .hero a,
+    .hero-demo-story.is-scrubbing.video-copy-hidden .hero button {
+        pointer-events: none;
+    }
+
     .hero h1 .giant {
         font-size: clamp(62px, 19vw, 88px) !important;
         letter-spacing: -.055em !important;
