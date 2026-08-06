@@ -32,7 +32,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
-        with:
-          # Pages puede permanecer en cola durante picos de servicio.
-          # Evita cancelar una publicación válida a los diez minutos.
-          timeout: 1800000
