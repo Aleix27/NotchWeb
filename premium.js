@@ -242,6 +242,7 @@
         (function scrubHero() {
             const section = document.getElementById('demo');
             const video = document.querySelector('.notch-demo-video');
+            const story = section?.closest('.hero-demo-story');
             if (!section || !video || recording) return;
 
             const mobileScrub = coarse || window.innerWidth <= 900;
@@ -263,6 +264,7 @@
 
             section.classList.add('vn-scrub');
             section.classList.toggle('vn-scrub-mobile', mobileScrub);
+            if (mobileScrub) story?.classList.add('is-scrubbing');
             video.removeAttribute('autoplay');
             video.pause();
 
@@ -300,6 +302,7 @@
                 failed = true;
                 section.classList.remove('vn-scrub');
                 section.classList.remove('vn-scrub-mobile');
+                story?.classList.remove('is-scrubbing');
                 bar.remove();
                 video.style.removeProperty('transform');
                 video.setAttribute('autoplay', '');
@@ -352,8 +355,9 @@
 
                 // Zoom acompañando al del propio clip: llena la pantalla pero
                 // deja un respiro blanco en la parte superior.
-                const zoomAmount = mobileScrub ? 0 : 0.31;
-                const zoom = 1 + zoomAmount * Math.min(p / 0.2, 1);
+                const zoomBase = mobileScrub ? 1.08 : 1;
+                const zoomAmount = mobileScrub ? 0.03 : 0.31;
+                const zoom = zoomBase + zoomAmount * Math.min(p / 0.2, 1);
                 video.style.transform = 'scale(' + zoom.toFixed(3) + ')';
 
                 if (mobileScrub) queueMobileSeek();

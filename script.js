@@ -116,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const introVideo = document.getElementById('intro-video');
     const nav = document.querySelector('nav');
     const isMobile = window.innerWidth <= 768;
+    const mobileHeroStory = isMobile ? hero?.closest('.hero-demo-story') : null;
     const isRecording = document.documentElement.classList.contains('recording-ad');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let videoUnlocked = false;
@@ -204,15 +205,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hero parallax
         const introOffset = introSection ? introSection.offsetHeight : 0;
         const relativeScroll = scroll - introOffset;
+        const heroPinnedToVideo = mobileHeroStory?.classList.contains('is-scrubbing');
 
         if (hero && relativeScroll > -vh) {
-            if (!isRecording) {
+            if (!isRecording && !heroPinnedToVideo) {
                 hero.style.transform = `translateY(${Math.max(relativeScroll * 0.2, 0)}px)`;
             } else {
                 hero.style.transform = '';
             }
-            const heroFadeDistance = isRecording ? 360 : 700;
-            hero.style.opacity = Math.max(0, Math.min(1, 1 - (relativeScroll / heroFadeDistance)));
+            if (heroPinnedToVideo) {
+                hero.style.opacity = '';
+            } else {
+                const heroFadeDistance = isRecording ? 360 : 700;
+                hero.style.opacity = Math.max(0, Math.min(1, 1 - (relativeScroll / heroFadeDistance)));
+            }
         }
 
         if (adSection && adFrame && !prefersReducedMotion) {
