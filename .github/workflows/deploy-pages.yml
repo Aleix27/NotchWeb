@@ -23,12 +23,42 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+
       - name: Setup Pages
         uses: actions/configure-pages@v6
+
+      # El artefacto se armaba con `path: '.'`, que subía la carpeta entera
+      # (assets en bruto, exports, capturas y material de trabajo: cientos de
+      # megas). El despliegue agotaba los 10 minutos y se marcaba como fallido.
+      # Aquí se copia solo lo que la web sirve de verdad.
+      - name: Preparar el sitio
+        run: |
+          mkdir -p _site
+          rsync -a ./ _site/ \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude '.codex-tmp' \
+            --exclude '_site' \
+            --exclude 'exports' \
+            --exclude 'new pictures' \
+            --exclude '.DS_Store' \
+            --exclude '**/.DS_Store' \
+            --exclude '*.mov' \
+            --exclude 'assets/optimized/demo_optimized.mp4' \
+            --exclude 'assets/399F7428-4545-46E5-9748-343551436B86.mp4'
+          echo "Peso del artefacto:"
+          du -sh _site
+          echo "Ficheros mas pesados:"
+          find _site -type f -size +2M -printf '%s\t%p\n' | sort -rn | head -15 \
+            | awk -F'\t' '{printf "%7.1f MB  %s\n", $1/1048576, $2}'
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
-          path: '.'
+          path: '_site'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+        with:
+          timeout: 1200000
