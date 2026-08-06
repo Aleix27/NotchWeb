@@ -9,3 +9,6 @@ assets/Grabación de pantalla 2026-03-11 a las 20.23.37.mov
 
 # Ignore raw frame directories under exports but track root files (like MP4 exports)
 exports/*/
+
+# Generated GitHub Pages artifact
+_site/

@@ -24,6 +24,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
   background: var(--ink);
 }
 
@@ -1773,22 +1774,38 @@ img {
   }
 
   .nav-shell {
+    position: relative;
     gap: 12px;
   }
 
+  .nav-shell > .brand,
+  .nav-actions {
+    position: relative;
+    z-index: 2;
+  }
+
   .nav-links {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    padding: 125px 28px 40px;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    left: 0;
+    z-index: 1;
+    max-height: calc(100vh - 100px);
+    padding: 12px 18px 16px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
-    background: rgba(6, 8, 13, .97);
+    overflow-y: auto;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: rgba(6, 8, 13, .985);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, .6);
+    -webkit-backdrop-filter: blur(28px) saturate(140%);
+    backdrop-filter: blur(28px) saturate(140%);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-18px);
+    transform: translateY(-8px);
     transition: opacity 250ms ease, visibility 250ms ease, transform 350ms var(--ease);
   }
 
