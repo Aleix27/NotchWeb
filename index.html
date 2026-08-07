@@ -37,6 +37,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="image" href="assets/vibenotch-hero-poster.jpg">
+    <link rel="preload" as="image" href="assets/notch-demo-poster.jpg" media="(max-width: 768px)">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="style.css">
@@ -259,7 +260,7 @@
     </style>
 
     <!-- Capa premium: debe cargarse la última para poder refinar lo anterior -->
-    <link rel="stylesheet" href="premium.css?v=20260807-mobile6">
+    <link rel="stylesheet" href="premium.css?v=20260807-mobile9">
 
     <!-- FAVICOn -->
     <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
@@ -450,7 +451,9 @@
             <div class="notch-ad-stage" aria-label="MacBook mostrando VibeNotch en acción">
                 <div class="notch-demo-frame">
                     <video class="notch-demo-video" muted loop playsinline preload="auto"
-                        poster="assets/vibenotch-hero-poster.jpg" aria-label="VibeNotch funcionando en macOS">
+                        poster="assets/vibenotch-hero-poster.jpg" data-mobile-poster="assets/notch-demo-poster.jpg"
+                        aria-label="VibeNotch funcionando en macOS">
+                        <source src="assets/notch-demo-cropped.mp4" type="video/mp4" media="(max-width: 768px)">
                         <source src="assets/vibenotch-hero-900.mp4" type="video/mp4"
                             data-hd="assets/vibenotch-hero.mp4">
                     </video>
@@ -1111,7 +1114,7 @@
     </footer>
 
     <script src="script.js?v=20260806-mobile5"></script>
-    <script src="premium.js?v=20260807-mobile6"></script>
+    <script src="premium.js?v=20260807-mobile9"></script>
 </body>
 
 </html>

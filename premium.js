@@ -246,6 +246,11 @@
             if (!section || !video || recording) return;
 
             const mobileScrub = coarse || window.innerWidth <= 900;
+            const framedMobileScrub = window.innerWidth <= 768;
+
+            if (framedMobileScrub && video.dataset.mobilePoster) {
+                video.poster = video.dataset.mobilePoster;
+            }
 
             // El movimiento reducido conserva una reproducción convencional.
             if (reduced) {
@@ -383,12 +388,14 @@
                     story.classList.toggle('video-copy-hidden', supportOpacity <= 0.02);
                 }
 
-                // Zoom acompañando al del propio clip: llena la pantalla pero
-                // deja un respiro blanco en la parte superior.
-                const zoomBase = mobileScrub ? 1.08 : 1;
-                const zoomAmount = mobileScrub ? 0.03 : 0.31;
-                const zoom = zoomBase + zoomAmount * Math.min(p / 0.2, 1);
-                video.style.transform = 'scale(' + zoom.toFixed(3) + ')';
+                // El clip móvil conserva el MacBook completo durante el gesto.
+                // En escritorio el zoom mantiene el efecto original.
+                if (framedMobileScrub) {
+                    video.style.removeProperty('transform');
+                } else {
+                    const zoom = 1 + 0.31 * Math.min(p / 0.2, 1);
+                    video.style.transform = 'scale(' + zoom.toFixed(3) + ')';
+                }
 
                 if (mobileScrub) queueMobileSeek();
                 else if (!running) { running = true; requestAnimationFrame(tick); }
