@@ -602,6 +602,33 @@ nav.vn-hidden {
     position: relative;
 }
 
+.hero-download-button {
+    gap: 10px;
+}
+
+.hero-button-version {
+    padding: 3px 6px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 7px;
+    color: rgba(255, 255, 255, .66);
+    font-size: 10px;
+    font-weight: 650;
+    letter-spacing: .02em;
+    line-height: 1;
+}
+
+.hero-button-icon {
+    width: 25px;
+    height: 25px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, .1);
+    color: rgba(255, 255, 255, .9);
+    font-size: 13px;
+    line-height: 1;
+}
+
 .hero .btn-yellow::after {
     content: "";
     position: absolute;
@@ -2551,7 +2578,7 @@ nav.vn-hidden {
         position: sticky;
         top: 0;
         min-height: 100svh;
-        padding-top: 104px;
+        padding-top: 96px;
         padding-bottom: 0;
         z-index: 4;
         pointer-events: none;
@@ -2587,26 +2614,53 @@ nav.vn-hidden {
         font-size: clamp(31px, 8.8vw, 44px) !important;
     }
 
-    .hero p {
-        font-size: 16.5px;
-        max-width: 34ch;
+    .hero .hero-subtitle {
+        max-width: 38ch;
+        margin: 16px auto 18px;
+        padding: 0;
+        color: #707078;
+        font-size: 14px;
+        font-weight: 430;
+        line-height: 1.42;
+        letter-spacing: -.012em;
     }
 
     .hero .btn-group {
-        gap: 9px !important;
+        gap: 7px !important;
     }
 
-    .hero .btn-group .btn-yellow {
+    .hero .btn-group .hero-download-button {
         width: auto;
-        min-width: 188px;
+        min-width: 220px;
+        min-height: 44px;
         text-align: center;
-        padding: 11px 18px;
+        padding: 7px 8px 7px 16px;
         font-size: 13px;
-        border-radius: 999px;
+        font-weight: 620;
+        border: 1px solid rgba(255, 255, 255, .1);
+        border-radius: 15px !important;
+        background: linear-gradient(180deg, #2b2b2f 0%, #151517 100%) !important;
+        box-shadow: 0 1px 1px rgba(255, 255, 255, .08) inset,
+            0 12px 30px rgba(0, 0, 0, .16);
     }
 
     .hero .app-store-tag {
-        font-size: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: #88888f;
+        font-size: 9px;
+        font-weight: 560;
+        letter-spacing: .025em;
+    }
+
+    .hero .app-store-tag::before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #31c759;
+        box-shadow: 0 0 0 3px rgba(49, 199, 89, .1);
     }
 
     /* Vídeo a pantalla completa también en móvil */
@@ -2644,7 +2698,7 @@ nav.vn-hidden {
 
     #demo.vn-scrub .notch-demo-frame {
         position: absolute;
-        inset: auto auto clamp(34px, 6svh, 58px) -9vw;
+        inset: clamp(355px, 45svh, 400px) auto auto -9vw;
         width: 118vw !important;
         max-width: none !important;
         height: auto;
@@ -2653,6 +2707,11 @@ nav.vn-hidden {
         border-radius: 0 !important;
         background: transparent;
         box-shadow: none;
+        transition: top .34s var(--ease-out);
+    }
+
+    .hero-demo-story.video-copy-hidden #demo.vn-scrub .notch-demo-frame {
+        top: clamp(300px, 38svh, 340px);
     }
 
     #demo.vn-scrub .notch-demo-video {
@@ -2767,6 +2826,32 @@ nav.vn-hidden {
     .more-apps-link {
         width: 100%;
         justify-content: flex-start;
+    }
+}
+
+@media (max-width: 768px) and (max-height: 650px) {
+    .hero-demo-story.is-scrubbing .hero {
+        padding-top: 84px;
+    }
+
+    .hero h1 .giant {
+        font-size: clamp(58px, 17.5vw, 78px) !important;
+    }
+
+    .hero h1 .soul {
+        font-size: clamp(28px, 8vw, 38px) !important;
+    }
+
+    .hero .hero-subtitle {
+        margin-block: 12px 14px;
+        font-size: 13px;
+        line-height: 1.35;
+    }
+
+    #demo.vn-scrub .notch-demo-frame {
+        top: 340px;
+        left: -5vw;
+        width: 110vw !important;
     }
 }
 

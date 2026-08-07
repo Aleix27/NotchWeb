@@ -249,8 +249,13 @@
 
             // El movimiento reducido conserva una reproducción convencional.
             if (reduced) {
-                video.setAttribute('autoplay', '');
-                video.play().catch(() => { });
+                if (mobileScrub) {
+                    video.removeAttribute('autoplay');
+                    video.pause();
+                } else {
+                    video.setAttribute('autoplay', '');
+                    video.play().catch(() => { });
+                }
                 return;
             }
 
@@ -267,6 +272,9 @@
             if (mobileScrub) story?.classList.add('is-scrubbing');
             video.removeAttribute('autoplay');
             video.pause();
+            if (mobileScrub) {
+                video.addEventListener('play', () => video.pause());
+            }
 
             const bar = document.createElement('div');
             bar.className = 'vn-scrub-bar';
@@ -307,8 +315,13 @@
                 story?.style.removeProperty('--hero-support-opacity');
                 bar.remove();
                 video.style.removeProperty('transform');
-                video.setAttribute('autoplay', '');
-                video.play().catch(() => { });
+                if (mobileScrub) {
+                    video.removeAttribute('autoplay');
+                    video.pause();
+                } else {
+                    video.setAttribute('autoplay', '');
+                    video.play().catch(() => { });
+                }
             };
             video.addEventListener('error', bailOut, { once: true });
             setTimeout(() => { if (!duration) bailOut(); }, 6000);
@@ -334,7 +347,8 @@
             const seekMobile = () => {
                 mobileSeekFrame = 0;
                 if (!duration || failed || video.seeking) return;
-                if (Math.abs(video.currentTime - target) < 0.05) return;
+                const tolerance = target <= 0.001 ? 0.002 : 0.05;
+                if (Math.abs(video.currentTime - target) < tolerance) return;
                 try { video.currentTime = target; } catch (e) { }
             };
 
@@ -350,17 +364,21 @@
 
             const onScroll = () => {
                 if (!duration || failed) return;
-                const p = Math.min(Math.max((window.scrollY - top) / span, 0), 1);
+                if (mobileScrub && !video.paused) video.pause();
+                // Un pequeño umbral evita que el redondeo del viewport móvil
+                // adelante el primer fotograma antes del primer gesto real.
+                const scrollStart = mobileScrub ? Math.max(top, 0) + 16 : top;
+                const p = Math.min(Math.max((window.scrollY - scrollStart) / span, 0), 1);
                 target = p * (duration - 0.05);
                 section.classList.toggle('vn-playing', p > 0.02);
                 fill.style.width = (p * 100).toFixed(2) + '%';
 
                 if (mobileScrub && story) {
                     const supportProgress = Math.min(
-                        Math.max((window.scrollY - Math.max(top, 0)) / span, 0),
+                        Math.max((window.scrollY - scrollStart) / span, 0),
                         1
                     );
-                    const supportOpacity = Math.max(0, 1 - (supportProgress / 0.055));
+                    const supportOpacity = Math.max(0, 1 - (supportProgress / 0.12));
                     story.style.setProperty('--hero-support-opacity', supportOpacity.toFixed(3));
                     story.classList.toggle('video-copy-hidden', supportOpacity <= 0.02);
                 }
@@ -377,20 +395,6 @@
             };
 
             window.addEventListener('scroll', onScroll, { passive: true });
-
-            // Un primer toque prepara el decodificador de iOS sin dejar el vídeo
-            // reproduciéndose por su cuenta; después manda siempre el scroll.
-            if (mobileScrub) {
-                window.addEventListener('touchstart', () => {
-                    const priming = video.play();
-                    if (priming?.then) {
-                        priming.then(() => {
-                            video.pause();
-                            queueMobileSeek();
-                        }).catch(() => { });
-                    }
-                }, { once: true, passive: true });
-            }
 
             const onMeta = () => {
                 duration = video.duration || 0;
