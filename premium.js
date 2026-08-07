@@ -246,10 +246,15 @@
             if (!section || !video || recording) return;
 
             const mobileScrub = coarse || window.innerWidth <= 900;
-            const framedMobileScrub = window.innerWidth <= 768;
+            const framedMobileScrub = mobileScrub;
+            const framedScrubStart = 1.6;
+            const framedScrubEnd = 24.4;
 
-            if (framedMobileScrub && video.dataset.mobilePoster) {
-                video.poster = video.dataset.mobilePoster;
+            // Safari puede conservar el póster por encima de un vídeo pausado
+            // aunque currentTime cambie. En móvil cargamos el fotograma real.
+            if (framedMobileScrub) {
+                video.removeAttribute('poster');
+                video.load();
             }
 
             // El movimiento reducido conserva una reproducción convencional.
@@ -274,6 +279,7 @@
 
             section.classList.add('vn-scrub');
             section.classList.toggle('vn-scrub-mobile', mobileScrub);
+            section.classList.toggle('vn-framed-mobile', framedMobileScrub);
             if (mobileScrub) story?.classList.add('is-scrubbing');
             video.removeAttribute('autoplay');
             video.pause();
@@ -315,6 +321,8 @@
                 failed = true;
                 section.classList.remove('vn-scrub');
                 section.classList.remove('vn-scrub-mobile');
+                section.classList.remove('vn-framed-mobile');
+                section.classList.remove('vn-mobile-frame-ready');
                 story?.classList.remove('is-scrubbing');
                 story?.classList.remove('video-copy-hidden');
                 story?.style.removeProperty('--hero-support-opacity');
@@ -362,6 +370,9 @@
             };
 
             video.addEventListener('seeked', () => {
+                if (framedMobileScrub && video.currentTime >= framedScrubStart - 0.08) {
+                    section.classList.add('vn-mobile-frame-ready');
+                }
                 if (mobileScrub && Math.abs(video.currentTime - target) >= 0.05) {
                     queueMobileSeek();
                 }
@@ -374,7 +385,12 @@
                 // adelante el primer fotograma antes del primer gesto real.
                 const scrollStart = mobileScrub ? Math.max(top, 0) + 16 : top;
                 const p = Math.min(Math.max((window.scrollY - scrollStart) / span, 0), 1);
-                target = p * (duration - 0.05);
+                if (framedMobileScrub) {
+                    const scrubEnd = Math.min(duration - 0.05, framedScrubEnd);
+                    target = framedScrubStart + p * Math.max(0, scrubEnd - framedScrubStart);
+                } else {
+                    target = p * (duration - 0.05);
+                }
                 section.classList.toggle('vn-playing', p > 0.02);
                 fill.style.width = (p * 100).toFixed(2) + '%';
 

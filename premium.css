@@ -936,6 +936,16 @@ nav.vn-hidden {
     opacity: 1 !important;
 }
 
+.notch-demo-screen {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.notch-demo-shell {
+    display: none;
+}
+
 .notch-demo-video {
     display: block;
     width: 100%;
@@ -2715,15 +2725,47 @@ nav.vn-hidden {
     }
 
     #demo.vn-scrub .notch-demo-video {
-        width: 100%;
-        height: 100%;
+        position: absolute;
+        top: -50.595%;
+        left: -36.538%;
+        width: 173.077%;
+        height: 150.595%;
         min-height: 0;
         max-height: none;
-        object-fit: contain;
+        object-fit: fill;
         object-position: 50% 50%;
         transform-origin: 50% 50%;
         transform: none !important;
+        opacity: 0;
+        transition: opacity 120ms linear;
         pointer-events: none;
+    }
+
+    #demo.vn-scrub .notch-demo-screen {
+        position: absolute;
+        z-index: 1;
+        top: 2.281%;
+        left: 15.691%;
+        width: 68.544%;
+        height: 70.828%;
+        background: #4779f3;
+    }
+
+    #demo.vn-scrub.vn-mobile-frame-ready .notch-demo-video {
+        opacity: 1;
+    }
+
+    #demo.vn-scrub .notch-demo-shell {
+        position: absolute;
+        z-index: 2;
+        top: -6.723%;
+        left: -12.763%;
+        display: block;
+        width: 125.526%;
+        height: 112.965%;
+        max-width: none;
+        pointer-events: none;
+        user-select: none;
     }
 
     #demo.vn-scrub .demo-disclaimer {
@@ -2829,6 +2871,62 @@ nav.vn-hidden {
     .more-apps-link {
         width: 100%;
         justify-content: flex-start;
+    }
+}
+
+@media (min-width: 769px) {
+    #demo.vn-scrub.vn-framed-mobile .notch-demo-frame {
+        position: absolute;
+        inset: 50% auto auto 50%;
+        width: min(92vw, 150svh) !important;
+        max-width: none !important;
+        height: auto;
+        aspect-ratio: 8 / 5;
+        background: transparent;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    #demo.vn-scrub.vn-framed-mobile .notch-demo-screen {
+        position: absolute;
+        z-index: 1;
+        top: 2.281%;
+        left: 15.691%;
+        width: 68.544%;
+        height: 70.828%;
+        overflow: hidden;
+        background: #4779f3;
+    }
+
+    #demo.vn-scrub.vn-framed-mobile .notch-demo-video {
+        position: absolute;
+        top: -50.595%;
+        left: -36.538%;
+        width: 173.077%;
+        height: 150.595%;
+        max-width: none;
+        max-height: none;
+        object-fit: fill;
+        transform: none !important;
+        opacity: 0;
+        transition: opacity 120ms linear;
+        pointer-events: none;
+    }
+
+    #demo.vn-scrub.vn-framed-mobile.vn-mobile-frame-ready .notch-demo-video {
+        opacity: 1;
+    }
+
+    #demo.vn-scrub.vn-framed-mobile .notch-demo-shell {
+        position: absolute;
+        z-index: 2;
+        top: -6.723%;
+        left: -12.763%;
+        display: block;
+        width: 125.526%;
+        height: 112.965%;
+        max-width: none;
+        pointer-events: none;
+        user-select: none;
     }
 }
 
