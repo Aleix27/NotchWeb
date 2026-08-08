@@ -246,13 +246,10 @@
             if (!section || !video || recording) return;
 
             const mobileScrub = coarse || window.innerWidth <= 900;
-            const framedMobileScrub = mobileScrub;
-            const framedScrubStart = 1.6;
-            const framedScrubEnd = 24.4;
 
             // Safari puede conservar el póster por encima de un vídeo pausado
             // aunque currentTime cambie. En móvil cargamos el fotograma real.
-            if (framedMobileScrub) {
+            if (mobileScrub) {
                 video.removeAttribute('poster');
                 video.load();
             }
@@ -279,7 +276,6 @@
 
             section.classList.add('vn-scrub');
             section.classList.toggle('vn-scrub-mobile', mobileScrub);
-            section.classList.toggle('vn-framed-mobile', framedMobileScrub);
             if (mobileScrub) story?.classList.add('is-scrubbing');
             video.removeAttribute('autoplay');
             video.pause();
@@ -299,7 +295,6 @@
             let current = 0;
             let running = false;
             let top = 0, span = 1;
-            let mobileSeekFrame = 0;
             let failed = false;
 
             const measure = () => {
@@ -321,8 +316,6 @@
                 failed = true;
                 section.classList.remove('vn-scrub');
                 section.classList.remove('vn-scrub-mobile');
-                section.classList.remove('vn-framed-mobile');
-                section.classList.remove('vn-mobile-frame-ready');
                 story?.classList.remove('is-scrubbing');
                 story?.classList.remove('video-copy-hidden');
                 story?.style.removeProperty('--hero-support-opacity');
@@ -355,10 +348,9 @@
                 }
             };
 
-            // Móvil: una única búsqueda pendiente. Al terminar se aplica solo el
+            // Móvil: una única búsqueda activa. Al terminar se aplica solo el
             // objetivo más reciente, evitando saturar el decodificador de Safari.
             const seekMobile = () => {
-                mobileSeekFrame = 0;
                 if (!duration || failed || video.seeking) return;
                 const tolerance = target <= 0.001 ? 0.002 : 0.05;
                 if (Math.abs(video.currentTime - target) < tolerance) return;
@@ -366,13 +358,10 @@
             };
 
             const queueMobileSeek = () => {
-                if (!mobileSeekFrame) mobileSeekFrame = requestAnimationFrame(seekMobile);
+                seekMobile();
             };
 
             video.addEventListener('seeked', () => {
-                if (framedMobileScrub && video.currentTime >= framedScrubStart - 0.08) {
-                    section.classList.add('vn-mobile-frame-ready');
-                }
                 if (mobileScrub && Math.abs(video.currentTime - target) >= 0.05) {
                     queueMobileSeek();
                 }
@@ -385,12 +374,7 @@
                 // adelante el primer fotograma antes del primer gesto real.
                 const scrollStart = mobileScrub ? Math.max(top, 0) + 16 : top;
                 const p = Math.min(Math.max((window.scrollY - scrollStart) / span, 0), 1);
-                if (framedMobileScrub) {
-                    const scrubEnd = Math.min(duration - 0.05, framedScrubEnd);
-                    target = framedScrubStart + p * Math.max(0, scrubEnd - framedScrubStart);
-                } else {
-                    target = p * (duration - 0.05);
-                }
+                target = p * (duration - 0.05);
                 section.classList.toggle('vn-playing', p > 0.02);
                 fill.style.width = (p * 100).toFixed(2) + '%';
 
@@ -404,9 +388,9 @@
                     story.classList.toggle('video-copy-hidden', supportOpacity <= 0.02);
                 }
 
-                // El clip móvil conserva el MacBook completo durante el gesto.
-                // En escritorio el zoom mantiene el efecto original.
-                if (framedMobileScrub) {
+                // El vídeo móvil ya incluye el MacBook: se muestra directamente,
+                // sin añadir otro marco ni aplicar un zoom externo.
+                if (mobileScrub) {
                     video.style.removeProperty('transform');
                 } else {
                     const zoom = 1 + 0.31 * Math.min(p / 0.2, 1);
