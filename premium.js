@@ -9,6 +9,7 @@
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const recording = document.documentElement.classList.contains('recording-ad');
     const coarse = window.matchMedia('(pointer: coarse)').matches;
+    const localized = (key, fallback) => window.VibeNotchI18n?.t(key, fallback) ?? fallback;
 
     const ready = (fn) =>
         document.readyState === 'loading'
@@ -107,14 +108,18 @@
         };
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
         window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMenu(); });
+        const syncMenuLabel = () => {
+            if (menuBtn) menuBtn.setAttribute('aria-label', localized('menu', 'Abrir menú'));
+        };
         if (menuBtn) {
             menuBtn.setAttribute('role', 'button');
-            menuBtn.setAttribute('aria-label', 'Abrir menú');
             menuBtn.setAttribute('tabindex', '0');
             menuBtn.addEventListener('keydown', e => {
                 if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); menuBtn.click(); }
             });
         }
+        syncMenuLabel();
+        window.addEventListener('vibenotch:languagechange', syncMenuLabel);
 
         /* ------------------------------------------------------------------
            5. Halos ambientales en secciones oscuras
@@ -438,7 +443,7 @@
             btn && btn.addEventListener('click', () => {
                 const f = document.createElement('iframe');
                 f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
-                f.title = 'Tráiler de VibeNotch Sports';
+                f.title = localized('trailerTitle', 'Tráiler de VibeNotch Sports');
                 f.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture';
                 f.allowFullscreen = true;
                 box.appendChild(f);
@@ -451,7 +456,11 @@
            ------------------------------------------------------------------ */
         const mute = document.getElementById('promo-mute-btn');
         const play = document.getElementById('promo-play-btn');
-        if (mute) mute.setAttribute('aria-label', 'Activar o desactivar el sonido del vídeo');
-        if (play) play.setAttribute('aria-label', 'Reproducir o pausar el vídeo');
+        const syncVideoLabels = () => {
+            if (mute) mute.setAttribute('aria-label', localized('soundControl', 'Activar o desactivar el sonido del vídeo'));
+            if (play) play.setAttribute('aria-label', localized('playbackControl', 'Reproducir o pausar el vídeo'));
+        };
+        syncVideoLabels();
+        window.addEventListener('vibenotch:languagechange', syncVideoLabels);
     });
 })();

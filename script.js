@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const localized = (key, fallback) => window.VibeNotchI18n?.t(key, fallback) ?? fallback;
+
     if (new URLSearchParams(window.location.search).has('record')) {
         document.documentElement.classList.add('recording-ad');
         document.body.classList.add('recording-ad');
@@ -89,7 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             isPlaying = !isPlaying;
             playBtn.textContent = isPlaying ? '⏸' : '▶';
-            statusText.textContent = isPlaying ? 'PLAYING' : 'PAUSED';
+            statusText.textContent = isPlaying
+                ? localized('playing', 'REPRODUCIENDO')
+                : localized('paused', 'PAUSADO');
 
             const bars = document.querySelectorAll('.compact-visualizer span');
             bars.forEach(bar => {
@@ -481,25 +485,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const promoMuteBtn = document.getElementById('promo-mute-btn');
     const promoPlayBtn = document.getElementById('promo-play-btn');
 
+    const syncLocalizedMediaControls = () => {
+        if (promoMuteBtn && promoVideo) {
+            promoMuteBtn.textContent = promoVideo.muted
+                ? localized('mute', '🔇 Silencio')
+                : localized('sound', '🔊 Sonido');
+        }
+        if (promoPlayBtn && promoVideo) {
+            promoPlayBtn.textContent = promoVideo.paused
+                ? localized('play', '▶ Reproducir')
+                : localized('pause', '⏸ Pausar');
+        }
+        if (statusText) {
+            statusText.textContent = isPlaying
+                ? localized('playing', 'REPRODUCIENDO')
+                : localized('paused', 'PAUSADO');
+        }
+    };
+
     if (promoVideo) {
         if (promoMuteBtn) {
             promoMuteBtn.addEventListener('click', () => {
                 promoVideo.muted = !promoVideo.muted;
-                promoMuteBtn.textContent = promoVideo.muted ? '🔇 Silencio' : '🔊 Sonido';
+                syncLocalizedMediaControls();
             });
         }
         if (promoPlayBtn) {
             promoPlayBtn.addEventListener('click', () => {
                 if (promoVideo.paused) {
-                    promoVideo.play();
-                    promoPlayBtn.textContent = '⏸ Pausar';
+                    promoVideo.play()
+                        .then(syncLocalizedMediaControls)
+                        .catch(syncLocalizedMediaControls);
                 } else {
                     promoVideo.pause();
-                    promoPlayBtn.textContent = '▶ Reproducir';
+                    syncLocalizedMediaControls();
                 }
             });
         }
     }
+    syncLocalizedMediaControls();
+    window.addEventListener('vibenotch:languagechange', syncLocalizedMediaControls);
 
     // 18. LAZY LOAD & PLAY/PAUSE AUTOPLAY VIDEOS (Performance Optimization for Mobile)
     // El vídeo principal lo controla premium.js mediante el scroll.
