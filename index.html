@@ -1,1118 +1,360 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VibeNotch | La Interacción Redefinida</title>
-    <meta name="description" content="La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.">
-    <meta name="keywords"
-        content="VibeNotch, interacción, UX, experiencia de usuario, innovación, tecnología, comunidad">
-    <meta name="author" content="VibeNotch Team">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="VibeNotch | La Interacción Redefinida">
-    <meta property="og:description"
-        content="La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vibenotch.es/">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="VibeNotch | La Interacción Redefinida">
-    <meta name="twitter:description"
-        content="La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>VibeNotch — El notch de tu Mac, por fin útil</title>
+    <meta name="description" content="VibeNotch convierte el notch de tu Mac en un centro vivo: música con portadas reales, avisos, agenda, teleprompter y deporte en directo. Nativa en Swift, privada y con pago único.">
     <link rel="canonical" href="https://vibenotch.es/">
-    <script>
-        if (new URLSearchParams(window.location.search).has('record')) {
-            document.documentElement.classList.add('recording-ad');
-            if ('scrollRestoration' in history) {
-                history.scrollRestoration = 'manual';
-            }
-            window.addEventListener('load', () => window.scrollTo(0, 0), { once: true });
-        }
-    </script>
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#050505" media="(prefers-color-scheme: dark)">
-    <meta property="og:image" content="https://vibenotch.es/assets/vibenotch-hero-poster.jpg">
-    <meta name="twitter:image" content="https://vibenotch.es/assets/vibenotch-hero-poster.jpg">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="image" href="assets/vibenotch-hero-poster.jpg">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="style.css?v=20260830-locales1">
-    <style>
-        /* Footer Styles for More Apps */
-        .ef-footer {
-            padding: 60px 40px;
-            text-align: center;
-            background: #050505;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            position: relative;
-            z-index: 20;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .more-apps-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.6);
-            padding: 15px 30px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .more-apps-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            transform: translateY(-2px);
-        }
-
-        .more-apps-link img {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .more-text span {
-            display: block;
-            text-align: left;
-        }
-
-        .more-label {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.7;
-        }
-
-        .more-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        /* ========== PREMIUM NEWSLETTER (EdgeFlow Style) ========== */
-        .newsletter-section {
-            background: #000 !important;
-            padding: 120px 20px !important;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-glow-bg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 120%;
-            background: radial-gradient(circle at center, rgba(0, 113, 227, 0.3) 0%, rgba(0, 0, 0, 0) 65%);
-            z-index: 1;
-            pointer-events: none;
-            animation: pulseGlow 4s infinite alternate ease-in-out;
-            mix-blend-mode: screen;
-        }
-
-        @keyframes pulseGlow {
-            from {
-                opacity: 0.4;
-                transform: translate(-50%, -50%) scale(0.9);
-            }
-
-            to {
-                opacity: 0.8;
-                transform: translate(-50%, -50%) scale(1.1);
-            }
-        }
-
-        .cta-input-premium {
-            padding: 20px 30px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 18px;
-            outline: none;
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            width: 350px;
-            backdrop-filter: blur(20px);
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .cta-input-premium:focus {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: #0071e3;
-            width: 380px;
-            box-shadow: 0 0 50px rgba(0, 113, 227, 0.3);
-        }
-
-        .cta-submit-premium {
-            border: none;
-            cursor: pointer;
-            padding: 20px 45px;
-            font-size: 18px;
-            background: #fff;
-            color: #000;
-            border-radius: 50px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-        }
-
-        .cta-submit-premium:hover {
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 15px 50px rgba(255, 255, 255, 0.4);
-            background: #fdfdfd;
-        }
-
-        /* ========== APP CABINET ========== */
-        .app-cabinet {
-            background: #fff;
-            padding: 24px 0;
-            display: flex;
-            justify-content: center;
-            overflow-x: auto;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            margin-top: -150px;
-            transition: margin-top 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            z-index: 1001;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .app-cabinet.show {
-            margin-top: 0;
-        }
-
-        .app-cabinet::-webkit-scrollbar {
-            display: none;
-        }
-
-        .cabinet-inner {
-            display: flex;
-            gap: 30px;
-            padding: 0 40px;
-        }
-
-        .cabinet-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            transition: all 0.4s ease;
-            min-width: 90px;
-        }
-
-        .cabinet-item img {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .cabinet-item span {
-            font-size: 11px;
-            color: rgba(0, 0, 0, 0.5);
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: color 0.3s;
-        }
-
-        .cabinet-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .cabinet-item:hover img {
-            border-color: #0071e3;
-            box-shadow: 0 0 25px rgba(0, 113, 227, 0.5);
-        }
-
-        .cabinet-item:hover span {
-            color: #000;
-        }
-
-        .cabinet-item.active {
-            opacity: 0.6;
-            pointer-events: none;
-        }
-
-        @media (max-width: 700px) {
-            .app-cabinet {
-                justify-content: flex-start;
-            }
-        }
-    </style>
-
-    <!-- Capa premium: debe cargarse la última para poder refinar lo anterior -->
-    <link rel="stylesheet" href="premium.css?v=20260808-raw-video">
-
-    <!-- FAVICOn -->
-    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="shortcut icon" href="assets/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="assets/favicon/site.webmanifest" />
-
-    <!-- STRUCTED DATA -->
+    <meta name="theme-color" content="#ffffff">
+    <meta name="color-scheme" content="light">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="VibeNotch">
+    <meta property="og:url" content="https://vibenotch.es/">
+    <meta property="og:title" content="VibeNotch — El notch de tu Mac, por fin útil">
+    <meta property="og:description" content="Música, avisos, agenda, teleprompter y deporte en directo, justo donde ya miras. Nativa en Swift para macOS.">
+    <meta property="og:image" content="https://vibenotch.es/assets/media/film-poster.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VibeNotch — El notch de tu Mac, por fin útil">
+    <meta name="twitter:description" content="Música, avisos, agenda, teleprompter y deporte en directo, justo donde ya miras.">
+    <meta name="twitter:image" content="https://vibenotch.es/assets/media/film-poster.jpg">
+    <link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="preload" as="image" href="assets/optimized/album-art-256.jpg">
+    <link rel="stylesheet" href="assets/site/site.css?v=6">
+    <link rel="stylesheet" href="assets/site/notch.css?v=6">
     <script type="application/ld+json">
-                {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "VibeNotch",
-  "description": "La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "macOS",
-  "softwareVersion": "2.0",
-  "offers": {
-    "@type": "Offer",
-    "price": "4.99",
-    "priceCurrency": "EUR"
-  },
-  "abstract": "VibeNotch está diseñado con un principio simple: tu Mac es tuyo. No recopilamos datos, no hay análisis de uso, no hay servidores externos. La aplicación funciona completamente offline.",
-  "privacyPolicy": "https://vibenotch.es/privacy.html",
-  "isAccessibleForFree": false
-}
-    </script>
-
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "VibeNotch",
-  "review": [
     {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Daloge"
-      },
-      "reviewBody": "Es un antes y un después esta aplicación. He pasado de tener una pestaña que no sirve para nada a darle utilidad real."
-    },
-    {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "javibeat"
-      },
-      "reviewBody": "Parece una app nativa de lo bien implementada que está. Una vez la usas, ya no hay vuelta atrás."
-    },
-    {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Brandon Barba"
-      },
-      "reviewBody": "Es la mejor app para el notch, le da vida. No sé por qué Apple nunca lo hizo antes."
-    },
-    {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "ArianGisbert"
-      },
-      "reviewBody": "La interfaz es limpia e intuitiva y no afecta en nada al rendimiento. Hace justo lo que promete."
-    },
-    {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Robertcaliani"
-      },
-      "reviewBody": "Simplemente perfecto, algo que debería estar implementado nativamente en Apple."
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "VibeNotch",
+        "operatingSystem": "macOS 14 o posterior",
+        "applicationCategory": "UtilitiesApplication",
+        "softwareVersion": "2.0",
+        "description": "Convierte el notch del Mac en un centro vivo: música, avisos, agenda, teleprompter y deporte en directo.",
+        "url": "https://vibenotch.es/",
+        "downloadUrl": "https://apps.apple.com/app/vibenotch/id6757723688",
+        "image": "https://vibenotch.es/assets/media/film-poster.jpg",
+        "offers": { "@type": "Offer", "price": "4.99", "priceCurrency": "EUR" },
+        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.4", "ratingCount": "50", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Aleix Carles" }
     }
-  ]
-}
     </script>
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type":"Question","name":"¿Funciona si mi Mac no tiene notch?","acceptedAnswer":{"@type":"Answer","text":"Sí. El modo píldora flotante coloca la misma interfaz en la parte superior de la pantalla, así que funciona igual en cualquier Mac con macOS 14 o posterior."}},
-    {"@type":"Question","name":"¿Es una suscripción?","acceptedAnswer":{"@type":"Answer","text":"No. Es un pago único de 4,99 € en la Mac App Store. Las actualizaciones están incluidas."}},
-    {"@type":"Question","name":"¿Consume batería o recursos?","acceptedAnswer":{"@type":"Answer","text":"Está programada de forma nativa en Swift y en reposo el consumo es prácticamente nulo: menos de 35 MB de memoria y 0 % de CPU."}},
-    {"@type":"Question","name":"¿Qué datos recoge la aplicación?","acceptedAnswer":{"@type":"Answer","text":"Ninguno. No hay analítica, ni servidores externos, ni cuentas. Todo ocurre en tu Mac."}},
-    {"@type":"Question","name":"¿Con qué apps de música funciona?","acceptedAnswer":{"@type":"Answer","text":"Con las que se integran con los controles de reproducción de macOS, como Música de Apple y Spotify."}}
-  ]
-}
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "¿Funciona si mi Mac no tiene notch?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. El modo burbuja coloca la misma interfaz flotando en la parte superior de la pantalla, en cualquier Mac con macOS 14 o posterior." } },
+            { "@type": "Question", "name": "¿Es una suscripción?", "acceptedAnswer": { "@type": "Answer", "text": "No. VibeNotch es un pago único de 4,99 € con las actualizaciones incluidas. Solo las competiciones extra de Sports usan una suscripción opcional; el Mundial es gratis." } },
+            { "@type": "Question", "name": "¿Consume batería o recursos?", "acceptedAnswer": { "@type": "Answer", "text": "Está programada en Swift nativo: menos de 60 MB de memoria y menos del 1 % de CPU en reposo." } },
+            { "@type": "Question", "name": "¿Qué datos recoge?", "acceptedAnswer": { "@type": "Answer", "text": "Ninguno personal. Sin cuentas ni analítica: tu música, tu agenda y tus recordatorios se leen en tu Mac y no salen de él." } }
+        ]
+    }
     </script>
+    <script>document.documentElement.classList.add('js');</script>
 </head>
 
 <body>
-    <div id="app-cabinet" class="app-cabinet">
-        <div class="cabinet-inner">
-            <a href="index.html" class="cabinet-item active">
-                <img loading="lazy" decoding="async" src="assets/VibeNotch icon-iOS-Default-1024x1024@1x.png" alt="VibeNotch">
-                <span>VibeNotch</span>
-            </a>
-            <a href="edgeflow/index.html" class="cabinet-item">
-                <img loading="lazy" decoding="async" src="edgeflow/EdgeFlow icon-iOS-Default-1024x1024@1x.png" alt="EdgeFlow">
-                <span>EdgeFlow</span>
-            </a>
-            <a href="sweepy/index.html" class="cabinet-item">
-                <img loading="lazy" decoding="async" src="sweepy/assets/sweepy-icon-256.png" alt="Sweepy">
-                <span>Sweepy</span>
-            </a>
-            <a href="vibecapture/index.html" class="cabinet-item">
-                <img loading="lazy" decoding="async" src="vibecapture/assets/vibecapture-icon.png" alt="VibeCapture">
-                <span>VibeCapture</span>
-            </a>
-        </div>
-    </div>
-    <!-- INTRO SCROLL SECTION (HIDDEN)
-    <section class="intro-scroll-section">
-        <div class="sticky-wrapper">
-            <div class="intro-media">
-                <video id="intro-video" class="intro-video" preload="auto" muted playsinline webkit-playsinline
-                    poster="assets/optimized/Gemini_Generated_Image_r2yk35r2yk35r2yk.webp">
-                    <source src="assets/optimized/intro_optimized.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </section>
-    -->
+    <a class="skip" href="#main" data-i18n="a11y.skip">Saltar al contenido</a>
 
-    <nav class="visible">
-        <div class="nav-content">
-            <div class="logo-group">
-                <img src="assets/VibeNotch icon-iOS-Default-1024x1024@1x.png" alt="VibeNotch Icon" class="nav-icon">
-                <div class="logo">VibeNotch</div>
-            </div>
-            <div class="nav-links">
-                <a href="#vision">Visión</a>
-                <a href="#appstore">Tienda</a>
-                <a href="#sports">Sports</a>
-                <a href="#design">Diseño</a>
-                <a href="#metrics">Potencia</a>
-                <a href="support.html">Soporte</a>
-                <a href="#appstore" class="btn-yellow" style="text-decoration: none;">Descargar</a>
-            </div>
-            <div class="menu-toggle" id="mobile-menu-btn">
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
-    <div class="hero-demo-story">
-        <header class="hero">
-            <h1 class="reveal-scroll hero-title" aria-label="El notch más óptimo.">
-                <span class="giant" aria-hidden="true"><span class="w" style="--i:0"><span class="l" style="--j:0">E</span><span class="l" style="--j:1">l</span></span> <span class="w" style="--i:1"><span class="l" style="--j:2">n</span><span class="l" style="--j:3">o</span><span class="l" style="--j:4">t</span><span class="l" style="--j:5">c</span><span class="l" style="--j:6">h</span></span></span>
-                <span class="soul" aria-hidden="true"><span class="w" style="--i:2">más</span> <span class="w" style="--i:3">óptimo.</span></span>
-            </h1>
-            <p class="reveal-scroll hero-subtitle">La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.</p>
-            <div class="btn-group reveal-scroll"
-                style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
-                <a href="#appstore" class="btn-yellow hero-download-button">
-                    <span>Descargar VibeNotch</span>
-                    <span class="hero-button-version">v2.0</span>
-                    <span class="hero-button-icon" aria-hidden="true">↓</span>
-                </a>
-                <span class="app-store-tag">Ya disponible en la Mac App Store</span>
-            </div>
-        </header>
-
-        <section id="demo" class="demo-section notch-ad-section" aria-label="Anuncio de VibeNotch">
-            <div class="notch-ad-stage" aria-label="MacBook mostrando VibeNotch en acción">
-                <div class="notch-demo-frame">
-                    <video class="notch-demo-video" muted loop playsinline preload="auto"
-                        poster="assets/vibenotch-hero-poster.jpg" aria-label="VibeNotch funcionando en macOS">
-                        <source src="assets/vibenotch-hero-900.mp4" type="video/mp4"
-                            data-hd="assets/vibenotch-hero.mp4">
-                    </video>
+    <header class="bar is-on is-static" id="bar">
+        <div class="bar-inner">
+            <a class="brand" href="#top" aria-label="VibeNotch"><img src="assets/favicon/apple-touch-icon.png" width="24" height="24" alt=""><span>VibeNotch</span></a>
+            <div class="apps">
+                <button class="apps-btn" id="apps-btn" type="button" aria-expanded="false" aria-controls="apps-pop" aria-label="Nuestras apps" data-i18n-attr="aria-label:apps.k"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><g fill="currentColor"><circle cx="2" cy="2" r="1.6"/><circle cx="7" cy="2" r="1.6"/><circle cx="12" cy="2" r="1.6"/><circle cx="2" cy="7" r="1.6"/><circle cx="7" cy="7" r="1.6"/><circle cx="12" cy="7" r="1.6"/><circle cx="2" cy="12" r="1.6"/><circle cx="7" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/></g></svg></button>
+                <div class="apps-pop" id="apps-pop" hidden>
+                    <p class="apps-k" data-i18n="apps.k">Nuestras apps</p>
+                    <a class="app-item is-current" href="#top" aria-current="page"><img src="assets/favicon/apple-touch-icon.png" width="40" height="40" alt=""><span><strong>VibeNotch</strong><small data-i18n="apps.here">Estás aquí</small></span></a>
+                    <a class="app-item" href="edgeflow/index.html"><img src="assets/media/app-edgeflow.png" width="40" height="40" alt=""><span><strong>EdgeFlow</strong><small data-i18n="apps.ef">El panel lateral definitivo para macOS</small></span><i aria-hidden="true">→</i></a>
                 </div>
             </div>
-            <p class="demo-disclaimer"><span class="scrub-hint">Desplázate para reproducir</span><span class="scrub-sep">·</span>Grabación real de VibeNotch en macOS</p>
+            <nav class="bar-links" aria-label="Principal" data-i18n-attr="aria-label:nav.label">
+                <a href="#funciones" data-i18n="nav.features">Funciones</a>
+                <a href="#film" data-i18n="nav.film">Vídeo</a>
+                <a href="#nativa" data-i18n="nav.native">Rendimiento</a>
+                <a href="#precio" data-i18n="nav.pricing">Precio</a>
+                <a href="support.html" data-i18n="nav.support">Soporte</a>
+            </nav>
+            <label class="lang"><span class="sr" data-i18n="nav.language">Idioma</span><select data-lang aria-label="Idioma"><option value="es">ES</option><option value="en">EN</option><option value="zh">中文</option></select></label>
+            <a class="btn btn-ink btn-sm bar-cta" href="https://apps.apple.com/app/vibenotch/id6757723688" rel="noopener" data-i18n="nav.download">Descargar</a>
+            <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menú" data-i18n-attr="aria-label:nav.menu"><i></i><i></i></button>
+        </div>
+        <div class="menu" id="menu" hidden>
+            <a href="#funciones" data-i18n="nav.features">Funciones</a>
+            <a href="#film" data-i18n="nav.film">Vídeo</a>
+            <a href="#nativa" data-i18n="nav.native">Rendimiento</a>
+            <a href="#precio" data-i18n="nav.pricing">Precio</a>
+            <a href="support.html" data-i18n="nav.support">Soporte</a>
+            <a class="menu-app" href="edgeflow/index.html"><img src="assets/media/app-edgeflow.png" width="28" height="28" alt=""><span>EdgeFlow</span><small data-i18n="apps.more">Otra app</small></a>
+            <a class="btn btn-ink btn-lg" href="https://apps.apple.com/app/vibenotch/id6757723688" rel="noopener" data-i18n="hero.cta">Descargar en la Mac App Store</a>
+        </div>
+    </header>
+
+    <main id="main">
+        <!-- ─────────────── STORY: title, then the screen edge settles under each feature ─────────────── -->
+        <section class="story" id="story">
+            <div class="story-pin" id="pin">
+                <div class="aura" aria-hidden="true"><i></i><i></i><i></i></div>
+
+                <div class="story-hero" id="story-hero">
+                    <h1 class="display" data-i18n-html="hero.title">El notch de tu Mac.<br><span class="tone">Por fin útil.</span></h1>
+                    <p class="lede" data-i18n="hero.sub">Música, avisos, agenda, teleprompter y deporte en directo, justo donde ya miras. Nativa en Swift, ligera y privada.</p>
+                    <div class="cta-row">
+                        <a class="btn btn-ink btn-lg" href="https://apps.apple.com/app/vibenotch/id6757723688" rel="noopener">
+                            <svg width="16" height="19" viewBox="0 0 17 20" aria-hidden="true"><path fill="currentColor" d="M14.1 10.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.2-1.2 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.7-1-2.7-4ZM11.6 3c.7-.9 1.2-2 1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5Z"/></svg>
+                            <span data-i18n="hero.cta">Descargar en la Mac App Store</span>
+                        </a>
+                        <p class="cta-meta"><span class="stars" aria-hidden="true">★★★★★</span> <strong data-i18n="num.rating">4,4</strong> · <span data-i18n="hero.price">4,99 €</span> <span data-i18n="hero.once">pago único</span></p>
+                    </div>
+                </div>
+
+                <div class="story-texts" id="story-texts">
+                    <div class="story-track" id="story-track">
+                        <article class="story-item" data-state="media">
+                            <p class="label">01 · <span data-i18n="f1.k">Música</span></p>
+                            <h2 class="h2" data-i18n="f1.t">Tu música, viva.</h2>
+                            <p class="sub" data-i18n="f1.p">Portada real, progreso y controles. La onda toma los colores del disco y late con la canción. Música, Spotify, Apple TV y QuickTime.</p>
+                        </article>
+                        <article class="story-item" data-state="alerts">
+                            <p class="label">02 · <span data-i18n="f2.k">Avisos</span></p>
+                            <h2 class="h2" data-i18n="f2.t">Avisos que no interrumpen.</h2>
+                            <p class="sub" data-i18n="f2.p">AirPods, carga, modo silencio o Wi‑Fi: el notch te lo cuenta en un gesto y vuelve a su sitio.</p>
+                        </article>
+                        <article class="story-item" data-state="events">
+                            <p class="label">03 · <span data-i18n="f3.k">Agenda</span></p>
+                            <h2 class="h2" data-i18n="f3.t">Tu día, de un vistazo.</h2>
+                            <p class="sub" data-i18n="f3.p">Próximos eventos del Calendario y tus Recordatorios, que completas con un clic sin abrir ninguna app.</p>
+                        </article>
+                        <article class="story-item" data-state="shortcuts">
+                            <p class="label">04 · <span data-i18n="fq7.k">Accesos rápidos</span></p>
+                            <h2 class="h2" data-i18n="fq7.t">Tus apps, a un clic.</h2>
+                            <p class="sub" data-i18n="fq7.p">Elige hasta cuatro apps y ábrelas desde el notch sin buscarlas: Safari, Notas, Captura de pantalla o las que tú quieras.</p>
+                        </article>
+                        <article class="story-item" data-state="tele">
+                            <p class="label">05 · Teleprompter</p>
+                            <h2 class="h2" data-i18n="f5.t">Lee sin apartar la mirada.</h2>
+                            <p class="sub" data-i18n="f5.p">Tu guion junto a la cámara para grabar o presentar con naturalidad. Escríbelo en el notch y pulsa VER.</p>
+                        </article>
+                        <article class="story-item" data-state="disco">
+                            <p class="label">06 · Disco</p>
+                            <h2 class="h2" data-i18n="f6.t">Late con tu música.</h2>
+                            <p class="sub" data-i18n="f6.p">El notch respira con el ritmo y brilla con el color de la portada.</p>
+                        </article>
+                        <article class="story-item" data-state="bubble">
+                            <p class="label">07 · <span data-i18n="f7.k">Modo burbuja</span></p>
+                            <h2 class="h2" data-i18n="f7.t">¿Sin notch? También.</h2>
+                            <p class="sub" data-i18n="f7.p">La misma experiencia flota sobre tu escritorio en cualquier Mac o pantalla externa.</p>
+                        </article>
+                        <article class="story-item" data-state="sports">
+                            <p class="label">08 · Sports</p>
+                            <h2 class="h2" data-i18n="f4.t">Y el partido, también en el notch.</h2>
+                            <p class="sub" data-i18n="f4.p">Marcador en directo con la muesca cerrada. El Mundial 2026 es gratis; LaLiga, Premier, NBA, F1 y 15 competiciones más, con la suscripción opcional.</p>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="edge" id="edge">
+                    <div class="bezel" aria-hidden="true"></div>
+                    <div class="island-host" id="hero-island"></div>
+                </div>
+            </div>
+            <span class="story-anchor" id="funciones" aria-hidden="true"></span>
         </section>
-    </div>
 
-    <!-- IMMERSIVE VIDEO -->
-    <section class="video-demo-section reveal-scroll" style="position: relative;">
-        <div class="video-container">
-            <video id="promo-video" autoplay muted loop playsinline preload="none" class="notch-video" data-lazy
-                poster="assets/optimized/anuncio_notch-poster.jpg" aria-label="Anuncio de VibeNotch">
-                <source data-src="assets/optimized/anuncio_notch.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="video-controls-overlay">
-            <button id="promo-mute-btn" class="video-control-btn">🔇 Silencio</button>
-            <button id="promo-play-btn" class="video-control-btn">⏸ Pausar</button>
-        </div>
-    </section>
+        <!-- ─────────────── FILM: full-screen, muted, always playing ─────────────── -->
+        <section class="film" id="film" aria-label="Anuncio de VibeNotch" data-i18n-attr="aria-label:film.aria">
+            <video id="film-video" playsinline muted loop preload="none" aria-hidden="true"></video>
+        </section>
 
-    <!-- VIDEO DISCLAIMER (on white) -->
-    <div class="video-disclaimer-wrapper">
-        <p class="video-disclaimer">Demostración de la aplicación en acción. VibeNotch se integra perfectamente con tu
-            sistema.</p>
-    </div>
-
-    <!-- DEDICATED SIMULATION VIDEOS SHOWCASE -->
-    <section id="simulations" class="simulations-section">
-        <div class="simulations-container reveal-scroll">
-            <div class="simulations-heading">
-                <span class="feature-tag">SIMULACIÓN</span>
-                <h2>Siente la experiencia VibeNotch</h2>
-                <p>Mira de cerca la fluidez y adaptabilidad de cada interacción en tiempo real.</p>
-            </div>
-            
-            <div class="simulations-grid">
-                <div class="simulation-card reveal-scroll">
-                    <div class="simulation-video-wrapper">
-                        <video autoplay muted loop playsinline preload="none" class="bright-sim-video" data-lazy
-                            poster="assets/optimized/simulacion_comportamiento_notch-poster.jpg"
-                            aria-label="Comportamiento fluido del notch">
-                            <source data-src="assets/optimized/simulacion_comportamiento_notch.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="simulation-copy">
-                        <span class="sim-tag">Física Real</span>
-                        <h3>Comportamiento fluido.</h3>
-                        <p>Siente la respuesta física de cada interacción. El notch se expande, se contrae y se adapta con transiciones ultra suaves a tus gestos y clics cotidianos.</p>
-                    </div>
-                </div>
-
-                <div class="simulation-card reveal-scroll">
-                    <div class="simulation-video-wrapper">
-                        <video autoplay muted loop playsinline preload="none" class="bright-sim-video" data-lazy
-                            poster="assets/optimized/simulacion_caras_notch-poster.jpg"
-                            aria-label="Estilos adaptativos del notch">
-                            <source data-src="assets/optimized/simulacion_caras_notch.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="simulation-copy">
-                        <span class="sim-tag">Estilo Adaptativo</span>
-                        <h3>Múltiples caras.</h3>
-                        <p>Personaliza la interfaz a tu gusto. Cambia la cara y la información mostrada según tu actividad: música, eventos de calendario o estado de batería.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- NOVEDADES -->
-    <section id="novedades" class="updates-section">
-        <div class="updates-heading reveal-scroll">
-            <span class="feature-tag">NOVEDADES</span>
-            <h2>Más que música: ahora tu notch también organiza el día.</h2>
-            <p>La nueva experiencia reúne controles, eventos, utilidades y estados rápidos sin abrir ventanas extra.</p>
-        </div>
-
-        <div class="updates-grid">
-            <article class="update-card update-card-large reveal-scroll">
-                <div class="update-copy">
-                    <span class="update-kicker">Calendario</span>
-                    <h3>Eventos y reuniones al instante.</h3>
-                    <p>Consulta lo próximo de tu agenda directamente desde el notch. Con un simple toque, abre los detalles de tus reuniones y eventos planificados sin interrumpir tu flujo de trabajo.</p>
-                </div>
-                <div class="card-illustration-box premium-contain">
-                    <img loading="lazy" decoding="async" src="assets/Calendario.jpeg" class="illust-img-contain" alt="Calendario en VibeNotch">
-                </div>
-            </article>
-
-            <article class="update-card reveal-scroll">
-                <div class="card-illustration-box premium-contain">
-                    <img loading="lazy" decoding="async" src="assets/musica_portadas_reales.png" class="illust-img-contain" alt="Portadas reales en VibeNotch">
-                </div>
-                <div class="update-copy">
-                    <span class="update-kicker">Media</span>
-                    <h3>Portadas reales y controles vivos.</h3>
-                    <p>La reproducción se siente más nativa: portada, progreso, controles y accesos de estado en una interfaz compacta.</p>
-                </div>
-            </article>
-
-            <article class="update-card reveal-scroll">
-                <div class="card-illustration-box premium-contain">
-                    <img loading="lazy" decoding="async" src="assets/foto_mac_actualizacion_1.8_goldengate.png" class="illust-img-contain" alt="Liquid Glass">
-                </div>
-                <div class="update-copy">
-                    <span class="update-kicker">Liquid Glass</span>
-                    <h3>Un notch más integrado.</h3>
-                    <p>El panel gana profundidad visual, bordes suaves y animaciones más limpias para sentirse como una pieza del sistema.</p>
-                </div>
-            </article>
-
-            <article class="update-card reveal-scroll">
-                <div class="card-illustration-box premium-dark">
-                    <svg viewBox="0 0 280 200" fill="none" class="illust-svg" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="25" y="20" width="230" height="160" rx="16" fill="none" />
-                        <circle cx="140" cy="85" r="32" fill="#0071e3"/>
-                        <path d="M125 102 L137 70 C138 67, 142 67, 143 70 L155 102 M129 93 L151 93" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                        <text x="140" y="145" fill="#fff" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Mac App Store</text>
-                        <text x="140" y="160" fill="#86868b" font-family="-apple-system, sans-serif" font-size="10" text-anchor="middle">Actualizable y Seguro</text>
-                    </svg>
-                </div>
-                <div class="update-copy">
-                    <span class="update-kicker">Mac App Store</span>
-                    <h3>Disponible y actualizable.</h3>
-                    <p>Instalación directa desde la Mac App Store, actualizaciones simples y una ficha pensada para que VibeNotch sea fácil de encontrar.</p>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <!-- VIBENOTCH SPORTS -->
-    <section id="sports" class="sports-section">
-        <div class="sports-inner reveal-scroll">
-            <div class="sports-head">
-                <img class="sports-icon" src="assets/optimized/vibenotch-sports-icon.webp"
-                    alt="VibeNotch Sports" width="112" height="112" loading="lazy" decoding="async">
-                <span class="feature-tag sports-tag">NOVEDAD · VERSIÓN 2.0</span>
-                <h2>VibeNotch <span class="sports-word">Sports</span></h2>
-                <p>El deporte en directo, dentro del notch. Marcador en vivo con la muesca cerrada y un panel LIVE con
-                    césped 3D, goleadores, tarjetas, prórroga y penaltis. Debutó con el Mundial 2026 y ahora crece a
-                    todo el catálogo.</p>
+        <!-- ─────────────── ON YOUR MAC ─────────────── -->
+        <section class="showcase" id="galeria">
+            <div class="wrap section-head center reveal">
+                <p class="label" data-i18n="gl.label">Diseño y utilidad</p>
+                <h2 class="h2" data-i18n-html="gl.title">El notch es mucho más.<br><span class="tone">Y se nota.</span></h2>
             </div>
 
-            <div class="sports-trailer" data-yt="IFOBIP0Aygc">
-                <button class="yt-facade" type="button" aria-label="Ver el tráiler de VibeNotch Sports en YouTube">
-                    <span class="yt-play" aria-hidden="true"></span>
-                    <span class="yt-label">Ver el tráiler</span>
-                </button>
-            </div>
-
-            <div class="sports-catalog">
-                <span class="sports-catalog-label">Catálogo Sports</span>
-                <ul>
-                    <li>Fútbol</li>
-                    <li>Baloncesto</li>
-                    <li>Fútbol americano</li>
-                    <li>Hockey</li>
-                    <li>Béisbol</li>
-                    <li>Tenis</li>
-                    <li>Motor</li>
-                    <li>Deportes de combate</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: TELEPROMPTER -->
-    <section id="teleprompter" class="teleprompter-section">
-        <div class="teleprompter-container reveal-scroll">
-            <h2>Teleprompter integrado</h2>
-            <p class="teleprompter-minimal-desc">Lee tus apuntes o guiones desde el notch sin desviar la mirada de la cámara.</p>
-        </div>
-        <div class="teleprompter-fullscreen-frame reveal-scroll">
-            <img loading="lazy" decoding="async" src="assets/teleprompter.jpg" alt="Teleprompter en VibeNotch">
-        </div>
-    </section>
-
-    <!-- VISION SECTION -->
-    <section id="vision" class="vision-section">
-        <div class="vision-container reveal-scroll">
-            <span class="feature-tag">NUESTRA VISIÓN</span>
-            
-            <div class="vision-horizontal-card">
-                <div class="vision-card-header">
-                    <h2>Como si viniera de fábrica.</h2>
-                    <p>Creemos que las mejores herramientas son las que desaparecen. Diseñamos VibeNotch para que se sienta como una extensión natural de macOS.</p>
+            <figure class="display-show reveal" id="display-show">
+                <img class="display-bg" src="assets/media/display.webp" width="1000" height="770" loading="lazy" decoding="async" alt="Pantalla de Mac con VibeNotch" data-i18n-attr="alt:gl.a0">
+                <div class="display-notch" aria-hidden="true">
+                    <img class="is-on" src="assets/media/notch-musica.webp" width="1200" height="700" loading="lazy" decoding="async" alt="">
+                    <img src="assets/media/notch-calendario.webp" width="1200" height="700" loading="lazy" decoding="async" alt="">
+                    <img src="assets/media/notch-asistente.webp" width="1200" height="700" loading="lazy" decoding="async" alt="">
                 </div>
-                
-                <div class="vision-principles-row">
-                    <div class="vision-principle-item">
-                        <div class="vision-icon-small">
-                            <svg class="vision-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                        </div>
-                        <div class="vision-principle-text">
-                            <h3>Simple</h3>
-                            <p>Sin funciones innecesarias.</p>
-                        </div>
+            </figure>
+
+        </section>
+
+        <!-- ─────────────── NATIVE ─────────────── -->
+        <section class="native" id="nativa">
+            <div class="wrap carousel reveal" id="carousel" aria-roledescription="carrusel">
+                <div class="slides">
+                    <div class="slide is-on">
+                        <svg class="slide-icon swift" width="64" height="64" viewBox="0 0 24 24" aria-hidden="true"><path fill="#F05138" d="M21.985 14.978C19.818 20.143 13.987 23.037 8.51 21.318C5.7 20.372 3.442 18.407 2.107 15.869C4.96 17.952 8.627 18.846 12.106 18.278C14.86 17.816 17.429 16.457 19.354 14.416C18.131 14.933 16.829 15.253 15.497 15.362C11.889 15.689 8.276 14.428 5.623 11.921C5.217 11.534 4.839 11.119 4.492 10.679C4.492 10.679 8.907 13.647 13.66 12.092C15.24 11.576 16.659 10.65 17.785 9.405C14.925 10.972 11.433 11.113 8.445 9.775C6.628 8.962 5.056 7.68 3.889 6.07C8.413 9.849 15.02 10.377 20.076 7.375C20.076 7.375 20.359 7.195 20.77 6.893C21.014 7.906 21.132 8.953 21.117 10.003C21.092 11.679 20.713 13.351 19.985 14.878"/></svg>
+                        <p class="label" data-i18n="nt.k1">Rendimiento</p>
+                        <h2 class="h2" data-i18n="nt.t1">Nativa en Swift.</h2>
+                        <p class="sub" data-i18n="nt.p1">Programada desde cero en Swift para macOS, aprovechando cada gramo de potencia de Apple Silicon sin compromisos.</p>
                     </div>
-                    
-                    <div class="vision-principle-item">
-                        <div class="vision-icon-small">
-                            <svg class="vision-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect>
-                                <line x1="2" y1="10" x2="22" y2="10"></line>
-                            </svg>
-                        </div>
-                        <div class="vision-principle-text">
-                            <h3>Económica</h3>
-                            <p>Un único pago para siempre.</p>
-                        </div>
+                    <div class="slide">
+                        <svg class="slide-icon heart" width="58" height="58" viewBox="0 0 24 24" aria-hidden="true"><path fill="#ff375f" d="M12 21.2s-7.6-4.6-9.6-9.4C1 8.5 3 5 6.4 4.8c2.2-.1 3.9 1.1 5.6 3 1.7-1.9 3.4-3.1 5.6-3C21 5 23 8.5 21.6 11.8c-2 4.8-9.6 9.4-9.6 9.4Z"/></svg>
+                        <p class="label" data-i18n="nt.k2">Filosofía</p>
+                        <h2 class="h2" data-i18n="nt.t2">Creada por usuarios.</h2>
+                        <p class="sub" data-i18n="nt.p2">Un notch programado por un usuario de Mac para usuarios de Mac, donde la fluidez, la utilidad y el rendimiento son la única prioridad.</p>
                     </div>
-                    
-                    <div class="vision-principle-item">
-                        <div class="vision-icon-small">
-                            <svg class="vision-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                        </div>
-                        <div class="vision-principle-text">
-                            <h3>Privada</h3>
-                            <p>Cero recopilación de datos.</p>
-                        </div>
+                    <div class="slide">
+                        <div class="pill-host" id="pill-island" aria-hidden="true"></div>
+                        <p class="label" data-i18n="nt.k3">Compatibilidad</p>
+                        <h2 class="h2" data-i18n="nt.t3">Funciona en tu Mac.</h2>
+                        <p class="sub" data-i18n="nt.p3">Compatible con todos los MacBook con notch y con cualquier otro Mac gracias al modo burbuja flotante.</p>
                     </div>
-                    
-                    <div class="vision-principle-item">
-                        <div class="vision-icon-small">
-                            <svg class="vision-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
-                            </svg>
-                        </div>
-                        <div class="vision-principle-text">
-                            <h3>Invisible</h3>
-                            <p>Consumo de recursos inexistente.</p>
-                        </div>
+                </div>
+                <div class="carousel-nav">
+                <button type="button" class="arrow" data-step="-1" aria-label="Anterior" data-i18n-attr="aria-label:nt.prev">←</button>
+                <div class="dots" role="tablist" aria-label="Diapositivas" data-i18n-attr="aria-label:nt.dots">
+                    <button type="button" class="is-on" aria-label="Nativa en Swift"><i></i></button>
+                    <button type="button" aria-label="Creada por usuarios"><i></i></button>
+                    <button type="button" aria-label="Funciona en tu Mac"><i></i></button>
+                </div>
+                <button type="button" class="arrow" data-step="1" aria-label="Siguiente" data-i18n-attr="aria-label:nt.next">→</button>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="metrics dark" aria-label="Rendimiento" data-i18n-attr="aria-label:nav.native">
+            <dl class="wrap metrics-row reveal" id="metrics">
+                <div><dt>RAM</dt><dd><small>&lt;</small><span data-count-from="0" data-count-to="60">60</span><small>MB</small></dd><p data-i18n="nb.ramp">Uso mínimo de memoria.</p></div>
+                <div><dt>CPU</dt><dd><small>&lt;</small><span data-count-from="100" data-count-to="1">1</span><small>%</small></dd><p data-i18n="nb.cpup">Prácticamente nada en reposo.</p></div>
+                <div><dt data-i18n="nb.batt">Batería</dt><dd><small>&lt;</small><span data-count-from="100" data-count-to="1">1</span><small>%</small></dd><p data-i18n="nb.battp">Apenas toca tu batería.</p></div>
+            </dl>
+        </section>
+
+        <!-- ─────────────── REVIEWS ─────────────── -->
+        <section class="reviews" id="opiniones">
+            <div class="wrap reviews-head reveal">
+                <div>
+                    <p class="label" data-i18n="rv.label">Opiniones</p>
+                    <h2 class="h2" data-i18n-html="rv.title">Les cambió<br><span class="tone">la forma de usar el Mac.</span></h2>
+                </div>
+                <div class="rating">
+                    <p class="rating-n" data-i18n="num.rating">4,4</p>
+                    <div>
+                        <p class="stars" aria-label="4,4 de 5" data-i18n-attr="aria-label:num.stars">★★★★★</p>
+                        <p class="rating-s" data-i18n="rv.count">50 valoraciones en la App Store</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- SECTION: EL NOTCH ES MÁS -->
-    <section id="notch-is-more" class="notch-is-more-section">
-        <div class="reveal-scroll" style="text-align: center; max-width: 1000px; margin: 0 auto; padding: 0 20px;">
-            <span class="feature-tag">DISEÑO Y UTILIDAD</span>
-            <h2>El notch es mucho más.</h2>
-            <p style="color: rgba(0,0,0,0.6); font-size: clamp(16px, 2vw, 20px); max-width: 600px; margin: 0 auto 50px auto; line-height: 1.5;">Una transición automática e inteligente. Observa cómo cambia la muesca de tu pantalla según las herramientas que utilices.</p>
-            
-            <!-- MacBook Big screen overlay container -->
-            <div class="mac-showcase-container">
-                <img loading="lazy" decoding="async" src="assets/pantalla_mac_para_notchs_canviables.png" class="mac-screen-bg" alt="Mac Screen Showcase">
-                <div class="mac-notch-overlay-container">
-                    <img loading="lazy" decoding="async" src="assets/notch_musica.png" class="shortcut-notch-img active" alt="Notch Música">
-                    <img loading="lazy" decoding="async" src="assets/notch_calendario.png" class="shortcut-notch-img" alt="Notch Calendario">
-                    <img loading="lazy" decoding="async" src="assets/notch_asistente.png" class="shortcut-notch-img" alt="Notch Asistente">
+            <div class="marquee" aria-label="Reseñas de la App Store" data-i18n-attr="aria-label:rv.aria">
+                <div class="marquee-track">
+                    <figure class="review"><blockquote>“Es un antes y un después. He pasado de tener una pestaña que no sirve para nada a darle utilidad real.”</blockquote><figcaption>Daloge · App Store ES</figcaption></figure>
+                    <figure class="review"><blockquote>“Parece una app nativa de lo bien implementada que está. Una vez la usas, ya no hay vuelta atrás.”</blockquote><figcaption>javibeat · App Store ES</figcaption></figure>
+                    <figure class="review"><blockquote>“Es la mejor app para el notch, le da vida. No sé por qué Apple nunca lo hizo antes.”</blockquote><figcaption>Brandon Barba · App Store MX</figcaption></figure>
+                    <figure class="review"><blockquote>“Super clean and aesthetic, wow! Great work developer.”</blockquote><figcaption>Arseni Houston · App Store US</figcaption></figure>
+                    <figure class="review"><blockquote>“La interfaz es limpia e intuitiva y no afecta en nada al rendimiento. Hace justo lo que promete.”</blockquote><figcaption>ArianGisbert · App Store ES</figcaption></figure>
+                    <figure class="review"><blockquote>“Simplemente perfecto, algo que debería estar implementado nativamente en Apple.”</blockquote><figcaption>Robertcaliani · App Store ES</figcaption></figure>
+                    <figure class="review"><blockquote>“Una de las mejores apps notch que existen: súper sencilla pero demasiado funcional.”</blockquote><figcaption>Fabi_Duran · App Store CO</figcaption></figure>
+                    <figure class="review"><blockquote>“Fluida, amigable y súper limpia.”</blockquote><figcaption>Jxdrixn · App Store MX</figcaption></figure>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="appstore" class="appstore-hero">
-        <div class="appstore-container reveal-scroll">
-            <div class="as-left">
-                <img loading="lazy" decoding="async" src="assets/VibeNotch icon-iOS-Default-1024x1024@1x.png" alt="Icon" class="as-big-icon">
-            </div>
-            <div class="as-right">
-                <div class="as-meta">
-                    <h2 class="meta-heading-1 text-black">VibeNotch</h2>
-                    <span class="meta-heading-2">La muesca más inteligente.</span>
-                    <p class="as-dev">Aleix Carles</p>
+        <!-- ─────────────── PRICE ─────────────── -->
+        <section class="price" id="precio">
+            <div class="wrap price-grid">
+                <div class="price-copy reveal">
+                    <p class="label" data-i18n="pr.label">Precio</p>
+                    <h2 class="h2" data-i18n-html="pr.title">Un precio.<br><span class="tone">Para siempre.</span></h2>
+                    <p class="sub" data-i18n="pr.sub">Sin suscripción para lo esencial. Las actualizaciones están incluidas y todo funciona en tu Mac.</p>
+                    <dl class="specs">
+                        <div><dt data-i18n="pr.ver">Versión</dt><dd>2.0</dd></div>
+                        <div><dt data-i18n="pr.req">Requisitos</dt><dd data-i18n="pr.reqv">macOS 14 o posterior</dd></div>
+                        <div><dt data-i18n="pr.chip">Procesador</dt><dd data-i18n="pr.chipv">Apple Silicon e Intel</dd></div>
+                        <div><dt data-i18n="pr.langs">Idiomas</dt><dd data-i18n="pr.langsv">Español, inglés y chino</dd></div>
+                    </dl>
                 </div>
-                <div class="as-actions">
-                    <a href="https://apps.apple.com/app/vibenotch/id6757723688" target="_blank" class="as-btn-get"
-                        style="text-decoration: none;">OBTENER</a>
-                </div>
-                <div class="as-badges">
-                    <div class="as-badge">
-                        <span class="b-val">4,4</span>
-                        <span class="b-label">50 RESEÑAS</span>
+                <div class="price-card reveal">
+                    <div class="pc-top">
+                        <img src="assets/favicon/apple-touch-icon.png" width="56" height="56" alt="" loading="lazy" decoding="async">
+                        <div><p class="pc-name">VibeNotch</p><p class="pc-by" data-i18n="pr.by">Utilidades · Mac App Store</p></div>
                     </div>
-                    <div class="as-badge">
-                        <span class="b-val">4+</span>
-                        <span class="b-label">EDAD</span>
-                    </div>
-                    <div class="as-badge">
-                        <span class="b-val">#1</span>
-                        <span class="b-label">UTILIDADES</span>
-                    </div>
+                    <p class="pc-price"><span data-i18n="hero.price">4,99 €</span><small data-i18n="pr.once">pago único</small></p>
+                    <ul class="pc-list">
+                        <li data-i18n="pr.l1">Música con portadas reales y controles</li>
+                        <li data-i18n="pr.l2">Avisos de AirPods, carga, silencio y Wi‑Fi</li>
+                        <li data-i18n="pr.l3">Eventos y recordatorios del día</li>
+                        <li data-i18n="pr.l4">Teleprompter, modo Disco y modo burbuja</li>
+                        <li data-i18n="pr.l5">Mundial 2026 en directo, gratis</li>
+                    </ul>
+                    <a class="btn btn-paper btn-lg btn-block" href="https://apps.apple.com/app/vibenotch/id6757723688" rel="noopener" data-i18n="pr.cta">Conseguir en la App Store</a>
+                    <p class="pc-note" data-i18n="pr.note">Sports para el resto de competiciones es una suscripción opcional dentro de la app.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FEATURE 1: SWIFT NATIVE -->
-    <section id="design" class="mega-feature">
-        <div class="feature-content reveal-scroll">
-            <div class="feature-icon">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M21.985 14.978C19.818 20.143 13.987 23.037 8.51 21.318C5.7 20.372 3.442 18.407 2.107 15.869C4.96 17.952 8.627 18.846 12.106 18.278C14.86 17.816 17.429 16.457 19.354 14.416C18.131 14.933 16.829 15.253 15.497 15.362C11.889 15.689 8.276 14.428 5.623 11.921C5.217 11.534 4.839 11.119 4.492 10.679C4.492 10.679 8.907 13.647 13.66 12.092C15.24 11.576 16.659 10.65 17.785 9.405C14.925 10.972 11.433 11.113 8.445 9.775C6.628 8.962 5.056 7.68 3.889 6.07C8.413 9.849 15.02 10.377 20.076 7.375C20.076 7.375 20.359 7.195 20.77 6.893C21.014 7.906 21.132 8.953 21.117 10.003C21.092 11.679 20.713 13.351 19.985 14.878"
-                        fill="#F05138" />
-                </svg>
+        <!-- ─────────────── FAQ ─────────────── -->
+        <section class="faq" id="faq">
+            <div class="wrap faq-grid">
+                <div class="reveal">
+                    <p class="label" data-i18n="fq.label">Preguntas</p>
+                    <h2 class="h2" data-i18n-html="fq.title">Lo que<br><span class="tone">sueles preguntar.</span></h2>
+                    <p class="sub"><span data-i18n="fq.more">¿Algo más?</span> <a href="support.html" data-i18n="fq.support">Escríbenos en Soporte →</a></p>
+                </div>
+                <div class="qa reveal">
+                    <details><summary data-i18n="fq.q1">¿Funciona si mi Mac no tiene notch?</summary><p data-i18n="fq.a1">Sí. El modo burbuja coloca la misma interfaz flotando en la parte superior de la pantalla, en cualquier Mac con macOS 14 o posterior. También puedes elegir en qué pantalla aparece.</p></details>
+                    <details><summary data-i18n="fq.q2">¿Es una suscripción?</summary><p data-i18n="fq.a2">No. VibeNotch es un pago único de 4,99 € con las actualizaciones incluidas. Solo las competiciones extra de Sports usan una suscripción opcional; el Mundial 2026 es gratis.</p></details>
+                    <details><summary data-i18n="fq.q3">¿Consume batería o recursos?</summary><p data-i18n="fq.a3">Prácticamente nada. Está escrita en Swift nativo: menos de 60 MB de memoria y menos del 1 % de CPU en reposo. Si no usas una función, como Sports o el teleprompter, puedes desactivarla y no se carga.</p></details>
+                    <details><summary data-i18n="fq.q4">¿Qué datos recoge?</summary><p data-i18n="fq.a4">Ningún dato personal. No hay cuentas ni analítica: tu música, tu agenda y tus recordatorios se leen en tu Mac y no salen de él. Sports solo consulta marcadores públicos mientras hay partidos.</p></details>
+                    <details><summary data-i18n="fq.q5">¿Con qué apps de música funciona?</summary><p data-i18n="fq.a5">Con Música de Apple, Spotify, Apple TV y QuickTime. Verás la portada real, el título, el artista y el progreso, y podrás controlar la reproducción desde el notch.</p></details>
+                    <details><summary data-i18n="fq.q6">¿Puedo ajustarlo a mi notch?</summary><p data-i18n="fq.a6">Sí. Puedes ajustar el ancho, el alto y las esquinas, elegir entre expandir al pasar el cursor o con un clic, y activar o desactivar cada aviso.</p></details>
+                </div>
             </div>
-            <span class="feature-tag">RENDIMIENTO</span>
-            <h2>Nativo en Swift.</h2>
-            <p>Programado desde cero en Swift para macOS, aprovechando cada gramo de potencia de Apple Silicon sin
-                compromisos.</p>
-        </div>
-    </section>
+        </section>
 
-    <!-- FEATURE 2: CREATED BY USERS -->
-    <section class="mega-feature reversed">
-        <div class="feature-content reveal-scroll">
-            <div class="feature-icon heart-pulse">
-                <span>❤️</span>
-            </div>
-            <span class="feature-tag">FILOSOFÍA</span>
-            <h2>Creado por usuarios.</h2>
-            <p>Un notch programado de un usuario de Mac para usuarios de Mac, donde la fluidez, utilidad, fidelidad y
-                rendimiento son la única prioridad.</p>
-        </div>
-    </section>
-
-    <!-- FEATURE 3: COMPATIBILITY -->
-    <section class="mega-feature">
-        <div class="feature-content reveal-scroll">
-            <span class="feature-tag">COMPATIBILIDAD</span>
-            <h2>Funciona en tu Mac.</h2>
-            <p>Compatible con todos los MacBooks con notch y los modelos anteriores gracias al modo píldora flotante.
-            </p>
-            <div class="pill-demo">
-                <div class="pill-notch-v2" role="img" aria-label="Modo pildora reproduciendo musica">
-                    <img class="pill-art" src="assets/optimized/album-art-256.jpg" alt="" loading="lazy" decoding="async">
-                    <div class="pill-track">
-                        <span class="pill-now">REPRODUCIENDO</span>
-                        <span class="pill-title">Neon Echo</span>
-                    </div>
-                    <div class="pill-visualizer" aria-hidden="true">
-                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                    </div>
-                </div>
-                <span class="pill-label">Modo Píldora para Macs sin notch</span>
-            </div>
-            <div class="mac-lineup-container reveal-scroll">
-                <h3 class="vibe-headline"><span class="vh-1">Your notch.</span> <span class="vh-2">Your vibe.</span></h3>
-                <picture>
-                    <source type="image/webp" sizes="(max-width: 760px) 100vw, 1180px"
-                        srcset="assets/optimized/notch-lineup-1000.webp 1000w, assets/optimized/notch-lineup.webp 1943w">
-                    <img loading="lazy" decoding="async" width="1943" height="1083"
-                        src="assets/optimized/notch-lineup.jpg"
-                        alt="VibeNotch en varios MacBook: saludos inteligentes, control de música y recordatorios">
-                </picture>
-            </div>
-        </div>
-    </section>
-
-    <section id="metrics" class="metrics">
-        <div class="metrics-horizontal">
-            <div class="metric-item-h reveal-h-1">
-                <span class="h-label">RAM</span>
-                <span class="h-value">
-                    < 35MB</span>
-                        <p>Uso mínimo de memoria.</p>
-            </div>
-            <div class="metric-item-h reveal-h-2">
-                <span class="h-label">CPU</span>
-                <span class="h-value">0%</span>
-                <p>Consumo cero en reposo.</p>
-            </div>
-            <div class="metric-item-h reveal-h-3">
-                <span class="h-label">BATERÍA</span>
-                <span class="h-value">0%</span>
-                <p>Consumo de batería inexistente.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- REVIEWS MARQUEE -->
-    <section class="reviews-section">
-        <span class="feature-tag">RESEÑAS</span>
-        <h2>Lo que opinan <br> nuestros usuarios</h2>
-        <div class="rating-summary">
-            <div class="rs-score">
-                <span class="rs-value">4,4</span>
-                <span class="rs-stars" aria-hidden="true">★★★★★</span>
-                <span class="rs-count">50 reseñas publicadas en la App Store</span>
-            </div>
-            <div class="rs-bars">
-                <div class="rs-row"><span>5</span><i><b style="width:74%"></b></i><em>37</em></div>
-                <div class="rs-row"><span>4</span><i><b style="width:10%"></b></i><em>5</em></div>
-                <div class="rs-row"><span>3</span><i><b style="width:6%"></b></i><em>3</em></div>
-                <div class="rs-row"><span>2</span><i><b style="width:6%"></b></i><em>3</em></div>
-                <div class="rs-row"><span>1</span><i><b style="width:4%"></b></i><em>2</em></div>
-            </div>
-        </div>
-        <div class="marquee">
-            <div class="marquee-content">
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Es un antes y un después esta aplicación. He pasado de tener una pestaña que no sirve para nada a darle utilidad real."</p>
-                    <span class="author">— Daloge · App Store ES</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Parece una app nativa de lo bien implementada que está. Una vez la usas, ya no hay vuelta atrás."</p>
-                    <span class="author">— javibeat · App Store ES</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Es la mejor app para el notch, le da vida. No sé por qué Apple nunca lo hizo antes."</p>
-                    <span class="author">— Brandon Barba · App Store MX</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"La interfaz es limpia e intuitiva y no afecta en nada al rendimiento. Hace justo lo que promete."</p>
-                    <span class="author">— ArianGisbert · App Store ES</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Simplemente perfecto, algo que debería estar implementado nativamente en Apple."</p>
-                    <span class="author">— Robertcaliani · App Store ES</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Super clean and aesthetic, wow! Great work developer."</p>
-                    <span class="author">— Arseni Houston · App Store US</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Una de las mejores apps notch que existen: súper sencilla pero demasiado funcional."</p>
-                    <span class="author">— Fabi_Duran · App Store CO</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Fluida, amigable y súper limpia."</p>
-                    <span class="author">— Jxdrixn · App Store MX</span>
-                </div>
-                <!-- duplicado exacto para el bucle infinito -->
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Es un antes y un después esta aplicación. He pasado de tener una pestaña que no sirve para nada a darle utilidad real."</p>
-                    <span class="author">— Daloge · App Store ES</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Parece una app nativa de lo bien implementada que está. Una vez la usas, ya no hay vuelta atrás."</p>
-                    <span class="author">— javibeat · App Store ES</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Es la mejor app para el notch, le da vida. No sé por qué Apple nunca lo hizo antes."</p>
-                    <span class="author">— Brandon Barba · App Store MX</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"La interfaz es limpia e intuitiva y no afecta en nada al rendimiento. Hace justo lo que promete."</p>
-                    <span class="author">— ArianGisbert · App Store ES</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Simplemente perfecto, algo que debería estar implementado nativamente en Apple."</p>
-                    <span class="author">— Robertcaliani · App Store ES</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Super clean and aesthetic, wow! Great work developer."</p>
-                    <span class="author">— Arseni Houston · App Store US</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Una de las mejores apps notch que existen: súper sencilla pero demasiado funcional."</p>
-                    <span class="author">— Fabi_Duran · App Store CO</span>
-                </div>
-                <div class="review-pill">
-                    <div class="stars-container" data-stars="5"></div>
-                    <p>"Fluida, amigable y súper limpia."</p>
-                    <span class="author">— Jxdrixn · App Store MX</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FICHA TECNICA Y PREGUNTAS FRECUENTES -->
-    <section id="faq" class="faq-section">
-        <div class="faq-container reveal-scroll">
-            <div class="faq-side">
-                <span class="feature-tag">EN CORTO</span>
-                <h2>Todo lo que necesitas saber.</h2>
-                <ul class="spec-list">
-                    <li><span>Precio</span><b>4,99 € · pago único</b></li>
-                    <li><span>Versión</span><b>2.0</b></li>
-                    <li><span>Requisitos</span><b>macOS 14 o posterior</b></li>
-                    <li><span>Tamaño</span><b>2,4 MB</b></li>
-                    <li><span>Chip</span><b>Apple Silicon e Intel</b></li>
-                    <li><span>Privacidad</span><b>Sin recopilación de datos</b></li>
-                </ul>
-            </div>
-            <div class="faq-list">
-                <details class="faq-item" open>
-                    <summary>¿Funciona si mi Mac no tiene notch?</summary>
-                    <p>Sí. El modo píldora flotante coloca la misma interfaz en la parte superior de la pantalla, así
-                        que funciona igual en cualquier Mac con macOS 14 o posterior.</p>
-                </details>
-                <details class="faq-item">
-                    <summary>¿Es una suscripción?</summary>
-                    <p>No. Es un pago único de 4,99 € en la Mac App Store. Las actualizaciones están incluidas.</p>
-                </details>
-                <details class="faq-item">
-                    <summary>¿Consume batería o recursos?</summary>
-                    <p>Está programada de forma nativa en Swift y en reposo el consumo es prácticamente nulo: menos de
-                        35 MB de memoria y 0 % de CPU cuando no interactúas con ella.</p>
-                </details>
-                <details class="faq-item">
-                    <summary>¿Qué datos recoge la aplicación?</summary>
-                    <p>Ninguno. No hay analítica, ni servidores externos, ni cuentas. Todo ocurre en tu Mac.</p>
-                </details>
-                <details class="faq-item">
-                    <summary>¿Con qué apps de música funciona?</summary>
-                    <p>Con las que se integran con los controles de reproducción de macOS, como Música de Apple y
-                        Spotify. Verás portada, título, artista y progreso directamente en el notch.</p>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <section id="download" class="waitlist-section">
-        <div class="waitlist-container reveal-scroll">
-            <h2>El futuro ya está aquí.</h2>
-            <p>Descarga VibeNotch y lleva tu Mac al siguiente nivel.</p>
-
-            <div class="download-actions"
-                style="margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
-                <a href="https://apps.apple.com/app/vibenotch/id6757723688" target="_blank" class="btn-appstore btn-yellow" style="color: #000 !important; text-decoration: none;">
-                    <span class="as-icon" style="color: #000;"></span>
-                    <div class="as-text">
-                        <span class="as-small" style="color: rgba(0,0,0,0.65);">Consigue la versión 2.0 en la Mac App Store</span>
-                        <span class="as-big" style="color: #000; font-weight: 800;">App Store</span>
-                    </div>
+        <!-- ─────────────── FINAL ─────────────── -->
+        <section class="final dark" id="descargar">
+            <div class="wrap final-inner reveal">
+                <img class="final-icon" src="assets/favicon/web-app-manifest-192x192.png" width="88" height="88" alt="" loading="lazy" decoding="async">
+                <h2 class="display" data-i18n-html="fn.title">El notch que<br><span class="tone">le faltaba a tu Mac.</span></h2>
+                <p class="lede" data-i18n="fn.sub">Descarga VibeNotch y dale vida a la parte de la pantalla que más miras.</p>
+                <a class="btn btn-paper btn-lg" href="https://apps.apple.com/app/vibenotch/id6757723688" rel="noopener">
+                    <svg width="16" height="19" viewBox="0 0 17 20" aria-hidden="true"><path fill="currentColor" d="M14.1 10.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.2-1.2 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.7-1-2.7-4ZM11.6 3c.7-.9 1.2-2 1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5Z"/></svg>
+                    <span data-i18n="hero.cta">Descargar en la Mac App Store</span>
                 </a>
+                <form class="news" id="news" novalidate>
+                    <label for="news-email" data-i18n="fn.news">Novedades y trucos, sin spam</label>
+                    <div class="news-row">
+                        <input id="news-email" type="email" name="email" required autocomplete="email" placeholder="tu@email.com" data-i18n-attr="placeholder:fn.ph">
+                        <button type="submit" class="btn btn-glass" data-i18n="fn.join">Suscribirme</button>
+                    </div>
+                    <p class="news-ok" hidden data-i18n="fn.ok">¡Hecho! Te escribiremos solo cuando haya algo que merezca la pena.</p>
+                </form>
             </div>
+        </section>
+    </main>
 
-            <div class="social-row" role="navigation" aria-label="Redes sociales de VibeNotch">
-                <a class="social-link" href="https://www.youtube.com/@Aleixxet" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
-                        <path d="M21.6 7.2s-.2-1.5-.8-2.1c-.8-.8-1.6-.8-2-.9C15.9 4 12 4 12 4h0s-3.9 0-6.8.2c-.4.1-1.2.1-2 .9-.6.6-.8 2.1-.8 2.1S2.2 9 2.2 10.7v1.6C2.2 14 2.4 15.8 2.4 15.8s.2 1.5.8 2.1c.8.8 1.8.8 2.3.9 1.7.2 6.5.2 6.5.2s3.9 0 6.8-.2c.4-.1 1.2-.1 2-.9.6-.6.8-2.1.8-2.1s.2-1.8.2-3.5v-1.6c0-1.7-.2-3.5-.2-3.5zM10.1 14.4V8.9l5.1 2.8-5.1 2.7z" />
-                    </svg><span>YouTube</span>
-                </a>
-                <a class="social-link" href="https://www.instagram.com/aleixxet" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8">
-                        <rect x="3" y="3" width="18" height="18" rx="5" />
-                        <circle cx="12" cy="12" r="4" />
-                        <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
-                    </svg><span>Instagram</span>
-                </a>
-                <a class="social-link" href="https://www.threads.com/@aleixxet" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8">
-                        <path d="M12 21c-4.6 0-8-3.2-8-9s3.4-9 8-9c3.4 0 5.9 1.6 7 4.3" stroke-linecap="round" />
-                        <path d="M15.6 14.4c0 1.7-1.5 2.8-3.3 2.8-1.6 0-2.8-.8-2.8-2.1 0-1.4 1.3-2.2 3.2-2.2 2.6 0 4.6 1 4.6 3.4 0 1.6-.9 2.9-2.2 3.6"
-                            stroke-linecap="round" />
-                    </svg><span>Threads</span>
-                </a>
-                <a class="social-link" href="https://apps.apple.com/app/vibenotch/id6757723688" target="_blank"
-                    rel="noopener">
-                    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
-                        <path d="M16.4 12.7c0-2.1 1.7-3.1 1.8-3.2-1-1.4-2.5-1.6-3-1.7-1.3-.1-2.5.8-3.1.8-.6 0-1.6-.8-2.7-.7-1.4 0-2.7.8-3.4 2-1.4 2.5-.4 6.2 1 8.2.7 1 1.5 2.1 2.6 2.1 1 0 1.4-.7 2.7-.7 1.2 0 1.6.7 2.7.6 1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.1-2.3 0 0-2.2-.8-2.2-3.1zM14.3 6.3c.6-.7 1-1.6.9-2.6-.8 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.5.9.1 1.9-.5 2.5-1.2z" />
-                    </svg><span>App Store</span>
-                </a>
+    <footer class="footer dark">
+        <div class="wrap foot-grid">
+            <div class="foot-brand">
+                <a class="brand" href="#top"><img src="assets/favicon/apple-touch-icon.png" width="24" height="24" alt="" loading="lazy" decoding="async"><span>VibeNotch</span></a>
+                <p data-i18n="ft.tag">Minimalismo hecho en Tarragona.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- ========== NEWSLETTER ========== -->
-    <section id="newsletter" class="newsletter-section">
-        <div class="cta-glow-bg"></div>
-        <div style="position: relative; z-index: 10; text-align: center;">
-            <h2>Novedades y Trucos</h2>
-            <p>Únete a la lista para recibir actualizaciones exclusivas sobre VibeNotch.</p>
-
-            <form id="vibenotchNewsletter"
-                style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; max-width: 650px; margin: 0 auto; align-items: center;">
-                <input type="email" name="entry.1921152412" class="cta-input-premium" placeholder="Tu email..."
-                    required aria-label="Tu correo electrónico">
-                <button type="submit" class="cta-submit-premium">Suscribirse</button>
-            </form>
-            <div id="vnSuccessMsg" style="display: none;">¡Gracias por suscribirte!</div>
-        </div>
-
-        <script>
-            document.getElementById('vibenotchNewsletter').addEventListener('submit', function (e) {
-                e.preventDefault();
-                const form = this;
-                const email = form.querySelector('input[type="email"]').value;
-                const url = 'https://docs.google.com/forms/d/e/1FAIpQLSe3GrX4FudiQN3LfmSx-BB33I0tPNWUKVPMXFKJGgDw3HoeNQ/formResponse';
-                const params = new URLSearchParams();
-                params.append('entry.1921152412', email);
-
-                fetch(url, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: params.toString()
-                }).then(() => {
-                    form.style.display = 'none';
-                    document.getElementById('vnSuccessMsg').style.display = 'block';
-                }).catch(err => {
-                    console.error(err);
-                    form.style.display = 'none';
-                    document.getElementById('vnSuccessMsg').style.display = 'block';
-                });
-            });
-        </script>
-    </section>
-
-    <footer class="ef-footer">
-        <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
-            <a href="edgeflow/index.html" class="more-apps-link">
-                <img loading="lazy" decoding="async" src="edgeflow/EdgeFlow icon-iOS-Default-1024x1024@1x.png" alt="EdgeFlow Icon">
-                <div class="more-text">
-                    <span class="more-label">Más Apps</span>
-                    <span class="more-title">EdgeFlow</span>
-                </div>
-                <span style="margin-left: 10px; opacity: 0.5;">→</span>
-            </a>
-            <a href="sweepy/index.html" class="more-apps-link">
-                <img loading="lazy" decoding="async" src="sweepy/assets/sweepy-icon-256.png" alt="Sweepy Icon">
-                <div class="more-text">
-                    <span class="more-label">Nueva App</span>
-                    <span class="more-title">Sweepy</span>
-                </div>
-                <span style="margin-left: 10px; opacity: 0.5;">→</span>
-            </a>
-            <a href="vibecapture/index.html" class="more-apps-link">
-                <img loading="lazy" decoding="async" src="vibecapture/assets/vibecapture-icon.png" alt="VibeCapture Icon">
-                <div class="more-text">
-                    <span class="more-label">Nueva App</span>
-                    <span class="more-title">VibeCapture</span>
-                </div>
-                <span style="margin-left: 10px; opacity: 0.5;">→</span>
-            </a>
-        </div>
-
-
-        <div style="margin-top: 32px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <div class="footer-logo" style="color: #fff; font-weight: 700; font-size: 20px;">VibeNotch</div>
-            <p class="copyright" style="color: #666; font-size: 13px;">© 2026 VibeNotch. Minimalismo hecho en Tarragona.
-            </p>
-            <div class="footer-legal">
-                <a href="support.html"
-                    style="color: #888; text-decoration: none; font-size: 14px; margin: 0 10px;">Soporte</a>
-                <a href="privacy.html"
-                    style="color: #888; text-decoration: none; font-size: 14px; margin: 0 10px;">Privacidad</a>
-            </div>
+            <nav class="foot-links" aria-label="Pie de página" data-i18n-attr="aria-label:ft.label">
+                <a href="support.html" data-i18n="nav.support">Soporte</a>
+                <a href="privacy.html" data-i18n="ft.privacy">Privacidad</a>
+                <a href="edgeflow/index.html">EdgeFlow</a>
+                <a href="https://apps.apple.com/app/vibenotch/id6757723688" rel="noopener">App Store</a>
+                <a href="https://www.youtube.com/@Aleixxet" rel="noopener">YouTube</a>
+                <a href="https://www.instagram.com/aleixxet" rel="noopener">Instagram</a>
+                <a href="https://www.threads.com/@aleixxet" rel="noopener">Threads</a>
+            </nav>
+            <p class="foot-legal">© <span data-year>2026</span> VibeNotch. <span data-i18n="ft.legal">Mac, macOS y App Store son marcas de Apple Inc.</span></p>
         </div>
     </footer>
 
-    <script src="localization.js?v=20260830-locales1"></script>
-    <script src="script.js?v=20260830-locales1"></script>
-    <script src="premium.js?v=20260830-locales1"></script>
+    <script src="assets/site/notch.js?v=6" defer></script>
+    <script src="assets/site/i18n.js?v=6" defer></script>
+    <script src="assets/site/site.js?v=6" defer></script>
 </body>
-
 </html>

@@ -1,312 +1,124 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VibeNotch | La Interacción Redefinida</title>
-    <meta name="description" content="La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.">
-    <meta name="keywords"
-        content="VibeNotch, interacción, UX, experiencia de usuario, innovación, tecnología, comunidad">
-    <meta name="author" content="VibeNotch Team">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="VibeNotch | La Interacción Redefinida">
-    <meta property="og:description"
-        content="La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Soporte — VibeNotch</title>
+    <meta name="description" content="Ayuda y preguntas frecuentes sobre VibeNotch: compatibilidad, música, agenda, teleprompter, Sports y contacto.">
+    <link rel="canonical" href="https://vibenotch.es/support.html">
+    <meta name="theme-color" content="#ffffff">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vibenotch.es/">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="VibeNotch | La Interacción Redefinida">
-    <meta name="twitter:description"
-        content="La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.">
-    <link rel="canonical" href="https://vibenotch.es/">
-    <link rel="stylesheet" href="style.css?v=20260830-locales1">
-
-    <!-- FAVICOn -->
-    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="shortcut icon" href="assets/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="assets/favicon/site.webmanifest" />
-
-    <!-- STRUCTED DATA -->
-    <script type="application/ld+json">
-                {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "VibeNotch",
-  "description": "La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "macOS",
-  "softwareVersion": "1.0",
-  "offers": {
-    "@type": "Offer",
-    "price": "3.99",
-    "priceCurrency": "EUR"
-  },
-  "abstract": "VibeNotch está diseñado con un principio simple: tu Mac es tuyo. No recopilamos datos, no hay análisis de uso, no hay servidores externos. La aplicación funciona completamente offline.",
-  "privacyPolicy": "https://vibenotch.es/privacy.html",
-  "isAccessibleForFree": false
-}
-    </script>
-    <style>
-        /* Apple-style Support Page */
-        .support-page {
-            padding: 140px 24px 100px;
-            max-width: 900px;
-            margin: 0 auto;
-            min-height: 100vh;
-            background: #fff;
-        }
-
-        .support-hero {
-            margin-bottom: 80px;
-            text-align: center;
-        }
-
-        .support-hero h1 {
-            font-size: 56px;
-            font-weight: 700;
-            letter-spacing: -2.5px;
-            color: #1d1d1f;
-            margin-bottom: 20px;
-            line-height: 1.1;
-        }
-
-        .support-hero p {
-            font-size: 21px;
-            color: #86868b;
-            font-weight: 400;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* FAQ Grid */
-        .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 24px;
-            margin-bottom: 80px;
-        }
-
-        .faq-card {
-            background: #f5f5f7;
-            border-radius: 20px;
-            padding: 32px;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            border: 1px solid transparent;
-        }
-
-        .faq-card:hover {
-            transform: translateY(-5px);
-            background: #fbfbfd;
-            border-color: rgba(0, 0, 0, 0.05);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        }
-
-        .faq-card h3 {
-            font-size: 20px;
-            font-weight: 600;
-            color: #1d1d1f;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .faq-card p {
-            font-size: 16px;
-            line-height: 1.5;
-            color: #424245;
-            margin: 0;
-        }
-
-        .faq-icon {
-            font-size: 24px;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            text-align: center;
-            background: #f5f5f7;
-            border-radius: 30px;
-            padding: 60px 40px;
-            margin-top: 40px;
-        }
-
-        .contact-section h2 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        .contact-options {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 32px;
-            flex-wrap: wrap;
-        }
-
-        .contact-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 16px 32px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 17px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-mail {
-            background: #1d1d1f;
-            color: #fff;
-        }
-
-        .btn-instagram {
-            background: #fff;
-            color: #1d1d1f;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Back Link */
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #0071e3;
-            text-decoration: none;
-            font-size: 17px;
-            font-weight: 400;
-            margin-bottom: 40px;
-            transition: gap 0.2s ease;
-        }
-
-        .back-link:hover {
-            gap: 10px;
-        }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .support-page {
-                padding: 110px 20px 60px;
-            }
-
-            .support-hero h1 {
-                font-size: 38px;
-            }
-
-            .faq-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-section {
-                padding: 40px 20px;
-            }
-        }
-    </style>
+    <meta property="og:site_name" content="VibeNotch">
+    <meta property="og:url" content="https://vibenotch.es/support.html">
+    <meta property="og:title" content="Soporte — VibeNotch">
+    <meta property="og:description" content="Ayuda y preguntas frecuentes sobre VibeNotch: compatibilidad, música, agenda, teleprompter, Sports y contacto.">
+    <meta property="og:image" content="https://vibenotch.es/assets/media/film-poster.jpg">
+    <link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="stylesheet" href="assets/site/site.css?v=5">
+    <script>document.documentElement.classList.add('js');</script>
 </head>
 
-<body>
-    <nav>
-        <div class="nav-content">
-            <div class="logo-group">
-                <img src="assets/VibeNotch icon-iOS-Default-1024x1024@1x.png" alt="VibeNotch Icon" class="nav-icon">
-                <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">VibeNotch</a>
+<body class="page" data-meta="su.meta">
+    <a class="skip" href="#main" data-i18n="a11y.skip">Saltar al contenido</a>
+    <header class="bar is-on is-static" id="bar">
+        <div class="bar-inner">
+            <a class="brand" href="index.html" aria-label="VibeNotch"><img src="assets/favicon/apple-touch-icon.png" width="24" height="24" alt=""><span>VibeNotch</span></a>
+            <div class="apps">
+                <button class="apps-btn" id="apps-btn" type="button" aria-expanded="false" aria-controls="apps-pop" aria-label="Nuestras apps" data-i18n-attr="aria-label:apps.k"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><g fill="currentColor"><circle cx="2" cy="2" r="1.6"/><circle cx="7" cy="2" r="1.6"/><circle cx="12" cy="2" r="1.6"/><circle cx="2" cy="7" r="1.6"/><circle cx="7" cy="7" r="1.6"/><circle cx="12" cy="7" r="1.6"/><circle cx="2" cy="12" r="1.6"/><circle cx="7" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/></g></svg></button>
+                <div class="apps-pop" id="apps-pop" hidden>
+                    <p class="apps-k" data-i18n="apps.k">Nuestras apps</p>
+                    <a class="app-item is-current" href="index.html" aria-current="page"><img src="assets/favicon/apple-touch-icon.png" width="40" height="40" alt=""><span><strong>VibeNotch</strong><small data-i18n="apps.here">Estás aquí</small></span></a>
+                    <a class="app-item" href="edgeflow/index.html"><img src="assets/media/app-edgeflow.png" width="40" height="40" alt=""><span><strong>EdgeFlow</strong><small data-i18n="apps.ef">El panel lateral definitivo para macOS</small></span><i aria-hidden="true">→</i></a>
+                </div>
             </div>
-            <div class="nav-links">
-                <a href="index.html#vision">Visión</a>
-                <a href="index.html#appstore">Tienda</a>
-                <a href="index.html#design">Diseño</a>
-                <a href="index.html#metrics">Potencia</a>
-                <a href="support.html">Soporte</a>
-                <a href="index.html#appstore" class="btn-yellow" style="text-decoration: none;">Descargar</a>
-            </div>
-            <div class="menu-toggle" id="mobile-menu-btn">
-                <span></span>
-                <span></span>
-            </div>
+            <nav class="bar-links" aria-label="Principal" data-i18n-attr="aria-label:nav.label">
+                <a href="index.html#funciones" data-i18n="nav.features">Funciones</a>
+                <a href="index.html#film" data-i18n="nav.film">Vídeo</a>
+                <a href="index.html#nativa" data-i18n="nav.native">Rendimiento</a>
+                <a href="index.html#precio" data-i18n="nav.pricing">Precio</a>
+                <a href="support.html" data-i18n="nav.support">Soporte</a>
+            </nav>
+            <label class="lang"><span class="sr" data-i18n="nav.language">Idioma</span><select data-lang aria-label="Idioma"><option value="es">ES</option><option value="en">EN</option><option value="zh">中文</option></select></label>
+            <a class="btn btn-ink btn-sm bar-cta" href="https://apps.apple.com/app/vibenotch/id6757723688" rel="noopener" data-i18n="nav.download">Descargar</a>
+            <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menú" data-i18n-attr="aria-label:nav.menu"><i></i><i></i></button>
         </div>
-    </nav>
-
-    <main class="support-page">
-        <a href="index.html" class="back-link">← VibeNotch</a>
-
-        <div class="support-hero reveal-scroll">
-            <h1>Soporte VibeNotch</h1>
-            <p>Estamos aquí para ayudarte a sacar el máximo provecho de tu notch.</p>
+        <div class="menu" id="menu" hidden>
+            <a href="index.html#funciones" data-i18n="nav.features">Funciones</a>
+            <a href="index.html#film" data-i18n="nav.film">Vídeo</a>
+            <a href="index.html#nativa" data-i18n="nav.native">Rendimiento</a>
+            <a href="index.html#precio" data-i18n="nav.pricing">Precio</a>
+            <a href="support.html" data-i18n="nav.support">Soporte</a>
+            <a class="menu-app" href="edgeflow/index.html"><img src="assets/media/app-edgeflow.png" width="28" height="28" alt=""><span>EdgeFlow</span><small data-i18n="apps.more">Otra app</small></a>
+            <a class="btn btn-ink btn-lg" href="https://apps.apple.com/app/vibenotch/id6757723688" rel="noopener" data-i18n="hero.cta">Descargar en la Mac App Store</a>
         </div>
+    </header>
 
-        <div class="faq-grid">
-            <div class="faq-card reveal-scroll">
-                <h3><span class="faq-icon">💻</span> ¿Es compatible con mi Mac?</h3>
-                <p>VibeNotch es compatible con todos los MacBook Air y MacBook Pro que tienen notch físico. También
-                    funciona en Macs sin notch mediante el modo "Píldora flotante". Requiere macOS 14.0 o superior.</p>
+    <main id="main">
+        <section class="doc-hero">
+            <div class="aura" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="wrap">
+                <p class="label" data-i18n="su.label">Soporte</p>
+                <h1 class="display" data-i18n-html="su.title">¿Cómo podemos<br><span class="tone">ayudarte?</span></h1>
+                <p class="lede" data-i18n="su.sub">Respuestas rápidas sobre VibeNotch y una persona real al otro lado cuando la necesites.</p>
             </div>
-
-            <div class="faq-card reveal-scroll" style="transition-delay: 0.1s;">
-                <h3><span class="faq-icon">🔋</span> ¿Afecta a la batería?</h3>
-                <p>No. VibeNotch está optimizado al máximo en Swift nativo. El consumo de CPU es prácticamente 0% en
-                    reposo y no notarás ninguna diferencia en la autonomía de tu Mac.</p>
-            </div>
-
-            <div class="faq-card reveal-scroll" style="transition-delay: 0.2s;">
-                <h3><span class="faq-icon">🎵</span> ¿Qué apps de música soporta?</h3>
-                <p>Soporta Apple Music, Spotify y cualquier aplicación que use los controles de reproducción nativos de
-                    macOS (como YouTube en Safari o Chrome).</p>
-            </div>
-
-            <div class="faq-card reveal-scroll">
-                <h3><span class="faq-icon">🛠️</span> ¿Cómo activo el Launchpad?</h3>
-                <p>Solo tienes que pasar el cursor sobre el notch y hacer click. Puedes configurar las herramientas
-                    rápidas desde los ajustes de la aplicación (icono de engranaje en el notch expandido).</p>
-            </div>
-
-            <div class="faq-card reveal-scroll" style="transition-delay: 0.1s;">
-                <h3><span class="faq-icon">📦</span> ¿Es de pago único?</h3>
-                <p>Sí. Odiamos las suscripciones tanto como tú. Un único pago y tendrás acceso a todas las funciones y
-                    actualizaciones futuras para siempre.</p>
-            </div>
-
-            <div class="faq-card reveal-scroll" style="transition-delay: 0.2s;">
-                <h3><span class="faq-icon">🛡️</span> ¿Es seguro?</h3>
-                <p>Totalmente. VibeNotch no recopila datos. No necesita conexión a internet para funcionar (excepto para
-                    descargar carátulas si así lo deseas) y no tiene acceso a tus archivos privados.</p>
-            </div>
-        </div>
-
-        <section class="contact-section reveal-scroll">
-            <h2>¿Aún tienes dudas?</h2>
-            <p>Si no has encontrado la respuesta que buscabas, escríbenos directamente.</p>
-            <div class="contact-options">
-                <a href="mailto:aleix.carles@vibenotch.es" class="contact-btn btn-mail">
-                    <span>📧</span> aleix.carles@vibenotch.es
-                </a>
-                <a href="https://instagram.com/aleixxet" target="_blank" class="contact-btn btn-instagram">
-                    <span>📸</span> @aleixxet en Instagram
-                </a>
+        </section>
+        <section class="doc">
+            <div class="wrap doc-grid">
+                <nav class="toc" aria-label="En esta página" data-i18n-attr="aria-label:doc.toc">
+                    <a href="#preguntas" data-i18n="su.faq">Preguntas frecuentes</a>
+                    <a href="#contacto" data-i18n="su.contact">Contacto</a>
+                    <a href="privacy.html" data-i18n="ft.privacy">Privacidad</a>
+                <a href="edgeflow/index.html">EdgeFlow</a>
+                </nav>
+                <div class="prose">
+                    <section id="preguntas">
+                        <h2 data-i18n="su.faq">Preguntas frecuentes</h2>
+                        <div class="qa">
+                            <details><summary data-i18n="su.q1">¿Es compatible con mi Mac?</summary><p data-i18n="su.a1">Sí. Funciona en todos los MacBook con notch y, gracias al modo burbuja, en cualquier Mac o pantalla externa. Requiere macOS 14 o posterior y funciona en Apple Silicon e Intel.</p></details>
+                            <details><summary data-i18n="su.q2">No veo mi música en el notch.</summary><p data-i18n="su.a2">Abre los Ajustes de VibeNotch, sección Multimedia, y comprueba que tu app (Música, Spotify, Apple TV o QuickTime) esté activada. La primera vez macOS te pedirá permiso para que VibeNotch la controle; si lo denegaste, actívalo en Ajustes del Sistema › Privacidad y seguridad › Automatización.</p></details>
+                            <details><summary data-i18n="su.q3">No aparecen mis eventos o recordatorios.</summary><p data-i18n="su.a3">Pulsa EVENT en el notch expandido y acepta el acceso a Calendario y Recordatorios. Si lo denegaste, actívalo en Ajustes del Sistema › Privacidad y seguridad › Calendarios y Recordatorios.</p></details>
+                            <details><summary data-i18n="su.q4">¿Cómo configuro los accesos rápidos?</summary><p data-i18n="su.a4">En los Ajustes de VibeNotch elige hasta cuatro apps. Aparecerán abajo a la derecha del notch expandido para abrirlas con un clic.</p></details>
+                            <details><summary data-i18n="su.q5">¿Cómo uso el teleprompter?</summary><p data-i18n="su.a5">Pulsa TELE en el notch, escribe o pega tu texto, elige modo ticker o créditos, la velocidad y la cuenta atrás, y pulsa VER.</p></details>
+                            <details><summary data-i18n="su.q6">¿Cómo funciona Sports?</summary><p data-i18n="su.a6">Actívalo en Ajustes › Deportes. El Mundial 2026 es gratis. El resto de competiciones forman parte de la suscripción opcional Sports, que puedes gestionar o cancelar en cualquier momento desde los ajustes de tu cuenta de Apple.</p></details>
+                            <details><summary data-i18n="su.q7">¿Afecta a la batería?</summary><p data-i18n="su.a7">No. VibeNotch está escrita en Swift nativo: usa menos de 60 MB de memoria y menos del 1 % de CPU en reposo. Las funciones que no uses se pueden desactivar para que ni siquiera se carguen.</p></details>
+                            <details><summary data-i18n="su.q8">¿Es de pago único?</summary><p data-i18n="su.a8">Sí. VibeNotch cuesta 4,99 € una sola vez e incluye todas las actualizaciones. Solo Sports para competiciones adicionales es una suscripción opcional.</p></details>
+                        </div>
+                    </section>
+                    <section id="contacto">
+                        <h2 data-i18n="su.contact">Contacto</h2>
+                        <p data-i18n="su.contactp">¿No encuentras lo que buscas? Escríbenos y cuéntanos tu modelo de Mac y tu versión de macOS para ayudarte antes.</p>
+                        <div class="contact">
+                            <a href="mailto:aleix.carles@vibenotch.es"><span>Email</span><strong>aleix.carles@vibenotch.es</strong></a>
+                            <a href="https://www.instagram.com/aleixxet" rel="noopener"><span>Instagram</span><strong>@aleixxet</strong></a>
+                        </div>
+                    </section>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="footer-logo">VibeNotch</div>
-        <p class="copyright">© 2026 VibeNotch. Minimalismo hecho en Tarragona.</p>
-        <div class="footer-legal">
-            <a href="support.html" style="color: #888; text-decoration: none; font-size: 14px;">Soporte</a>
-            <a href="privacy.html" style="color: #888; text-decoration: none; font-size: 14px;">Privacidad</a>
+    <footer class="footer dark">
+        <div class="wrap foot-grid">
+            <div class="foot-brand">
+                <a class="brand" href="index.html"><img src="assets/favicon/apple-touch-icon.png" width="24" height="24" alt="" loading="lazy" decoding="async"><span>VibeNotch</span></a>
+                <p data-i18n="ft.tag">Minimalismo hecho en Tarragona.</p>
+            </div>
+            <nav class="foot-links" aria-label="Pie de página" data-i18n-attr="aria-label:ft.label">
+                <a href="index.html">VibeNotch</a>
+                <a href="support.html" data-i18n="nav.support">Soporte</a>
+                <a href="privacy.html" data-i18n="ft.privacy">Privacidad</a>
+                <a href="https://apps.apple.com/app/vibenotch/id6757723688" rel="noopener">App Store</a>
+                <a href="https://www.instagram.com/aleixxet" rel="noopener">Instagram</a>
+            </nav>
+            <p class="foot-legal">© <span data-year>2026</span> VibeNotch. <span data-i18n="ft.legal">Mac, macOS y App Store son marcas de Apple Inc.</span></p>
         </div>
     </footer>
 
-    <script src="localization.js?v=20260830-locales1"></script>
-    <script src="script.js?v=20260830-locales1"></script>
+    <script src="assets/site/i18n.js?v=5" defer></script>
+    <script src="assets/site/i18n-pages.js?v=5" defer></script>
+    <script src="assets/site/site.js?v=5" defer></script>
 </body>
-
 </html>

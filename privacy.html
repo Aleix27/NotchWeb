@@ -1,619 +1,182 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VibeNotch | La Interacción Redefinida</title>
-    <meta name="description" content="La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.">
-    <meta name="keywords"
-        content="VibeNotch, interacción, UX, experiencia de usuario, innovación, tecnología, comunidad">
-    <meta name="author" content="VibeNotch Team">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="VibeNotch | La Interacción Redefinida">
-    <meta property="og:description"
-        content="La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Privacidad — VibeNotch</title>
+    <meta name="description" content="Política de privacidad de VibeNotch: no recopilamos datos personales. Todo se procesa en tu Mac.">
+    <link rel="canonical" href="https://vibenotch.es/privacy.html">
+    <meta name="theme-color" content="#ffffff">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vibenotch.es/">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="VibeNotch | La Interacción Redefinida">
-    <meta name="twitter:description"
-        content="La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.">
-    <link rel="canonical" href="https://vibenotch.es/">
-    <link rel="stylesheet" href="style.css?v=20260830-locales1">
-
-    <!-- FAVICOn -->
-    <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="shortcut icon" href="assets/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="assets/favicon/site.webmanifest" />
-
-    <!-- STRUCTED DATA -->
-    <script type="application/ld+json">
-                {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "VibeNotch",
-  "description": "La utilidad de notch más óptima y leal del mercado, programada nativa en Swift.",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "macOS",
-  "softwareVersion": "1.0",
-  "offers": {
-    "@type": "Offer",
-    "price": "3.99",
-    "priceCurrency": "EUR"
-  },
-  "abstract": "VibeNotch está diseñado con un principio simple: tu Mac es tuyo. No recopilamos datos, no hay análisis de uso, no hay servidores externos. La aplicación funciona completamente offline.",
-  "privacyPolicy": "https://vibenotch.es/privacy.html",
-  "isAccessibleForFree": false
-}
-    </script>
-    <style>
-        /* Apple-style Legal Page */
-        .privacy-page {
-            padding: 140px 24px 100px;
-            max-width: 720px;
-            margin: 0 auto;
-            min-height: 100vh;
-            background: #fff;
-        }
-
-        .privacy-hero {
-            margin-bottom: 80px;
-            text-align: center;
-        }
-
-        .privacy-hero h1 {
-            font-size: 48px;
-            font-weight: 700;
-            letter-spacing: -2px;
-            color: #1d1d1f;
-            margin-bottom: 16px;
-            line-height: 1.1;
-        }
-
-        .privacy-hero .last-updated {
-            color: #86868b;
-            font-size: 17px;
-            font-weight: 400;
-        }
-
-        /* Summary Card */
-        .privacy-summary {
-            background: #f5f5f7;
-            border-radius: 18px;
-            padding: 32px;
-            margin-bottom: 64px;
-            text-align: center;
-        }
-
-        .privacy-summary .icon {
-            font-size: 48px;
-            margin-bottom: 16px;
-        }
-
-        .privacy-summary h2 {
-            font-size: 24px;
-            font-weight: 600;
-            color: #1d1d1f;
-            margin-bottom: 8px;
-        }
-
-        .privacy-summary p {
-            font-size: 17px;
-            color: #86868b;
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        /* Section Styles */
-        .privacy-section {
-            margin-bottom: 48px;
-        }
-
-        .privacy-section h2 {
-            font-size: 28px;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-            margin-bottom: 16px;
-            color: #1d1d1f;
-        }
-
-        .privacy-section h3 {
-            font-size: 19px;
-            font-weight: 600;
-            margin-top: 32px;
-            margin-bottom: 12px;
-            color: #1d1d1f;
-        }
-
-        .privacy-section p {
-            font-size: 17px;
-            line-height: 1.65;
-            color: #424245;
-            margin-bottom: 16px;
-        }
-
-        .privacy-section p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Data Row */
-        .data-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-        }
-
-        .data-row:last-child {
-            border-bottom: none;
-        }
-
-        .data-label {
-            font-size: 15px;
-            color: #86868b;
-            font-weight: 500;
-        }
-
-        .data-value {
-            font-size: 15px;
-            color: #1d1d1f;
-            font-weight: 500;
-        }
-
-        /* Info Block */
-        .info-block {
-            background: #f5f5f7;
-            border-radius: 12px;
-            padding: 20px 24px;
-            margin: 16px 0;
-        }
-
-        .info-block p {
-            margin: 0;
-            font-size: 15px;
-            line-height: 1.5;
-        }
-
-        .info-block p+p {
-            margin-top: 8px;
-        }
-
-        /* List Styles */
-        .privacy-section ul {
-            list-style: none;
-            padding: 0;
-            margin: 16px 0;
-        }
-
-        .privacy-section ul li {
-            position: relative;
-            padding: 12px 0 12px 28px;
-            font-size: 17px;
-            color: #424245;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-        }
-
-        .privacy-section ul li:last-child {
-            border-bottom: none;
-        }
-
-        .privacy-section ul li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 6px;
-            height: 6px;
-            background: #0071e3;
-            border-radius: 50%;
-        }
-
-        .privacy-section ul.no-collect li::before {
-            background: #86868b;
-        }
-
-        /* Divider */
-        .divider {
-            height: 1px;
-            background: rgba(0, 0, 0, 0.08);
-            margin: 48px 0;
-        }
-
-        /* Table */
-        .data-table-wrapper {
-            overflow-x: auto;
-            margin: 32px 0;
-            border-radius: 12px;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
-        .data-table th {
-            background: #f5f5f7;
-            padding: 14px 16px;
-            text-align: left;
-            font-weight: 600;
-            color: #1d1d1f;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .data-table td {
-            padding: 14px 16px;
-            color: #424245;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-        }
-
-        .data-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .badge-no {
-            background: rgba(134, 134, 139, 0.12);
-            color: #86868b;
-        }
-
-        .badge-yes {
-            background: rgba(52, 199, 89, 0.12);
-            color: #248a3d;
-        }
-
-        .badge-temp {
-            background: rgba(255, 159, 10, 0.12);
-            color: #c93400;
-        }
-
-        /* Back Link */
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #0071e3;
-            text-decoration: none;
-            font-size: 17px;
-            font-weight: 400;
-            margin-bottom: 40px;
-            transition: gap 0.2s ease;
-        }
-
-        .back-link:hover {
-            gap: 10px;
-        }
-
-        /* Contact */
-        .contact-block {
-            background: #f5f5f7;
-            border-radius: 12px;
-            padding: 24px;
-            margin-top: 16px;
-        }
-
-        .contact-block a {
-            color: #0071e3;
-            text-decoration: none;
-        }
-
-        .contact-block a:hover {
-            text-decoration: underline;
-        }
-
-        /* Final Statement */
-        .final-statement {
-            background: #1d1d1f;
-            border-radius: 18px;
-            padding: 48px 32px;
-            text-align: center;
-            margin-top: 64px;
-        }
-
-        .final-statement .icon {
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-
-        .final-statement h3 {
-            font-size: 24px;
-            font-weight: 600;
-            color: #f5f5f7;
-            margin-bottom: 8px;
-        }
-
-        .final-statement p {
-            font-size: 17px;
-            color: #86868b;
-            margin: 0;
-        }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .privacy-page {
-                padding: 110px 20px 60px;
-            }
-
-            .privacy-hero h1 {
-                font-size: 34px;
-            }
-
-            .privacy-section h2 {
-                font-size: 24px;
-            }
-
-            .privacy-section p,
-            .privacy-section ul li {
-                font-size: 16px;
-            }
-
-            .data-row {
-                grid-template-columns: 1fr;
-                gap: 4px;
-            }
-
-            .final-statement {
-                padding: 32px 24px;
-            }
-        }
-    </style>
+    <meta property="og:site_name" content="VibeNotch">
+    <meta property="og:url" content="https://vibenotch.es/privacy.html">
+    <meta property="og:title" content="Privacidad — VibeNotch">
+    <meta property="og:description" content="Política de privacidad de VibeNotch: no recopilamos datos personales. Todo se procesa en tu Mac.">
+    <meta property="og:image" content="https://vibenotch.es/assets/media/film-poster.jpg">
+    <link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="stylesheet" href="assets/site/site.css?v=5">
+    <script>document.documentElement.classList.add('js');</script>
 </head>
 
-<body>
-    <nav>
-        <div class="nav-content">
-            <div class="logo-group">
-                <img src="assets/VibeNotch icon-iOS-Default-1024x1024@1x.png" alt="VibeNotch Icon" class="nav-icon">
-                <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">VibeNotch</a>
+<body class="page" data-meta="pv.meta">
+    <a class="skip" href="#main" data-i18n="a11y.skip">Saltar al contenido</a>
+    <header class="bar is-on is-static" id="bar">
+        <div class="bar-inner">
+            <a class="brand" href="index.html" aria-label="VibeNotch"><img src="assets/favicon/apple-touch-icon.png" width="24" height="24" alt=""><span>VibeNotch</span></a>
+            <div class="apps">
+                <button class="apps-btn" id="apps-btn" type="button" aria-expanded="false" aria-controls="apps-pop" aria-label="Nuestras apps" data-i18n-attr="aria-label:apps.k"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><g fill="currentColor"><circle cx="2" cy="2" r="1.6"/><circle cx="7" cy="2" r="1.6"/><circle cx="12" cy="2" r="1.6"/><circle cx="2" cy="7" r="1.6"/><circle cx="7" cy="7" r="1.6"/><circle cx="12" cy="7" r="1.6"/><circle cx="2" cy="12" r="1.6"/><circle cx="7" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/></g></svg></button>
+                <div class="apps-pop" id="apps-pop" hidden>
+                    <p class="apps-k" data-i18n="apps.k">Nuestras apps</p>
+                    <a class="app-item is-current" href="index.html" aria-current="page"><img src="assets/favicon/apple-touch-icon.png" width="40" height="40" alt=""><span><strong>VibeNotch</strong><small data-i18n="apps.here">Estás aquí</small></span></a>
+                    <a class="app-item" href="edgeflow/index.html"><img src="assets/media/app-edgeflow.png" width="40" height="40" alt=""><span><strong>EdgeFlow</strong><small data-i18n="apps.ef">El panel lateral definitivo para macOS</small></span><i aria-hidden="true">→</i></a>
+                </div>
             </div>
-            <div class="nav-links">
-                <a href="index.html#vision">Visión</a>
-                <a href="index.html#appstore">Tienda</a>
-                <a href="index.html#design">Diseño</a>
-                <a href="index.html#metrics">Potencia</a>
-                <a href="support.html">Soporte</a>
-                <a href="index.html#appstore" class="btn-yellow" style="text-decoration: none;">Descargar</a>
-            </div>
-            <div class="menu-toggle" id="mobile-menu-btn">
-                <span></span>
-                <span></span>
-            </div>
+            <nav class="bar-links" aria-label="Principal" data-i18n-attr="aria-label:nav.label">
+                <a href="index.html#funciones" data-i18n="nav.features">Funciones</a>
+                <a href="index.html#film" data-i18n="nav.film">Vídeo</a>
+                <a href="index.html#nativa" data-i18n="nav.native">Rendimiento</a>
+                <a href="index.html#precio" data-i18n="nav.pricing">Precio</a>
+                <a href="support.html" data-i18n="nav.support">Soporte</a>
+            </nav>
+            <label class="lang"><span class="sr" data-i18n="nav.language">Idioma</span><select data-lang aria-label="Idioma"><option value="es">ES</option><option value="en">EN</option><option value="zh">中文</option></select></label>
+            <a class="btn btn-ink btn-sm bar-cta" href="https://apps.apple.com/app/vibenotch/id6757723688" rel="noopener" data-i18n="nav.download">Descargar</a>
+            <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menú" data-i18n-attr="aria-label:nav.menu"><i></i><i></i></button>
         </div>
-    </nav>
-
-    <main class="privacy-page">
-        <a href="index.html" class="back-link">← VibeNotch</a>
-
-        <div class="privacy-hero">
-            <h1>Política de Privacidad</h1>
-            <p class="last-updated">Actualizado el 11 de enero de 2026</p>
+        <div class="menu" id="menu" hidden>
+            <a href="index.html#funciones" data-i18n="nav.features">Funciones</a>
+            <a href="index.html#film" data-i18n="nav.film">Vídeo</a>
+            <a href="index.html#nativa" data-i18n="nav.native">Rendimiento</a>
+            <a href="index.html#precio" data-i18n="nav.pricing">Precio</a>
+            <a href="support.html" data-i18n="nav.support">Soporte</a>
+            <a class="menu-app" href="edgeflow/index.html"><img src="assets/media/app-edgeflow.png" width="28" height="28" alt=""><span>EdgeFlow</span><small data-i18n="apps.more">Otra app</small></a>
+            <a class="btn btn-ink btn-lg" href="https://apps.apple.com/app/vibenotch/id6757723688" rel="noopener" data-i18n="hero.cta">Descargar en la Mac App Store</a>
         </div>
+    </header>
 
-        <div class="privacy-summary">
-            <div class="icon">🔒</div>
-            <h2>Tu privacidad es lo primero</h2>
-            <p>VibeNotch no recopila, almacena ni transmite ningún dato personal. Toda la información permanece en tu
-                dispositivo.</p>
-        </div>
-
-        <section class="privacy-section">
-            <h2>Resumen</h2>
-            <p>VibeNotch está diseñado con un principio simple: tu Mac es tuyo. No recopilamos datos, no hay análisis de
-                uso, no hay servidores externos. La aplicación funciona completamente offline.</p>
-        </section>
-
-        <div class="divider"></div>
-
-        <section class="privacy-section">
-            <h2>Información que accedemos</h2>
-            <p>Para ofrecer sus funciones, VibeNotch accede a cierta información del sistema. Esta información nunca
-                sale de tu dispositivo.</p>
-
-            <h3>Reproducción musical</h3>
-            <div class="info-block">
-                <div class="data-row">
-                    <span class="data-label">Qué</span>
-                    <span class="data-value">Título, artista, álbum y carátula</span>
-                </div>
-                <div class="data-row">
-                    <span class="data-label">Para qué</span>
-                    <span class="data-value">Mostrar "Reproduciendo ahora"</span>
-                </div>
-                <div class="data-row">
-                    <span class="data-label">Almacenado</span>
-                    <span class="data-value">Solo en memoria RAM</span>
-                </div>
-                <div class="data-row">
-                    <span class="data-label">Transmitido</span>
-                    <span class="data-value">Nunca</span>
-                </div>
-            </div>
-
-            <h3>Estado del sistema</h3>
-            <div class="info-block">
-                <div class="data-row">
-                    <span class="data-label">Qué</span>
-                    <span class="data-value">Batería, Wi-Fi, Bluetooth, silencio</span>
-                </div>
-                <div class="data-row">
-                    <span class="data-label">Para qué</span>
-                    <span class="data-value">Notificaciones del notch</span>
-                </div>
-                <div class="data-row">
-                    <span class="data-label">Almacenado</span>
-                    <span class="data-value">Nunca</span>
-                </div>
-                <div class="data-row">
-                    <span class="data-label">Transmitido</span>
-                    <span class="data-value">Nunca</span>
-                </div>
-            </div>
-
-            <h3>Preferencias</h3>
-            <div class="info-block">
-                <div class="data-row">
-                    <span class="data-label">Qué</span>
-                    <span class="data-value">Tus ajustes de la aplicación</span>
-                </div>
-                <div class="data-row">
-                    <span class="data-label">Para qué</span>
-                    <span class="data-value">Recordar tu configuración</span>
-                </div>
-                <div class="data-row">
-                    <span class="data-label">Almacenado</span>
-                    <span class="data-value">Localmente en tu Mac</span>
-                </div>
-                <div class="data-row">
-                    <span class="data-label">Transmitido</span>
-                    <span class="data-value">Nunca</span>
-                </div>
+    <main id="main">
+        <section class="doc-hero">
+            <div class="aura" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="wrap">
+                <p class="label" data-i18n="pv.label">Política de privacidad</p>
+                <h1 class="display" data-i18n-html="pv.title">Tus datos<br><span class="tone">no salen de tu Mac.</span></h1>
+                <p class="lede" data-i18n="pv.sub">VibeNotch no recopila ningún dato personal. No hay cuentas, ni analítica, ni servidores propios.</p>
+                <p class="label" style="margin:28px 0 0" data-i18n="pv.date">Actualizada el 8 de octubre de 2026</p>
             </div>
         </section>
-
-        <div class="divider"></div>
-
-        <section class="privacy-section">
-            <h2>Lo que NO recopilamos</h2>
-            <ul class="no-collect">
-                <li>Información personal identificable</li>
-                <li>Datos de ubicación</li>
-                <li>Análisis de uso o estadísticas</li>
-                <li>Informes de errores automáticos</li>
-                <li>Identificadores de publicidad</li>
-                <li>Datos de navegación o historial</li>
-            </ul>
-        </section>
-
-        <div class="divider"></div>
-
-        <section class="privacy-section">
-            <h2>Conexión a internet</h2>
-            <p>VibeNotch puede conectarse a internet únicamente para obtener carátulas de álbum cuando no están
-                disponibles localmente, usando la API pública de iTunes. No se transmite información personal en esta
-                solicitud.</p>
-            <p>No hay telemetría. No hay analytics. No hay servidores propios.</p>
-        </section>
-
-        <div class="divider"></div>
-
-        <section class="privacy-section">
-            <h2>Integraciones</h2>
-            <p>VibeNotch se integra con Apple Music y Spotify para mostrar información de reproducción. Estas
-                integraciones funcionan completamente en tu dispositivo a través de las APIs del sistema.</p>
-        </section>
-
-        <div class="divider"></div>
-
-        <section class="privacy-section">
-            <h2>Resumen de datos</h2>
-            <div class="data-table-wrapper">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Dato</th>
-                            <th>Recopilado</th>
-                            <th>Almacenado</th>
-                            <th>Compartido</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Info musical</td>
-                            <td><span class="badge badge-no">No</span></td>
-                            <td><span class="badge badge-temp">RAM</span></td>
-                            <td><span class="badge badge-no">No</span></td>
-                        </tr>
-                        <tr>
-                            <td>Bluetooth</td>
-                            <td><span class="badge badge-no">No</span></td>
-                            <td><span class="badge badge-no">No</span></td>
-                            <td><span class="badge badge-no">No</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sistema</td>
-                            <td><span class="badge badge-no">No</span></td>
-                            <td><span class="badge badge-no">No</span></td>
-                            <td><span class="badge badge-no">No</span></td>
-                        </tr>
-                        <tr>
-                            <td>Preferencias</td>
-                            <td><span class="badge badge-yes">Local</span></td>
-                            <td><span class="badge badge-yes">Local</span></td>
-                            <td><span class="badge badge-no">No</span></td>
-                        </tr>
-                        <tr>
-                            <td>Analytics</td>
-                            <td><span class="badge badge-no">No</span></td>
-                            <td><span class="badge badge-no">No</span></td>
-                            <td><span class="badge badge-no">No</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+        <section class="doc">
+            <div class="wrap doc-grid">
+                <nav class="toc" aria-label="En esta página" data-i18n-attr="aria-label:doc.toc">
+                    <a href="#acceso" data-i18n="pv.h1">Qué usa la app</a>
+                    <a href="#red" data-i18n="pv.h2">Conexiones a internet</a>
+                    <a href="#no" data-i18n="pv.h3">Lo que no recopilamos</a>
+                    <a href="#resumen" data-i18n="pv.h4">Resumen</a>
+                    <a href="#contacto" data-i18n="su.contact">Contacto</a>
+                </nav>
+                <div class="prose">
+                    <section id="acceso">
+                        <h2 data-i18n="pv.h1">Qué usa la app</h2>
+                        <p data-i18n="pv.p1">Para funcionar, VibeNotch lee cierta información de tu Mac. Todo se procesa en el propio dispositivo y nunca se envía a nosotros ni a terceros.</p>
+                        <div class="facts">
+                            <div class="fact"><h3 data-i18n="pv.f1">Reproducción musical</h3><dl>
+                                <dt data-i18n="pv.what">Qué</dt><dd data-i18n="pv.f1.w">Título, artista, álbum, progreso y carátula</dd>
+                                <dt data-i18n="pv.why">Para qué</dt><dd data-i18n="pv.f1.y">Mostrar lo que suena y controlarlo</dd>
+                                <dt data-i18n="pv.stored">Guardado</dt><dd data-i18n="pv.f1.s">Solo en memoria</dd>
+                                <dt data-i18n="pv.sent">Enviado</dt><dd data-i18n="pv.f1.t">Nunca</dd>
+                            </dl></div>
+                            <div class="fact"><h3 data-i18n="pv.f2">Calendario y Recordatorios</h3><dl>
+                                <dt data-i18n="pv.what">Qué</dt><dd data-i18n="pv.f2.w">Tus próximos eventos y recordatorios</dd>
+                                <dt data-i18n="pv.why">Para qué</dt><dd data-i18n="pv.f2.y">Mostrarlos y marcarlos como hechos</dd>
+                                <dt data-i18n="pv.stored">Guardado</dt><dd data-i18n="pv.f2.s">No se copian</dd>
+                                <dt data-i18n="pv.sent">Enviado</dt><dd data-i18n="pv.f2.t">Nunca</dd>
+                            </dl></div>
+                            <div class="fact"><h3 data-i18n="pv.f3">Estado del sistema</h3><dl>
+                                <dt data-i18n="pv.what">Qué</dt><dd data-i18n="pv.f3.w">Batería, Wi‑Fi, Bluetooth y silencio</dd>
+                                <dt data-i18n="pv.why">Para qué</dt><dd data-i18n="pv.f3.y">Avisos en el notch</dd>
+                                <dt data-i18n="pv.stored">Guardado</dt><dd data-i18n="pv.f3.s">No</dd>
+                                <dt data-i18n="pv.sent">Enviado</dt><dd data-i18n="pv.f3.t">Nunca</dd>
+                            </dl></div>
+                            <div class="fact"><h3 data-i18n="pv.f4">Preferencias</h3><dl>
+                                <dt data-i18n="pv.what">Qué</dt><dd data-i18n="pv.f4.w">Tus ajustes y el texto del teleprompter</dd>
+                                <dt data-i18n="pv.why">Para qué</dt><dd data-i18n="pv.f4.y">Recordar tu configuración</dd>
+                                <dt data-i18n="pv.stored">Guardado</dt><dd data-i18n="pv.f4.s">En tu Mac</dd>
+                                <dt data-i18n="pv.sent">Enviado</dt><dd data-i18n="pv.f4.t">Nunca</dd>
+                            </dl></div>
+                        </div>
+                    </section>
+                    <section id="red">
+                        <h2 data-i18n="pv.h2">Conexiones a internet</h2>
+                        <p data-i18n="pv.p2">VibeNotch solo se conecta a internet en estos casos, y nunca envía información personal:</p>
+                        <ul>
+                            <li data-i18n-html="pv.n1"><strong>Carátulas.</strong> Si tu reproductor no proporciona la portada, se busca en la API pública de iTunes con el título y el artista de la canción.</li>
+                            <li data-i18n-html="pv.n2"><strong>Sports.</strong> Si lo activas, la app consulta marcadores públicos de ESPN solo mientras hay partidos de tus competiciones. Sin partidos, o con Sports desactivado, no hace ninguna petición.</li>
+                            <li data-i18n-html="pv.n3"><strong>Compras.</strong> La compra de la app y la suscripción opcional de Sports las gestiona Apple a través de la App Store. Nunca recibimos tus datos de pago.</li>
+                        </ul>
+                        <div class="callout"><strong data-i18n="pv.c1">Sin telemetría.</strong><p data-i18n="pv.c2">No hay analítica, rastreo ni identificadores publicitarios. No tenemos servidores propios.</p></div>
+                    </section>
+                    <section id="no">
+                        <h2 data-i18n="pv.h3">Lo que no recopilamos</h2>
+                        <ul>
+                            <li data-i18n="pv.x1">Información personal identificable</li>
+                            <li data-i18n="pv.x2">Datos de ubicación</li>
+                            <li data-i18n="pv.x3">Analítica o estadísticas de uso</li>
+                            <li data-i18n="pv.x4">Informes de errores automáticos</li>
+                            <li data-i18n="pv.x5">Identificadores publicitarios</li>
+                            <li data-i18n="pv.x6">Historial de navegación</li>
+                        </ul>
+                        <p style="margin-top:16px" data-i18n="pv.p3">Como no recopilamos datos, no hay nada que exportar ni borrar. Puedes restablecer tus preferencias desde los ajustes de la app o eliminándola. VibeNotch no recoge datos de nadie, incluidos menores de 13 años.</p>
+                    </section>
+                    <section id="resumen">
+                        <h2 data-i18n="pv.h4">Resumen</h2>
+                        <div class="table-wrap">
+                            <table>
+                                <thead><tr><th data-i18n="pv.t0">Dato</th><th data-i18n="pv.t1">Recopilado</th><th data-i18n="pv.stored">Guardado</th><th data-i18n="pv.t3">Compartido</th></tr></thead>
+                                <tbody>
+                                    <tr><td data-i18n="pv.f1">Reproducción musical</td><td data-i18n="pv.no">No</td><td data-i18n="pv.ram">En memoria</td><td data-i18n="pv.no">No</td></tr>
+                                    <tr><td data-i18n="pv.f2">Calendario y Recordatorios</td><td data-i18n="pv.no">No</td><td data-i18n="pv.no">No</td><td data-i18n="pv.no">No</td></tr>
+                                    <tr><td data-i18n="pv.f3">Estado del sistema</td><td data-i18n="pv.no">No</td><td data-i18n="pv.no">No</td><td data-i18n="pv.no">No</td></tr>
+                                    <tr><td data-i18n="pv.f4">Preferencias</td><td data-i18n="pv.no">No</td><td data-i18n="pv.local">En tu Mac</td><td data-i18n="pv.no">No</td></tr>
+                                    <tr><td data-i18n="pv.t5">Analítica</td><td data-i18n="pv.no">No</td><td data-i18n="pv.no">No</td><td data-i18n="pv.no">No</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p style="margin-top:16px" data-i18n="pv.p4">Si cambiamos esta política, publicaremos aquí la nueva versión con su fecha de actualización.</p>
+                    </section>
+                    <section id="contacto">
+                        <h2 data-i18n="su.contact">Contacto</h2>
+                        <p data-i18n="pv.p5">Si tienes cualquier duda sobre esta política, escríbenos:</p>
+                        <div class="contact">
+                            <a href="mailto:aleix.carles@vibenotch.es"><span>Email</span><strong>aleix.carles@vibenotch.es</strong></a>
+                            <a href="https://www.instagram.com/aleixxet" rel="noopener"><span>Instagram</span><strong>@aleixxet</strong></a>
+                        </div>
+                    </section>
+                </div>
             </div>
         </section>
-
-        <div class="divider"></div>
-
-        <section class="privacy-section">
-            <h2>Contacto</h2>
-            <p>Si tienes preguntas sobre esta política de privacidad:</p>
-            <div class="contact-block">
-                <p><strong>Email:</strong> <a href="mailto:aleix.carles@vibenotch.es">aleix.carles@vibenotch.es</a></p>
-                <p><strong>Instagram:</strong> <a href="https://instagram.com/aleixxet" target="_blank">@aleixxet</a>
-                </p>
-            </div>
-        </section>
-
-        <div class="final-statement">
-            <div class="icon">🛡️</div>
-            <h3>Diseñado con privacidad en mente</h3>
-            <p>Tus datos nunca salen de tu Mac.</p>
-        </div>
     </main>
 
-    <footer class="footer">
-        <div class="footer-logo">VibeNotch</div>
-        <p class="copyright">© 2026 VibeNotch. Minimalismo hecho en Tarragona.</p>
-        <div class="footer-legal">
-            <a href="support.html" style="color: #888; text-decoration: none; font-size: 14px;">Soporte</a>
-            <a href="privacy.html" style="color: #888; text-decoration: none; font-size: 14px;">Privacidad</a>
+    <footer class="footer dark">
+        <div class="wrap foot-grid">
+            <div class="foot-brand">
+                <a class="brand" href="index.html"><img src="assets/favicon/apple-touch-icon.png" width="24" height="24" alt="" loading="lazy" decoding="async"><span>VibeNotch</span></a>
+                <p data-i18n="ft.tag">Minimalismo hecho en Tarragona.</p>
+            </div>
+            <nav class="foot-links" aria-label="Pie de página" data-i18n-attr="aria-label:ft.label">
+                <a href="index.html">VibeNotch</a>
+                <a href="support.html" data-i18n="nav.support">Soporte</a>
+                <a href="privacy.html" data-i18n="ft.privacy">Privacidad</a>
+                <a href="edgeflow/index.html">EdgeFlow</a>
+                <a href="https://apps.apple.com/app/vibenotch/id6757723688" rel="noopener">App Store</a>
+                <a href="https://www.instagram.com/aleixxet" rel="noopener">Instagram</a>
+            </nav>
+            <p class="foot-legal">© <span data-year>2026</span> VibeNotch. <span data-i18n="ft.legal">Mac, macOS y App Store son marcas de Apple Inc.</span></p>
         </div>
     </footer>
-    <script src="localization.js?v=20260830-locales1"></script>
-    <script>
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
 
-        if (menuBtn && navLinks) {
-            menuBtn.addEventListener('click', () => {
-                menuBtn.classList.toggle('active');
-                navLinks.classList.toggle('active');
-                document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-            });
-
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    menuBtn.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            });
-        }
-    </script>
+    <script src="assets/site/i18n.js?v=5" defer></script>
+    <script src="assets/site/i18n-pages.js?v=5" defer></script>
+    <script src="assets/site/site.js?v=5" defer></script>
 </body>
-
 </html>

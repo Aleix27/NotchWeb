@@ -105,7 +105,13 @@ def resolve_reference(source: Path, raw_value: str) -> Path | None:
         if not raw_path:
             return None
         suffix = Path(raw_path).suffix.lower()
-        candidate = ROOT / raw_path.lstrip("/") if raw_path.startswith("/") else source.parent / raw_path
+        if raw_path.startswith("/"):
+            candidate = ROOT / raw_path.lstrip("/")
+        elif source.suffix.lower() == ".js":
+            # Script paths are resolved by the browser against the page, which lives at the root.
+            candidate = ROOT / raw_path
+        else:
+            candidate = source.parent / raw_path
         try:
             candidate_exists = len(raw_path) <= 512 and candidate.exists()
         except OSError:
@@ -131,10 +137,12 @@ def seed_files() -> set[Path]:
     seeds: set[Path] = set()
     for suffix in ("*.html", "*.css", "*.js"):
         seeds.update(ROOT.glob(suffix))
-    for section in ("edgeflow", "sweepy", "vibecapture"):
-        section_root = ROOT / section
-        for suffix in ("*.html", "*.css", "*.js"):
-            seeds.update(section_root.rglob(suffix))
+    # EdgeFlow is published next to VibeNotch. Sweepy and VibeCapture stay in
+    # the repository but are not published.
+    for suffix in ("*.html", "*.css", "*.js"):
+        seeds.update((ROOT / "edgeflow").rglob(suffix))
+    # Site media is picked at runtime (language, screen size), so publish it whole.
+    seeds.update(path for path in (ROOT / "assets" / "media").rglob("*") if path.is_file())
     for relative in ("CNAME", "robots.txt", "sitemap.xml", "assets/favicon/site.webmanifest"):
         candidate = ROOT / relative
         if candidate.is_file():
