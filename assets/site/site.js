@@ -294,20 +294,33 @@
         };
 
         let ticking = false;
+        let scrollRest = 0;
+        const touch = window.matchMedia('(pointer: coarse)').matches;
+        const last = {};
+        // Write a style only when it changes: fewer style recalcs while scrolling.
+        const put = (el, prop, value) => {
+            const key = el.id + prop;
+            if (last[key] === value) return;
+            last[key] = value;
+            el.style[prop] = value;
+        };
         const update = () => {
             ticking = false;
             const u = (window.scrollY - top) / vh;
 
             const h = clamp(u / (HERO * 0.55), 0, 1);
-            heroBlock.style.opacity = String(1 - h);
-            heroBlock.style.transform = `translateY(${(-h * 70).toFixed(1)}px)`;
-            heroBlock.style.visibility = h >= 1 ? 'hidden' : 'visible';
+            put(heroBlock, 'opacity', String(+(1 - h).toFixed(3)));
+            put(heroBlock, 'transform', `translate3d(0, ${(-h * 70).toFixed(1)}px, 0)`);
+            put(heroBlock, 'visibility', h >= 1 ? 'hidden' : 'visible');
 
             const enter = clamp((u - HERO * 0.6) / (HERO * 0.4), 0, 1);
             const local = (u - HERO) / SEG;
             let offset;
             if (local < 0) {
                 offset = -(1 - easeOut(enter));
+            } else if (touch) {
+                // Touch: the text follows the finger 1:1, no settling.
+                offset = Math.min(local, N - 0.5);
             } else {
                 // Text follows the scroll freely, with only a soft settle on each feature.
                 const i = Math.min(N - 1, Math.floor(local));
@@ -315,16 +328,23 @@
                 offset = i + f * 0.7 + easeInOut(f) * 0.3;
             }
             const x = clamp((u - (HERO + (N - 0.5) * SEG)) / EXIT, 0, 1);
-            texts.style.opacity = String(Math.min(enter, 1 - x));
-            track.style.transform = `translateY(${(-offset * textH).toFixed(1)}px)`;
+            put(texts, 'opacity', String(+Math.min(enter, 1 - x).toFixed(3)));
+            put(track, 'transform', `translate3d(0, ${(-offset * textH).toFixed(1)}px, 0)`);
 
             const next = u < HERO * 0.55 ? 'hero' : (x > 0.08 ? 'exit' : 'features');
             if (next !== phase) {
                 phase = next;
                 placeEdge();
             }
-            if (phase === 'hero') setState('intro');
-            else if (phase === 'exit') setState('out');
+            if (phase === 'hero') {
+                setState('intro');
+                // Touch: pause the demo while the finger is scrolling, resume when it rests.
+                if (touch && autoRunning && u > 0.01) stopAuto();
+                if (touch) {
+                    clearTimeout(scrollRest);
+                    scrollRest = setTimeout(() => { if (state === 'intro') playAuto(); }, 900);
+                }
+            } else if (phase === 'exit') setState('out');
             else setState(items[clamp(Math.round(offset), 0, N - 1)].dataset.state);
         };
 

@@ -588,12 +588,35 @@ select {
     height: var(--text-h, 300px);
     overflow: hidden;
     opacity: 0;
-    -webkit-mask-image: linear-gradient(transparent, #000 14%, #000 86%, transparent);
-    mask-image: linear-gradient(transparent, #000 14%, #000 86%, transparent);
+    will-change: opacity;
+}
+
+/* Soft edges drawn on top (a mask would repaint the text every frame on phones). */
+.story-texts::before,
+.story-texts::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    height: 16%;
+    pointer-events: none;
+}
+
+.story-texts::before {
+    top: 0;
+    background: linear-gradient(#fff, rgb(255 255 255 / 0));
+}
+
+.story-texts::after {
+    bottom: 0;
+    background: linear-gradient(rgb(255 255 255 / 0), #fff);
 }
 
 .story-track {
     will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .story-item {
