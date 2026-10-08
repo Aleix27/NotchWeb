@@ -782,6 +782,19 @@ select {
     height: var(--bz);
 }
 
+/* Safari's toolbar shrinks while scrolling and the visible screen grows past
+   100svh: extend the white panel so texts never show below the simulation. */
+.story.is-native .edge::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 40vh;
+    background: var(--white);
+    pointer-events: none;
+}
+
 .story.is-native .island-host {
     top: calc(var(--bz) - 1px);
 }
