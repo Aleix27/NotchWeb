@@ -265,6 +265,7 @@ def localize(document: str, lang: str, page: str, table: dict[str, str]) -> str:
         + "".join(f'    <meta property="og:locale:alternate" content="{o}">\n' for o in others),
         document, count=1)
     document = document.replace('"inLanguage": "es"', f'"inLanguage": "{LANGS[lang]["html"]}"')
+    document = document.replace("/assets/media/og-es.jpg", f"/assets/media/og-{lang}.jpg")
     # Pages live one folder down: point shared files back to the root.
     document = LOCAL_PATH_RE.sub(lambda m: m.group(1) + "../" + m.group(2), document)
     return document
