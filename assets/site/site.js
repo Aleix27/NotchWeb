@@ -134,10 +134,12 @@
         const edge = $('#edge');
         const items = $$('.story-item', track);
         const HERO = 0.8;
-        const EXIT = 0.6;
+        const EXIT = 0.45;
         const N = items.length;
         let SEG = 0.5;
         story.style.setProperty('--hero-units', (HERO + 0.04).toFixed(3));
+        // The film rises over the screen edge while it fades: no blank screen in between.
+        document.documentElement.style.setProperty('--exit-units', String(EXIT));
 
         const island = new window.VibeIsland(host, { art: ART, lang, fit: 520, maxScale: 1.4, minScale: 0.5 });
         island.setGlass(false);

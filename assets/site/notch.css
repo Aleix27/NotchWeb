@@ -120,7 +120,14 @@
     filter: blur(6px);
     -webkit-mask-image: linear-gradient(to bottom, transparent 0, transparent var(--glow-a), #000 var(--glow-b), rgb(0 0 0 / .9) 100%);
     mask-image: linear-gradient(to bottom, transparent 0, transparent var(--glow-a), #000 var(--glow-b), rgb(0 0 0 / .9) 100%);
+}
+
+.vni[data-disco="on"] .vni-glow::before {
     animation: vni-glow-pulse .8s ease-in-out infinite alternate;
+}
+
+.vni[data-disco="off"] .vni-glow {
+    display: none;
 }
 
 .vni[data-disco="on"] .vni-glow {
@@ -1013,7 +1020,6 @@
     margin: -60px 0 0 -140px;
     background: color-mix(in srgb, var(--aurora, var(--vni-cyan)) 35%, transparent);
     filter: blur(45px);
-    animation: vni-aur1 4.5s ease-in-out infinite alternate;
 }
 
 .vni-aurora i:nth-child(2) {
@@ -1022,7 +1028,6 @@
     margin: -50px 0 0 -100px;
     background: rgb(10 132 255 / .25);
     filter: blur(35px);
-    animation: vni-aur2 6.2s ease-in-out infinite alternate;
 }
 
 .vni-aurora i:nth-child(3) {
@@ -1031,8 +1036,11 @@
     margin: -40px 0 0 -75px;
     background: rgb(191 90 242 / .2);
     filter: blur(25px);
-    animation: vni-aur3 5.8s ease-in-out infinite alternate;
 }
+
+.vni-tele.is-running .vni-aurora i:nth-child(1) { animation: vni-aur1 4.5s ease-in-out infinite alternate; }
+.vni-tele.is-running .vni-aurora i:nth-child(2) { animation: vni-aur2 6.2s ease-in-out infinite alternate; }
+.vni-tele.is-running .vni-aurora i:nth-child(3) { animation: vni-aur3 5.8s ease-in-out infinite alternate; }
 
 @keyframes vni-aur1 {
     from { transform: translate(50px, 30px) rotate(10deg); }
@@ -1167,6 +1175,9 @@
     display: flex;
     gap: 5px;
     width: max-content;
+}
+
+.vni-sports.is-on .vni-leagues-row {
     animation: vni-drift 40s linear infinite;
 }
 
@@ -1287,6 +1298,9 @@
     border-radius: 50%;
     background: var(--vni-red);
     opacity: .75;
+}
+
+.vni-sports.is-on .vni-clock i {
     animation: vni-live 1.2s ease-in-out infinite;
 }
 
@@ -1469,6 +1483,9 @@
     width: 30px;
     height: 30px;
     flex: none;
+}
+
+.vni-notif.is-on .vni-goal-ball {
     animation: vni-spin 1.8s cubic-bezier(.3, 0, .2, 1) infinite;
 }
 

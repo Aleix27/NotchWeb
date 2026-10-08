@@ -1009,7 +1009,7 @@
             const box = `left:${x0.toFixed(2)}px;top:${y0.toFixed(2)}px;width:${W.toFixed(2)}px;height:${H.toFixed(2)}px;`;
             this.fill.style.cssText = box + `opacity:${this.fill.style.opacity};transition:${this.fill.style.transition};background:${this.fillBackground(H)}`;
             this.glass.style.cssText = box + `opacity:${this.glass.style.opacity};transition:${this.glass.style.transition};display:${this.root.dataset.glass === 'on' ? 'block' : 'none'}`;
-            this.glow.style.cssText = box + this.glowVars(H);
+            if (this.root.dataset.disco === 'on') this.glow.style.cssText = box + this.glowVars(H);
             this.hit.style.cssText = `left:${(x0 - 4).toFixed(1)}px;top:0;width:${(W + 8).toFixed(1)}px;height:${Math.max(36, y0 + H + 4).toFixed(1)}px`;
             this.pulseEl.style.transform = this.p.pulse.v !== 1 ? `scale(${this.p.pulse.v.toFixed(4)})` : '';
         }
@@ -1065,14 +1065,17 @@
             const c = this.track.colors;
             this.root.style.setProperty('--wave-grad', `linear-gradient(90deg, ${c.join(', ')})`);
             this.root.style.setProperty('--wave-shadow', `color-mix(in srgb, ${c[0]} 30%, transparent)`);
-            this.waveBars = Array.from(this.root.querySelectorAll('.vni-wave i'));
+            this.waveGroups = Array.from(this.root.querySelectorAll('.vni-wave')).map((w) => ({ view: w.closest('.vni-view'), bars: Array.from(w.children) }));
         }
 
         waveFrame() {
             const s = this.state;
-            if (!this.waveBars) return;
+            if (!this.waveGroups) return;
+            // Only the waveform on screen is animated.
+            const bars = this.waveGroups.filter((g) => g.view && g.view.classList.contains('is-on')).flatMap((g) => g.bars);
+            if (!bars.length) return;
             if (!s.playing) {
-                this.waveBars.forEach((b) => { b.style.height = '3px'; });
+                bars.forEach((b) => { b.style.height = '3px'; });
                 return;
             }
             const t = Date.now() / 1000;
@@ -1090,7 +1093,7 @@
                 const total = 5 + organic + energy + detail + (1 - n * n) * beat;
                 heights.push(Math.min(14, Math.max(3, total)).toFixed(1));
             }
-            this.waveBars.forEach((b, i) => { b.style.height = `${heights[i % 7]}px`; });
+            bars.forEach((b, i) => { b.style.height = `${heights[i % 7]}px`; });
         }
 
         discoBeat() {
@@ -1098,7 +1101,7 @@
             const on = s.disco && s.playing;
             this.discoActive = on;
             if (!on) {
-                if (this.p.pulse.target !== 1) {
+                if (this.p.pulse.target !== 1 || this.p.pulse.v !== 1) {
                     this.p.pulse.to(1, spring(0.4, 0.8), performance.now());
                     this.kick();
                 }

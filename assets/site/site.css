@@ -680,34 +680,33 @@ select {
 .aura i {
     position: absolute;
     border-radius: 50%;
-    filter: blur(70px);
     opacity: .5;
 }
 
 .aura i:nth-child(1) {
-    width: 40vw;
-    height: 30vw;
-    left: 10%;
-    top: 46%;
-    background: radial-gradient(closest-side, #ddd8ff, transparent);
+    width: 64vw;
+    height: 52vw;
+    left: 0;
+    top: 36%;
+    background: radial-gradient(closest-side, rgb(221 216 255 / .9), rgb(221 216 255 / .35) 45%, transparent);
     animation: drift-a 22s ease-in-out infinite alternate;
 }
 
 .aura i:nth-child(2) {
-    width: 38vw;
-    height: 28vw;
-    right: 8%;
-    top: 40%;
-    background: radial-gradient(closest-side, #ffdbe7, transparent);
+    width: 60vw;
+    height: 48vw;
+    right: -4%;
+    top: 30%;
+    background: radial-gradient(closest-side, rgb(255 219 231 / .9), rgb(255 219 231 / .35) 45%, transparent);
     animation: drift-b 26s ease-in-out infinite alternate;
 }
 
 .aura i:nth-child(3) {
-    width: 44vw;
-    height: 26vw;
-    left: 28%;
-    top: 64%;
-    background: radial-gradient(closest-side, #d3f0fd, transparent);
+    width: 66vw;
+    height: 44vw;
+    left: 18%;
+    top: 56%;
+    background: radial-gradient(closest-side, rgb(211 240 253 / .9), rgb(211 240 253 / .35) 45%, transparent);
     animation: drift-c 30s ease-in-out infinite alternate;
 }
 
@@ -718,6 +717,8 @@ select {
 /* ── Film: full-screen, muted, always playing ─────────────────────── */
 .film {
     position: relative;
+    z-index: 3;
+    margin-top: calc(var(--exit-units, 0) * -100svh);
     height: 100svh;
     min-height: 480px;
     background: #fff;
@@ -1454,6 +1455,27 @@ select {
 @media (max-width: 640px) {
     body {
         font-size: 16px;
+    }
+
+    /* Phones: keep the GPU free for the notch. */
+    .bar {
+        background: rgb(255 255 255 / .97);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+
+    .bar.is-dark {
+        background: rgb(12 12 14 / .96);
+    }
+
+    .aura i {
+        animation: none;
+    }
+
+    /* A phone shows the bezel as a straight line: no screen corners. */
+    .bezel::before,
+    .bezel::after {
+        display: none;
     }
 
     .bar-inner {
