@@ -234,7 +234,7 @@
     class VibeIsland {
         constructor(host, options = {}) {
             this.host = host;
-            this.opts = Object.assign({ art: 'assets/optimized/album-art-256.jpg', lang: 'es', fit: 530, maxScale: 1.75, minScale: 0.5 }, options);
+            this.opts = Object.assign({ art: '/assets/optimized/album-art-256.jpg', lang: 'es', fit: 530, maxScale: 1.75, minScale: 0.5 }, options);
             this.listeners = {};
             this.state = {
                 mode: 'notch', glass: true, expanded: false, panel: 'media', disco: false,

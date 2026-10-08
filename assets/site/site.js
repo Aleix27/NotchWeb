@@ -30,11 +30,13 @@
         original.attr.set(el, pairs.map(([attr, key]) => [attr, key, el.getAttribute(attr) || '']));
     });
 
-    function detectLang() {
-        const forced = new URLSearchParams(location.search).get('lang');
-        if (LANGS.includes(forced)) return forced;
-        const saved = store.get(LANG_KEY);
-        if (LANGS.includes(saved)) return saved;
+    // Each language has its own URL (/, /en/, /zh/) so search engines index all of
+    // them. The page language comes from the page itself; nothing switches in place
+    // except the ?lang= preview on the Spanish source pages.
+    const PAGE_LANG = document.documentElement.dataset.pageLang || 'es';
+    const PAGE_FILE = document.documentElement.dataset.pageFile || 'index.html';
+
+    function browserLang() {
         const prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'es'];
         for (const pref of prefs) {
             const code = String(pref).toLowerCase();
@@ -43,6 +45,34 @@
             if (code.startsWith('en')) return 'en';
         }
         return 'en';
+    }
+
+    function urlFor(target) {
+        const file = PAGE_FILE === 'index.html' ? '' : PAGE_FILE;
+        return `${target === 'es' ? '/' : `/${target}/`}${file}${location.hash}`;
+    }
+
+    function detectLang() {
+        const forced = new URLSearchParams(location.search).get('lang');
+        if (PAGE_LANG === 'es' && LANGS.includes(forced)) return forced;
+        return PAGE_LANG;
+    }
+
+    // Visitors whose browser speaks another language get a quiet suggestion, not a redirect.
+    function suggestLang() {
+        if (store.get(LANG_KEY) || new URLSearchParams(location.search).has('lang')) return;
+        const wanted = browserLang();
+        if (wanted === PAGE_LANG) return;
+        const text = { es: 'Esta página también está en español', en: 'This page is also available in English', zh: '本页面也有中文版' }[wanted];
+        const go = { es: 'Ver en español', en: 'View in English', zh: '查看中文版' }[wanted];
+        const bar = document.createElement('div');
+        bar.className = 'lang-hint';
+        bar.setAttribute('lang', HTML_LANG[wanted]);
+        bar.innerHTML = `<span>${text}</span><a href="${urlFor(wanted)}">${go}</a><button type="button" aria-label="OK">✕</button>`;
+        bar.querySelector('a').addEventListener('click', () => store.set(LANG_KEY, wanted));
+        bar.querySelector('button').addEventListener('click', () => { store.set(LANG_KEY, PAGE_LANG); bar.remove(); });
+        document.body.appendChild(bar);
+        requestAnimationFrame(() => bar.classList.add('is-on'));
     }
 
     function applyLang(next, persist) {
@@ -121,7 +151,7 @@
     }
 
     const islandOK = typeof window.VibeIsland === 'function' && CSS.supports('clip-path', 'path("M0 0Z")');
-    const ART = 'assets/optimized/album-art-256.jpg';
+    const ART = '/assets/optimized/album-art-256.jpg';
 
     // ── Story: title → the bezel settles under each feature → the film ──
     const story = $('#story');
@@ -248,113 +278,171 @@
         });
         island.root.addEventListener('pointerdown', () => { if (state === 'intro') stopAuto(); });
 
-        // Geometry: where the texts live and the bezel's two resting places.
-        let vh = 0;
-        let textH = 0;
-        let heroY = 0;
-        let featY = 0;
-        let top = 0;
-        let phase = '';
-        const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
-        const easeOut = (t) => 1 - (1 - t) ** 3;
-        const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
+        // Phones and tablets: native scrolling. The bezel is CSS-sticky and the texts
+        // are in the page flow, so nothing is moved by script while the finger scrolls.
+        const native = window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 820;
+        if (native) {
+            story.classList.add('is-native');
+            const probe = document.createElement('div');
+            probe.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:100svh;pointer-events:none;visibility:hidden';
+            document.body.appendChild(probe);
+            const anchor = $('#funciones');
+            let lineObserver;
+            let scrollRest = 0;
 
-        // On big screens the simulation zooms in once the bezel has settled.
-        let zoomTarget = 1;
-        let zoomTimer = 0;
-        const placeEdge = () => {
-            edge.style.setProperty('--edge-y', `${phase === 'hero' ? heroY : featY}px`);
-            edge.classList.toggle('is-gone', phase === 'exit');
-            clearTimeout(zoomTimer);
-            if (phase === 'features' && zoomTarget > 1) zoomTimer = setTimeout(() => island.setZoom(zoomTarget), 1050);
-            else island.setZoom(1);
-        };
+            const layoutNative = () => {
+                const vh = probe.offsetHeight || window.innerHeight;
+                const navh = 56;
+                const bezel = 14;
+                // Room for the tallest panel under the bezel; the bezel sits low on tall phones.
+                const islandRoom = Math.round(215 * island.scale) + bezel + 36;
+                const edgeTop = Math.max(navh + 240, Math.min(Math.round(vh * 0.7), vh - islandRoom));
+                const region = edgeTop - navh;
+                document.documentElement.style.setProperty('--edge-top', `${edgeTop}px`);
+                document.documentElement.style.setProperty('--region', `${region}px`);
+                anchor.style.top = `${heroBlock.offsetHeight - edgeTop + navh}px`;
 
-        const layout = () => {
-            vh = pin.clientHeight;
-            const narrow = window.innerWidth <= 640;
-            const textTop = 56 + Math.round(vh * 0.04);
-            textH = Math.round(vh * (narrow ? 0.4 : 0.33));
-            featY = textTop + textH + 4;
-            SEG = (textH / vh) * 1.3;
-            story.style.setProperty('--units', (HERO + (N - 0.5) * SEG + EXIT + 1).toFixed(3));
-            const base = island.baseScale || island.scale;
-            const bezel = edge.offsetHeight || 16;
-            const roomScale = (vh - featY - bezel - 24) / 215;
-            const widthScale = (window.innerWidth - 40) / 520;
-            const target = Math.min(roomScale, widthScale, 2.4);
-            zoomTarget = target > base * 1.08 ? target / base : 1;
-            host.style.height = `${Math.ceil(250 * base * zoomTarget + 40)}px`;
-            heroY = Math.min(heroBlock.offsetTop + heroBlock.offsetHeight + Math.round(vh * 0.06), vh - 140);
-            pin.style.setProperty('--text-top', `${textTop}px`);
-            pin.style.setProperty('--text-h', `${textH}px`);
-            top = story.getBoundingClientRect().top + window.scrollY;
-            placeEdge();
-            update();
-        };
+                // The feature whose text crosses the middle of the text area drives the notch.
+                if (lineObserver) lineObserver.disconnect();
+                const mid = navh + Math.round(region / 2);
+                lineObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
+                        if (entry.target === heroBlock) setState('intro');
+                        else setState(entry.target.dataset.state);
+                    });
+                }, { rootMargin: `-${mid}px 0px -${Math.max(0, vh - mid - 1)}px 0px` });
+                lineObserver.observe(heroBlock);
+                items.forEach((el) => lineObserver.observe(el));
+            };
+            layoutNative();
+            let resizeTimer;
+            window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(layoutNative, 150); });
 
-        let ticking = false;
-        let scrollRest = 0;
-        const touch = window.matchMedia('(pointer: coarse)').matches;
-        const last = {};
-        // Write a style only when it changes: fewer style recalcs while scrolling.
-        const put = (el, prop, value) => {
-            const key = el.id + prop;
-            if (last[key] === value) return;
-            last[key] = value;
-            el.style[prop] = value;
-        };
-        const update = () => {
-            ticking = false;
-            const u = (window.scrollY - top) / vh;
+            // Pause the demo while the finger scrolls at the top; resume when it rests.
+            window.addEventListener('scroll', () => {
+                if (state !== 'intro') return;
+                if (autoRunning) stopAuto();
+                clearTimeout(scrollRest);
+                scrollRest = setTimeout(() => { if (state === 'intro') playAuto(); }, 900);
+            }, { passive: true });
 
-            const h = clamp(u / (HERO * 0.55), 0, 1);
-            put(heroBlock, 'opacity', String(+(1 - h).toFixed(3)));
-            put(heroBlock, 'transform', `translate3d(0, ${(-h * 70).toFixed(1)}px, 0)`);
-            put(heroBlock, 'visibility', h >= 1 ? 'hidden' : 'visible');
-
-            const enter = clamp((u - HERO * 0.6) / (HERO * 0.4), 0, 1);
-            const local = (u - HERO) / SEG;
-            let offset;
-            if (local < 0) {
-                offset = -(1 - easeOut(enter));
-            } else if (touch) {
-                // Touch: the text follows the finger 1:1, no settling.
-                offset = Math.min(local, N - 0.5);
-            } else {
-                // Text follows the scroll freely, with only a soft settle on each feature.
-                const i = Math.min(N - 1, Math.floor(local));
-                const f = clamp(local - i, 0, 1);
-                offset = i + f * 0.7 + easeInOut(f) * 0.3;
+            // The film rises over the bezel: fold the notch away.
+            const filmEl = $('#film');
+            if (filmEl) {
+                new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) setState('out');
+                }, { rootMargin: '0px 0px -40% 0px' }).observe(filmEl);
             }
-            const x = clamp((u - (HERO + (N - 0.5) * SEG)) / EXIT, 0, 1);
-            put(texts, 'opacity', String(+Math.min(enter, 1 - x).toFixed(3)));
-            put(track, 'transform', `translate3d(0, ${(-offset * textH).toFixed(1)}px, 0)`);
+        } else {
+            // Geometry: where the texts live and the bezel's two resting places.
+            let vh = 0;
+            let textH = 0;
+            let heroY = 0;
+            let featY = 0;
+            let top = 0;
+            let phase = '';
+            const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+            const easeOut = (t) => 1 - (1 - t) ** 3;
+            const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
 
-            const next = u < HERO * 0.55 ? 'hero' : (x > 0.08 ? 'exit' : 'features');
-            if (next !== phase) {
-                phase = next;
+            // On big screens the simulation zooms in once the bezel has settled.
+            let zoomTarget = 1;
+            let zoomTimer = 0;
+            const placeEdge = () => {
+                edge.style.setProperty('--edge-y', `${phase === 'hero' ? heroY : featY}px`);
+                edge.classList.toggle('is-gone', phase === 'exit');
+                clearTimeout(zoomTimer);
+                if (phase === 'features' && zoomTarget > 1) zoomTimer = setTimeout(() => island.setZoom(zoomTarget), 1050);
+                else island.setZoom(1);
+            };
+
+            const layout = () => {
+                vh = pin.clientHeight;
+                const narrow = window.innerWidth <= 640;
+                const textTop = 56 + Math.round(vh * 0.04);
+                textH = Math.round(vh * (narrow ? 0.4 : 0.33));
+                featY = textTop + textH + 4;
+                SEG = (textH / vh) * 1.3;
+                story.style.setProperty('--units', (HERO + (N - 0.5) * SEG + EXIT + 1).toFixed(3));
+                const base = island.baseScale || island.scale;
+                const bezel = edge.offsetHeight || 16;
+                const roomScale = (vh - featY - bezel - 24) / 215;
+                const widthScale = (window.innerWidth - 40) / 520;
+                const target = Math.min(roomScale, widthScale, 2.4);
+                zoomTarget = target > base * 1.08 ? target / base : 1;
+                host.style.height = `${Math.ceil(250 * base * zoomTarget + 40)}px`;
+                heroY = Math.min(heroBlock.offsetTop + heroBlock.offsetHeight + Math.round(vh * 0.06), vh - 140);
+                pin.style.setProperty('--text-top', `${textTop}px`);
+                pin.style.setProperty('--text-h', `${textH}px`);
+                top = story.getBoundingClientRect().top + window.scrollY;
                 placeEdge();
-            }
-            if (phase === 'hero') {
-                setState('intro');
-                // Touch: pause the demo while the finger is scrolling, resume when it rests.
-                if (touch && autoRunning && u > 0.01) stopAuto();
-                if (touch) {
-                    clearTimeout(scrollRest);
-                    scrollRest = setTimeout(() => { if (state === 'intro') playAuto(); }, 900);
-                }
-            } else if (phase === 'exit') setState('out');
-            else setState(items[clamp(Math.round(offset), 0, N - 1)].dataset.state);
-        };
+                update();
+            };
 
-        window.addEventListener('scroll', () => {
-            if (!ticking) { ticking = true; requestAnimationFrame(update); }
-        }, { passive: true });
-        let resizeTimer;
-        window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(layout, 120); });
-        layout();
-        if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+            let ticking = false;
+            let scrollRest = 0;
+            const touch = window.matchMedia('(pointer: coarse)').matches;
+            const last = {};
+            // Write a style only when it changes: fewer style recalcs while scrolling.
+            const put = (el, prop, value) => {
+                const key = el.id + prop;
+                if (last[key] === value) return;
+                last[key] = value;
+                el.style[prop] = value;
+            };
+            const update = () => {
+                ticking = false;
+                const u = (window.scrollY - top) / vh;
+
+                const h = clamp(u / (HERO * 0.55), 0, 1);
+                put(heroBlock, 'opacity', String(+(1 - h).toFixed(3)));
+                put(heroBlock, 'transform', `translate3d(0, ${(-h * 70).toFixed(1)}px, 0)`);
+                put(heroBlock, 'visibility', h >= 1 ? 'hidden' : 'visible');
+
+                const enter = clamp((u - HERO * 0.6) / (HERO * 0.4), 0, 1);
+                const local = (u - HERO) / SEG;
+                let offset;
+                if (local < 0) {
+                    offset = -(1 - easeOut(enter));
+                } else if (touch) {
+                    // Touch: the text follows the finger 1:1, no settling.
+                    offset = Math.min(local, N - 0.5);
+                } else {
+                    // Text follows the scroll freely, with only a soft settle on each feature.
+                    const i = Math.min(N - 1, Math.floor(local));
+                    const f = clamp(local - i, 0, 1);
+                    offset = i + f * 0.7 + easeInOut(f) * 0.3;
+                }
+                const x = clamp((u - (HERO + (N - 0.5) * SEG)) / EXIT, 0, 1);
+                put(texts, 'opacity', String(+Math.min(enter, 1 - x).toFixed(3)));
+                put(track, 'transform', `translate3d(0, ${(-offset * textH).toFixed(1)}px, 0)`);
+
+                const next = u < HERO * 0.55 ? 'hero' : (x > 0.08 ? 'exit' : 'features');
+                if (next !== phase) {
+                    phase = next;
+                    placeEdge();
+                }
+                if (phase === 'hero') {
+                    setState('intro');
+                    // Touch: pause the demo while the finger is scrolling, resume when it rests.
+                    if (touch && autoRunning && u > 0.01) stopAuto();
+                    if (touch) {
+                        clearTimeout(scrollRest);
+                        scrollRest = setTimeout(() => { if (state === 'intro') playAuto(); }, 900);
+                    }
+                } else if (phase === 'exit') setState('out');
+                else setState(items[clamp(Math.round(offset), 0, N - 1)].dataset.state);
+            };
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) { ticking = true; requestAnimationFrame(update); }
+            }, { passive: true });
+            let resizeTimer;
+            window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(layout, 120); });
+            layout();
+            if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+        }
 
         if (hasIO) {
             new IntersectionObserver((entries) => {
@@ -435,7 +523,7 @@
     const film = $('#film-video');
     if (film) {
         let wanted = '';
-        const source = () => `assets/media/film-${lang === 'es' ? 'es' : 'en'}${portrait.matches ? '-v' : ''}.mp4`;
+        const source = () => `/assets/media/film-${lang === 'es' ? 'es' : 'en'}${portrait.matches ? '-v' : ''}.mp4`;
         const load = () => {
             const src = source();
             if (src === wanted) return;
@@ -541,6 +629,11 @@
 
     // ── Boot ────────────────────────────────────────────────────────────
     $$('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
-    $$('select[data-lang]').forEach((sel) => sel.addEventListener('change', () => applyLang(sel.value, true)));
+    $$('select[data-lang]').forEach((sel) => sel.addEventListener('change', () => {
+        store.set(LANG_KEY, sel.value);
+        if (sel.value !== PAGE_LANG) location.href = urlFor(sel.value);
+        else applyLang(sel.value, false);
+    }));
     applyLang(detectLang(), false);
+    suggestLang();
 })();

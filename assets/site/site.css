@@ -737,6 +737,84 @@ select {
 @keyframes drift-b { to { transform: translate(-6vw, 4vw) scale(.92); } }
 @keyframes drift-c { to { transform: translate(-5vw, -3vw) scale(1.12); } }
 
+/* ── Story on phones and tablets: native scroll, CSS-sticky bezel ── */
+.story.is-native {
+    height: auto;
+}
+
+.story.is-native .story-pin {
+    position: relative;
+    height: auto;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+}
+
+.story.is-native .aura {
+    display: none;
+}
+
+.story.is-native .story-hero {
+    position: relative;
+    top: auto;
+    order: 0;
+    padding-top: calc(var(--navh) + clamp(36px, 7svh, 64px));
+    padding-bottom: 36px;
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+}
+
+/* The bezel and a white panel below it: texts slide out from behind it. */
+.story.is-native .edge {
+    order: 1;
+    position: sticky;
+    top: var(--edge-top, 70svh);
+    z-index: 3;
+    height: calc(100svh - var(--edge-top, 70svh));
+    background: var(--white);
+    transform: none;
+    transition: none;
+}
+
+.story.is-native .bezel {
+    inset: 0 0 auto;
+    height: var(--bz);
+}
+
+.story.is-native .island-host {
+    top: calc(var(--bz) - 1px);
+}
+
+.story.is-native .story-texts {
+    order: 2;
+    position: relative;
+    top: auto;
+    height: auto;
+    overflow: visible;
+    opacity: 1;
+    margin-top: calc(var(--edge-top, 70svh) - 100svh);
+    padding-bottom: calc(100svh - var(--edge-top, 70svh) + var(--region, 60svh) * .6);
+}
+
+.story.is-native .story-texts::before,
+.story.is-native .story-texts::after {
+    display: none;
+}
+
+.story.is-native .story-track {
+    transform: none;
+    will-change: auto;
+}
+
+.story.is-native .story-item {
+    height: var(--region, 60svh);
+}
+
+.story.is-native ~ .film {
+    margin-top: calc(var(--edge-top, 70svh) - 100svh);
+}
+
 /* ── Film: full-screen, muted, always playing ─────────────────────── */
 .film {
     position: relative;
@@ -1441,6 +1519,50 @@ select {
     border-top: 1px solid var(--line-dark);
     font-size: 12px;
     color: rgb(255 255 255 / .38);
+}
+
+/* ── Language suggestion ──────────────────────────────────────────── */
+.lang-hint {
+    position: fixed;
+    left: 50%;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    z-index: 70;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: calc(100% - 24px);
+    padding: 8px 8px 8px 18px;
+    border-radius: 999px;
+    background: rgb(29 29 31 / .94);
+    color: #fff;
+    font-size: 14px;
+    box-shadow: 0 20px 40px -16px rgb(0 0 0 / .4);
+    transform: translate(-50%, 140%);
+    transition: transform .6s var(--ease);
+}
+
+.lang-hint.is-on {
+    transform: translate(-50%, 0);
+}
+
+.lang-hint a {
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.lang-hint button {
+    width: 30px;
+    height: 30px;
+    border: 0;
+    border-radius: 50%;
+    background: rgb(255 255 255 / .12);
+    color: #fff;
+    cursor: pointer;
 }
 
 /* ── Reveal ───────────────────────────────────────────────────────── */

@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import argparse
+import ast
+import datetime
 import html
 import json
 import re
@@ -24,6 +26,7 @@ REFERENCE_SUFFIXES = {
     ".woff2", ".xml",
 }
 MAX_ARTIFACT_BYTES = 80 * 1024 * 1024
+GENERATED_DIRS = {"en", "zh"}
 CSS_URL_RE = re.compile(r"url\(\s*(['\"]?)(.*?)\1\s*\)", re.IGNORECASE)
 QUOTED_RE = re.compile(r"(['\"`])([^\n'\"`]+)\1")
 PUBLIC_URL_RE = re.compile(r"https?://(?:www\.)?vibenotch\.es/[^\s'\"`<>)]+", re.IGNORECASE)
@@ -93,12 +96,16 @@ def resolve_reference(source: Path, raw_value: str) -> Path | None:
     value = raw_value.strip()
     if not value or value.startswith(("#", "data:", "mailto:", "tel:", "javascript:", "blob:", "//")):
         return None
+    if "${" in value:
+        return None  # template literal in a script, resolved at runtime
 
     parsed = urlsplit(value)
     if parsed.scheme:
         if parsed.scheme not in {"http", "https"} or (parsed.hostname or "").lower() not in PUBLIC_HOSTS:
             return None
         raw_path = unquote(parsed.path or "/")
+        if raw_path.lstrip("/").split("/")[0] in GENERATED_DIRS:
+            return None  # language versions are written by this build
         candidate = ROOT / raw_path.lstrip("/")
     else:
         raw_path = unquote(parsed.path)
@@ -178,6 +185,131 @@ def collect_public_files() -> set[Path]:
     return public_files
 
 
+# ── Language versions ────────────────────────────────────────────────────
+# Spanish lives at the root. English and Chinese get their own static URLs
+# (/en/, /zh/) built from the Spanish pages and the site dictionaries, so
+# search engines can index every language without running JavaScript.
+SITE = "https://vibenotch.es/"
+LANG_PAGES = {"index.html": "meta", "support.html": "su.meta", "privacy.html": "pv.meta"}
+LANGS = {
+    "es": {"html": "es", "locale": "es_ES"},
+    "en": {"html": "en", "locale": "en_US"},
+    "zh": {"html": "zh-Hans", "locale": "zh_CN"},
+}
+TEXT_RE = re.compile(r'(<(\w+)\b[^>]*?\sdata-i18n="([^"]+)"[^>]*>)([^<]*)(</\2>)')
+HTML_RE = re.compile(r'(<(\w+)\b[^>]*?\sdata-i18n-html="([^"]+)"[^>]*>)(.*?)(</\2>)', re.S)
+ATTR_TAG_RE = re.compile(r'<[^>]*?\sdata-i18n-attr="([^"]+)"[^>]*>')
+LOCAL_PATH_RE = re.compile(r'(\s(?:src|href|poster|data-src|srcset)=")((?:assets|edgeflow)/)')
+FAQ_RE = re.compile(r'<details><summary[^>]*>(.*?)</summary><p[^>]*>(.*?)</p></details>', re.S)
+
+
+def load_dictionaries() -> dict[str, dict[str, str]]:
+    dictionaries: dict[str, dict[str, str]] = {"en": {}, "zh": {}}
+    for source in ("assets/site/i18n.js", "assets/site/i18n-pages.js"):
+        text = (ROOT / source).read_text(encoding="utf-8")
+        for lang, table in dictionaries.items():
+            match = re.search(rf"\n\s+{lang}: \{{(.*?)\n\s+\}}", text, re.S)
+            if not match:
+                raise RuntimeError(f"Sin diccionario '{lang}' en {source}")
+            table.update(ast.literal_eval("{" + match.group(1) + "}"))
+    return dictionaries
+
+
+def page_url(lang: str, page: str) -> str:
+    path = "" if page == "index.html" else page
+    return SITE + ("" if lang == "es" else f"{lang}/") + path
+
+
+def faq_json_ld(document: str) -> str:
+    def plain(fragment: str) -> str:
+        return html.unescape(re.sub(r"<[^>]+>", "", fragment)).strip()
+
+    questions = [
+        {"@type": "Question", "name": plain(q), "acceptedAnswer": {"@type": "Answer", "text": plain(a)}}
+        for q, a in FAQ_RE.findall(document)
+    ]
+    data = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": questions}
+    return '<script type="application/ld+json" id="ld-faq">' + json.dumps(data, ensure_ascii=False) + "</script>"
+
+
+def localize(document: str, lang: str, page: str, table: dict[str, str]) -> str:
+    def attrs(match: re.Match) -> str:
+        tag = match.group(0)
+        for pair in match.group(1).split(";"):
+            attribute, key = pair.split(":")
+            if key in table:
+                value = html.escape(table[key], quote=True)
+                tag = re.sub(rf'(\s{attribute}=")[^"]*(")', lambda m: m.group(1) + value + m.group(2), tag, count=1)
+        return tag
+
+    document = ATTR_TAG_RE.sub(attrs, document)
+    document = HTML_RE.sub(lambda m: m.group(1) + table.get(m.group(3), m.group(4)) + m.group(5), document)
+    document = TEXT_RE.sub(lambda m: m.group(1) + (html.escape(table[m.group(3)], quote=False) if m.group(3) in table else m.group(4)) + m.group(5), document)
+
+    meta = LANG_PAGES[page]
+    title = html.escape(table.get(f"{meta}.title", ""), quote=True)
+    description = html.escape(table.get(f"{meta}.desc", ""), quote=True)
+    url = page_url(lang, page)
+    document = document.replace('<html lang="es" ', f'<html lang="{LANGS[lang]["html"]}" data-page-lang="{lang}" ', 1)
+    if title:
+        document = re.sub(r"<title>.*?</title>", f"<title>{title}</title>", document, count=1)
+        document = re.sub(r'(<meta (?:property="og:title"|name="twitter:title") content=")[^"]*', lambda m: m.group(1) + title, document)
+    if description:
+        document = re.sub(r'(<meta (?:name="description"|property="og:description"|name="twitter:description") content=")[^"]*', lambda m: m.group(1) + description, document)
+    document = re.sub(r'(<link rel="canonical" href=")[^"]*', lambda m: m.group(1) + url, document, count=1)
+    document = re.sub(r'(<meta property="og:url" content=")[^"]*', lambda m: m.group(1) + url, document, count=1)
+    others = [LANGS[other]["locale"] for other in LANGS if other != lang]
+    document = re.sub(
+        r'    <meta property="og:locale" content="[^"]*">\n(?:    <meta property="og:locale:alternate" content="[^"]*">\n)*',
+        lambda m: f'    <meta property="og:locale" content="{LANGS[lang]["locale"]}">\n'
+        + "".join(f'    <meta property="og:locale:alternate" content="{o}">\n' for o in others),
+        document, count=1)
+    document = document.replace('"inLanguage": "es"', f'"inLanguage": "{LANGS[lang]["html"]}"')
+    # Pages live one folder down: point shared files back to the root.
+    document = LOCAL_PATH_RE.sub(lambda m: m.group(1) + "../" + m.group(2), document)
+    return document
+
+
+def write_language_versions(output: Path) -> list[Path]:
+    dictionaries = load_dictionaries()
+    written: list[Path] = []
+    for page in LANG_PAGES:
+        source = (ROOT / page).read_text(encoding="utf-8")
+        versions = {"es": source}
+        for lang, table in dictionaries.items():
+            versions[lang] = localize(source, lang, page, table)
+        for lang, document in versions.items():
+            if 'id="ld-faq"' in document:
+                document = re.sub(r'<script type="application/ld\+json" id="ld-faq">.*?</script>', lambda m: faq_json_ld(document), document, count=1, flags=re.S)
+            target = output / page if lang == "es" else output / lang / page
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(document, encoding="utf-8")
+            written.append(target)
+    return written
+
+
+def write_sitemap(output: Path) -> None:
+    today = datetime.date.today().isoformat()
+    priority = {"index.html": "1.0", "support.html": "0.5", "privacy.html": "0.3"}
+    rows = []
+    for page in LANG_PAGES:
+        alternates = "".join(
+            f'\n    <xhtml:link rel="alternate" hreflang="{LANGS[l]["html"]}" href="{page_url(l, page)}"/>' for l in LANGS
+        ) + f'\n    <xhtml:link rel="alternate" hreflang="x-default" href="{page_url("es", page)}"/>'
+        for lang in LANGS:
+            rows.append(
+                f"  <url>\n    <loc>{page_url(lang, page)}</loc>\n    <lastmod>{today}</lastmod>\n"
+                f"    <priority>{priority[page]}</priority>{alternates}\n  </url>"
+            )
+    rows.append(f"  <url>\n    <loc>{SITE}edgeflow/</loc>\n    <lastmod>{today}</lastmod>\n    <priority>0.4</priority>\n  </url>")
+    (output / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
+        + "\n".join(rows) + "\n</urlset>\n",
+        encoding="utf-8",
+    )
+
+
 def build(output_name: str) -> tuple[int, int]:
     output = (ROOT / output_name).resolve()
     if output.name != "_site" or output.parent != ROOT:
@@ -202,6 +334,9 @@ def build(output_name: str) -> tuple[int, int]:
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, destination)
     (output / ".nojekyll").touch()
+    languages = write_language_versions(output)
+    write_sitemap(output)
+    print(f"Idiomas: {len(languages)} páginas (es, en, zh) y sitemap con alternativas")
 
     print(f"Sitio público: {len(public_files)} archivos, {total_bytes / 1048576:.2f} MiB")
     for source in sorted(public_files, key=lambda path: path.stat().st_size, reverse=True)[:10]:
