@@ -106,6 +106,29 @@
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
     }
 
+    // The bar's real height (it grows when the App Store banner is shown).
+    function navHeight() {
+        return bar ? Math.round(bar.getBoundingClientRect().height) : 56;
+    }
+    const syncNav = () => {
+        document.documentElement.style.setProperty('--navh', `${navHeight()}px`);
+        window.dispatchEvent(new Event('resize'));
+    };
+
+    // Safari on Mac has no Smart App Banner, so Mac visitors get our own.
+    const promo = $('#promo');
+    const PROMO_KEY = 'vibenotch-promo-closed';
+    const isMac = /Macintosh/.test(navigator.userAgent) && (navigator.maxTouchPoints || 0) < 2;
+    if (promo && isMac && !store.get(PROMO_KEY)) {
+        promo.hidden = false;
+        syncNav();
+        promo.querySelector('.promo-close').addEventListener('click', () => {
+            promo.hidden = true;
+            store.set(PROMO_KEY, '1');
+            syncNav();
+        });
+    }
+
     // App switcher popover
     const appsBtn = $('#apps-btn');
     const appsPop = $('#apps-pop');
@@ -292,7 +315,7 @@
 
             const layoutNative = () => {
                 const vh = probe.offsetHeight || window.innerHeight;
-                const navh = 56;
+                const navh = navHeight();
                 const bezel = 14;
                 // Room for the tallest panel under the bezel; the bezel sits low on tall phones.
                 const islandRoom = Math.round(215 * island.scale) + bezel + 36;
@@ -360,7 +383,7 @@
             const layout = () => {
                 vh = pin.clientHeight;
                 const narrow = window.innerWidth <= 640;
-                const textTop = 56 + Math.round(vh * 0.04);
+                const textTop = navHeight() + Math.round(vh * 0.04);
                 textH = Math.round(vh * (narrow ? 0.4 : 0.33));
                 featY = textTop + textH + 4;
                 SEG = (textH / vh) * 1.3;
