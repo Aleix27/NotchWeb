@@ -150,6 +150,8 @@ def seed_files() -> set[Path]:
         seeds.update((ROOT / "edgeflow").rglob(suffix))
     # Site media is picked at runtime (language, screen size), so publish it whole.
     seeds.update(path for path in (ROOT / "assets" / "media").rglob("*") if path.is_file())
+    # Old share-image URLs that social networks may still have cached.
+    seeds.add(ROOT / "assets" / "vibenotch-hero-poster.jpg")
     for relative in ("CNAME", "robots.txt", "sitemap.xml", "assets/favicon/site.webmanifest"):
         candidate = ROOT / relative
         if candidate.is_file():
@@ -265,7 +267,7 @@ def localize(document: str, lang: str, page: str, table: dict[str, str]) -> str:
         + "".join(f'    <meta property="og:locale:alternate" content="{o}">\n' for o in others),
         document, count=1)
     document = document.replace('"inLanguage": "es"', f'"inLanguage": "{LANGS[lang]["html"]}"')
-    document = document.replace("/assets/media/og-es.jpg", f"/assets/media/og-{lang}.jpg")
+    document = document.replace("/assets/media/share-es.jpg", f"/assets/media/share-{lang}.jpg")
     # Pages live one folder down: point shared files back to the root.
     document = LOCAL_PATH_RE.sub(lambda m: m.group(1) + "../" + m.group(2), document)
     return document
